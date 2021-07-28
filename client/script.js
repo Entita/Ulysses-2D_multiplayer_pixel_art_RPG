@@ -3,18 +3,7 @@ var app = new Vue({
     data() {
         return {
             socket: {},
-            animations: [
-                'idle',
-                'jump',
-                'fall',
-                'run',
-                'dizzy',
-                'sit',
-                'roll',
-                'bite',
-                'ko',
-                'hit'
-            ]
+            animationStates: []
         }
     },
     created() {
