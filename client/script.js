@@ -16,7 +16,14 @@ var app = new Vue({
     mounted() {
         this.context = document.getElementById('game').getContext('2d')
         this.socket.on('position', data => {
+            var board = document.getElementById('game')
+            this.context.clearRect(0, 0, board.width, board.height)
             this.context.fillRect(data.x, data.y, 20, 20)
         })
+    },
+    methods: {
+        move(direction) {
+            this.socket.emit('move', direction)
+        }
     }
 });
