@@ -69,7 +69,6 @@ var app = new Vue({
         function animate() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
             let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[playerState].location.length
-            console.log(position)
             let frameX = spriteWidth * position
             let frameY = spriteAnimations[playerState].location[position].y
             ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight)
