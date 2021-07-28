@@ -81,6 +81,7 @@ var app = new Vue({
         }
 
         function moveSprite() {
+            console.log(keys['w'], keys)
             if (keys['w']) {
                 coordY = (coordY - speed) >= 0 ? coordY - speed : coordY
             }
