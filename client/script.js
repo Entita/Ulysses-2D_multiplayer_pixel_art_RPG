@@ -55,7 +55,19 @@ var app = new Vue({
         const spriteAnimations = []
         const keys = []
 
-        loadSprites(this)
+        // Load Sprites
+        this.animationStates.forEach((state, i) => {
+            let frames = {
+                location: []
+            }
+            for (let j = 0; j < state.frames; j++) {
+                let positionX = j * player.sprite_width
+                let positionY = i * player.sprite_height
+                frames.location.push({ x: positionX, y: positionY })
+            }
+            spriteAnimations[state.name] = frames
+        })
+
         animate()
 
         /* Functions */
@@ -69,20 +81,6 @@ var app = new Vue({
             gameFrame++
             moveSprite()
             requestAnimationFrame(animate)
-        }
-
-        function loadSprites(this) {
-            this.animationStates.forEach((state, i) => {
-                let frames = {
-                    location: []
-                }
-                for (let j = 0; j < state.frames; j++) {
-                    let positionX = j * player.sprite_width
-                    let positionY = i * player.sprite_height
-                    frames.location.push({ x: positionX, y: positionY })
-                }
-                spriteAnimations[state.name] = frames
-            })
         }
 
         function moveSprite() {
