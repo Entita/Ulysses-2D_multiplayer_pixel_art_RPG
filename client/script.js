@@ -37,7 +37,7 @@ var app = new Vue({
             sprite_width: 575,
             sprite_height: 523,
             width: 100,
-            height: Math.round(width * 0.9096),
+            height: Math.round(this.width * 0.9096),
             // height: 92,
             speed: 10,
             moving: false
