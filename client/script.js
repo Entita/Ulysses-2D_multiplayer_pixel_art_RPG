@@ -22,7 +22,6 @@ var app = new Vue({
         ]
     },
     mounted() {
-        // this.context = document.getElementById('game').getContext('2d')
         // this.socket.on('position', data => {
         //     var board = document.getElementById('game')
         //     this.context.clearRect(0, 0, board.width, board.height)
@@ -35,17 +34,19 @@ var app = new Vue({
             playerState = e.target.value
         })
 
+        // Canvas
         const canvas = document.getElementById('game')
         const ctx = canvas.getContext('2d')
+        const canvas_width = canvas.width = 900
+        const canvas_height = canvas.height = 900
 
-        const canvas_width = canvas.width = 600
-        const canvas_height = canvas.height = 600
-
+        // Sprite sheet
         const playerImage = new Image()
         playerImage.src = 'img/sprite_sheet.png'
         const spriteWidth = 575
         const spriteHeight = 523
 
+        // Sprite options
         let gameFrame = 0
         const staggerFrames = 6
         const spriteAnimations = []
@@ -75,8 +76,6 @@ var app = new Vue({
         animate()
     },
     methods: {
-        move(direction) {
-            this.socket.emit('move', direction)
-        }
+        
     }
 });
