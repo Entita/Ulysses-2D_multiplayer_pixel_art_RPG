@@ -70,7 +70,7 @@ var app = new Vue({
             let frameY = spriteAnimations[playerState].location[position].y
             let playerWidth = 340
             let playerHeight = Math.round(playerWidth * 0.9096)
-            ctx.drawImage(playerImage, frameX, frameY, playerWidth, playerHeight, 0, 0, spriteWidth, spriteHeight)
+            ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 0, 0, playerWidth, playerHeight)
 
             gameFrame++
             requestAnimationFrame(animate)
