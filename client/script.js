@@ -112,11 +112,13 @@ var app = new Vue({
             key = e.key.toLowerCase()
             keys[key] = true
             player.moving = true
+            player.sprite = 'run'
         })
         window.addEventListener('keyup', e => {
             key = e.key.toLowerCase()
             delete keys[key]
             player.moving = false
+            player.sprite = 'idle'
         })
     },
     methods: {
