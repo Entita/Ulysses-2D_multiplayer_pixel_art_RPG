@@ -29,12 +29,12 @@ var app = new Vue({
 
         const playerImage = new Image()
         playerImage.src = 'img/sprite_sheet.png'
-        let x = 0
+        const spriteWidth = 575
+        const spriteHeight = 523
 
-        function animate () {
+        function animate() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
-            ctx.fillRect(x,50,100,100)
-            x++;
+            ctx.drawImage(playerImage, 0, 0, spriteWidth, spriteHeight, 0, 0, canvas_width, canvas_height)
             requestAnimationFrame(animate)
         }
         animate()
