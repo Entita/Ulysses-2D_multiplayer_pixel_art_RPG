@@ -46,6 +46,7 @@ var app = new Vue({
         const spriteHeight = 523
 
         // Sprite options
+        let playerWidth = 100
         let gameFrame = 0
         const staggerFrames = 6
         const spriteAnimations = []
@@ -70,7 +71,6 @@ var app = new Vue({
             let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[playerState].location.length
             let frameX = spriteWidth * position
             let frameY = spriteAnimations[playerState].location[position].y
-            let playerWidth = 100
             let playerHeight = Math.round(playerWidth * 0.9096)
             ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, coordX, coordY, playerWidth, playerHeight)
 
@@ -94,8 +94,7 @@ var app = new Vue({
                     break
                 case 's':
                     playerState = 'run'
-                    coordY = (coordY + 10) > canvas_height ? coordY : coordY + 10
-                    console.log(coordY, (coordY + 10) > canvas_height)
+                    coordY = (coordY + 10) > (canvas_height - playerWidth) ? coordY : coordY + 10
                     break
                 case 'a':
                     playerState = 'run'
@@ -103,7 +102,7 @@ var app = new Vue({
                     break
                 case 'd':
                     playerState = 'run'
-                    coordX = (coordX + 10) > canvas_width ? coordX : coordX + 10
+                    coordX = (coordX + 10) > (canvas_width - playerWidth) ? coordX : coordX + 10
                     break
             }
         })
