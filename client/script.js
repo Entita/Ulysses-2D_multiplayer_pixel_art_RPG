@@ -30,9 +30,6 @@ var app = new Vue({
 
         let playerState = 'idle'
         const dropdown = document.getElementById('animations')
-        dropdown.addEventListener('change', function (e) {
-            playerState = e.target.value
-        })
 
         // Canvas
         const canvas = document.getElementById('game')
@@ -76,6 +73,15 @@ var app = new Vue({
             requestAnimationFrame(animate)
         }
         animate()
+
+        /* Event Listeners */
+        dropdown.addEventListener('change', function (e) {
+            playerState = e.target.value
+        })
+
+        window.addEventListener('keypress', e => {
+            console.log(e.key)
+        })
     },
     methods: {
 
