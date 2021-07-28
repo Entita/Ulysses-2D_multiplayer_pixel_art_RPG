@@ -81,7 +81,6 @@ var app = new Vue({
         }
 
         function moveSprite() {
-            console.log(keys['w'], keys)
             if (keys['w']) {
                 coordY = (coordY - speed) >= 0 ? coordY - speed : coordY
             }
@@ -103,11 +102,11 @@ var app = new Vue({
         })
 
         window.addEventListener('keydown', e => {
-            key = e.key.toLowerCase
+            key = e.key.toLowerCase()
             keys[key] = true
         })
         window.addEventListener('keyup', e => {
-            key = e.key.toLowerCase
+            key = e.key.toLowerCase()
             delete keys[key]
         })
     },
