@@ -39,7 +39,7 @@ var app = new Vue({
             sprite_height: 523,
             width: 100,
             height: 91,
-            speed: 10,
+            speed: 4,
             moving: false
         }
         player.sprite_img.src = 'img/sprite_sheet.png'
@@ -87,18 +87,22 @@ var app = new Vue({
             if (keys['w']) {
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
+                player.sprite = 'run'
             }
             if (keys['s']) {
                 player.y = (player.y + player.speed) > (canvas_height - player.width) ? player.y : player.y + player.speed
                 player.moving = true
+                player.sprite = 'run'
             }
             if (keys['a']) {
                 player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
+                player.sprite = 'run'
             }
             if (keys['d']) {
                 player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
+                player.sprite = 'run'
             }
         }
 
