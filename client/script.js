@@ -33,7 +33,7 @@ var app = new Vue({
             x: 0,
             y: 0,
             sprite_src: 'img/sprite_sheet.png',
-            sprite_img: new Image().src('img/sprite_sheet.png'),
+            sprite_img: new Image(),
             sprite_width: 575,
             sprite_height: 523,
             width: 100,
@@ -41,6 +41,8 @@ var app = new Vue({
             speed: 10,
             moving: false
         }
+
+        player.sprite_img.src = 'img/sprite_sheet.png'
 
         // Canvas
         const canvas = document.getElementById('game')
