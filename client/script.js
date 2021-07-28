@@ -29,6 +29,8 @@ var app = new Vue({
         // })
 
         let playerState = 'idle'
+        let coordX = 0
+        let coordY = 0
         const dropdown = document.getElementById('animations')
 
         // Canvas
@@ -60,6 +62,9 @@ var app = new Vue({
             spriteAnimations[state.name] = frames
         })
 
+        animate()
+
+        /* Functions */
         function animate() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
             let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[playerState].location.length
@@ -67,12 +72,11 @@ var app = new Vue({
             let frameY = spriteAnimations[playerState].location[position].y
             let playerWidth = 100
             let playerHeight = Math.round(playerWidth * 0.9096)
-            ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 0, 0, playerWidth, playerHeight)
+            ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, coordX, coordY, playerWidth, playerHeight)
 
             gameFrame++
             requestAnimationFrame(animate)
         }
-        animate()
 
         /* Event Listeners */
         dropdown.addEventListener('change', function (e) {
@@ -86,15 +90,19 @@ var app = new Vue({
                     break
                 case 'w':
                     playerState = 'run'
+                    coordY -= 10
                     break
                 case 's':
                     playerState = 'run'
+                    coordY += 10
                     break
                 case 'a':
                     playerState = 'run'
+                    coordX -= 10
                     break
                 case 'd':
                     playerState = 'run'
+                    coordX += 10
                     break
             }
         })
