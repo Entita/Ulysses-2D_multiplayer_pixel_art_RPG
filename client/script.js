@@ -31,7 +31,6 @@ var app = new Vue({
         let playerState = 'idle'
         let coordX = 0
         let coordY = 0
-        const dropdown = document.getElementById('animations')
 
         // Canvas
         const canvas = document.getElementById('game')
@@ -50,6 +49,8 @@ var app = new Vue({
         let gameFrame = 0
         const staggerFrames = 6
         const spriteAnimations = []
+        const keys = []
+        let speed = 10
 
         this.animationStates.forEach((state, i) => {
             let frames = {
@@ -78,13 +79,17 @@ var app = new Vue({
             requestAnimationFrame(animate)
         }
 
+        function moveSprite() {
+            // if (keys)
+        }
+
         /* Event Listeners */
+        const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', function (e) {
             playerState = e.target.value
         })
 
         window.addEventListener('keypress', e => {
-            console.log('keypress', e.key)
             switch (e.key.toLowerCase()) {
                 case ' ':
                     playerState = 'jump'
@@ -107,11 +112,12 @@ var app = new Vue({
                     break
             }
         })
-        window.addEventListener('keyup', e => {
-            console.log('keyup', e.key)
-        })
         window.addEventListener('keydown', e => {
-            console.log('keydown', e.key)
+            keys[e.key] = true
+            console.log(keys)
+        })
+        window.addEventListener('keyup', e => {
+            delete keys[e.key]
         })
     },
     methods: {
