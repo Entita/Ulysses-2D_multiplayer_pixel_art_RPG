@@ -25,7 +25,7 @@
                 <option value="bite">Bite</option>
                 <option value="ko">KO</option>
                 <option value="hit">Hit</option>
-                <option v-for="animation in animations" v-model="animation" v-click="dropdown(animation)">{{ animation }}</option>
+                <option v-for="animation in animations" v-model="animation" @click="dropdown(animation)">{{ animation }}</option>
             </select>
         </div>
     </div>
