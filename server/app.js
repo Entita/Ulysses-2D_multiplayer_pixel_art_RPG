@@ -9,8 +9,8 @@ app.get('/', (req, res) => {
     res.send('Hello world')
 });
 
-app.get('/', (req, res) => {
-    res.json({ greeting: 'Hello' })
+app.get('/api', (req, res) => {
+    res.json({ api: 'Some data' })
 });
 
 io.on('connection', (socket) => {
