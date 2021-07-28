@@ -51,7 +51,7 @@ var app = new Vue({
             }
             spriteAnimations[state.name] = frames
         })
-        console.log(animationStates)
+        console.log(spriteAnimations)
 
         function animate() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
