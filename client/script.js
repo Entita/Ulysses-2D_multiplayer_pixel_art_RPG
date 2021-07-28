@@ -95,6 +95,7 @@ var app = new Vue({
                 case 's':
                     playerState = 'run'
                     coordY = (coordY + 10) > canvas_height ? coordY : coordY + 10
+                    console.log(coordY, (coordY + 10) > canvas_height)
                     break
                 case 'a':
                     playerState = 'run'
