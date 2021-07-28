@@ -90,19 +90,19 @@ var app = new Vue({
                     break
                 case 'w':
                     playerState = 'run'
-                    coordY -= 10
+                    coordY = (coordY - 10) >= 0 ? coordY - 10 : coordY
                     break
                 case 's':
                     playerState = 'run'
-                    coordY += 10
+                    coordY = (coordY + 10) <= canvas_height ? coordY + 10 : coordY
                     break
                 case 'a':
                     playerState = 'run'
-                    coordX -= 10
+                    coordY = (coordX - 10) >= 0 ? coordX - 10 : coordX
                     break
                 case 'd':
                     playerState = 'run'
-                    coordX += 10
+                    coordY = (coordX + 10) <= canvas_width ? coordX + 10 : coordX
                     break
             }
         })
