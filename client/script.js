@@ -30,6 +30,7 @@ var app = new Vue({
 
         const player = {
             sprite: 'idle',
+            spriteDir: 0,
             x: 0,
             y: 0,
             sprite_src: 'img/sprite_sheet.png',
@@ -37,12 +38,10 @@ var app = new Vue({
             sprite_width: 575,
             sprite_height: 523,
             width: 100,
-            height: Math.round(this.width * 0.9096),
-            // height: 92,
+            height: 91,
             speed: 10,
             moving: false
         }
-
         player.sprite_img.src = 'img/sprite_sheet.png'
 
         // Canvas
@@ -56,18 +55,7 @@ var app = new Vue({
         const spriteAnimations = []
         const keys = []
 
-        this.animationStates.forEach((state, i) => {
-            let frames = {
-                location: []
-            }
-            for (let j = 0; j < state.frames; j++) {
-                let positionX = j * player.sprite_width
-                let positionY = i * player.sprite_height
-                frames.location.push({ x: positionX, y: positionY })
-            }
-            spriteAnimations[state.name] = frames
-        })
-
+        loadSprites()
         animate()
 
         /* Functions */
@@ -81,6 +69,20 @@ var app = new Vue({
             gameFrame++
             moveSprite()
             requestAnimationFrame(animate)
+        }
+
+        function loadSprites() {
+            this.animationStates.forEach((state, i) => {
+                let frames = {
+                    location: []
+                }
+                for (let j = 0; j < state.frames; j++) {
+                    let positionX = j * player.sprite_width
+                    let positionY = i * player.sprite_height
+                    frames.location.push({ x: positionX, y: positionY })
+                }
+                spriteAnimations[state.name] = frames
+            })
         }
 
         function moveSprite() {
