@@ -3,17 +3,17 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
+var position = {
+    x: 200,
+    y: 200
+}
+
 app.get('/', (req, res) => {
-    // const path = __dirname.replace('\\server', '')
-    // res.sendFile(path + '/client/index.html');
     res.send('Hello world')
 });
 
-app.get('/api', (req, res) => {
-    res.json({ api: 'Some data' })
-});
-
 io.on('connection', (socket) => {
+    socket.emit('position', position)
     console.log('a user connected');
     socket.on('disconnect', () => {
         console.log('user disconnected');
