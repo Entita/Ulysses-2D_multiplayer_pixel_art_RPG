@@ -29,7 +29,7 @@ var app = new Vue({
         // })
 
         const player = {
-            state: 'idle',
+            sprite: 'idle',
             x: 0,
             y: 0,
             sprite_src: 'img/sprite_sheet.png',
@@ -37,7 +37,8 @@ var app = new Vue({
             sprite_width: 575,
             sprite_height: 523,
             width: 100,
-            height: Math.round(player.width * 0.9096),
+            // height: Math.round(player.width * 0.9096),
+            height: 92,
             speed: 10,
             moving: false
         }
@@ -72,9 +73,9 @@ var app = new Vue({
         /* Functions */
         function animate() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
-            let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[player.state].location.length
+            let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[player.sprite].location.length
             let frameX = player.sprite_width * position
-            let frameY = spriteAnimations[player.state].location[position].y
+            let frameY = spriteAnimations[player.sprite].location[position].y
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
 
             gameFrame++
@@ -104,7 +105,7 @@ var app = new Vue({
         /* Event Listeners */
         const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', function (e) {
-            player.state = e.target.value
+            player.sprite = e.target.value
         })
 
         window.addEventListener('keydown', e => {
