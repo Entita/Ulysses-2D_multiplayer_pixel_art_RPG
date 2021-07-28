@@ -15,7 +15,7 @@
         <div class="controls">
             <label for="animations">Choose Animation:</label>
             <select id="animations" name="animations">
-                <option v-for="animation in animations" @click="dropdown(animation)">{{ animation }}</option>
+                <option v-for="animation in animations" v-on-click="dropdown(animation)">{{ animation }}</option>
             </select>
         </div>
     </div>
