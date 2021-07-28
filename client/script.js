@@ -39,7 +39,7 @@ var app = new Vue({
         const spriteHeight = 523
 
         let gameFrame = 0
-        const staggerFrames = 8
+        const staggerFrames = 6
         const spriteAnimations = []
         const animationStates = [
             { name: 'idle', frames: 7 },
