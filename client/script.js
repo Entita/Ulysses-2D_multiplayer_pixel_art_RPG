@@ -28,9 +28,19 @@ var app = new Vue({
         //     // this.context.fillRect(data.x, data.y, 20, 20)
         // })
 
-        let playerState = 'idle'
-        let coordX = 0
-        let coordY = 0
+        const player = {
+            state: 'idle',
+            x: 0,
+            y: 0,
+            sprite_src: 'img/sprite_sheet.png',
+            sprite_img: new Image().src('img/sprite_sheet.png'),
+            sprite_width: 575,
+            sprite_height: 523,
+            width: 100,
+            height: Math.round(player.width * 0.9096),
+            speed: 10,
+            moving: false
+        }
 
         // Canvas
         const canvas = document.getElementById('game')
@@ -38,27 +48,18 @@ var app = new Vue({
         const canvas_width = canvas.width = 900
         const canvas_height = canvas.height = 900
 
-        // Sprite sheet
-        const playerImage = new Image()
-        playerImage.src = 'img/sprite_sheet.png'
-        const spriteWidth = 575
-        const spriteHeight = 523
-
-        // Sprite options
-        let playerWidth = 100
         let gameFrame = 0
         const staggerFrames = 6
         const spriteAnimations = []
         const keys = []
-        let speed = 10
 
         this.animationStates.forEach((state, i) => {
             let frames = {
                 location: []
             }
             for (let j = 0; j < state.frames; j++) {
-                let positionX = j * spriteWidth
-                let positionY = i * spriteHeight
+                let positionX = j * player.sprite_width
+                let positionY = i * player.sprite_height
                 frames.location.push({ x: positionX, y: positionY })
             }
             spriteAnimations[state.name] = frames
@@ -69,11 +70,10 @@ var app = new Vue({
         /* Functions */
         function animate() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
-            let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[playerState].location.length
-            let frameX = spriteWidth * position
-            let frameY = spriteAnimations[playerState].location[position].y
-            let playerHeight = Math.round(playerWidth * 0.9096)
-            ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, coordX, coordY, playerWidth, playerHeight)
+            let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[player.state].location.length
+            let frameX = player.sprite_width * position
+            let frameY = spriteAnimations[player.state].location[position].y
+            ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
 
             gameFrame++
             moveSprite()
@@ -82,32 +82,38 @@ var app = new Vue({
 
         function moveSprite() {
             if (keys['w']) {
-                coordY = (coordY - speed) >= 0 ? coordY - speed : coordY
+                player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
+                player.moving = true
             }
             if (keys['s']) {
-                coordY = (coordY + speed) > (canvas_height - playerWidth) ? coordY : coordY + speed
+                player.y = (player.y + player.speed) > (canvas_height - player.width) ? player.y : player.y + player.speed
+                player.moving = true
             }
             if (keys['a']) {
-                coordX = (coordX - speed) >= 0 ? coordX - speed : coordX
+                player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
+                player.moving = true
             }
             if (keys['d']) {
-                coordX = (coordX + speed) > (canvas_width - playerWidth) ? coordX : coordX + speed
+                player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
+                player.moving = true
             }
         }
 
         /* Event Listeners */
         const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', function (e) {
-            playerState = e.target.value
+            player.state = e.target.value
         })
 
         window.addEventListener('keydown', e => {
             key = e.key.toLowerCase()
             keys[key] = true
+            player.moving = true
         })
         window.addEventListener('keyup', e => {
             key = e.key.toLowerCase()
             delete keys[key]
+            player.moving = false
         })
     },
     methods: {
