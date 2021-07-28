@@ -84,6 +84,7 @@ var app = new Vue({
         })
 
         window.addEventListener('keypress', e => {
+            console.log('keypress', e.key)
             switch (e.key.toLowerCase()) {
                 case ' ':
                     playerState = 'jump'
@@ -105,6 +106,12 @@ var app = new Vue({
                     coordX = (coordX + 10) > (canvas_width - playerWidth) ? coordX : coordX + 10
                     break
             }
+        })
+        window.addEventListener('keyup', e => {
+            console.log('keyup', e.key)
+        })
+        window.addEventListener('keydown', e => {
+            console.log('keydown', e.key)
         })
     },
     methods: {
