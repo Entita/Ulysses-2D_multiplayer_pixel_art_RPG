@@ -80,7 +80,23 @@ var app = new Vue({
         })
 
         window.addEventListener('keypress', e => {
-            console.log(e.key)
+            switch (e.key.toLowerCase()) {
+                case ' ':
+                    playerState = 'jump'
+                    break
+                case 'w':
+                    playerState = 'run'
+                    break
+                case 's':
+                    playerState = 'run'
+                    break
+                case 'a':
+                    playerState = 'run'
+                    break
+                case 'd':
+                    playerState = 'run'
+                    break
+            }
         })
     },
     methods: {
