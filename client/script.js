@@ -55,7 +55,7 @@ var app = new Vue({
         const spriteAnimations = []
         const keys = []
 
-        loadSprites()
+        loadSprites(this)
         animate()
 
         /* Functions */
@@ -71,7 +71,7 @@ var app = new Vue({
             requestAnimationFrame(animate)
         }
 
-        function loadSprites() {
+        function loadSprites(this) {
             this.animationStates.forEach((state, i) => {
                 let frames = {
                     location: []
