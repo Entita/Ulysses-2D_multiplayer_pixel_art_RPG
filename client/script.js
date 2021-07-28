@@ -3,11 +3,18 @@ var app = new Vue({
     data() {
         return {
             socket: {},
-            context: {},
-            position: {
-                x: 0,
-                y: 0
-            }
+            animations: [
+                'idle',
+                'jump',
+                'fall',
+                'run',
+                'dizzy',
+                'sit',
+                'roll',
+                'bite',
+                'ko',
+                'hit'
+            ]
         }
     },
     created() {
@@ -22,10 +29,10 @@ var app = new Vue({
         // })
 
         let playerState = 'idle'
-        const dropdown = document.getElementById('animations')
-        dropdown.addEventListener('change', function (e) {
-            playerState = e.target.value
-        })
+        // const dropdown = document.getElementById('animations')
+        // dropdown.addEventListener('change', function (e) {
+        //     playerState = e.target.value
+        // })
 
         const canvas = document.getElementById('game')
         const ctx = canvas.getContext('2d')
@@ -81,6 +88,10 @@ var app = new Vue({
     methods: {
         move(direction) {
             this.socket.emit('move', direction)
+        },
+        dropdown(state) {
+            console.log(state)
+            playerState = state
         }
     }
 });
