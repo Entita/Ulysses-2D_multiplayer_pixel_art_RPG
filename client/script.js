@@ -76,11 +76,23 @@ var app = new Vue({
             ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, coordX, coordY, playerWidth, playerHeight)
 
             gameFrame++
+            moveSprite()
             requestAnimationFrame(animate)
         }
 
         function moveSprite() {
-            // if (keys)
+            if (keys['w']) {
+                coordY = (coordY - speed) >= 0 ? coordY - speed : coordY
+            }
+            if (keys['s']) {
+                coordY = (coordY + speed) > (canvas_height - playerWidth) ? coordY : coordY + speed
+            }
+            if (keys['a']) {
+                coordX = (coordX - speed) >= 0 ? coordX - speed : coordX
+            }
+            if (keys['d']) {
+                coordX = (coordX + speed) > (canvas_width - playerWidth) ? coordX : coordX + speed
+            }
         }
 
         /* Event Listeners */
@@ -89,35 +101,13 @@ var app = new Vue({
             playerState = e.target.value
         })
 
-        window.addEventListener('keypress', e => {
-            switch (e.key.toLowerCase()) {
-                case ' ':
-                    playerState = 'jump'
-                    break
-                case 'w':
-                    playerState = 'run'
-                    coordY = (coordY - 10) >= 0 ? coordY - 10 : coordY
-                    break
-                case 's':
-                    playerState = 'run'
-                    coordY = (coordY + 10) > (canvas_height - playerWidth) ? coordY : coordY + 10
-                    break
-                case 'a':
-                    playerState = 'run'
-                    coordX = (coordX - 10) >= 0 ? coordX - 10 : coordX
-                    break
-                case 'd':
-                    playerState = 'run'
-                    coordX = (coordX + 10) > (canvas_width - playerWidth) ? coordX : coordX + 10
-                    break
-            }
-        })
         window.addEventListener('keydown', e => {
-            keys[e.key] = true
-            console.log(keys)
+            key = e.key.toLowerCase
+            keys[key] = true
         })
         window.addEventListener('keyup', e => {
-            delete keys[e.key]
+            key = e.key.toLowerCase
+            delete keys[key]
         })
     },
     methods: {
