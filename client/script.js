@@ -15,6 +15,8 @@ var app = new Vue({
     },
     mounted() {
         this.context = document.getElementById('game').getContext('2d')
-        this.context.fillRect(this.position.x, this.position.y, 20, 20)
+        this.socket.on('position', data => {
+            this.context.fillRect(data.x, data.y, 20, 20)
+        })
     }
 });
