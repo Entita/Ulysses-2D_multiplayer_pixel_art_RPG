@@ -34,7 +34,7 @@ var app = new Vue({
 
         function animate() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
-            ctx.drawImage(playerImage, 0, 0, spriteWidth, spriteHeight, 0, 0, canvas_width, canvas_height)
+            ctx.drawImage(playerImage, 0, 0, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight)
             requestAnimationFrame(animate)
         }
         animate()
