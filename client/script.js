@@ -50,7 +50,7 @@ var app = new Vue({
         const staggerFrames = 6
         const spriteAnimations = []
 
-        animationStates.forEach((state, i) => {
+        this.animationStates.forEach((state, i) => {
             let frames = {
                 location: []
             }
