@@ -14,7 +14,7 @@
         <canvas id="game"></canvas>
         <div class="controls">
             <label for="animations">Choose Animation:</label>
-            <select id="animations" name="animations" @change="dropdown">
+            <select id="animations" name="animations">
                 <option v-for="animation in animations" :value="animation">{{ animation }}</option>
             </select>
         </div>
