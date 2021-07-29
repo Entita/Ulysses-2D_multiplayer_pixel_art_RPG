@@ -48,7 +48,7 @@ var app = new Vue({
                 moving: false
             }
             player.sprite_img.src = 'img/sprite_starlord.png'
-            this_.socket.emit('player_info', player)
+            this_.socket.emit('update_player', player)
 
             if (players.length === 0) {
                 // Load Sprites
@@ -69,7 +69,7 @@ var app = new Vue({
 
         this_.socket.on('user_disconnected', data => {
             console.log('player disconnected', data)
-            players = data
+            // players = data
         })
 
         // Canvas

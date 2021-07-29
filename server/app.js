@@ -4,13 +4,16 @@ const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 var players = []
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
     const player = {
         socket_id: socket.id
     }
     players.push(player)
     io.emit('user_connected', players)
 
+    socket.on('update_player', data => {
+        console.log(data)
+    }) 
 
     socket.on('disconnect', () => {
         players = players.filter(item => item.socket_id !== player.socket_id)
