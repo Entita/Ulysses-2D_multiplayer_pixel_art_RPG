@@ -11,9 +11,9 @@ io.on('connection', (socket) => {
     players.push(player)
     io.emit('user_connected', players)
 
-    
+
     socket.on('disconnect', () => {
-        players = players.filter(item => item !== player.socket_id)
+        players = players.filter(item => item.socket_id !== player.socket_id)
         io.emit('user_disconnected', players)
     });
 
