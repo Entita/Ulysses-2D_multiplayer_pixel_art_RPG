@@ -33,7 +33,7 @@ var app = new Vue({
 
         this_.socket.on('players_updated', data => {
             console.log('all players', data)
-            players = data
+            // players = data
         })
 
         this_.socket.on('user_connected', socket => {
@@ -68,14 +68,13 @@ var app = new Vue({
                     }
                     spriteAnimations[state.name] = frames
                 })
-                startAnimating(fps)
             }
             players.push(player)
         })
 
         this_.socket.on('user_disconnected', data => {
             console.log('player disconnected', data)
-            players = data
+            // players = data
         })
 
         // Canvas
@@ -95,6 +94,8 @@ var app = new Vue({
 
         // Multiplayer
         var players = []
+
+        startAnimating(fps)
 
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
