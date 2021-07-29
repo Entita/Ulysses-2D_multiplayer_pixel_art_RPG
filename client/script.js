@@ -3,7 +3,11 @@ var app = new Vue({
     data() {
         return {
             socket: {},
-            animationStates: []
+            animationStates: [],
+            characters: [
+                'starlord',
+                'tonystark'
+            ]
         }
     },
     created() {
@@ -144,6 +148,11 @@ var app = new Vue({
         }
 
         /* Event Listeners */
+        const dropdown = document.getElementById('animations')
+        dropdown.addEventListener('change', e => {
+            player.sprite_img.src = 'img/' + e.target.value + '.png'
+        })
+
         window.addEventListener('keydown', e => {
             key = e.key.toLowerCase()
             keys[key] = true
