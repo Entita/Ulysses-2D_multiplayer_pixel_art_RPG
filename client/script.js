@@ -27,7 +27,7 @@ var app = new Vue({
     mounted() {
         var this_ = this
         // Multiplayer
-        areTherePlayers = false
+        let areTherePlayers = false
         const otherPlayer = {}
 
         this_.socket.on('position', data => {
