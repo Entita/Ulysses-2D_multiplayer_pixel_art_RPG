@@ -11,15 +11,12 @@ io.on('connection', (socket) => {
         'socket_id': socket.id
     }
     io.emit('user_connected', new_data)
+    
     socket.on('disconnect', (socket) => {
-        console.log('user disconnected', socket.id);
         players = players.filter(item => item.socket_id !== socket.id)
-        const new_data = {
-            'players': players,
-            'socket_id': socket.id
-        }
         io.emit('user_disconnected', new_data)
     });
+
     socket.on('move', data => {
         switch (data) {
             case 'up':
