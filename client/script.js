@@ -43,8 +43,8 @@ var app = new Vue({
             sprite_img: new Image(),
             sprite_width: 1024,
             sprite_height: 1024,
-            width: 100,
-            height: 100,
+            width: 256,
+            height: 256,
             speed: 10,
             moving: false
         }
