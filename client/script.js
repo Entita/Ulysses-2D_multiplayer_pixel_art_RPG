@@ -81,7 +81,7 @@ var app = new Vue({
         }
 
         function animate() {
-            requestAnimationFrame(aniamte)
+            requestAnimationFrame(animate)
             now = Date.now()
             elapsed = now - then
             if (elapsed > fpsInterval) {
