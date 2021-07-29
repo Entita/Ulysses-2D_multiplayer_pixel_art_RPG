@@ -6,22 +6,20 @@ var players = []
 
 io.on('connection', (socket) => {
     players.push(socket.id)
-    const new_con_data = {
+    const new_data = {
         'players': players,
         'socket_id': socket.id
     }
-    io.emit('user_connected', new_con_data)
+    io.emit('user_connected', new_data)
 
     socket.on('disconnect', (socket) => {
-        console.log('a',players, socket, socket.id)
-        players = players.filter(item => item !== socket.id)
-        const new_dis_data = {
-            'players': players,
-            'socket_id': socket.id
-        }
-        console.log('b',new_dis_data)
+        console.log('a',players, new_con_data['socket_id'])
+        players = players.filter(item => item !== new_con_data['socket_id'])
+        new_data['players'] = players
+
+        console.log('b',new_data)
         console.log('c',players)
-        io.emit('user_disconnected', new_dis_data)
+        io.emit('user_disconnected', new_data)
     });
 
     socket.on('move', data => {
