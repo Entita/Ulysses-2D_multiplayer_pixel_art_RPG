@@ -12,12 +12,6 @@
 <body>
     <div id="app">
         <canvas id="game"></canvas>
-        <div class="controls">
-            <label for="animations">Choose Animation:</label>
-            <select id="animations" name="animations">
-                <option v-for="animation in animationStates" :value="animation.name">{{ animation.name }}</option>
-            </select>
-        </div>
     </div>
 
     <script src="https://gentle-island-28675.herokuapp.com/socket.io/socket.io.js"></script>

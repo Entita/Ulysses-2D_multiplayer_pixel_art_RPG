@@ -133,11 +133,6 @@ var app = new Vue({
         }
 
         /* Event Listeners */
-        const dropdown = document.getElementById('animations')
-        dropdown.addEventListener('change', function (e) {
-            player.sprite = e.target.value
-        })
-
         window.addEventListener('keydown', e => {
             key = e.key.toLowerCase()
             keys[key] = true
