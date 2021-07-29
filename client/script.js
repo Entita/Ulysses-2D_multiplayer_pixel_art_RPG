@@ -118,9 +118,7 @@ var app = new Vue({
                 player.sprite = 'up'
             }
             if (keys['s']) {
-                console.log(player.y, player.speed)
-                player.y = (player.y + player.speed) > (canvas_height - player.width) ? player.y : player.y + player.speed
-                console.log(player.y, player.speed)
+                player.y = (player.y + player.speed) > (canvas_height - player.height) ? player.y : player.y + player.speed
                 player.moving = true
                 player.sprite = 'down'
             }
@@ -130,7 +128,7 @@ var app = new Vue({
                 player.sprite = 'left'
             }
             if (keys['d']) {
-                player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
+                player.x = (player.x + player.speed) > (canvas_width - player.height) ? player.x : player.x + player.speed
                 player.moving = true
                 player.sprite = 'right'
             }
