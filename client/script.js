@@ -18,18 +18,6 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
-        // this.animationStates = [
-        //     { name: 'idle', frames: 7 },
-        //     { name: 'jump', frames: 7 },
-        //     { name: 'fall', frames: 7 },
-        //     { name: 'run', frames: 9 },
-        //     { name: 'dizzy', frames: 11 },
-        //     { name: 'sit', frames: 5 },
-        //     { name: 'roll', frames: 7 },
-        //     { name: 'bite', frames: 7 },
-        //     { name: 'ko', frames: 12 },
-        //     { name: 'hit', frames: 4 }
-        // ]
         this.animationStates = [
             { name: 'down', frames: 4 },
             { name: 'left', frames: 4 },
@@ -45,7 +33,6 @@ var app = new Vue({
         // })
 
         const player = {
-            // sprite: 'idle',
             sprite: 'down',
             spriteDir: 0,
             x: 0,
@@ -58,7 +45,6 @@ var app = new Vue({
             speed: 10,
             moving: false
         }
-        // player.sprite_img.src = 'img/sprite_sheet.png'
         player.sprite_img.src = 'img/sprite_starlord.png'
 
         // Canvas
@@ -130,25 +116,21 @@ var app = new Vue({
             if (keys['w']) {
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
-                // player.sprite = 'run'
                 player.sprite = 'up'
             }
             if (keys['s']) {
                 player.y = (player.y + player.speed) > (canvas_height - player.width) ? player.y : player.y + player.speed
                 player.moving = true
-                // player.sprite = 'run'
                 player.sprite = 'down'
             }
             if (keys['a']) {
                 player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
-                // player.sprite = 'run'
                 player.sprite = 'left'
             }
             if (keys['d']) {
                 player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
-                // player.sprite = 'run'
                 player.sprite = 'right'
             }
         }
@@ -163,16 +145,11 @@ var app = new Vue({
             key = e.key.toLowerCase()
             keys[key] = true
             player.moving = true
-            // player.sprite = 'run'
         })
         window.addEventListener('keyup', e => {
             key = e.key.toLowerCase()
             delete keys[key]
             player.moving = false
-            // player.sprite = 'idle'
         })
-    },
-    methods: {
-
     }
 });
