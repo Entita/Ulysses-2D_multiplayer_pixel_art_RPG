@@ -63,7 +63,7 @@ var app = new Vue({
             console.log(otherPlayer)
             otherPlayer = otherPlayer.filter(item => item.socket_id !== socket)
             console.log(otherPlayer)
-            
+
             if (otherPlayer.length === 0) {
                 areTherePlayers = false
             }
@@ -145,10 +145,12 @@ var app = new Vue({
             let frameY = spriteAnimations[player.sprite].location[position].y
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
             if (areTherePlayers) {
-                let position = otherPlayer[socket_id].moving ? sprintX % spriteAnimations[otherPlayer[socket_id].sprite].location.length : 0
-                let frameX = otherPlayer[socket_id].sprite_width * position
-                let frameY = spriteAnimations[otherPlayer[socket_id].sprite].location[position].y
-                ctx.drawImage(otherPlayer[socket_id].sprite_img, frameX, frameY, otherPlayer[socket_id].sprite_width, otherPlayer[socket_id].sprite_height, otherPlayer[socket_id].x, otherPlayer[socket_id].y, otherPlayer[socket_id].width, otherPlayer[socket_id].height)
+                for (let index = 0; index < otherPlayer.length; index++) {
+                    let position = otherPlayer[index].moving ? sprintX % spriteAnimations[otherPlayer[index].sprite].location.length : 0
+                    let frameX = otherPlayer[index].sprite_width * position
+                    let frameY = spriteAnimations[otherPlayer[index].sprite].location[position].y
+                    ctx.drawImage(otherPlayer[index].sprite_img, frameX, frameY, otherPlayer[index].sprite_width, otherPlayer[index].sprite_height, otherPlayer[index].x, otherPlayer[index].y, otherPlayer[index].width, otherPlayer[index].height)
+                }
             }
             sprintX++
             moveSprite()
