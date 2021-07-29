@@ -56,9 +56,9 @@ var app = new Vue({
 
         this_.socket.on('user_disconnected', () => {
             console.log('player disconnected')
-            console.log('array', otherPlayer)
+            console.log('array', otherPlayer, otherPlayer.length === 0)
             delete otherPlayer[socket_id]
-            console.log('array', otherPlayer)
+            console.log('array', otherPlayer, otherPlayer.length === 0)
             if (otherPlayer.length === 0) {
                 areTherePlayers = false
             }
