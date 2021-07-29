@@ -62,8 +62,8 @@ var app = new Vue({
                         location: []
                     }
                     for (let j = 0; j < state.frames; j++) {
-                        let positionX = j * otherPlayer[0].sprite_width
-                        let positionY = i * otherPlayer[0].sprite_height
+                        let positionX = j * player.sprite_width
+                        let positionY = i * player.sprite_height
                         frames.location.push({ x: positionX, y: positionY })
                     }
                     spriteAnimations[state.name] = frames
