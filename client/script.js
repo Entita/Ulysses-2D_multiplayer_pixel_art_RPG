@@ -56,21 +56,11 @@ var app = new Vue({
 
         this_.socket.on('user_disconnected', () => {
             console.log('player disconnected')
-            console.log(isEmpty(otherPlayer))
             delete otherPlayer[socket_id]
-            console.log(isEmpty(otherPlayer))
-            if (otherPlayer.length === 0) {
+            if (isObjectEmpty(otherPlayer)) {
                 areTherePlayers = false
             }
         })
-        function isEmpty(object) {
-            for (var key in object) {
-                if (object.hasOwnProperty(key)){
-                    return false
-                }
-            }
-            return true
-        }
 
         //Variables
         const player = {
@@ -121,6 +111,15 @@ var app = new Vue({
         const otherPlayer = {}
 
         startAnimating(fps)
+
+        function isObjectEmpty(object) {
+            for (var key in object) {
+                if (object.hasOwnProperty(key)) {
+                    return false
+                }
+            }
+            return true
+        }
 
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
