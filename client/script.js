@@ -140,7 +140,6 @@ var app = new Vue({
         }
 
         function moveSprite() {
-            console.log(keys)
             if (keys['w']) {
                 var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
