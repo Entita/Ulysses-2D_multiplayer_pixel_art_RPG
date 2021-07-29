@@ -108,8 +108,7 @@ var app = new Vue({
                 position = sprintX % spriteAnimations[player.sprite].location.length
             }
             let frameX = player.sprite_width * position
-            let frameY = spriteAnimations[player.sprite].location[position].y
-            console.log(frameX, frameY)
+            let frameY = spriteAnimations[player.sprite].location[position].y - player.height
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
 
             sprintX++
