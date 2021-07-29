@@ -44,7 +44,7 @@ var app = new Vue({
                 spriteDir: 0,
                 x: 0,
                 y: 0,
-                sprite_img: new Image(),
+                sprite_img: 'img/sprite_starlord.png',
                 sprite_width: 32,
                 sprite_height: 48,
                 width: 67,
@@ -52,7 +52,6 @@ var app = new Vue({
                 speed: 10,
                 moving: false
             }
-            player.sprite_img.src = 'img/sprite_starlord.png'
             this_.socket.emit('update_player', player)
 
             if (players.length === 0) {
@@ -122,7 +121,9 @@ var app = new Vue({
                 let position = players[index].moving ? sprintX % spriteAnimations[players[index].sprite].location.length : 0
                 let frameX = players[index].sprite_width * position
                 let frameY = spriteAnimations[players[index].sprite].location[position].y
-                ctx.drawImage(players[index].sprite_img, frameX, frameY, players[index].sprite_width, players[index].sprite_height, players[index].x, players[index].y, players[index].width, players[index].height)
+                var image = new Image()
+                image.src = players[index].sprite_img
+                ctx.drawImage(image, frameX, frameY, players[index].sprite_width, players[index].sprite_height, players[index].x, players[index].y, players[index].width, players[index].height)
             }
             sprintX++
             moveSprite()
