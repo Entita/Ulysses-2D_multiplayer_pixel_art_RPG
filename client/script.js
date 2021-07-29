@@ -26,10 +26,14 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
+        this_.socket.on('connect', () => {
+            console.log(socket.id)
+        })
+
         this_.socket.on('position', data => {
             console.log('position changed', data)
         })
-        console.log(this.socket)
+
         this_.socket.on('user_connected', () => {
             otherPlayer = {
                 sprite: 'down',
