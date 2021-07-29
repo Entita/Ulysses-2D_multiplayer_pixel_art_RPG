@@ -31,7 +31,7 @@ var app = new Vue({
         })
 
         this_.socket.on('user_connected', () => {
-            const otherPlayer = {
+            otherPlayer = {
                 sprite: 'down',
                 spriteDir: 0,
                 x: 0,
@@ -98,6 +98,7 @@ var app = new Vue({
 
         // Multiplayer
         areTherePlayers = false
+        const otherPlayer = {}
 
         startAnimating(fps)
 
