@@ -84,7 +84,7 @@ var app = new Vue({
 
         // Game engine
         let fpsInterval, now, then, elapsed,
-            fps = 30,
+            fps = 10,
             sprintX = 0
 
         // Sprite movement
