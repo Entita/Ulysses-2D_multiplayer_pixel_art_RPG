@@ -26,7 +26,8 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
-        let socket_id
+        // Multiplayer
+        var otherPlayer = []
         // Socket.io
         this_.socket.on('connect', () => {
             socket_id = this_.socket.id
@@ -54,6 +55,20 @@ var app = new Vue({
             }
             player.sprite_img.src = 'img/sprite_starlord.png'
 
+            if (otherPlayer.length === 0) {
+                // Load Sprites
+                this_.animationStates.forEach((state, i) => {
+                    let frames = {
+                        location: []
+                    }
+                    for (let j = 0; j < state.frames; j++) {
+                        let positionX = j * otherPlayer[0].sprite_width
+                        let positionY = i * otherPlayer[0].sprite_height
+                        frames.location.push({ x: positionX, y: positionY })
+                    }
+                    spriteAnimations[state.name] = frames
+                })
+            }
             otherPlayer.push(player)
         })
 
@@ -78,22 +93,6 @@ var app = new Vue({
         // Sprite movement
         const spriteAnimations = [],
             keys = []
-
-        // Load Sprites
-        this_.animationStates.forEach((state, i) => {
-            let frames = {
-                location: []
-            }
-            for (let j = 0; j < state.frames; j++) {
-                let positionX = j * otherPlayer[0].sprite_width
-                let positionY = i * otherPlayer[0].sprite_height
-                frames.location.push({ x: positionX, y: positionY })
-            }
-            spriteAnimations[state.name] = frames
-        })
-
-        // Multiplayer
-        var otherPlayer = []
 
         startAnimating(fps)
 
