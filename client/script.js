@@ -39,7 +39,7 @@ var app = new Vue({
             sprite_height: 523,
             width: 100,
             height: 91,
-            speed: 4,
+            speed: 10,
             moving: false
         }
         player.sprite_img.src = 'img/sprite_sheet.png'
@@ -95,7 +95,7 @@ var app = new Vue({
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
             let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[player.sprite].location.length
-            console.log(position, gameFrame, staggerFrames)
+            console.log(position, gameFrame, staggerFrames, spriteAnimations[player.sprite].location.length)
             let frameX = player.sprite_width * position
             let frameY = spriteAnimations[player.sprite].location[position].y
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
