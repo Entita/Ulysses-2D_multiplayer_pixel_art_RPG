@@ -30,9 +30,9 @@ var app = new Vue({
             console.log('position changed')
         })
 
-        this_.socket.on('user_connected',
+        this_.socket.on('user_connected', () => {
             console.log('player connected')
-        )
+        })
 
         this_.socket.on('user_disconnected', () => {
             console.log('player disconnected')
