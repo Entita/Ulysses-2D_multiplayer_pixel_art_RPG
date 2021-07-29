@@ -150,7 +150,7 @@ var app = new Vue({
         /* Event Listeners */
         const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', e => {
-            player.sprite_img.src = 'img/' + e.target.value + '.png'
+            player.sprite_img.src = 'img/sprite_' + e.target.value + '.png'
         })
 
         window.addEventListener('keydown', e => {
