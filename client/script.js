@@ -139,6 +139,7 @@ var app = new Vue({
         function moveSprite() {
             if (keys['w']) {
                 var thisPlayer = getCurrentPlayer()
+                console.log(thisPlayer)
                 thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
                 movingSprint(thisPlayer, 'up')
             }
@@ -160,6 +161,7 @@ var app = new Vue({
         }
 
         function getCurrentPlayer() {
+            console.log('socketík', socketID)
             players.filter(obj => {
                 return obj.socket_id === socketID
             })
