@@ -33,7 +33,6 @@ var app = new Vue({
         })
 
         this_.socket.on('players_updated', data => {
-            console.log('all players', data)
             players = data
         })
 
