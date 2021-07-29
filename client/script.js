@@ -49,7 +49,7 @@ var app = new Vue({
                 speed: 10,
                 moving: false
             }
-            otherPlayer.sprite_img.src = 'img/sprite_starlord.png'
+            otherPlayer[socket_id].sprite_img.src = 'img/sprite_starlord.png'
             areTherePlayers = true
         })
 
@@ -138,10 +138,10 @@ var app = new Vue({
             let frameY = spriteAnimations[player.sprite].location[position].y
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
             if (areTherePlayers) {
-                let position = otherPlayer.moving ? sprintX % spriteAnimations[otherPlayer.sprite].location.length : 0
-                let frameX = otherPlayer.sprite_width * position
-                let frameY = spriteAnimations[otherPlayer.sprite].location[position].y
-                ctx.drawImage(otherPlayer.sprite_img, frameX, frameY, otherPlayer.sprite_width, otherPlayer.sprite_height, otherPlayer.x, otherPlayer.y, otherPlayer.width, otherPlayer.height)
+                let position = otherPlayer[socket_id].moving ? sprintX % spriteAnimations[otherPlayer[socket_id].sprite].location.length : 0
+                let frameX = otherPlayer[socket_id].sprite_width * position
+                let frameY = spriteAnimations[otherPlayer[socket_id].sprite].location[position].y
+                ctx.drawImage(otherPlayer[socket_id].sprite_img, frameX, frameY, otherPlayer[socket_id].sprite_width, otherPlayer[socket_id].sprite_height, otherPlayer[socket_id].x, otherPlayer[socket_id].y, otherPlayer[socket_id].width, otherPlayer[socket_id].height)
             }
             sprintX++
             moveSprite()
