@@ -145,21 +145,25 @@ var app = new Vue({
                 var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
                 movingSprint(thisPlayer, 'up')
+                doPlayerUpdate(thisPlayer)
             }
             if (keys['s']) {
                 var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.y = (thisPlayer.y + thisPlayer.speed) > (canvas_height - thisPlayer.height) ? thisPlayer.y : thisPlayer.y + thisPlayer.speed
                 movingSprint(thisPlayer, 'down')
+                doPlayerUpdate(thisPlayer)
             }
             if (keys['a']) {
                 var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.x = (thisPlayer.x - thisPlayer.speed) >= 0 ? thisPlayer.x - thisPlayer.speed : thisPlayer.x
                 movingSprint(thisPlayer, 'left')
+                doPlayerUpdate(thisPlayer)
             }
             if (keys['d']) {
                 var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.x = (thisPlayer.x + thisPlayer.speed) > (canvas_width - thisPlayer.width) ? thisPlayer.x : thisPlayer.x + thisPlayer.speed
                 movingSprint(thisPlayer, 'right')
+                doPlayerUpdate(thisPlayer)
             }
         }
 
@@ -183,6 +187,7 @@ var app = new Vue({
             key = e.key.toLowerCase()
             delete keys[key]
             players[getCurrentPlayerIndex()].moving = false
+            doPlayerUpdate(thisPlayer)
         })
     }
 });
