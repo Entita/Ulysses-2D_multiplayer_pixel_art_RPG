@@ -26,6 +26,7 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
+        var socketID
         // Socket.io
         this_.socket.on('position', data => {
             console.log('position changed', data)
@@ -37,7 +38,7 @@ var app = new Vue({
         })
 
         this_.socket.on('user_connected', socket => {
-            console.log('player connected', socket.socket_id, this_.socket.id)
+            socketID = this_.socket.id
             const player = {
                 socket_id: socket.socket_id,
                 sprite: 'down',
@@ -129,35 +130,45 @@ var app = new Vue({
             moveSprite()
         }
 
-        function movingSprint(dir) {
-            players[0].moving = true
-            players[0].sprite = dir
+        function movingSprint(player, dir) {
+            player.moving = true
+            player.sprite = dir
             this_.socket.emit('move', players)
         }
 
         function moveSprite() {
             if (keys['w']) {
-                players[0].y = (players[0].y - players[0].speed) >= 0 ? players[0].y - players[0].speed : players[0].y
-                movingSprint('up')
+                var thisPlayer = getCurrentPlayer()
+                thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
+                movingSprint(thisPlayer, 'up')
             }
             if (keys['s']) {
-                players[0].y = (players[0].y + players[0].speed) > (canvas_height - players[0].height) ? players[0].y : players[0].y + players[0].speed
-                movingSprint('up')
+                var thisPlayer = getCurrentPlayer()
+                thisPlayer.y = (thisPlayer.y + thisPlayer.speed) > (canvas_height - thisPlayer.height) ? thisPlayer.y : thisPlayer.y + thisPlayer.speed
+                movingSprint(thisPlayer, 'down')
             }
             if (keys['a']) {
-                players[0].x = (players[0].x - players[0].speed) >= 0 ? players[0].x - players[0].speed : players[0].x
-                movingSprint('up')
+                var thisPlayer = getCurrentPlayer()
+                thisPlayer.x = (thisPlayer.x - thisPlayer.speed) >= 0 ? thisPlayer.x - thisPlayer.speed : thisPlayer.x
+                movingSprint(thisPlayer, 'left')
             }
             if (keys['d']) {
-                players[0].x = (players[0].x + players[0].speed) > (canvas_width - players[0].width) ? players[0].x : players[0].x + players[0].speed
-                movingSprint('up')
+                var thisPlayer = getCurrentPlayer()
+                thisPlayer.x = (thisPlayer.x + thisPlayer.speed) > (canvas_width - thisPlayer.width) ? thisPlayer.x : thisPlayer.x + thisPlayer.speed
+                movingSprint(thisPlayer, 'right')
             }
+        }
+
+        function getCurrentPlayer() {
+            players.filter(obj => {
+                return obj.socket_id === socketID
+            })
         }
 
         /* Event Listeners */
         const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', e => {
-            players[0].sprite_img.src = 'img/sprite_' + e.target.value + '.png'
+            getCurrentPlayer().sprite_img.src = 'img/sprite_' + e.target.value + '.png'
         })
 
         window.addEventListener('keydown', e => {
@@ -167,7 +178,7 @@ var app = new Vue({
         window.addEventListener('keyup', e => {
             key = e.key.toLowerCase()
             delete keys[key]
-            players[0].moving = false
+            getCurrentPlayer().moving = false
         })
     }
 });
