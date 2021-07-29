@@ -8,17 +8,23 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        // this.animationStates = [
+        //     { name: 'idle', frames: 7 },
+        //     { name: 'jump', frames: 7 },
+        //     { name: 'fall', frames: 7 },
+        //     { name: 'run', frames: 9 },
+        //     { name: 'dizzy', frames: 11 },
+        //     { name: 'sit', frames: 5 },
+        //     { name: 'roll', frames: 7 },
+        //     { name: 'bite', frames: 7 },
+        //     { name: 'ko', frames: 12 },
+        //     { name: 'hit', frames: 4 }
+        // ]
         this.animationStates = [
-            { name: 'idle', frames: 7 },
-            { name: 'jump', frames: 7 },
-            { name: 'fall', frames: 7 },
-            { name: 'run', frames: 9 },
-            { name: 'dizzy', frames: 11 },
-            { name: 'sit', frames: 5 },
-            { name: 'roll', frames: 7 },
-            { name: 'bite', frames: 7 },
-            { name: 'ko', frames: 12 },
-            { name: 'hit', frames: 4 }
+            { name: 'down', frames: 4 },
+            { name: 'left', frames: 4 },
+            { name: 'right', frames: 4 },
+            { name: 'up', frames: 4 }
         ]
     },
     mounted() {
@@ -29,20 +35,21 @@ var app = new Vue({
         // })
 
         const player = {
-            sprite: 'idle',
+            // sprite: 'idle',
+            sprite: 'down',
             spriteDir: 0,
             x: 0,
             y: 0,
-            sprite_src: 'img/sprite_sheet.png',
             sprite_img: new Image(),
-            sprite_width: 575,
-            sprite_height: 523,
-            width: 100,
-            height: 91,
+            sprite_width: 32,
+            sprite_height: 48,
+            width: 67,
+            height: 100,
             speed: 10,
             moving: false
         }
-        player.sprite_img.src = 'img/sprite_sheet.png'
+        // player.sprite_img.src = 'img/sprite_sheet.png'
+        player.sprite_img.src = 'img/sprite_starlord.png'
 
         // Canvas
         const canvas = document.getElementById('game'),
@@ -113,22 +120,26 @@ var app = new Vue({
             if (keys['w']) {
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
-                player.sprite = 'run'
+                // player.sprite = 'run'
+                player.sprite = 'up'
             }
             if (keys['s']) {
                 player.y = (player.y + player.speed) > (canvas_height - player.width) ? player.y : player.y + player.speed
                 player.moving = true
-                player.sprite = 'run'
+                // player.sprite = 'run'
+                player.sprite = 'down'
             }
             if (keys['a']) {
                 player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
-                player.sprite = 'run'
+                // player.sprite = 'run'
+                player.sprite = 'left'
             }
             if (keys['d']) {
                 player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
-                player.sprite = 'run'
+                // player.sprite = 'run'
+                player.sprite = 'right'
             }
         }
 
@@ -137,13 +148,13 @@ var app = new Vue({
             key = e.key.toLowerCase()
             keys[key] = true
             player.moving = true
-            player.sprite = 'run'
+            // player.sprite = 'run'
         })
         window.addEventListener('keyup', e => {
             key = e.key.toLowerCase()
             delete keys[key]
             player.moving = false
-            player.sprite = 'idle'
+            // player.sprite = 'idle'
         })
     },
     methods: {
