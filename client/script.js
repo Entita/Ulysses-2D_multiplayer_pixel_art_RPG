@@ -103,9 +103,9 @@ var app = new Vue({
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
             if (player.moving) {
-                let position = sprintX % spriteAnimations[player.sprite].location.length
+                position = sprintX % spriteAnimations[player.sprite].location.length
             } else {
-                let position = 0
+                position = 0
             }
             let frameX = player.sprite_width * position
             let frameY = spriteAnimations[player.sprite].location[position].y
