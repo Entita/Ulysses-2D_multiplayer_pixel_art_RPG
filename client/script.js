@@ -140,10 +140,10 @@ var app = new Vue({
         /* Functions */
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
-            let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0
-            let frameX = player.sprite_width * position
-            let frameY = spriteAnimations[player.sprite].location[position].y
-            ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
+            // let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0
+            // let frameX = player.sprite_width * position
+            // let frameY = spriteAnimations[player.sprite].location[position].y
+            // ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
             if (areTherePlayers) {
                 for (let index = 0; index < otherPlayer.length; index++) {
                     let position = otherPlayer[index].moving ? sprintX % spriteAnimations[otherPlayer[index].sprite].location.length : 0
