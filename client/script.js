@@ -48,6 +48,7 @@ var app = new Vue({
                 moving: false
             }
             player.sprite_img.src = 'img/sprite_starlord.png'
+            this_.socket.emit('player_info', player)
 
             if (players.length === 0) {
                 // Load Sprites

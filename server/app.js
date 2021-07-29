@@ -5,21 +5,15 @@ const io = require("socket.io")(server);
 var players = []
 
 io.on('connection', (socket) => {
-    players.push(socket.id)
-    var new_data = {
-        'players': players,
-        'socket_id': socket.id
+    const player = {
+        socket_id: socket.id
     }
-    io.emit('user_connected', new_data)
+    players.push(player)
+    io.emit('user_connected', players)
 
-    socket.on('disconnect', (socket) => {
-        console.log('a',players, new_data['socket_id'])
-        players = players.filter(item => item !== new_data['socket_id'])
-        new_data['players'] = players
-
-        console.log('b',new_data)
-        console.log('c',players)
-        io.emit('user_disconnected', new_data)
+    socket.on('disconnect', () => {
+        players = players.filter(item => item !== player.socket_id)
+        io.emit('user_disconnected', players)
     });
 
     socket.on('move', data => {
