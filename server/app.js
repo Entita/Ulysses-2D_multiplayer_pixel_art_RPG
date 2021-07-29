@@ -6,7 +6,7 @@ var players = []
 
 io.on('connection', (socket) => {
     players.push(socket.id)
-    const new_data = {
+    var new_data = {
         'players': players,
         'socket_id': socket.id
     }
