@@ -13,8 +13,6 @@ var position = {
 // });
 
 io.on('connection', (socket) => {
-    socket.emit('position', position)
-
     console.log('a user connected');
     io.emit('user_connected')
     socket.on('disconnect', () => {
