@@ -68,6 +68,7 @@ var app = new Vue({
                     }
                     spriteAnimations[state.name] = frames
                 })
+                startAnimating(fps)
             }
             players.push(player)
         })
@@ -94,8 +95,6 @@ var app = new Vue({
 
         // Multiplayer
         var players = []
-
-        startAnimating(fps)
 
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
