@@ -16,10 +16,11 @@ io.on('connection', (socket) => {
     socket.emit('position', position)
 
     console.log('a user connected');
+    io.emit('user_connected')
     socket.on('disconnect', () => {
         console.log('user disconnected');
+        io.emit('user_disconnected')
     });
-
     socket.on('move', data => {
         switch (data) {
             case 'up':
