@@ -32,7 +32,7 @@ var app = new Vue({
         })
 
         this_.socket.on('players_updated', data => {
-            console.log('all players', data)
+            console.log('all players', data, players)
             // players = data
         })
 
@@ -73,7 +73,7 @@ var app = new Vue({
         })
 
         this_.socket.on('user_disconnected', data => {
-            console.log('player disconnected', data)
+            console.log('player disconnected', data, players)
             // players = data
         })
 
