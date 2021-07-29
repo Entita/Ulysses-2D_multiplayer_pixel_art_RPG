@@ -36,7 +36,9 @@ var app = new Vue({
             console.log('position changed', data)
         })
 
-        this_.socket.on('user_connected', () => {
+        this_.socket.on('user_connected', socket => {
+            socket_id = socket
+            console.log('player connected', socket)
             otherPlayer[socket_id] = {
                 sprite: 'down',
                 spriteDir: 0,
@@ -54,9 +56,9 @@ var app = new Vue({
             areTherePlayers = true
         })
 
-        this_.socket.on('user_disconnected', () => {
-            console.log('player disconnected')
-            delete otherPlayer[socket_id]
+        this_.socket.on('user_disconnected', socket => {
+            console.log('player disconnected', socket)
+            delete otherPlayer[socket]
             if (isObjectEmpty(otherPlayer)) {
                 areTherePlayers = false
             }

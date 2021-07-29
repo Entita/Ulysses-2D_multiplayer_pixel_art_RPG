@@ -5,10 +5,10 @@ const io = require("socket.io")(server);
 
 io.on('connection', (socket) => {
     console.log('a user connected', socket.id);
-    io.emit('user_connected')
+    io.emit('user_connected', socket.id)
     socket.on('disconnect', () => {
-        console.log('user disconnected');
-        io.emit('user_disconnected')
+        console.log('user disconnected', socket.id);
+        io.emit('user_disconnected', socket.id)
     });
     socket.on('move', data => {
         switch (data) {
