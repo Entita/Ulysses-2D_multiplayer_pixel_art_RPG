@@ -118,7 +118,9 @@ var app = new Vue({
                 player.sprite = 'up'
             }
             if (keys['s']) {
-                player.y = ((player.y + player.height) + player.speed) > (canvas_height - player.width) ? player.y : player.y + player.speed
+                console.log(player.y, player.speed)
+                player.y = (player.y + player.speed) > (canvas_height - player.width) ? player.y : player.y + player.speed
+                console.log(player.y, player.speed)
                 player.moving = true
                 player.sprite = 'down'
             }
