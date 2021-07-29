@@ -41,10 +41,10 @@ var app = new Vue({
             y: 0,
             sprite_src: 'img/sprite_sheet.png',
             sprite_img: new Image(),
-            sprite_width: 575,
-            sprite_height: 523,
+            sprite_width: 1024,
+            sprite_height: 1024,
             width: 100,
-            height: 91,
+            height: 100,
             speed: 10,
             moving: false
         }
