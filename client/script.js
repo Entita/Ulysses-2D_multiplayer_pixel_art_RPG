@@ -26,8 +26,9 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
+        // Socket.io
         this_.socket.on('connect', () => {
-            console.log(this_.socket.id)
+            socket_id = this_.socket.id
         })
 
         this_.socket.on('position', data => {
@@ -35,7 +36,7 @@ var app = new Vue({
         })
 
         this_.socket.on('user_connected', () => {
-            otherPlayer = {
+            otherPlayer[socket_id] = {
                 sprite: 'down',
                 spriteDir: 0,
                 x: 0,
@@ -54,9 +55,13 @@ var app = new Vue({
 
         this_.socket.on('user_disconnected', () => {
             console.log('player disconnected')
-            areTherePlayers = false
+            delete otherPlayer[socket_id]
+            if (otherPlayer.length === 0) {
+                areTherePlayers = false
+            }
         })
 
+        //Variables
         const player = {
             sprite: 'down',
             spriteDir: 0,
@@ -102,7 +107,8 @@ var app = new Vue({
 
         // Multiplayer
         let areTherePlayers = false
-        var otherPlayer = {}
+        const otherPlayer = {}
+        let = socket_id
 
         startAnimating(fps)
 
