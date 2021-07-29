@@ -24,20 +24,16 @@ io.on('connection', (socket) => {
     socket.on('move', data => {
         switch (data) {
             case 'up':
-                position.y -= 5;
-                io.emit('position', position)
+                io.emit('position', data)
                 break;
             case 'down':
-                position.y += 5;
-                io.emit('position', position)
+                io.emit('position', data)
                 break;
             case 'left':
-                position.x -= 5;
-                io.emit('position', position)
+                io.emit('position', data)
                 break;
             case 'right':
-                position.x += 5;
-                io.emit('position', position)
+                io.emit('position', data)
                 break;
         }
     })

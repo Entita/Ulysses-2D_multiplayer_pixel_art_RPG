@@ -31,11 +31,26 @@ var app = new Vue({
         })
 
         this_.socket.on('user_connected', () => {
-            console.log('player connected')
+            const otherPlayer = {
+                sprite: 'down',
+                spriteDir: 0,
+                x: 0,
+                y: 0,
+                sprite_img: new Image(),
+                sprite_width: 32,
+                sprite_height: 48,
+                width: 67,
+                height: 100,
+                speed: 10,
+                moving: false
+            }
+            otherPlayer.sprite_img.src = 'img/sprite_starlord.png'
+            areTherePlayers = true
         })
 
         this_.socket.on('user_disconnected', () => {
             console.log('player disconnected')
+            areTherePlayers = false
         })
 
         const player = {
@@ -81,6 +96,9 @@ var app = new Vue({
             spriteAnimations[state.name] = frames
         })
 
+        // Multiplayer
+        areTherePlayers = false
+
         startAnimating(fps)
 
         function startAnimating(fps) {
@@ -104,16 +122,16 @@ var app = new Vue({
         /* Functions */
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
-            let position
-            if (player.moving) {
-                position = sprintX % spriteAnimations[player.sprite].location.length
-            } else {
-                position = 0
-            }
+            let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0
             let frameX = player.sprite_width * position
             let frameY = spriteAnimations[player.sprite].location[position].y
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
-
+            if (areTherePlayers) {
+                let position = otherPlayer.moving ? sprintX % spriteAnimations[otherPlayer.sprite].location.length : 0
+                let frameX = otherPlayer.sprite_width * position
+                let frameY = spriteAnimations[otherPlayer.sprite].location[position].y
+                ctx.drawImage(otherPlayer.sprite_img, frameX, frameY, otherPlayer.sprite_width, otherPlayer.sprite_height, otherPlayer.x, otherPlayer.y, otherPlayer.width, otherPlayer.height)
+            }
             sprintX++
             moveSprite()
         }
@@ -123,25 +141,25 @@ var app = new Vue({
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
                 player.sprite = 'up'
-                this_.socket.emit('move', 'up')
+                this_.socket.emit('move', player)
             }
             if (keys['s']) {
                 player.y = (player.y + player.speed) > (canvas_height - player.height) ? player.y : player.y + player.speed
                 player.moving = true
                 player.sprite = 'down'
-                this_.socket.emit('move', 'down')
+                this_.socket.emit('move', player)
             }
             if (keys['a']) {
                 player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
                 player.sprite = 'left'
-                this_.socket.emit('move', 'left')
+                this_.socket.emit('move', player)
             }
             if (keys['d']) {
                 player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
                 player.sprite = 'right'
-                this_.socket.emit('move', 'right')
+                this_.socket.emit('move', player)
             }
         }
 
