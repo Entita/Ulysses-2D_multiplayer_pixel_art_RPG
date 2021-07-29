@@ -3,15 +3,6 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
-var position = {
-    x: 200,
-    y: 200
-}
-
-// app.get('/', (req, res) => {
-//     res.send('Hello world')
-// });
-
 io.on('connection', (socket) => {
     console.log('a user connected');
     io.emit('user_connected')
