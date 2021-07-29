@@ -69,7 +69,7 @@ var app = new Vue({
         })
 
         let fpsInterval, startTime, now, then, elapsed,
-            fps = 10
+            fps = 60
 
         startAnimating(fps)
 
