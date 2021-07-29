@@ -78,7 +78,6 @@ var app = new Vue({
                 frames.location.push({ x: positionX, y: positionY })
             }
             spriteAnimations[state.name] = frames
-            console.log(spriteAnimations)
         })
 
         startAnimating(fps)
@@ -108,9 +107,9 @@ var app = new Vue({
             if (player.moving) {
                 position = sprintX % spriteAnimations[player.sprite].location.length
             }
-            console.log(position, spriteAnimations[player.sprite])
             let frameX = player.sprite_width * position
             let frameY = spriteAnimations[player.sprite].location[position].y
+            console.log(frameX, frameY)
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
 
             sprintX++
