@@ -37,7 +37,7 @@ var app = new Vue({
         })
 
         this_.socket.on('user_connected', socket => {
-            console.log('player connected', socket.socket_id, this_.socket.sessionid)
+            console.log('player connected', socket.socket_id, this_.socket)
             const player = {
                 socket_id: socket.socket_id,
                 sprite: 'down',
