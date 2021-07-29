@@ -6,7 +6,13 @@ var app = new Vue({
             animationStates: [],
             characters: [
                 'starlord',
-                'tonystark'
+                'tonystark',
+                'thor',
+                'rocket',
+                'loki',
+                'hulk',
+                'deadpool',
+                'captainamerica'
             ]
         }
     },
