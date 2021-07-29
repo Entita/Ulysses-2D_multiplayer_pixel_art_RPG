@@ -67,9 +67,9 @@ var app = new Vue({
             players.push(player)
         })
 
-        this_.socket.on('user_disconnected', socket => {
-            console.log('player disconnected', socket)
-            players = players.filter(item => item.socket_id !== socket)
+        this_.socket.on('user_disconnected', data => {
+            console.log('player disconnected', data)
+            players = data
         })
 
         // Canvas
