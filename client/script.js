@@ -154,7 +154,6 @@ var app = new Vue({
         window.addEventListener('keydown', e => {
             key = e.key.toLowerCase()
             keys[key] = true
-            player.moving = true
         })
         window.addEventListener('keyup', e => {
             key = e.key.toLowerCase()
