@@ -28,10 +28,10 @@ var app = new Vue({
         var this_ = this
         // Multiplayer
         let areTherePlayers = false
-        const otherPlayer = {}
+        var otherPlayer = {}
 
         this_.socket.on('position', data => {
-            console.log('position changed')
+            console.log('position changed', data)
         })
 
         this_.socket.on('user_connected', () => {
