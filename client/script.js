@@ -186,7 +186,8 @@ var app = new Vue({
         window.addEventListener('keyup', e => {
             key = e.key.toLowerCase()
             delete keys[key]
-            players[getCurrentPlayerIndex()].moving = false
+            var thisPlayer = players[getCurrentPlayerIndex()]
+            thisPlayer.moving = false
             doPlayerUpdate(thisPlayer)
         })
     }
