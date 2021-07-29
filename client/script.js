@@ -169,6 +169,7 @@ var app = new Vue({
         const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', e => {
             console.log('before', players)
+            console.log(getCurrentPlayer())
             getCurrentPlayer().sprite_img = 'img/sprite_' + e.target.value + '.png'
             console.log('after', players)
         })
