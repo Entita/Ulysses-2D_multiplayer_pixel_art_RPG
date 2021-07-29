@@ -31,6 +31,10 @@ var app = new Vue({
             console.log('position changed', data)
         })
 
+        this_.socket.on('players_updated', data => {
+            console.log('all players', data)
+        })
+
         this_.socket.on('user_connected', socket => {
             console.log('player connected', socket.socket_id)
             const player = {

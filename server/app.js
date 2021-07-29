@@ -13,9 +13,8 @@ io.on('connection', socket => {
 
     socket.on('update_player', data => {
         let index = players.findIndex((obj => obj.socket_id == data.socket_id))
-        console.log(index, players)
         players[index] = data
-        console.log('BLA', players)
+        io.emit('players_updated', players)
     })
 
     socket.on('disconnect', () => {
