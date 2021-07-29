@@ -37,9 +37,9 @@ var app = new Vue({
         })
 
         this_.socket.on('user_connected', socket => {
-            socket_id = socket
             console.log('player connected', socket)
-            otherPlayer[socket_id] = {
+            const anotherPlayer = {
+                socket_id: socket,
                 sprite: 'down',
                 spriteDir: 0,
                 x: 0,
@@ -52,14 +52,19 @@ var app = new Vue({
                 speed: 10,
                 moving: false
             }
-            otherPlayer[socket_id].sprite_img.src = 'img/sprite_starlord.png'
+            anotherPlayer.sprite_img.src = 'img/sprite_starlord.png'
+
+            otherPlayer.push(anotherPlayer)
             areTherePlayers = true
         })
 
         this_.socket.on('user_disconnected', socket => {
             console.log('player disconnected', socket)
-            delete otherPlayer[socket]
-            if (isObjectEmpty(otherPlayer)) {
+            console.log(otherPlayer)
+            otherPlayer = otherPlayer.filter(item => item.socket_id !== socket)
+            console.log(otherPlayer)
+            
+            if (otherPlayer.length === 0) {
                 areTherePlayers = false
             }
         })
@@ -110,18 +115,9 @@ var app = new Vue({
 
         // Multiplayer
         let areTherePlayers = false
-        const otherPlayer = {}
+        var otherPlayer = []
 
         startAnimating(fps)
-
-        function isObjectEmpty(object) {
-            for (var key in object) {
-                if (object.hasOwnProperty(key)) {
-                    return false
-                }
-            }
-            return true
-        }
 
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
