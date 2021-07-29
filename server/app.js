@@ -13,11 +13,14 @@ io.on('connection', (socket) => {
     io.emit('user_connected', new_con_data)
 
     socket.on('disconnect', (socket) => {
+        console.log('a',players)
         players = players.filter(item => item.socket_id !== socket.id)
         const new_dis_data = {
             'players': players,
             'socket_id': socket.id
         }
+        console.log('b',new_dis_data)
+        console.log('c',players)
         io.emit('user_disconnected', new_dis_data)
     });
 
