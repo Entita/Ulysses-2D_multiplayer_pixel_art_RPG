@@ -139,7 +139,6 @@ var app = new Vue({
         function moveSprite() {
             if (keys['w']) {
                 var thisPlayer = getCurrentPlayer()
-                console.log(thisPlayer)
                 thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
                 movingSprint(thisPlayer, 'up')
             }
@@ -162,7 +161,6 @@ var app = new Vue({
 
         function getCurrentPlayer() {
             return players.filter(obj => {
-                console.log(obj.socket_id, socketID, obj.socket_id === socketID)
                 return obj.socket_id === socketID
             })
         }
@@ -170,7 +168,7 @@ var app = new Vue({
         /* Event Listeners */
         const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', e => {
-            getCurrentPlayer().sprite_img.src = 'img/sprite_' + e.target.value + '.png'
+            getCurrentPlayer().sprite_img = 'img/sprite_' + e.target.value + '.png'
         })
 
         window.addEventListener('keydown', e => {
