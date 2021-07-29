@@ -17,8 +17,6 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
-        console.log(socket)
-        console.log(socket.id)
         this.animationStates = [
             { name: 'down', frames: 4 },
             { name: 'left', frames: 4 },
@@ -28,6 +26,8 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
+        console.log(this.socket)
+        console.log(this.socked.id)
         this_.socket.on('position', data => {
             console.log('position changed', data)
         })
