@@ -25,11 +25,9 @@ var app = new Vue({
         ]
     },
     mounted() {
-        // this.socket.on('position', data => {
-        //     var board = document.getElementById('game')
-        //     this.context.clearRect(0, 0, board.width, board.height)
-        //     // this.context.fillRect(data.x, data.y, 20, 20)
-        // })
+        this.socket.on('position', data => {
+            console.log('position changed')
+        })
 
         const player = {
             sprite: 'down',
@@ -116,21 +114,25 @@ var app = new Vue({
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
                 player.sprite = 'up'
+                this.socket.emit('move', 'up')
             }
             if (keys['s']) {
                 player.y = (player.y + player.speed) > (canvas_height - player.height) ? player.y : player.y + player.speed
                 player.moving = true
                 player.sprite = 'down'
+                this.socket.emit('move', 'down')
             }
             if (keys['a']) {
                 player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
                 player.sprite = 'left'
+                this.socket.emit('move', 'left')
             }
             if (keys['d']) {
                 player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
                 player.sprite = 'right'
+                this.socket.emit('move', 'right')
             }
         }
 
