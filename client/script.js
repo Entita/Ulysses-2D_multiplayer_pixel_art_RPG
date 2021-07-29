@@ -26,8 +26,6 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
-        // Multiplayer
-        var players = []
         // Socket.io
         this_.socket.on('connect', () => {
             socket_id = this_.socket.id
@@ -93,6 +91,9 @@ var app = new Vue({
         // Sprite movement
         const spriteAnimations = [],
             keys = []
+
+        // Multiplayer
+        var players = []
 
         startAnimating(fps)
 
