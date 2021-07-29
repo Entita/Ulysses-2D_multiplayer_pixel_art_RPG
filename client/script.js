@@ -26,6 +26,10 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
+        // Multiplayer
+        areTherePlayers = false
+        const otherPlayer = {}
+
         this_.socket.on('position', data => {
             console.log('position changed')
         })
@@ -95,10 +99,6 @@ var app = new Vue({
             }
             spriteAnimations[state.name] = frames
         })
-
-        // Multiplayer
-        areTherePlayers = false
-        const otherPlayer = {}
 
         startAnimating(fps)
 
