@@ -52,7 +52,7 @@ var app = new Vue({
                 speed: 10,
                 moving: false
             }
-            otherPlayer[0].sprite_img.src = 'img/sprite_starlord.png'
+            player.sprite_img.src = 'img/sprite_starlord.png'
 
             otherPlayer.push(player)
         })
