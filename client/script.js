@@ -138,39 +138,36 @@ var app = new Vue({
 
         function moveSprite() {
             if (keys['w']) {
-                var thisPlayer = getCurrentPlayer()
+                var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
                 movingSprint(thisPlayer, 'up')
             }
             if (keys['s']) {
-                var thisPlayer = getCurrentPlayer()
+                var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.y = (thisPlayer.y + thisPlayer.speed) > (canvas_height - thisPlayer.height) ? thisPlayer.y : thisPlayer.y + thisPlayer.speed
                 movingSprint(thisPlayer, 'down')
             }
             if (keys['a']) {
-                var thisPlayer = getCurrentPlayer()
+                var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.x = (thisPlayer.x - thisPlayer.speed) >= 0 ? thisPlayer.x - thisPlayer.speed : thisPlayer.x
                 movingSprint(thisPlayer, 'left')
             }
             if (keys['d']) {
-                var thisPlayer = getCurrentPlayer()
+                var thisPlayer = players[getCurrentPlayerIndex()]
                 thisPlayer.x = (thisPlayer.x + thisPlayer.speed) > (canvas_width - thisPlayer.width) ? thisPlayer.x : thisPlayer.x + thisPlayer.speed
                 movingSprint(thisPlayer, 'right')
             }
         }
 
-        function getCurrentPlayer() {
-            return players.filter(obj => {
-                return obj.socket_id === socketID
-            })
+        function getCurrentPlayerIndex() {
+            return players.findIndex((obj => obj.socket_id == sockedID))
         }
 
         /* Event Listeners */
         const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', e => {
             console.log('before', players)
-            console.log(getCurrentPlayer())
-            getCurrentPlayer().sprite_img = 'img/sprite_' + e.target.value + '.png'
+            players[getCurrentPlayerIndex()].sprite_img = 'img/sprite_' + e.target.value + '.png'
             console.log('after', players)
         })
 
@@ -181,7 +178,7 @@ var app = new Vue({
         window.addEventListener('keyup', e => {
             key = e.key.toLowerCase()
             delete keys[key]
-            getCurrentPlayer().moving = false
+            players[getCurrentPlayerIndex()].moving = false
         })
     }
 });
