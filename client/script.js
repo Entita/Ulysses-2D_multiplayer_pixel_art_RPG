@@ -27,7 +27,7 @@ var app = new Vue({
     mounted() {
         var this_ = this
         this_.socket.on('connect', () => {
-            console.log(socket.id)
+            console.log(this_.socket.id)
         })
 
         this_.socket.on('position', data => {
