@@ -161,8 +161,8 @@ var app = new Vue({
         }
 
         function getCurrentPlayer() {
-            players.filter(obj => {
-                console.log(obj.socket_id, socketID)
+            return players.filter(obj => {
+                console.log(obj.socket_id, socketID, obj.socket_id === socketID)
                 return obj.socket_id === socketID
             })
         }
