@@ -56,13 +56,21 @@ var app = new Vue({
 
         this_.socket.on('user_disconnected', () => {
             console.log('player disconnected')
-            console.log('array', otherPlayer, otherPlayer.length, otherPlayer.length === 0)
+            console.log(isEmpty(otherPlayer))
             delete otherPlayer[socket_id]
-            console.log('array', otherPlayer, otherPlayer.length, otherPlayer.length === 0)
+            console.log(isEmpty(otherPlayer))
             if (otherPlayer.length === 0) {
                 areTherePlayers = false
             }
         })
+        function isEmpty(object) {
+            for (var key in object) {
+                if (object.hasOwnProperty(key)){
+                    return false
+                }
+            }
+            return true
+        }
 
         //Variables
         const player = {
