@@ -8,17 +8,23 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        // this.animationStates = [
+        //     { name: 'idle', frames: 7 },
+        //     { name: 'jump', frames: 7 },
+        //     { name: 'fall', frames: 7 },
+        //     { name: 'run', frames: 9 },
+        //     { name: 'dizzy', frames: 11 },
+        //     { name: 'sit', frames: 5 },
+        //     { name: 'roll', frames: 7 },
+        //     { name: 'bite', frames: 7 },
+        //     { name: 'ko', frames: 12 },
+        //     { name: 'hit', frames: 4 }
+        // ]
         this.animationStates = [
-            { name: 'idle', frames: 7 },
-            { name: 'jump', frames: 7 },
-            { name: 'fall', frames: 7 },
-            { name: 'run', frames: 9 },
-            { name: 'dizzy', frames: 11 },
-            { name: 'sit', frames: 5 },
-            { name: 'roll', frames: 7 },
-            { name: 'bite', frames: 7 },
-            { name: 'ko', frames: 12 },
-            { name: 'hit', frames: 4 }
+            { name: 'up', frames: 4 },
+            { name: 'down', frames: 4 },
+            { name: 'left', frames: 4 },
+            { name: 'right', frames: 4 }
         ]
     },
     mounted() {
@@ -42,18 +48,23 @@ var app = new Vue({
             speed: 10,
             moving: false
         }
-        player.sprite_img.src = 'img/sprite_sheet.png'
+        // player.sprite_img.src = 'img/sprite_sheet.png'
+        player.sprite_img.src = 'img/sprite_boy.png'
 
         // Canvas
-        const canvas = document.getElementById('game')
-        const ctx = canvas.getContext('2d')
-        const canvas_width = canvas.width = 900
-        const canvas_height = canvas.height = 900
+        const canvas = document.getElementById('game'),
+            ctx = canvas.getContext('2d'),
+            canvas_width = canvas.width = 900,
+            canvas_height = canvas.height = 900
 
-        let sprintX = 0
+        // Game engine
+        let fpsInterval, now, then, elapsed,
+            fps = 30,
+            sprintX = 0
 
-        const spriteAnimations = []
-        const keys = []
+        // Sprite movement
+        const spriteAnimations = [],
+            keys = []
 
         // Load Sprites
         this.animationStates.forEach((state, i) => {
@@ -67,9 +78,6 @@ var app = new Vue({
             }
             spriteAnimations[state.name] = frames
         })
-
-        let fpsInterval, now, then, elapsed,
-            fps = 30
 
         startAnimating(fps)
 
@@ -94,7 +102,11 @@ var app = new Vue({
         /* Functions */
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
-            let position = sprintX % spriteAnimations[player.sprite].location.length
+            if (moving) {
+                let position = sprintX % spriteAnimations[player.sprite].location.length
+            } else {
+                let position = 0
+            }
             let frameX = player.sprite_width * position
             let frameY = spriteAnimations[player.sprite].location[position].y
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
