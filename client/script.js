@@ -32,7 +32,7 @@ var app = new Vue({
         })
 
         this_.socket.on('players_updated', data => {
-            console.log('all players', data, players, data == players)
+            console.log('all players', data)
             players = data
         })
 
@@ -72,7 +72,7 @@ var app = new Vue({
         })
 
         this_.socket.on('user_disconnected', data => {
-            console.log('player disconnected', data, players)
+            console.log('player disconnected', data)
             players = data
         })
 
@@ -129,30 +129,28 @@ var app = new Vue({
             moveSprite()
         }
 
+        function movingSprint(dir) {
+            players[0].moving = true
+            players[0].sprite = dir
+            this_.socket.emit('move', players)
+        }
+
         function moveSprite() {
             if (keys['w']) {
                 players[0].y = (players[0].y - players[0].speed) >= 0 ? players[0].y - players[0].speed : players[0].y
-                players[0].moving = true
-                players[0].sprite = 'up'
-                this_.socket.emit('move', players)
+                movingSprint('up')
             }
             if (keys['s']) {
                 players[0].y = (players[0].y + players[0].speed) > (canvas_height - players[0].height) ? players[0].y : players[0].y + players[0].speed
-                players[0].moving = true
-                players[0].sprite = 'down'
-                this_.socket.emit('move', players)
+                movingSprint('up')
             }
             if (keys['a']) {
                 players[0].x = (players[0].x - players[0].speed) >= 0 ? players[0].x - players[0].speed : players[0].x
-                players[0].moving = true
-                players[0].sprite = 'left'
-                this_.socket.emit('move', players)
+                movingSprint('up')
             }
             if (keys['d']) {
                 players[0].x = (players[0].x + players[0].speed) > (canvas_width - players[0].width) ? players[0].x : players[0].x + players[0].speed
-                players[0].moving = true
-                players[0].sprite = 'right'
-                this_.socket.emit('move', players)
+                movingSprint('up')
             }
         }
 
