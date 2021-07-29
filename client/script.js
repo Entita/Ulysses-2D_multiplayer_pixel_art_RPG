@@ -26,11 +26,10 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
-        let = socket_id
+        let socket_id
         // Socket.io
         this_.socket.on('connect', () => {
             socket_id = this_.socket.id
-            startAnimating(fps)
         })
 
         this_.socket.on('position', data => {
@@ -110,6 +109,8 @@ var app = new Vue({
         // Multiplayer
         let areTherePlayers = false
         const otherPlayer = {}
+
+        startAnimating(fps)
 
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
