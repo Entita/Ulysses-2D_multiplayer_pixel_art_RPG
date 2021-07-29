@@ -160,7 +160,7 @@ var app = new Vue({
         }
 
         function getCurrentPlayerIndex() {
-            return players.findIndex((obj => obj.socket_id == sockedID))
+            return players.findIndex((obj => obj.socket_id == socketID))
         }
 
         /* Event Listeners */
