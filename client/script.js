@@ -68,19 +68,40 @@ var app = new Vue({
             spriteAnimations[state.name] = frames
         })
 
-        animate()
+        let fpsInterval, startTime, now, then, elapsed,
+            fps = 10
+
+        startAnimating(fps)
+
+        function startAnimating(fps) {
+            fpsInterval = 1000 / fps
+            then = Date.now()
+            startTime = then
+            animate()
+        }
+
+        function animate() {
+            requestAnimationFrame(aniamte)
+            now = Date.now()
+            elapsed = now - then
+            if (elapsed > fpsInterval) {
+                then = now - (elapsed % fpsInterval)
+
+                animateSprint()
+            }
+        }
 
         /* Functions */
-        function animate() {
+        function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
             let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[player.sprite].location.length
+            console.log(position, gameFrame, staggerFrames)
             let frameX = player.sprite_width * position
             let frameY = spriteAnimations[player.sprite].location[position].y
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
 
             gameFrame++
             moveSprite()
-            requestAnimationFrame(animate)
         }
 
         function moveSprite() {
