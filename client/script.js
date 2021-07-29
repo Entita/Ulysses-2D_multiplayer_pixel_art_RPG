@@ -128,7 +128,7 @@ var app = new Vue({
                 player.sprite = 'left'
             }
             if (keys['d']) {
-                player.x = (player.x + player.speed) > (canvas_width - player.height) ? player.x : player.x + player.speed
+                player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
                 player.sprite = 'right'
             }
