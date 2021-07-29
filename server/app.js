@@ -12,11 +12,11 @@ io.on('connection', socket => {
     io.emit('user_connected', player)
 
     socket.on('update_player', data => {
-        console.log(data)
+        let index = players.findIndex((obj => obj.socket_id == data.socket_id))
+        console.log(index, players)
+        players[index] = data
         console.log('BLA', players)
-        player = data
-        console.log('BLA', players)
-    }) 
+    })
 
     socket.on('disconnect', () => {
         players = players.filter(item => item.socket_id !== player.socket_id)
