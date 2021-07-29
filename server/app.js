@@ -5,14 +5,17 @@ const io = require("socket.io")(server);
 var players = []
 
 io.on('connection', socket => {
-    const player = {
+    var player = {
         socket_id: socket.id
     }
     players.push(player)
-    io.emit('user_connected', players)
+    io.emit('user_connected', player)
 
     socket.on('update_player', data => {
         console.log(data)
+        console.log('BLA', players)
+        player = data
+        console.log('BLA', players)
     }) 
 
     socket.on('disconnect', () => {
