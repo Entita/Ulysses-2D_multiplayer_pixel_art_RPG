@@ -35,7 +35,8 @@ var app = new Vue({
         // })
 
         const player = {
-            sprite: 'idle',
+            // sprite: 'idle',
+            sprite: 'down',
             spriteDir: 0,
             x: 0,
             y: 0,
@@ -120,22 +121,22 @@ var app = new Vue({
             if (keys['w']) {
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
-                player.sprite = 'run'
+                player.sprite = 'up'
             }
             if (keys['s']) {
                 player.y = (player.y + player.speed) > (canvas_height - player.width) ? player.y : player.y + player.speed
                 player.moving = true
-                player.sprite = 'run'
+                player.sprite = 'down'
             }
             if (keys['a']) {
                 player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
-                player.sprite = 'run'
+                player.sprite = 'left'
             }
             if (keys['d']) {
                 player.x = (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
-                player.sprite = 'run'
+                player.sprite = 'right'
             }
         }
 
