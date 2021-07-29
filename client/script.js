@@ -53,7 +53,7 @@ var app = new Vue({
                 speed: 10,
                 moving: false
             }
-            this_.socket.emit('update_player', player)
+            doPlayerUpdate()
 
             if (players.length === 0) {
                 // Load Sprites
@@ -116,6 +116,10 @@ var app = new Vue({
         }
 
         /* Functions */
+        function doPlayerUpdate() {
+            this_.socket.emit('update_player', player)
+        }
+
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
             for (let index = 0; index < players.length; index++) {
@@ -166,9 +170,8 @@ var app = new Vue({
         /* Event Listeners */
         const dropdown = document.getElementById('animations')
         dropdown.addEventListener('change', e => {
-            console.log('before', players)
             players[getCurrentPlayerIndex()].sprite_img = 'img/sprite_' + e.target.value + '.png'
-            console.log('after', players)
+            doPlayerUpdate()
         })
 
         window.addEventListener('keydown', e => {
