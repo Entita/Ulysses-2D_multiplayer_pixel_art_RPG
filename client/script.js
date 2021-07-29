@@ -51,7 +51,9 @@ var app = new Vue({
         const canvas_height = canvas.height = 900
 
         let gameFrame = 0
-        const staggerFrames = 6
+        let staggerFrames = 6
+        let sprintX = 0
+
         const spriteAnimations = []
         const keys = []
 
@@ -95,11 +97,15 @@ var app = new Vue({
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
             let position = Math.floor(gameFrame / staggerFrames) % spriteAnimations[player.sprite].location.length
-            console.log(position, gameFrame, staggerFrames, spriteAnimations[player.sprite].location.length)
+            // console.log(position, gameFrame, staggerFrames, spriteAnimations[player.sprite].location.length)
+            let test = sprintX % spriteAnimations[player.sprite].location.length
+            console.log(test)
+
             let frameX = player.sprite_width * position
             let frameY = spriteAnimations[player.sprite].location[position].y
             ctx.drawImage(player.sprite_img, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
 
+            sprintX++
             gameFrame++
             moveSprite()
         }
