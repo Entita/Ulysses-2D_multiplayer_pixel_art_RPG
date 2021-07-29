@@ -68,8 +68,8 @@ var app = new Vue({
             spriteAnimations[state.name] = frames
         })
 
-        let fpsInterval, startTime, now, then, elapsed,
-            fps = 60
+        let fpsInterval, now, then, elapsed,
+            fps = 30
 
         startAnimating(fps)
 
