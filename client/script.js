@@ -77,19 +77,19 @@ var app = new Vue({
         // })
 
         // Canvas
-        const canvas = document.getElementById('game'),
-            ctx = canvas.getContext('2d'),
-            canvas_width = canvas.width = 900,
-            canvas_height = canvas.height = 900
+        // const canvas = document.getElementById('game'),
+        //     ctx = canvas.getContext('2d'),
+        //     canvas_width = canvas.width = 900,
+        //     canvas_height = canvas.height = 900
 
-        // Game engine
-        let fpsInterval, now, then, elapsed,
-            fps = 30,
-            sprintX = 0
+        // // Game engine
+        // let fpsInterval, now, then, elapsed,
+        //     fps = 30,
+        //     sprintX = 0
 
-        // Sprite movement
-        const spriteAnimations = [],
-            keys = []
+        // // Sprite movement
+        // const spriteAnimations = [],
+        //     keys = []
 
         
 
