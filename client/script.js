@@ -98,8 +98,8 @@ var app = new Vue({
                         players_ctx = players_canvas.getContext('2d')
                         particles_canvas = document.getElementById('particles')
                         particles_ctx = players_canvas.getContext('2d')
-                        canvas_width = players_canvas.width = particles_canvas.width = window.innerWidth
-                        canvas_height = players_canvas.height = particles_canvas.height = window.innerHeight
+                        canvas_width = players_canvas.width = particles_canvas.width = 900
+                        canvas_height = players_canvas.height = particles_canvas.height = 900
 
                         eventListeners()
                     }
@@ -108,6 +108,80 @@ var app = new Vue({
                 }
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+        var particles = [];
+        function createParticleAtPoint(x, y, colorData) {
+            let particle = new ExplodingParticle();
+            particle.rgbArray = colorData;
+            particle.startX = x;
+            particle.startY = y;
+            particle.startTime = Date.now();
+
+            particles.push(particle);
+        }
+
+        function ExplodingParticle() {
+            // Set how long we want our particle to animate for
+            this.animationDuration = 1000; // in ms
+
+            // Set the speed for our particle
+            this.speed = {
+                x: -5 + Math.random() * 10,
+                y: -5 + Math.random() * 10
+            };
+
+            // Size our particle
+            this.radius = 5 + Math.random() * 5;
+
+            // Set a max time to live for our particle
+            this.life = 30 + Math.random() * 10;
+            this.remainingLife = this.life;
+
+            // This function will be called by our animation logic later on
+            this.draw = ctx => {
+                let p = this;
+
+                if (this.remainingLife > 0
+                    && this.radius > 0) {
+                    // Draw a circle at the current location
+                    ctx.beginPath();
+                    ctx.arc(p.startX, p.startY, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = "rgba(" + this.rgbArray[0] + ',' + this.rgbArray[1] + ',' + this.rgbArray[2] + ", 1)";
+                    ctx.fill();
+
+                    // Update the particle's location and life
+                    p.remainingLife--;
+                    p.radius -= 0.25;
+                    p.startX += p.speed.x;
+                    p.startY += p.speed.y;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         function eventListeners() {
             const dropdown = document.getElementById('animations')
@@ -134,7 +208,8 @@ var app = new Vue({
                 let x = e.offsetX,
                     y = e.offsetY,
                     rgbaColor = players_ctx.getImageData(x, y, 1, 1).data
-                console.log(rgbaColor)
+
+                createParticleAtPoint(300, 300, rgbaColor);
             })
         }
 
@@ -159,6 +234,34 @@ var app = new Vue({
 
             players_ctx.clearRect(0, 0, canvas_width, canvas_height)
             players_ctx.drawImage(pseudoCanvas, 0, 0)
+
+
+
+
+
+            // Clear out the old particles
+            if (typeof particles_ctx !== "undefined") {
+                particles_ctx.clearRect(0, 0, canvas_width, canvas_height);
+            }
+
+            // Draw all of our particles in their new location
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].draw(particles_ctx);
+
+                // Simple way to clean up if the last particle is done animating
+                if (i === particles.length - 1) {
+                    let percent = (Date.now() - particles[i].startTime) / particles[i].animationDuration[i];
+
+                    if (percent > 1) {
+                        particles = [];
+                    }
+                }
+            }
+
+
+
+            
+
             delete pseudoCanvas
             delete pseudoCtx
 
