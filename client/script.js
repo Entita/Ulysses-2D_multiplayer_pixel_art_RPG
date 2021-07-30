@@ -245,7 +245,6 @@ var app = new Vue({
         }
 
         function objectParticles(player) {
-            console.log(player)
             let width = player.width,
                 height = player.height,
                 colorData = players_ctx.getImageData(player.x, player.y, width, height).data

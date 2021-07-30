@@ -23,8 +23,8 @@ io.on('connection', socket => {
             moving: false
         }
         players[socket.id] = player
-        io.emit('player_connected', player)
         io.emit('update', players)
+        io.emit('player_connected', player)
 
         socket.on('disconnect', () => {
             io.emit('player_disconnected', players[socket.id])
