@@ -29,13 +29,13 @@ var app = new Vue({
         var socketID
         let firstLoop = true
         const sprite_sheet = {
-            'starlord': newImage(),
-            'tonystark': newImage(),
-            'thor': newImage(),
-            'rocket': newImage(),
-            'loki': newImage(),
-            'deadpool': newImage(),
-            'captainamerica': newImage()
+            'starlord': new Image(),
+            'tonystark': new Image(),
+            'thor': new Image(),
+            'rocket': new Image(),
+            'loki': new Image(),
+            'deadpool': new Image(),
+            'captainamerica': new Image()
         }
         sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
         sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
