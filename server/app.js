@@ -34,7 +34,6 @@ io.on('connection', socket => {
             var player = players[data.id]
             if (data.w) {
                 if (data.s) {
-                    console.log('running and not moving')
                     player.moving = false
                 } else {
                     player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
@@ -43,9 +42,13 @@ io.on('connection', socket => {
                 }
             }
             if (data.s) {
-                player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
-                player.moving = true
-                player.sprite = 'down'
+                if (data.w) {
+                    player.moving = false
+                } else {
+                    player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
+                    player.moving = true
+                    player.sprite = 'down'
+                }
             }
             if (data.a) {
                 if (data.d) {
@@ -57,9 +60,13 @@ io.on('connection', socket => {
                 }
             }
             if (data.d) {
-                player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
-                player.moving = true
-                player.sprite = 'right'
+                if (data.a) {
+                    player.moving = false
+                } else {
+                    player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
+                    player.moving = true
+                    player.sprite = 'right'
+                }
             }
             io.emit('update', players)
         })
