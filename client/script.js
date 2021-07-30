@@ -142,7 +142,7 @@ var app = new Vue({
             //     thisPlayer.sprite = 'right'
             // }
             if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
-                this_.socket.emit('move', 'bruh please woooork')
+                this_.socket.emit('move', [keys, keys['w']])
             }
         }
 
