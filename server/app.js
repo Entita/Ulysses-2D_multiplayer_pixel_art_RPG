@@ -55,12 +55,12 @@ io.on('connection', socket => {
             io.emit('update', players)
         })
 
-        socket.io('stopped', id => {
+        socket.on('stopped', id => {
             players[id].moving = false
             io.emit('update', players)
         })
 
-        socket.io('skin', data => {
+        socket.on('skin', data => {
             players[data.id].sprite_img = data.img
             io.emit('update', players)
         })
