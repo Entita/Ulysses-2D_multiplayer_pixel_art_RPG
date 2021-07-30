@@ -116,13 +116,12 @@ var app = new Vue({
             for (var player in players) {
                 // skip loop if the property is from prototype
                 if (!players.hasOwnProperty(player)) continue;
-            
-                var obj = players[player];
-                alert(obj)
+
+                console.log(players[player])
                 // for (var prop in obj) {
                 //     // skip loop if the property is from prototype
                 //     if (!obj.hasOwnProperty(prop)) continue;
-            
+
                 //     // your code
                 //     alert(prop + " = " + obj[prop]);
                 // }
