@@ -131,7 +131,10 @@ var app = new Vue({
             }
 
             ctx.clearRect(0, 0, canvas_width, canvas_height)
+            var t0 = performance.now()
             ctx.drawImage(pseudoCanvas, 0, 0)
+            var t1 = performance.now()
+            console.log('took', t1 - t0, 'ms')
             delete pseudoCanvas
             delete pseudoCtx
 
