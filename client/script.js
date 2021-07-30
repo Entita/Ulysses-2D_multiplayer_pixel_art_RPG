@@ -152,6 +152,7 @@ var app = new Vue({
         this_.socket.on('update', data => {
             socketID = this.socket.id
             players = data
+            console.log(players)
         })
     },
     methods: {
