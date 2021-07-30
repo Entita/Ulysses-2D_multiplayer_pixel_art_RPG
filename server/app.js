@@ -23,10 +23,11 @@ io.on('connection', socket => {
             moving: false
         }
         players[socket.id] = player
+        io.emit('player_connected', player)
         io.emit('update', players)
 
         socket.on('disconnect', () => {
-            io.emit('disconnected', players[socket.id])
+            io.emit('player_disconnected', players[socket.id])
             delete players[socket.id]
             io.emit('update', players)
         })
