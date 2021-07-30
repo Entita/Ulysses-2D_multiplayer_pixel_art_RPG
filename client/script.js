@@ -206,7 +206,6 @@ var app = new Vue({
                 this_.socket.emit('stopped', socketID)
             })
 
-            let reductionFactor = 1
             window.addEventListener('click', () => {
                 let width = players[socketID].width,
                     height = players[socketID].height,
@@ -214,25 +213,20 @@ var app = new Vue({
 
                 // Keep track of how many times we've iterated (in order to reduce
                 // the total number of particles create)
-                let count = 0;
 
                 // Go through every location of our button and create a particle
                 for (let localX = 0; localX < width; localX++) {
                     for (let localY = 0; localY < height; localY++) {
-                        if (count % reductionFactor === 0) {
-                            let index = (localY * width + localX) * 4;
-                            let rgbaColorArr = colorData.slice(index, index + 4);
-                            if (rgbaColorArr[0] == 0 && rgbaColorArr[1] == 0 && rgbaColorArr[2] == 0) {
-                                count++;
-                                continue
-                            }
-
-                            let globalX = players[socketID].x + localX;
-                            let globalY = players[socketID].y + localY;
-
-                            createParticleAtPoint(globalX, globalY, rgbaColorArr);
+                        let index = (localY * width + localX) * 4;
+                        let rgbaColorArr = colorData.slice(index, index + 4);
+                        if (rgbaColorArr[0] == 0 && rgbaColorArr[1] == 0 && rgbaColorArr[2] == 0) {
+                            continue
                         }
-                        count++;
+
+                        let globalX = players[socketID].x + localX;
+                        let globalY = players[socketID].y + localY;
+
+                        createParticleAtPoint(globalX, globalY, rgbaColorArr);
                     }
                 }
             })
