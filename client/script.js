@@ -47,6 +47,11 @@ var app = new Vue({
             spriteAnimations[state.name] = frames
         })
 
+        // Game engine
+        let fpsInterval, now, then, elapsed,
+            fps = 30,
+            sprintX = 0
+
         startAnimating(fps)
 
         function startAnimating(fps) {
@@ -162,11 +167,6 @@ var app = new Vue({
                     ctx = canvas.getContext('2d'),
                     canvas_width = canvas.width = 900,
                     canvas_height = canvas.height = 900
-
-                // Game engine
-                let fpsInterval, now, then, elapsed,
-                    fps = 30,
-                    sprintX = 0
             }, 50)
         }
     }
