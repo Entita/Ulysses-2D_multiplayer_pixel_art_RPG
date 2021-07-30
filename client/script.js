@@ -86,8 +86,8 @@ var app = new Vue({
             players = data
         })
 
-        this_.socket.on('disconnect', id => {
-            objectParticles(players[id])
+        this_.socket.on('disconnect', player => {
+            objectParticles(player)
         })
 
         function startAnimating(fps) {
