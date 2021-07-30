@@ -118,13 +118,14 @@ var app = new Vue({
                 if (!players.hasOwnProperty(player)) continue;
             
                 var obj = players[player];
-                for (var prop in obj) {
-                    // skip loop if the property is from prototype
-                    if (!obj.hasOwnProperty(prop)) continue;
+                alert(obj)
+                // for (var prop in obj) {
+                //     // skip loop if the property is from prototype
+                //     if (!obj.hasOwnProperty(prop)) continue;
             
-                    // your code
-                    alert(prop + " = " + obj[prop]);
-                }
+                //     // your code
+                //     alert(prop + " = " + obj[prop]);
+                // }
             }
 
             // Object.keys(players).forEach(function (player) {
