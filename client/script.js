@@ -91,7 +91,11 @@ var app = new Vue({
         function eventListeners() {
             const dropdown = document.getElementById('animations')
             dropdown.addEventListener('change', e => {
-                // thisPlayer.sprite_img = 'img/sprite_' + e.target.value + '.png'
+                var data = {
+                    id: socketID,
+                    img: 'img/sprite_' + e.target.value + '.png'
+                }
+                this_.socket.emit('skin', data)
             })
 
             window.addEventListener('keydown', e => {
@@ -102,7 +106,7 @@ var app = new Vue({
             window.addEventListener('keyup', e => {
                 key = e.key.toLowerCase()
                 delete keys[key]
-                // thisPlayer.moving = false
+                this_.socket.emit('stopped', socketID)
             })
         }
 
@@ -112,7 +116,6 @@ var app = new Vue({
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) size++;
             }
-            console.log('length is', size, obj)
             return size;
         }
 
@@ -132,26 +135,6 @@ var app = new Vue({
         }
 
         function moveSprite() {
-            // if (keys['w']) {
-            //     thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
-            //     thisPlayer.moving = true
-            //     thisPlayer.sprite = 'up'
-            // }
-            // if (keys['s']) {
-            //     thisPlayer.y = (thisPlayer.y + thisPlayer.speed) > (canvas_height - thisPlayer.height) ? thisPlayer.y : thisPlayer.y + thisPlayer.speed
-            //     thisPlayer.moving = true
-            //     thisPlayer.sprite = 'down'
-            // }
-            // if (keys['a']) {
-            //     thisPlayer.x = (thisPlayer.x - thisPlayer.speed) >= 0 ? thisPlayer.x - thisPlayer.speed : thisPlayer.x
-            //     thisPlayer.moving = true
-            //     thisPlayer.sprite = 'left'
-            // }
-            // if (keys['d']) {
-            //     thisPlayer.x = (thisPlayer.x + thisPlayer.speed) > (canvas_width - thisPlayer.width) ? thisPlayer.x : thisPlayer.x + thisPlayer.speed
-            //     thisPlayer.moving = true
-            //     thisPlayer.sprite = 'right'
-            // }
             if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
                 var data = {
                     id: socketID,

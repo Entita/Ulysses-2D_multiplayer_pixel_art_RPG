@@ -31,7 +31,6 @@ io.on('connection', socket => {
         })
 
         socket.on('move', data => {
-            console.log(data)
             var player = players[data.id]
             if (data.w) {
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
@@ -53,6 +52,16 @@ io.on('connection', socket => {
                 player.moving = true
                 player.sprite = 'right'
             }
+            io.emit('update', players)
+        })
+
+        socket.io('stopped', id => {
+            players[id].moving = false
+            io.emit('update', players)
+        })
+
+        socket.io('skin', data => {
+            players[data.id].sprite_img = data.img
             io.emit('update', players)
         })
     })
