@@ -26,6 +26,7 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
+        var socketID
         let firstLoop = true
 
         // Sprite movement
@@ -33,7 +34,7 @@ var app = new Vue({
             keys = []
 
         // Multiplayer
-        var players = []
+        const players = new Object()
 
         // Load Sprites
         this_.animationStates.forEach((state, i) => {
@@ -73,11 +74,13 @@ var app = new Vue({
                 then = now - (elapsed % fpsInterval)
                 if (this_.isReady) {
                     if (firstLoop) {
-                        console.log('FIRST LOOP')
+                        // Execute only first loop
                         canvas = document.getElementById('game')
                         ctx = canvas.getContext('2d')
                         canvas_width = canvas.width = 900
                         canvas_height = canvas.height = 900
+
+                        eventListeners()
                     }
                     console.log('draw sprint')
                     firstLoop = false
@@ -86,10 +89,23 @@ var app = new Vue({
             }
         }
 
-        // /* Functions */
-        // // function doPlayerUpdate(player) {
-        // //     this_.socket.emit('update_player', player)
-        // // }
+        function eventListeners() {
+            const dropdown = document.getElementById('animations')
+            dropdown.addEventListener('change', e => {
+                // thisPlayer.sprite_img = 'img/sprite_' + e.target.value + '.png'
+            })
+
+            window.addEventListener('keydown', e => {
+                key = e.key.toLowerCase()
+                keys[key] = true
+            })
+
+            window.addEventListener('keyup', e => {
+                key = e.key.toLowerCase()
+                delete keys[key]
+                // thisPlayer.moving = false
+            })
+        }
 
         // function animateSprint() {
         //     ctx.clearRect(0, 0, canvas_width, canvas_height)
@@ -105,65 +121,31 @@ var app = new Vue({
         //     moveSprite()
         // }
 
-        // // function movingSprint(player, dir) {
-        // //     player.moving = true
-        // //     player.sprite = dir
-        // //     this_.socket.emit('move', players)
-        // // }
-
-        // function moveSprite() {
-        //     if (keys['w']) {
-        //         // var thisPlayer = players[getCurrentPlayerIndex()]
-        //         thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
-        //         // movingSprint(thisPlayer, 'up')
-        //         // doPlayerUpdate(thisPlayer)
-        //     }
-        //     if (keys['s']) {
-        //         // var thisPlayer = players[getCurrentPlayerIndex()]
-        //         thisPlayer.y = (thisPlayer.y + thisPlayer.speed) > (canvas_height - thisPlayer.height) ? thisPlayer.y : thisPlayer.y + thisPlayer.speed
-        //         // movingSprint(thisPlayer, 'down')
-        //         // doPlayerUpdate(thisPlayer)
-        //     }
-        //     if (keys['a']) {
-        //         // var thisPlayer = players[getCurrentPlayerIndex()]
-        //         thisPlayer.x = (thisPlayer.x - thisPlayer.speed) >= 0 ? thisPlayer.x - thisPlayer.speed : thisPlayer.x
-        //         // movingSprint(thisPlayer, 'left')
-        //         // doPlayerUpdate(thisPlayer)
-        //     }
-        //     if (keys['d']) {
-        //         // var thisPlayer = players[getCurrentPlayerIndex()]
-        //         thisPlayer.x = (thisPlayer.x + thisPlayer.speed) > (canvas_width - thisPlayer.width) ? thisPlayer.x : thisPlayer.x + thisPlayer.speed
-        //         // movingSprint(thisPlayer, 'right')
-        //         // doPlayerUpdate(thisPlayer)
-        //     }
-        // }
-
-        // // function getCurrentPlayerIndex() {
-        // //     return players.findIndex((obj => obj.socket_id == socketID))
-        // // }
-
-        // /* Event Listeners */
-        // const dropdown = document.getElementById('animations')
-        // dropdown.addEventListener('change', e => {
-        //     // var thisPlayer = players[getCurrentPlayerIndex()]
-        //     thisPlayer.sprite_img = 'img/sprite_' + e.target.value + '.png'
-        //     // doPlayerUpdate(thisPlayer)
-        // })
-
-        // window.addEventListener('keydown', e => {
-        //     key = e.key.toLowerCase()
-        //     keys[key] = true
-        // })
-        // window.addEventListener('keyup', e => {
-        //     key = e.key.toLowerCase()
-        //     delete keys[key]
-        //     // var thisPlayer = players[getCurrentPlayerIndex()]
-        //     thisPlayer.moving = false
-        //     // doPlayerUpdate(thisPlayer)
-        // })
+        function moveSprite() {
+            if (keys['w']) {
+                thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
+                thisPlayer.moving = true
+                thisPlayer.sprite = 'up'
+            }
+            if (keys['s']) {
+                thisPlayer.y = (thisPlayer.y + thisPlayer.speed) > (canvas_height - thisPlayer.height) ? thisPlayer.y : thisPlayer.y + thisPlayer.speed
+                thisPlayer.moving = true
+                thisPlayer.sprite = 'down'
+            }
+            if (keys['a']) {
+                thisPlayer.x = (thisPlayer.x - thisPlayer.speed) >= 0 ? thisPlayer.x - thisPlayer.speed : thisPlayer.x
+                thisPlayer.moving = true
+                thisPlayer.sprite = 'left'
+            }
+            if (keys['d']) {
+                thisPlayer.x = (thisPlayer.x + thisPlayer.speed) > (canvas_width - thisPlayer.width) ? thisPlayer.x : thisPlayer.x + thisPlayer.speed
+                thisPlayer.moving = true
+                thisPlayer.sprite = 'right'
+            }
+        }
 
         this_.socket.on('update', data => {
-            console.log(data)
+            console.log(data, this.socket.id)
         })
     },
     methods: {
