@@ -76,22 +76,11 @@ var app = new Vue({
         //     players = data
         // })
 
-        // Canvas
-        // const canvas = document.getElementById('game'),
-        //     ctx = canvas.getContext('2d'),
-        //     canvas_width = canvas.width = 900,
-        //     canvas_height = canvas.height = 900
-
-        // // Game engine
-        // let fpsInterval, now, then, elapsed,
-        //     fps = 30,
-        //     sprintX = 0
-
         // // Sprite movement
         // const spriteAnimations = [],
         //     keys = []
 
-        
+
 
         // Multiplayer
         // var players = []
@@ -191,5 +180,20 @@ var app = new Vue({
         //     thisPlayer.moving = false
         //     // doPlayerUpdate(thisPlayer)
         // })
+    },
+    methods: {
+        init: function () {
+            isReady = !isReady
+            // Canvas
+            const canvas = document.getElementById('game'),
+                ctx = canvas.getContext('2d'),
+                canvas_width = canvas.width = 900,
+                canvas_height = canvas.height = 900
+
+            // Game engine
+            let fpsInterval, now, then, elapsed,
+                fps = 30,
+                sprintX = 0
+        }
     }
 });
