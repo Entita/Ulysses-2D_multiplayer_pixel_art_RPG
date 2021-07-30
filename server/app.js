@@ -36,7 +36,7 @@ io.on('connection', socket => {
                 if (data.s) {
                     console.log('running and not moving')
                     player.moving = false
-                } {
+                } else {
                     player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                     player.moving = true
                     player.sprite = 'up'
@@ -48,9 +48,13 @@ io.on('connection', socket => {
                 player.sprite = 'down'
             }
             if (data.a) {
-                player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
-                player.moving = true
-                player.sprite = 'left'
+                if (data.d) {
+                    player.moving = false
+                } else {
+                    player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
+                    player.moving = true
+                    player.sprite = 'left'
+                }
             }
             if (data.d) {
                 player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
