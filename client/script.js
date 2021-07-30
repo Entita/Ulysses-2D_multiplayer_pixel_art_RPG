@@ -206,12 +206,31 @@ var app = new Vue({
                 this_.socket.emit('stopped', socketID)
             })
 
-            window.addEventListener('click', e => {
-                let x = e.offsetX,
-                    y = e.offsetY,
-                    rgbaColor = players_ctx.getImageData(x, y, 1, 1).data
+            let reductionFactor = 17
+            window.addEventListener('click', () => {
+                let width = players[socketID].width,
+                    height = players[socketID].height,
+                    rgbaColor = players_ctx.getImageData(x, y, width, height).data
 
-                createParticleAtPoint(300, 300, rgbaColor);
+                // Keep track of how many times we've iterated (in order to reduce
+                // the total number of particles create)
+                let count = 0;
+
+                // Go through every location of our button and create a particle
+                for (let localX = 0; localX < width; localX++) {
+                    for (let localY = 0; localY < height; localY++) {
+                        if (count % reductionFactor === 0) {
+                            let index = (localY * width + localX) * 4;
+                            let rgbaColorArr = colorData.slice(index, index + 4);
+
+                            let globalX = players[socketID].x + localX;
+                            let globalY = players[socketID].y + localY;
+
+                            createParticleAtPoint(globalX, globalY, rgbaColorArr);
+                        }
+                        count++;
+                    }
+                }
             })
         }
 
