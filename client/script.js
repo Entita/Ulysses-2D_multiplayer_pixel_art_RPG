@@ -47,29 +47,29 @@ var app = new Vue({
             spriteAnimations[state.name] = frames
         })
 
-        if (this.isReady) {
-            console.log('REAAADDYYY')
+        startAnimating(fps)
+
+        function startAnimating(fps) {
+            fpsInterval = 1000 / fps
+            then = Date.now()
+            startTime = then
+            animate()
         }
 
-        // startAnimating(fps)
-
-        // function startAnimating(fps) {
-        //     fpsInterval = 1000 / fps
-        //     then = Date.now()
-        //     startTime = then
-        //     animate()
-        // }
-
-        // function animate() {
-        //     requestAnimationFrame(animate)
-        //     now = Date.now()
-        //     elapsed = now - then
-        //     if (elapsed > fpsInterval) {
-        //         then = now - (elapsed % fpsInterval)
-
-        //         animateSprint()
-        //     }
-        // }
+        function animate() {
+            requestAnimationFrame(animate)
+            now = Date.now()
+            elapsed = now - then
+            if (elapsed > fpsInterval) {
+                then = now - (elapsed % fpsInterval)
+                if (this.isReady) {
+                    console.log('draw sprint')
+                } {
+                    console.log('not ready yet')
+                }
+                // animateSprint()
+            }
+        }
 
         // /* Functions */
         // // function doPlayerUpdate(player) {
