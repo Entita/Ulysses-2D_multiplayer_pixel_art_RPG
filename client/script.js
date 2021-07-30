@@ -83,8 +83,7 @@ var app = new Vue({
                         eventListeners()
                     }
                     firstLoop = false
-
-                    // animateSprint()
+                    animateSprint()
                 }
             }
         }
@@ -107,19 +106,19 @@ var app = new Vue({
             })
         }
 
-        // function animateSprint() {
-        //     ctx.clearRect(0, 0, canvas_width, canvas_height)
-        //     for (let index = 0; index < players.length; index++) {
-        //         let position = players[index].moving ? sprintX % spriteAnimations[players[index].sprite].location.length : 0
-        //         let frameX = players[index].sprite_width * position
-        //         let frameY = spriteAnimations[players[index].sprite].location[position].y
-        //         var image = new Image()
-        //         image.src = players[index].sprite_img
-        //         ctx.drawImage(image, frameX, frameY, players[index].sprite_width, players[index].sprite_height, players[index].x, players[index].y, players[index].width, players[index].height)
-        //     }
-        //     sprintX++
-        //     moveSprite()
-        // }
+        function animateSprint() {
+            // ctx.clearRect(0, 0, canvas_width, canvas_height)
+            // for (let index = 0; index < players.length; index++) {
+            //     let position = players[index].moving ? sprintX % spriteAnimations[players[index].sprite].location.length : 0
+            //     let frameX = players[index].sprite_width * position
+            //     let frameY = spriteAnimations[players[index].sprite].location[position].y
+            //     var image = new Image()
+            //     image.src = players[index].sprite_img
+            //     ctx.drawImage(image, frameX, frameY, players[index].sprite_width, players[index].sprite_height, players[index].x, players[index].y, players[index].width, players[index].height)
+            // }
+            // sprintX++
+            moveSprite()
+        }
 
         function moveSprite() {
             // if (keys['w']) {
@@ -143,6 +142,7 @@ var app = new Vue({
             //     thisPlayer.sprite = 'right'
             // }
             if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
+                console.log('moved')
                 this_.socket.emit('move', keys)
             }
         }
