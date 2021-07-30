@@ -210,7 +210,7 @@ var app = new Vue({
             window.addEventListener('click', () => {
                 let width = players[socketID].width,
                     height = players[socketID].height,
-                    colorData = players_ctx.getImageData(0, 0, width, height).data
+                    colorData = players_ctx.getImageData(players[socketID].x, players[socketID].y, width, height).data
 
                 // Keep track of how many times we've iterated (in order to reduce
                 // the total number of particles create)
