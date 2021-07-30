@@ -26,6 +26,7 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
+        let firstLoop = true
 
         // Sprite movement
         const spriteAnimations = [],
@@ -52,6 +53,9 @@ var app = new Vue({
             fps = 30,
             sprintX = 0
 
+        // Canvas
+        let canvas, ctx, canvas_width, canvas_height
+
         startAnimating(fps)
 
         function startAnimating(fps) {
@@ -59,13 +63,6 @@ var app = new Vue({
             then = Date.now()
             startTime = then
             animate()
-        }
-        function initGame() {
-            // Canvas
-            const canvas = document.getElementById('game'),
-                ctx = canvas.getContext('2d'),
-                canvas_width = canvas.width = 900,
-                canvas_height = canvas.height = 900
         }
 
         function animate() {
@@ -75,8 +72,15 @@ var app = new Vue({
             if (elapsed > fpsInterval) {
                 then = now - (elapsed % fpsInterval)
                 if (this_.isReady) {
+                    if (firstLoop) {
+                        console.log('FIRST LOOP')
+                        canvas = document.getElementById('game')
+                        ctx = canvas.getContext('2d')
+                        canvas_width = canvas.width = 900
+                        canvas_height = canvas.height = 900
+                    }
                     console.log('draw sprint')
-                    initGame()
+                    firstLoop = false
                 }
                 // animateSprint()
             }
@@ -164,10 +168,11 @@ var app = new Vue({
     },
     methods: {
         init: function () {
+            var this_ = this
             setTimeout(function () {
                 /* Wait a bit for the html elements to render */
-                this.isReady = !this.isReady
-                this.socket.emit('ready')
+                this_.isReady = !this_.isReady
+                this_.socket.emit('ready')
             }, 10)
         }
     }
