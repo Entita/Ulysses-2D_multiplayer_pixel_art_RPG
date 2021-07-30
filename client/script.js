@@ -239,24 +239,24 @@ var app = new Vue({
 
 
 
-            // // Clear out the old particles
-            // if (typeof particles_ctx !== "undefined") {
-            //     particles_ctx.clearRect(0, 0, canvas_width, canvas_height);
-            // }
+            // Clear out the old particles
+            if (typeof particles_ctx !== "undefined") {
+                particles_ctx.clearRect(0, 0, canvas_width, canvas_height);
+            }
 
-            // // Draw all of our particles in their new location
-            // for (let i = 0; i < particles.length; i++) {
-            //     particles[i].draw(particles_ctx);
+            // Draw all of our particles in their new location
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].draw(particles_ctx);
 
-            //     // Simple way to clean up if the last particle is done animating
-            //     if (i === particles.length - 1) {
-            //         let percent = (Date.now() - particles[i].startTime) / particles[i].animationDuration[i];
+                // Simple way to clean up if the last particle is done animating
+                if (i === particles.length - 1) {
+                    let percent = (Date.now() - particles[i].startTime) / particles[i].animationDuration[i];
 
-            //         if (percent > 1) {
-            //             particles = [];
-            //         }
-            //     }
-            // }
+                    if (percent > 1) {
+                        particles = [];
+                    }
+                }
+            }
 
 
 
