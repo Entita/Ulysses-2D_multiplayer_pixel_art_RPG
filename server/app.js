@@ -52,10 +52,10 @@ io.on('connection', socket => {
                 player.moving = true
                 player.sprite = 'right'
             }
-            if (data.w && data.s) {
+            if (data.w && data.s && (!data.a && !data.d)) {
                 player.moving = false
             }
-            if (data.a && data.d) {
+            if (data.a && data.d && (!data.w && !data.s)) {
                 player.moving = false
             }
             io.emit('update', players)
