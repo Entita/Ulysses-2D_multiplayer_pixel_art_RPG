@@ -166,6 +166,7 @@ var app = new Vue({
                     height: canvas_height,
                     width: canvas_width
                 }
+                console.log(players[socketID])
                 this_.socket.emit('move', data)
             }
         }
