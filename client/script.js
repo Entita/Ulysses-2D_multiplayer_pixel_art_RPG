@@ -60,6 +60,13 @@ var app = new Vue({
             startTime = then
             animate()
         }
+        function initGame() {
+            // Canvas
+            const canvas = document.getElementById('game'),
+                ctx = canvas.getContext('2d'),
+                canvas_width = canvas.width = 900,
+                canvas_height = canvas.height = 900
+        }
 
         function animate() {
             requestAnimationFrame(animate)
@@ -69,8 +76,7 @@ var app = new Vue({
                 then = now - (elapsed % fpsInterval)
                 if (this_.isReady) {
                     console.log('draw sprint')
-                } {
-                    console.log('not ready yet')
+                    initGame()
                 }
                 // animateSprint()
             }
@@ -158,16 +164,11 @@ var app = new Vue({
     },
     methods: {
         init: function () {
-            this.isReady = !this.isReady
-            this.socket.emit('ready')
             setTimeout(function () {
                 /* Wait a bit for the html elements to render */
-                // Canvas
-                const canvas = document.getElementById('game'),
-                    ctx = canvas.getContext('2d'),
-                    canvas_width = canvas.width = 900,
-                    canvas_height = canvas.height = 900
-            }, 50)
+                this.isReady = !this.isReady
+                this.socket.emit('ready')
+            }, 10)
         }
     }
 });
