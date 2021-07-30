@@ -67,10 +67,10 @@ var app = new Vue({
             elapsed = now - then
             if (elapsed > fpsInterval) {
                 then = now - (elapsed % fpsInterval)
-                if (this.isReady) {
+                if (this_.isReady) {
                     console.log('draw sprint')
                 } {
-                    console.log('not ready yet', this.isReady)
+                    console.log('not ready yet')
                 }
                 // animateSprint()
             }
@@ -160,7 +160,6 @@ var app = new Vue({
         init: function () {
             this.isReady = !this.isReady
             this.socket.emit('ready')
-            console.log('ready', this.isReady)
             setTimeout(function () {
                 /* Wait a bit for the html elements to render */
                 // Canvas
