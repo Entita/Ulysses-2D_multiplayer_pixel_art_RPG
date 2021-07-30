@@ -157,16 +157,14 @@ var app = new Vue({
 
         function moveSprite() {
             if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
+                var player = players[socketID]
                 var data = {
                     id: socketID,
-                    w: keys['w'],
-                    s: keys['s'],
-                    a: keys['a'],
-                    d: keys['d'],
-                    height: canvas_height,
-                    width: canvas_width
+                    w: [keys['w'], (player.y - player.speed) >= 0 ? player.y - player.speed : player.y],
+                    s: [keys['s'], (player.y + player.speed) > (canvas_height - player.height) ? player.y : player.y + player.speed],
+                    a: [keys['a'], (player.x - player.speed) >= 0 ? player.x - player.speed : player.x],
+                    d: [keys['d'], (player.x + player.speed) > (canvas_width - player.width) ? player.x : player.x + player.speed]
                 }
-                console.log(players[socketID])
                 this_.socket.emit('move', data)
             }
         }

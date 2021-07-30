@@ -32,37 +32,37 @@ io.on('connection', socket => {
 
         socket.on('move', data => {
             var player = players[data.id]
-            if (data.w) {
-                player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
-                player.moving = true
-                player.sprite = 'up'
-            }
-            if (data.s) {
-                player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
-                player.moving = true
-                player.sprite = 'down'
-            }
-            if (data.a) {
-                player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
-                player.moving = true
-                player.sprite = 'left'
-            }
-            if (data.d) {
-                player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
-                player.moving = true
-                player.sprite = 'right'
-                if (data.a && data.w) {
-                    player.sprite = 'up'
-                } else if (data.a && data.s) {
-                    player.sprite = 'down'
-                }
-            }
-            if (data.w && data.s && (!data.a && !data.d)) {
-                player.moving = false
-            }
-            if (data.a && data.d && (!data.w && !data.s)) {
-                player.moving = false
-            }
+            // if (data.w) {
+            //     player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
+            //     player.moving = true
+            //     player.sprite = 'up'
+            // }
+            // if (data.s) {
+            //     player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
+            //     player.moving = true
+            //     player.sprite = 'down'
+            // }
+            // if (data.a) {
+            //     player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
+            //     player.moving = true
+            //     player.sprite = 'left'
+            // }
+            // if (data.d) {
+            //     player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
+            //     player.moving = true
+            //     player.sprite = 'right'
+            //     if (data.a && data.w) {
+            //         player.sprite = 'up'
+            //     } else if (data.a && data.s) {
+            //         player.sprite = 'down'
+            //     }
+            // }
+            // if (data.w && data.s && (!data.a && !data.d)) {
+            //     player.moving = false
+            // }
+            // if (data.a && data.d && (!data.w && !data.s)) {
+            //     player.moving = false
+            // }
 
 
 
@@ -86,6 +86,32 @@ io.on('connection', socket => {
             //     player.moving = true
             //     player.sprite = 'right'
             // }
+
+
+
+
+
+
+            if (data.w[0]) {
+                player.y = data.w[1]
+                player.moving = true
+                player.sprite = 'up'
+            }
+            if (data.s[0]) {
+                player.y = data.s[1]
+                player.moving = true
+                player.sprite = 'down'
+            }
+            if (data.a[0]) {
+                player.x = data.a[1]
+                player.moving = true
+                player.sprite = 'left'
+            }
+            if (data.d[0]) {
+                player.x = data.d[1]
+                player.moving = true
+                player.sprite = 'right'
+            }
             io.emit('update', players)
         })
 
