@@ -66,49 +66,23 @@ io.on('connection', socket => {
 
 
 
-            // if (data.w) {
-            //     player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
-            //     player.moving = true
-            //     player.sprite = 'up'
-            // }
-            // if (data.s) {
-            //     player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
-            //     player.moving = true
-            //     player.sprite = 'down'
-            // }
-            // if (data.a) {
-            //     player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
-            //     player.moving = true
-            //     player.sprite = 'left'
-            // }
-            // if (data.d) {
-            //     player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
-            //     player.moving = true
-            //     player.sprite = 'right'
-            // }
-
-
-
-
-
-
-            if (data.w[0]) {
-                player.y = data.w[1]
+            if (data.w) {
+                player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
                 player.sprite = 'up'
             }
-            if (data.s[0]) {
-                player.y = data.s[1]
+            if (data.s) {
+                player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
                 player.moving = true
                 player.sprite = 'down'
             }
-            if (data.a[0]) {
-                player.x = data.a[1]
+            if (data.a) {
+                player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
                 player.sprite = 'left'
             }
-            if (data.d[0]) {
-                player.x = data.d[1]
+            if (data.d) {
+                player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
                 player.sprite = 'right'
             }
