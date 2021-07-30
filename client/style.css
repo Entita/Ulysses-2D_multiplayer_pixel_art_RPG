@@ -15,8 +15,8 @@ canvas {
 .controls {
     position : absolute;
     z-index  : 1;
-    left      : 50px;
-    top     : 50%;
+    left     : 50px;
+    top      : 50%;
     transform: translateY(-50%);
 }
 
@@ -25,4 +25,13 @@ select,
 option {
     font-size     : 25px;
     text-transform: capitalize;
+}
+
+button {
+    width    : 8rem;
+    height   : 2.5rem;
+    position : absolute;
+    top      : 50%;
+    left     : 50%;
+    transform: translate(-50%, -50%);
 }

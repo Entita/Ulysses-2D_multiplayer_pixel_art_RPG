@@ -183,7 +183,7 @@ var app = new Vue({
     },
     methods: {
         init: function () {
-            isReady = !isReady
+            this.isReady = !this.isReady
             // Canvas
             const canvas = document.getElementById('game'),
                 ctx = canvas.getContext('2d'),
