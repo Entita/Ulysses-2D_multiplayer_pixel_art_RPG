@@ -112,14 +112,29 @@ var app = new Vue({
 
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
-            Object.keys(players).forEach(function (player) {
-                var image = new Image()
-                image.src = player.sprite_img
-                let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
-                    frameX = 0,
-                    frameY = 0
-                ctx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
-            })
+
+            for (var player in players) {
+                // skip loop if the property is from prototype
+                if (!players.hasOwnProperty(player)) continue;
+            
+                var obj = players[player];
+                for (var prop in obj) {
+                    // skip loop if the property is from prototype
+                    if (!obj.hasOwnProperty(prop)) continue;
+            
+                    // your code
+                    alert(prop + " = " + obj[prop]);
+                }
+            }
+
+            // Object.keys(players).forEach(function (player) {
+            //     var image = new Image()
+            //     image.src = player.sprite_img
+            //     let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
+            //         frameX = 0,
+            //         frameY = 0
+            //     ctx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
+            // })
             sprintX++
             moveSprite()
         }
