@@ -107,7 +107,11 @@ var app = new Vue({
         }
 
         function objectLength(obj) {
-            size = Object.keys(obj).length
+            var size = 0,
+                key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
             console.log('length is', size, obj)
             return size;
         }
@@ -164,7 +168,7 @@ var app = new Vue({
 
         this_.socket.on('update', data => {
             socketID = this.socket.id
-            console.log(data[socketID])
+            players = data
         })
     },
     methods: {
