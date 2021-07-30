@@ -3,17 +3,18 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 var players = new Object()
-var player = new Object()
-player.sprite = 'down'
-player.x = 0
-player.y = 0
-player.sprite_img = 'img/sprite_starlord.png'
-player.sprite_width = 32
-player.sprite_height = 48
-player.width = 67
-player.height = 100
-player.speed = 10
-player.moving = false
+var player = {
+    sprite: 'down',
+    x: 0,
+    y: 0,
+    sprite_img: 'img/sprite_starlord.png',
+    sprite_width: 32,
+    sprite_height: 48,
+    width: 67,
+    height: 100,
+    speed: 10,
+    moving: false
+}
 
 io.on('connection', socket => {
     socket.on('ready', () => {
