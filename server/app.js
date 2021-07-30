@@ -32,33 +32,31 @@ io.on('connection', socket => {
 
         socket.on('move', data => {
             var player = players[data.id]
-            if (data.w) {
+            if ((data.w && data.s) || (data.a && data.d)) {
+
+            } else {
+                if (data.w) {
+                    player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
+                    player.moving = true
+                    player.sprite = 'up'
+                }
                 if (data.s) {
-                    return
+                    player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
+                    player.moving = true
+                    player.sprite = 'down'
                 }
-                player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
-                player.moving = true
-                player.sprite = 'up'
-            }
-            if (data.s) {
-                player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
-                player.moving = true
-                player.sprite = 'down'
-            }
-            if (data.a) {
+                if (data.a) {
+                    player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
+                    player.moving = true
+                    player.sprite = 'left'
+                }
                 if (data.d) {
-                    return
+                    player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
+                    player.moving = true
+                    player.sprite = 'right'
                 }
-                player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
-                player.moving = true
-                player.sprite = 'left'
+                io.emit('update', players)
             }
-            if (data.d) {
-                player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
-                player.moving = true
-                player.sprite = 'right'
-            }
-            io.emit('update', players)
         })
 
         socket.on('stopped', id => {
