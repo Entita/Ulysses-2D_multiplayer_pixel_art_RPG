@@ -150,27 +150,16 @@ var app = new Vue({
         }
 
         function animateSprint() {
-            // Implemented double buffering
             moveSprite()
-            const pseudoCanvas = document.createElement('canvas')
-            pseudoCanvas.width = canvas_width
-            pseudoCanvas.height = canvas_height
-            pseudoCtx = pseudoCanvas.getContext('2d')
-            for (var id in players) {
-                // skip loop if the property is from prototype
-                if (!players.hasOwnProperty(id)) continue;
+            drawPlayers()
+            drawParticles()
+            
+            delete pseudoCanvas
+            delete pseudoCtx
+            sprintX++
+        }
 
-                player = players[id]
-                var image = sprite_sheet[player.sprite_img]
-                let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
-                    frameX = player.sprite_width * position,
-                    frameY = spriteAnimations[player.sprite].location[position].y
-                pseudoCtx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
-            }
-
-            players_ctx.clearRect(0, 0, canvas_width, canvas_height)
-            players_ctx.drawImage(pseudoCanvas, 0, 0)
-
+        function drawParticles() {
             if (typeof particles_ctx !== "undefined") {
                 particles_ctx.clearRect(0, 0, canvas_width, canvas_height);
             }
@@ -184,11 +173,26 @@ var app = new Vue({
                     }
                 }
             }
+        }
 
-            delete pseudoCanvas
-            delete pseudoCtx
+        function drawPlayers() {
+            const pseudoCanvas = document.createElement('canvas')
+            pseudoCanvas.width = canvas_width
+            pseudoCanvas.height = canvas_height
+            pseudoCtx = pseudoCanvas.getContext('2d')
+            for (var id in players) {
+                if (!players.hasOwnProperty(id)) continue;
 
-            sprintX++
+                player = players[id]
+                var image = sprite_sheet[player.sprite_img]
+                let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
+                    frameX = player.sprite_width * position,
+                    frameY = spriteAnimations[player.sprite].location[position].y
+                pseudoCtx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
+            }
+
+            players_ctx.clearRect(0, 0, canvas_width, canvas_height)
+            players_ctx.drawImage(pseudoCanvas, 0, 0)
         }
 
         function moveSprite() {
