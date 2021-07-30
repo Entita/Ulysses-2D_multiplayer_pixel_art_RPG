@@ -180,12 +180,18 @@ var app = new Vue({
         //     thisPlayer.moving = false
         //     // doPlayerUpdate(thisPlayer)
         // })
+
+        this_.socket.on('update', data => {
+            console.log(data)
+        })
     },
     methods: {
         init: function () {
-            this.isReady = !this.isReady
-            // Canvas
+            this_.isReady = !this_.isReady
+            this_.socket.emit('ready')
             setTimeout(function () {
+                /* Wait a bit for the html elements to render */
+                // Canvas
                 const canvas = document.getElementById('game'),
                     ctx = canvas.getContext('2d'),
                     canvas_width = canvas.width = 900,
@@ -195,7 +201,7 @@ var app = new Vue({
                 let fpsInterval, now, then, elapsed,
                     fps = 30,
                     sprintX = 0
-            }, 10)
+            }, 50)
         }
     }
 });

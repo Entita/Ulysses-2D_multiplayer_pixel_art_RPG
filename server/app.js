@@ -3,24 +3,27 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 var players = new Object()
+const player = {
+    socket_id: null,
+    sprite: 'down',
+    x: 0,
+    y: 0,
+    sprite_img: 'img/sprite_starlord.png',
+    sprite_width: 32,
+    sprite_height: 48,
+    width: 67,
+    height: 100,
+    speed: 10,
+    moving: false
+}
 
 io.on('connection', socket => {
     socket.on('ready', () => {
-        const player = {
-            socket_id: socket.id,
-            sprite: 'down',
-            x: 0,
-            y: 0,
-            sprite_img: 'img/sprite_starlord.png',
-            sprite_width: 32,
-            sprite_height: 48,
-            width: 67,
-            height: 100,
-            speed: 10,
-            moving: false
-        }
+        player.socket_id = socket.id
         players[socket.id] = player
         console.log(players)
+
+        io.emit('update', players)
     })
 })
 
