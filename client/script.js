@@ -34,7 +34,7 @@ var app = new Vue({
             keys = []
 
         // Multiplayer
-        const players = new Object()
+        var players = new Object()
 
         // Load Sprites
         this_.animationStates.forEach((state, i) => {
