@@ -86,7 +86,7 @@ var app = new Vue({
             players = data
         })
 
-        this_.socket.on('player_connected player_disconnected', player => {
+        this_.socket.on('player_connected', 'player_disconnected', player => {
             objectParticles(player)
         })
 
