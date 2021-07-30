@@ -170,6 +170,31 @@ var app = new Vue({
             }
         }
 
+        function objectParticles(player) {
+            let width = player.width,
+                height = player.height,
+                colorData = players_ctx.getImageData(player.x, player.y, width, height).data
+
+            // Keep track of how many times we've iterated (in order to reduce
+            // the total number of particles create)
+
+            // Go through every location of our button and create a particle
+            for (let localX = 0; localX < width; localX++) {
+                for (let localY = 0; localY < height; localY++) {
+                    let index = (localY * width + localX) * 4;
+                    let rgbaColorArr = colorData.slice(index, index + 4);
+                    if (rgbaColorArr[0] == 0 && rgbaColorArr[1] == 0 && rgbaColorArr[2] == 0) {
+                        continue
+                    }
+
+                    let globalX = player.x + localX;
+                    let globalY = player.y + localY;
+
+                    createParticleAtPoint(globalX, globalY, rgbaColorArr);
+                }
+            }
+        }
+
 
 
 
@@ -204,31 +229,6 @@ var app = new Vue({
                 key = e.key.toLowerCase()
                 delete keys[key]
                 this_.socket.emit('stopped', socketID)
-            })
-
-            window.addEventListener('click', () => {
-                let width = players[socketID].width,
-                    height = players[socketID].height,
-                    colorData = players_ctx.getImageData(players[socketID].x, players[socketID].y, width, height).data
-
-                // Keep track of how many times we've iterated (in order to reduce
-                // the total number of particles create)
-
-                // Go through every location of our button and create a particle
-                for (let localX = 0; localX < width; localX++) {
-                    for (let localY = 0; localY < height; localY++) {
-                        let index = (localY * width + localX) * 4;
-                        let rgbaColorArr = colorData.slice(index, index + 4);
-                        if (rgbaColorArr[0] == 0 && rgbaColorArr[1] == 0 && rgbaColorArr[2] == 0) {
-                            continue
-                        }
-
-                        let globalX = players[socketID].x + localX;
-                        let globalY = players[socketID].y + localY;
-
-                        createParticleAtPoint(globalX, globalY, rgbaColorArr);
-                    }
-                }
             })
         }
 
@@ -305,6 +305,10 @@ var app = new Vue({
         this_.socket.on('update', data => {
             socketID = this.socket.id
             players = data
+        })
+
+        this_.socket.on('disconnect', id => {
+            objectParticles(players[id])
         })
     },
     methods: {

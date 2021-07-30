@@ -26,6 +26,7 @@ io.on('connection', socket => {
         io.emit('update', players)
 
         socket.on('disconnect', () => {
+            io.emit('disconnect', socket.id)
             delete players[socket.id]
             io.emit('update', players)
         })
