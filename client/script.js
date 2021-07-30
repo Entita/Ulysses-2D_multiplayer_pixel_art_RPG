@@ -86,7 +86,7 @@ var app = new Vue({
             players = data
         })
 
-        this_.socket.on('disconnect', player => {
+        this_.socket.on('disconnected', player => {
             objectParticles(player)
         })
 
@@ -165,20 +165,11 @@ var app = new Vue({
             players_ctx.clearRect(0, 0, canvas_width, canvas_height)
             players_ctx.drawImage(pseudoCanvas, 0, 0)
 
-
-
-
-
-            // Clear out the old particles
             if (typeof particles_ctx !== "undefined") {
                 particles_ctx.clearRect(0, 0, canvas_width, canvas_height);
             }
-
-            // Draw all of our particles in their new location
             for (let i = 0; i < particles.length; i++) {
                 particles[i].draw(particles_ctx);
-
-                // Simple way to clean up if the last particle is done animating
                 if (i === particles.length - 1) {
                     let percent = (Date.now() - particles[i].startTime) / particles[i].animationDuration[i];
 
@@ -187,10 +178,6 @@ var app = new Vue({
                     }
                 }
             }
-
-
-
-
 
             delete pseudoCanvas
             delete pseudoCtx
@@ -254,6 +241,7 @@ var app = new Vue({
         }
 
         function objectParticles(player) {
+            console.log(player)
             let width = player.width,
                 height = player.height,
                 colorData = players_ctx.getImageData(player.x, player.y, width, height).data
