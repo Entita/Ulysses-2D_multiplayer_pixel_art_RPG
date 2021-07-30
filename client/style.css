@@ -5,10 +5,9 @@
 }
 
 canvas {
-    border   : 5px solid black;
-    position : absolute;
-    top      : 0;
-    left     : 0;
+    position: absolute;
+    top     : 0;
+    left    : 0;
 }
 
 #players {
@@ -21,11 +20,10 @@ canvas {
 }
 
 .controls {
-    position : absolute;
-    z-index  : 1;
-    left     : 50px;
-    top      : 50%;
-    transform: translateY(-50%);
+    position: absolute;
+    z-index : 1;
+    left    : 30px;
+    top     : 30px;
 }
 
 .controls,
