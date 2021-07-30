@@ -142,12 +142,20 @@ var app = new Vue({
             //     thisPlayer.sprite = 'right'
             // }
             if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
-                this_.socket.emit('move', [keys, keys['w']])
+                var data = {
+                    id: socketID,
+                    w: keys['w'],
+                    s: keys['s'],
+                    a: keys['a'],
+                    d: keys['d']
+                }
+                this_.socket.emit('move', data)
             }
         }
 
         this_.socket.on('update', data => {
             socketID = this.socket.id
+            console.log(data)
         })
     },
     methods: {

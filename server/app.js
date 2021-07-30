@@ -32,6 +32,27 @@ io.on('connection', socket => {
 
         socket.on('move', data => {
             console.log(data)
+            if (data.w) {
+                players[data.id].y = (players[data.id].y - players[data.id].speed) >= 0 ? players[data.id].y - players[data.id].speed : players[data.id].y
+                players[data.id].moving = true
+                players[data.id].sprite = 'up'
+            }
+            if (data.s) {
+                players[data.id].y = (players[data.id].y + players[data.id].speed) > (canvas_height - players[data.id].height) ? players[data.id].y : players[data.id].y + players[data.id].speed
+                players[data.id].moving = true
+                players[data.id].sprite = 'down'
+            }
+            if (data.a) {
+                players[data.id].x = (players[data.id].x - players[data.id].speed) >= 0 ? players[data.id].x - players[data.id].speed : players[data.id].x
+                players[data.id].moving = true
+                players[data.id].sprite = 'left'
+            }
+            if (data.d) {
+                players[data.id].x = (players[data.id].x + players[data.id].speed) > (canvas_width - players[data.id].width) ? players[data.id].x : players[data.id].x + players[data.id].speed
+                players[data.id].moving = true
+                players[data.id].sprite = 'right'
+            }
+            io.emit('update', players)
         })
     })
 })
