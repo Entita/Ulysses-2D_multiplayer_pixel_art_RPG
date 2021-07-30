@@ -115,6 +115,8 @@ var app = new Vue({
             ctx.clearRect(0, 0, canvas_width, canvas_height)
 
             const pseudoCanvas = document.createElement('canvas')
+            pseudoCanvas.width = canvas_width
+            pseudoCanvas.height = canvas_height
             pseudoCtx = pseudoCanvas.getContext('2d')
             for (var id in players) {
                 // skip loop if the property is from prototype
