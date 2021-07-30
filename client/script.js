@@ -165,7 +165,7 @@ var app = new Vue({
                 let fpsInterval, now, then, elapsed,
                     fps = 30,
                     sprintX = 0
-                startAnimating(fps)
+                this.startAnimating(fps)
             }, 50)
         }
     }
