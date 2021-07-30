@@ -26,64 +26,30 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
-        // var socketID
-        // // Socket.io
-        // this_.socket.on('position', data => {
-        //     console.log('position changed', data)
-        // })
 
-        // this_.socket.on('players_updated', data => {
-        //     players = data
-        // })
-
-        // this_.socket.on('user_connected', socket => {
-        //     socketID = this_.socket.id
-        //     const player = {
-        //         socket_id: socket.socket_id,
-        //         sprite: 'down',
-        //         spriteDir: 0,
-        //         x: 0,
-        //         y: 0,
-        //         sprite_img: 'img/sprite_starlord.png',
-        //         sprite_width: 32,
-        //         sprite_height: 48,
-        //         width: 67,
-        //         height: 100,
-        //         speed: 10,
-        //         moving: false
-        //     }
-        //     doPlayerUpdate(player)
-
-        //     if (players.length === 0) {
-        //         // Load Sprites
-        //         this_.animationStates.forEach((state, i) => {
-        //             let frames = {
-        //                 location: []
-        //             }
-        //             for (let j = 0; j < state.frames; j++) {
-        //                 let positionX = j * player.sprite_width
-        //                 let positionY = i * player.sprite_height
-        //                 frames.location.push({ x: positionX, y: positionY })
-        //             }
-        //             spriteAnimations[state.name] = frames
-        //         })
-        //     }
-        //     players.push(player)
-        // })
-
-        // this_.socket.on('user_disconnected', data => {
-        //     console.log('player disconnected', data)
-        //     players = data
-        // })
-
-        // // Sprite movement
-        // const spriteAnimations = [],
-        //     keys = []
-
-
+        // Sprite movement
+        const spriteAnimations = [],
+            keys = []
 
         // Multiplayer
-        // var players = []
+        var players = []
+
+        // Load Sprites
+        this_.animationStates.forEach((state, i) => {
+            let frames = {
+                location: []
+            }
+            for (let j = 0; j < state.frames; j++) {
+                let positionX = j * 32
+                let positionY = i * 48
+                frames.location.push({ x: positionX, y: positionY })
+            }
+            spriteAnimations[state.name] = frames
+        })
+
+        if (isReady) {
+            console.log('REAAADDYYY')
+        }
 
         // startAnimating(fps)
 

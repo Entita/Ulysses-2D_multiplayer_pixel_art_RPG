@@ -5,7 +5,7 @@ const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
 // Data config
-var players = new Object()
+const players = new Object()
 
 io.on('connection', socket => {
     socket.on('ready', () => {
