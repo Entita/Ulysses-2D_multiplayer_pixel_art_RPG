@@ -34,7 +34,7 @@ io.on('connection', socket => {
             var player = players[data.id]
             if (data.w) {
                 if (data.s) {
-                    break
+                    return
                 }
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
@@ -47,7 +47,7 @@ io.on('connection', socket => {
             }
             if (data.a) {
                 if (data.d) {
-                    break
+                    return
                 }
                 player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
