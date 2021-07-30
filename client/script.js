@@ -188,7 +188,7 @@ var app = new Vue({
     methods: {
         init: function () {
             this.isReady = !this.isReady
-            this.socket.emit('ready', this.socket.id)
+            this.socket.emit('ready')
             setTimeout(function () {
                 /* Wait a bit for the html elements to render */
                 // Canvas
