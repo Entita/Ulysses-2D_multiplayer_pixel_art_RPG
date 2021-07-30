@@ -14,7 +14,7 @@ io.on('connection', socket => {
             sprite: 'down',
             x: 0,
             y: 0,
-            sprite_img: 'img/sprite_starlord.png',
+            sprite_img: starlord,
             sprite_width: 32,
             sprite_height: 48,
             width: 67,

@@ -10,13 +10,13 @@ var app = new Vue({
                 { name: 'up', frames: 4 }
             ],
             characters: [
-                'starlord',
-                'tonystark',
-                'thor',
-                'rocket',
-                'loki',
-                'deadpool',
-                'captainamerica'
+                starlord,
+                tonystark,
+                thor,
+                rocket,
+                loki,
+                deadpool,
+                captainamerica
             ],
             isReady: false
         }
@@ -28,6 +28,22 @@ var app = new Vue({
         var this_ = this
         var socketID
         let firstLoop = true
+        const sprite_sheet = {
+            starlord: newImage(),
+            tonystark: newImage(),
+            thor: newImage(),
+            rocket: newImage(),
+            loki: newImage(),
+            deadpool: newImage(),
+            captainamerica: newImage()
+        }
+        sprite_sheet.starlord.src = 'img/sprite_starlord.png'
+        sprite_sheet.tonystark.src = 'img/sprite_tonystark.png'
+        sprite_sheet.thor.src = 'img/sprite_thor.png'
+        sprite_sheet.rocket.src = 'img/sprite_rocket.png'
+        sprite_sheet.loki.src = 'img/sprite_loki.png'
+        sprite_sheet.deadpool.src = 'img/sprite_deadpool.png'
+        sprite_sheet.captainamerica.src = 'img/sprite_captainamerica.png'
 
         // Sprite movement
         const spriteAnimations = [],
@@ -93,7 +109,7 @@ var app = new Vue({
             dropdown.addEventListener('change', e => {
                 var data = {
                     id: socketID,
-                    img: 'img/sprite_' + e.target.value + '.png'
+                    img: e.target.value
                 }
                 this_.socket.emit('skin', data)
             })
@@ -111,7 +127,7 @@ var app = new Vue({
         }
 
         function animateSprint() {
-            // Double buffering appears, caused by slow drawing, can be fixed by clearing canvas after I already got new canvas drawn
+            // Implemented double buffering
             moveSprite()
             const pseudoCanvas = document.createElement('canvas')
             pseudoCanvas.width = canvas_width
@@ -122,8 +138,7 @@ var app = new Vue({
                 if (!players.hasOwnProperty(id)) continue;
 
                 player = players[id]
-                var image = new Image()
-                image.src = player.sprite_img
+                var image = sprite_sheet.player.sprite_img
                 let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
                     frameX = player.sprite_width * position,
                     frameY = spriteAnimations[player.sprite].location[position].y
