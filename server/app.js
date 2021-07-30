@@ -29,6 +29,10 @@ io.on('connection', socket => {
             delete players[socket.id]
             io.emit('update', players)
         })
+
+        socket.on('move', keys => {
+            console.log(keys)
+        })
     })
 })
 

@@ -82,10 +82,10 @@ var app = new Vue({
 
                         eventListeners()
                     }
-                    console.log('draw sprint')
                     firstLoop = false
+
+                    // animateSprint()
                 }
-                // animateSprint()
             }
         }
 
@@ -122,30 +122,33 @@ var app = new Vue({
         // }
 
         function moveSprite() {
-            if (keys['w']) {
-                thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
-                thisPlayer.moving = true
-                thisPlayer.sprite = 'up'
-            }
-            if (keys['s']) {
-                thisPlayer.y = (thisPlayer.y + thisPlayer.speed) > (canvas_height - thisPlayer.height) ? thisPlayer.y : thisPlayer.y + thisPlayer.speed
-                thisPlayer.moving = true
-                thisPlayer.sprite = 'down'
-            }
-            if (keys['a']) {
-                thisPlayer.x = (thisPlayer.x - thisPlayer.speed) >= 0 ? thisPlayer.x - thisPlayer.speed : thisPlayer.x
-                thisPlayer.moving = true
-                thisPlayer.sprite = 'left'
-            }
-            if (keys['d']) {
-                thisPlayer.x = (thisPlayer.x + thisPlayer.speed) > (canvas_width - thisPlayer.width) ? thisPlayer.x : thisPlayer.x + thisPlayer.speed
-                thisPlayer.moving = true
-                thisPlayer.sprite = 'right'
+            // if (keys['w']) {
+            //     thisPlayer.y = (thisPlayer.y - thisPlayer.speed) >= 0 ? thisPlayer.y - thisPlayer.speed : thisPlayer.y
+            //     thisPlayer.moving = true
+            //     thisPlayer.sprite = 'up'
+            // }
+            // if (keys['s']) {
+            //     thisPlayer.y = (thisPlayer.y + thisPlayer.speed) > (canvas_height - thisPlayer.height) ? thisPlayer.y : thisPlayer.y + thisPlayer.speed
+            //     thisPlayer.moving = true
+            //     thisPlayer.sprite = 'down'
+            // }
+            // if (keys['a']) {
+            //     thisPlayer.x = (thisPlayer.x - thisPlayer.speed) >= 0 ? thisPlayer.x - thisPlayer.speed : thisPlayer.x
+            //     thisPlayer.moving = true
+            //     thisPlayer.sprite = 'left'
+            // }
+            // if (keys['d']) {
+            //     thisPlayer.x = (thisPlayer.x + thisPlayer.speed) > (canvas_width - thisPlayer.width) ? thisPlayer.x : thisPlayer.x + thisPlayer.speed
+            //     thisPlayer.moving = true
+            //     thisPlayer.sprite = 'right'
+            // }
+            if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
+                this_.socket.emit('move', keys)
             }
         }
 
         this_.socket.on('update', data => {
-            console.log(data, this.socket.id)
+            socketID = this.socket.id
         })
     },
     methods: {
