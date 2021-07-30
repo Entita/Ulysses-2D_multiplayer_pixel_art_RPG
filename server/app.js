@@ -51,6 +51,11 @@ io.on('connection', socket => {
                 player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
                 player.moving = true
                 player.sprite = 'right'
+                if (data.a && data.w) {
+                    player.sprite = 'up'
+                } else if (data.a && data.s) {
+                    player.sprite = 'down'
+                }
             }
             if (data.w && data.s && (!data.a && !data.d)) {
                 player.moving = false
