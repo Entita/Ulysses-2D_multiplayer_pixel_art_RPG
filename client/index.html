@@ -12,12 +12,18 @@
 
 <body>
     <div id="app">
-        <canvas id="game"></canvas>
-        <div class="controls">
-            <label for="animations">Choose character:</label>
-            <select id="animations" name="animations">
-                <option v-for="character in characters" :value="character">{{ character }}</option>
-            </select>
+        <div v-if="isReady">
+            <canvas id="game"></canvas>
+            <div class="controls">
+                <label for="animations">Choose character:</label>
+                <select id="animations" name="animations">
+                    <option v-for="character in characters" :value="character">{{ character }}</option>
+                </select>
+            </div>
+        </div>
+        <div v-else>
+            <h2>START</h2>
+            <button @click="isReady = !isReady"></button>
         </div>
     </div>
 
