@@ -33,6 +33,9 @@ io.on('connection', socket => {
         socket.on('move', data => {
             var player = players[data.id]
             if (data.w) {
+                if (data.s) {
+                    break
+                }
                 player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
                 player.moving = true
                 player.sprite = 'up'
@@ -43,6 +46,9 @@ io.on('connection', socket => {
                 player.sprite = 'down'
             }
             if (data.a) {
+                if (data.d) {
+                    break
+                }
                 player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
                 player.moving = true
                 player.sprite = 'left'

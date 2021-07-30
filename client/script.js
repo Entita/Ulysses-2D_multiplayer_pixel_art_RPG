@@ -28,6 +28,8 @@ var app = new Vue({
         var this_ = this
         var socketID
         let firstLoop = true
+
+        // Pre-rendering all sprites images
         const sprite_sheet = {
             'starlord': new Image(),
             'tonystark': new Image(),
