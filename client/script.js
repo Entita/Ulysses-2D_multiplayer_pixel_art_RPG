@@ -130,7 +130,7 @@ var app = new Vue({
                 pseudoCtx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
             }
 
-            // ctx.clearRect(0, 0, canvas_width, canvas_height)
+            ctx.clearRect(0, 0, canvas_width, canvas_height)
             ctx.drawImage(pseudoCanvas, 0, 0)
             delete pseudoCanvas
             delete pseudoCtx
