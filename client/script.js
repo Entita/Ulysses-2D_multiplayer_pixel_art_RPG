@@ -222,6 +222,9 @@ var app = new Vue({
                         if (count % reductionFactor === 0) {
                             let index = (localY * width + localX) * 4;
                             let rgbaColorArr = colorData.slice(index, index + 4);
+                            if (count === 0) {
+                                console.log(rgbaColorArr)
+                            }
 
                             let globalX = players[socketID].x + localX;
                             let globalY = players[socketID].y + localY;
