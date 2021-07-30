@@ -30,8 +30,8 @@ var app = new Vue({
         let firstLoop = true
 
         // Sprite movement
-        const spriteAnimations = [],
-            keys = []
+        const spriteAnimations = []
+        var keys = []
 
         // Multiplayer
         const players = new Object()
@@ -142,8 +142,7 @@ var app = new Vue({
             //     thisPlayer.sprite = 'right'
             // }
             if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
-                var temp = keys
-                this_.socket.emit('move', temp)
+                this_.socket.emit('move', keys)
             }
         }
 
