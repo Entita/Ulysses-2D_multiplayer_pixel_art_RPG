@@ -206,7 +206,7 @@ var app = new Vue({
                 this_.socket.emit('stopped', socketID)
             })
 
-            let reductionFactor = 17
+            let reductionFactor = 1
             window.addEventListener('click', () => {
                 let width = players[socketID].width,
                     height = players[socketID].height,
@@ -222,6 +222,7 @@ var app = new Vue({
                         if (count % reductionFactor === 0) {
                             let index = (localY * width + localX) * 4;
                             let rgbaColorArr = colorData.slice(index, index + 4);
+                            console.log(colorData, rgbaColorArr, index)
 
                             let globalX = players[socketID].x + localX;
                             let globalY = players[socketID].y + localY;
