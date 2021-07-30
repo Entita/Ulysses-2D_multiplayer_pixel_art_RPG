@@ -157,7 +157,7 @@ var app = new Vue({
 
         this_.socket.on('update', data => {
             socketID = this.socket.id
-            console.log(data)
+            console.log(data[socketID])
         })
     },
     methods: {
