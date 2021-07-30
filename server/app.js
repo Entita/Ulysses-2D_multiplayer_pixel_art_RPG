@@ -1,7 +1,10 @@
+// Server config
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
+
+// Data config
 var players = new Object()
 var player = {
     sprite: 'down',
@@ -16,10 +19,11 @@ var player = {
     moving: false
 }
 
+// Connections
 io.on('connection', socket => {
-    socket.on('ready', () => {
-        player.socket_id = socket.id
-        players[socket.id] = player
+    socket.on('ready', (id) => {
+        player.socket_id = id
+        players[id] = player
         console.log(players)
 
         io.emit('update', players)
