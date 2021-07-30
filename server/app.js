@@ -6,23 +6,23 @@ const io = require("socket.io")(server);
 
 // Data config
 var players = new Object()
-var player = {
-    sprite: 'down',
-    x: 0,
-    y: 0,
-    sprite_img: 'img/sprite_starlord.png',
-    sprite_width: 32,
-    sprite_height: 48,
-    width: 67,
-    height: 100,
-    speed: 10,
-    moving: false
-}
 
 // Connections
 io.on('connection', socket => {
     socket.on('ready', () => {
-        player.socket_id = socket.id
+        var player = {
+            socket_id: socket.id,
+            sprite: 'down',
+            x: 0,
+            y: 0,
+            sprite_img: 'img/sprite_starlord.png',
+            sprite_width: 32,
+            sprite_height: 48,
+            width: 67,
+            height: 100,
+            speed: 10,
+            moving: false
+        }
         players[socket.id] = player
         console.log(socket.id)
 
