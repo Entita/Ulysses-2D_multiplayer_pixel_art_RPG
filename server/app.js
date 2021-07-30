@@ -30,8 +30,8 @@ io.on('connection', socket => {
             io.emit('update', players)
         })
 
-        socket.on('move', keys => {
-            console.log(keys)
+        socket.on('move', data => {
+            console.log(data)
         })
     })
 })
