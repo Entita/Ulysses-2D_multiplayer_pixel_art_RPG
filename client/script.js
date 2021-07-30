@@ -223,6 +223,7 @@ var app = new Vue({
                             let index = (localY * width + localX) * 4;
                             let rgbaColorArr = colorData.slice(index, index + 4);
                             if (rgbaColorArr === [0, 0, 0, 0]) {
+                                console.log('black particle')
                                 count++;
                                 continue
                             }
