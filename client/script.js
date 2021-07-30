@@ -126,7 +126,7 @@ var app = new Vue({
                 let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
                     frameX = player.sprite_width * position,
                     frameY = spriteAnimations[player.sprite].location[position].y
-                pseudoCanvas.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
+                pseudoCtx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
             }
 
             ctx.drawImage(pseudoCanvas, 0, 0)
