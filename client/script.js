@@ -47,6 +47,13 @@ var app = new Vue({
             spriteAnimations[state.name] = frames
         })
 
+        // Game engine
+        let fpsInterval, now, then, elapsed,
+            fps = 30,
+            sprintX = 0
+
+        startAnimating(fps)
+
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
             then = Date.now()
@@ -63,7 +70,7 @@ var app = new Vue({
                 if (this.isReady) {
                     console.log('draw sprint')
                 } {
-                    console.log('not ready yet')
+                    console.log('not ready yet', this.isReady)
                 }
                 // animateSprint()
             }
@@ -153,6 +160,7 @@ var app = new Vue({
         init: function () {
             this.isReady = !this.isReady
             this.socket.emit('ready')
+            console.log('ready', this.isReady)
             setTimeout(function () {
                 /* Wait a bit for the html elements to render */
                 // Canvas
@@ -160,12 +168,6 @@ var app = new Vue({
                     ctx = canvas.getContext('2d'),
                     canvas_width = canvas.width = 900,
                     canvas_height = canvas.height = 900
-
-                // Game engine
-                let fpsInterval, now, then, elapsed,
-                    fps = 30,
-                    sprintX = 0
-                this.startAnimating(fps)
             }, 50)
         }
     }
