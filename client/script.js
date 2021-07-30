@@ -156,7 +156,7 @@ var app = new Vue({
                     && this.size > 0) {
                     // Draw a circle at the current location
                     ctx.beginPath();
-                    ctx.arc(p.startX, p.startY, p.size, p.size);
+                    ctx.fillRect(p.startX, p.startY, p.size, p.size);
                     ctx.fillStyle = "rgba(" + this.rgbArray[0] + ',' + this.rgbArray[1] + ',' + this.rgbArray[2] + ", " + this.opacity + ")";
                     ctx.fill();
 
