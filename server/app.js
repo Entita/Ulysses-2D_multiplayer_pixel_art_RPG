@@ -32,25 +32,26 @@ io.on('connection', socket => {
 
         socket.on('move', data => {
             console.log(data)
+            var player = players[data.id]
             if (data.w) {
-                players[data.id].y = (players[data.id].y - players[data.id].speed) >= 0 ? players[data.id].y - players[data.id].speed : players[data.id].y
-                players[data.id].moving = true
-                players[data.id].sprite = 'up'
+                player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
+                player.moving = true
+                player.sprite = 'up'
             }
             if (data.s) {
-                players[data.id].y = (players[data.id].y + players[data.id].speed) > (data.height - players[data.id].height) ? players[data.id].y : players[data.id].y + players[data.id].speed
-                players[data.id].moving = true
-                players[data.id].sprite = 'down'
+                player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
+                player.moving = true
+                player.sprite = 'down'
             }
             if (data.a) {
-                players[data.id].x = (players[data.id].x - players[data.id].speed) >= 0 ? players[data.id].x - players[data.id].speed : players[data.id].x
-                players[data.id].moving = true
-                players[data.id].sprite = 'left'
+                player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
+                player.moving = true
+                player.sprite = 'left'
             }
             if (data.d) {
-                players[data.id].x = (players[data.id].x + players[data.id].speed) > (data.width - players[data.id].width) ? players[data.id].x : players[data.id].x + players[data.id].speed
-                players[data.id].moving = true
-                players[data.id].sprite = 'right'
+                player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
+                player.moving = true
+                player.sprite = 'right'
             }
             io.emit('update', players)
         })

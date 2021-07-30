@@ -106,17 +106,28 @@ var app = new Vue({
             })
         }
 
+        function objectLength(obj) {
+            var size = 0,
+                key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
+            console.log('length is', size)
+            return size;
+        }
+
         function animateSprint() {
-            // ctx.clearRect(0, 0, canvas_width, canvas_height)
-            // for (let index = 0; index < players.length; index++) {
-            //     let position = players[index].moving ? sprintX % spriteAnimations[players[index].sprite].location.length : 0
-            //     let frameX = players[index].sprite_width * position
-            //     let frameY = spriteAnimations[players[index].sprite].location[position].y
-            //     var image = new Image()
-            //     image.src = players[index].sprite_img
-            //     ctx.drawImage(image, frameX, frameY, players[index].sprite_width, players[index].sprite_height, players[index].x, players[index].y, players[index].width, players[index].height)
-            // }
-            // sprintX++
+            ctx.clearRect(0, 0, canvas_width, canvas_height)
+            for (let index = 0; index < objectLength(players); index++) {
+                var player = players[socketID],
+                    image = new Image()
+                image.src = player.sprite_img
+                let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
+                    frameX = player.sprite_width * position,
+                    frameY = spriteAnimations[player.sprite].location[position].y
+                ctx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
+            }
+            sprintX++
             moveSprite()
         }
 
