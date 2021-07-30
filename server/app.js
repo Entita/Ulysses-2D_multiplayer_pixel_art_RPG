@@ -7,7 +7,6 @@ const io = require("socket.io")(server);
 // Data config
 var players = new Object()
 
-// Connections
 io.on('connection', socket => {
     socket.on('ready', () => {
         var player = {
@@ -24,9 +23,12 @@ io.on('connection', socket => {
             moving: false
         }
         players[socket.id] = player
-        console.log(socket.id)
-
         io.emit('update', players)
+
+        socket.on('disconnect', () => {
+            delete players[socket.id]
+            io.emit('update', players)
+        })
     })
 })
 
