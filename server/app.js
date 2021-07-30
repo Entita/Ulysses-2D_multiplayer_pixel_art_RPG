@@ -38,7 +38,7 @@ io.on('connection', socket => {
                 players[data.id].sprite = 'up'
             }
             if (data.s) {
-                players[data.id].y = (players[data.id].y + players[data.id].speed) > (canvas_height - players[data.id].height) ? players[data.id].y : players[data.id].y + players[data.id].speed
+                players[data.id].y = (players[data.id].y + players[data.id].speed) > (players[data.id].height - players[data.id].height) ? players[data.id].y : players[data.id].y + players[data.id].speed
                 players[data.id].moving = true
                 players[data.id].sprite = 'down'
             }
@@ -48,7 +48,7 @@ io.on('connection', socket => {
                 players[data.id].sprite = 'left'
             }
             if (data.d) {
-                players[data.id].x = (players[data.id].x + players[data.id].speed) > (canvas_width - players[data.id].width) ? players[data.id].x : players[data.id].x + players[data.id].speed
+                players[data.id].x = (players[data.id].x + players[data.id].speed) > (players[data.id].width - players[data.id].width) ? players[data.id].x : players[data.id].x + players[data.id].speed
                 players[data.id].moving = true
                 players[data.id].sprite = 'right'
             }

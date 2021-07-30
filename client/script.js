@@ -147,7 +147,9 @@ var app = new Vue({
                     w: keys['w'],
                     s: keys['s'],
                     a: keys['a'],
-                    d: keys['d']
+                    d: keys['d'],
+                    height: canvas_height,
+                    width: canvas_width
                 }
                 this_.socket.emit('move', data)
             }
