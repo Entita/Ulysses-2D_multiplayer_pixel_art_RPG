@@ -52,8 +52,6 @@ var app = new Vue({
             fps = 30,
             sprintX = 0
 
-        startAnimating(fps)
-
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
             then = Date.now()
@@ -167,6 +165,8 @@ var app = new Vue({
                     ctx = canvas.getContext('2d'),
                     canvas_width = canvas.width = 900,
                     canvas_height = canvas.height = 900
+
+                startAnimating(fps)
             }, 50)
         }
     }
