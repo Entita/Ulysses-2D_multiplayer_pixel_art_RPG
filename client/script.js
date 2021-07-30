@@ -47,7 +47,7 @@ var app = new Vue({
             spriteAnimations[state.name] = frames
         })
 
-        if (isReady) {
+        if (this.isReady) {
             console.log('REAAADDYYY')
         }
 
