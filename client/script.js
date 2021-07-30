@@ -72,11 +72,23 @@ var app = new Vue({
             fps = 30,
             sprintX = 0
 
-        // players_canvas
+        // All canvases
         let players_canvas, players_ctx, particles_canvas, particles_ctx,
             canvas_width, canvas_height
 
+        // Particles
+        var particles = [];
+
         startAnimating(fps)
+
+        this_.socket.on('update', data => {
+            socketID = this.socket.id
+            players = data
+        })
+
+        this_.socket.on('disconnect', id => {
+            objectParticles(players[id])
+        })
 
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
@@ -108,107 +120,6 @@ var app = new Vue({
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-        var particles = [];
-        function createParticleAtPoint(x, y, colorData) {
-            let particle = new ExplodingParticle();
-            particle.rgbArray = colorData;
-            particle.startX = x;
-            particle.startY = y;
-            particle.startTime = Date.now();
-
-            particles.push(particle);
-        }
-
-        function ExplodingParticle() {
-            // Set how long we want our particle to animate for
-            this.animationDuration = 1000; // in ms
-
-            // Set the speed for our particle
-            this.speed = {
-                x: -5 + Math.random() * 10,
-                y: -5 + Math.random() * 10
-            };
-
-            // Size our particle
-            this.size = 4;
-            this.opacity = 1
-
-            // Set a max time to live for our particle
-            this.life = 30 + Math.random() * 10;
-            this.remainingLife = this.life;
-
-            // This function will be called by our animation logic later on
-            this.draw = ctx => {
-                let p = this;
-
-                if (this.remainingLife > 0
-                    && this.size > 0) {
-                    // Draw a circle at the current location
-                    ctx.beginPath();
-                    ctx.fillRect(p.startX, p.startY, p.size, p.size);
-                    ctx.fillStyle = "rgba(" + this.rgbArray[0] + ',' + this.rgbArray[1] + ',' + this.rgbArray[2] + ", " + this.opacity + ")";
-                    ctx.fill();
-
-                    // Update the particle's location and life
-                    p.remainingLife--;
-                    p.size -= 0.2;
-                    this.opacity -= 0.05;
-                    p.startX += p.speed.x;
-                    p.startY += p.speed.y;
-                }
-            }
-        }
-
-        function objectParticles(player) {
-            let width = player.width,
-                height = player.height,
-                colorData = players_ctx.getImageData(player.x, player.y, width, height).data
-
-            // Keep track of how many times we've iterated (in order to reduce
-            // the total number of particles create)
-
-            // Go through every location of our button and create a particle
-            for (let localX = 0; localX < width; localX++) {
-                for (let localY = 0; localY < height; localY++) {
-                    let index = (localY * width + localX) * 4;
-                    let rgbaColorArr = colorData.slice(index, index + 4);
-                    if (rgbaColorArr[0] == 0 && rgbaColorArr[1] == 0 && rgbaColorArr[2] == 0) {
-                        continue
-                    }
-
-                    let globalX = player.x + localX;
-                    let globalY = player.y + localY;
-
-                    createParticleAtPoint(globalX, globalY, rgbaColorArr);
-                }
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         function eventListeners() {
             const dropdown = document.getElementById('animations')
@@ -302,14 +213,66 @@ var app = new Vue({
             }
         }
 
-        this_.socket.on('update', data => {
-            socketID = this.socket.id
-            players = data
-        })
+        function createParticleAtPoint(x, y, colorData) {
+            let particle = new ExplodingParticle();
+            particle.rgbArray = colorData;
+            particle.startX = x;
+            particle.startY = y;
+            particle.startTime = Date.now();
 
-        this_.socket.on('disconnect', id => {
-            objectParticles(players[id])
-        })
+            particles.push(particle);
+        }
+
+        function ExplodingParticle() {
+            this.animationDuration = 1000;
+            this.speed = {
+                x: -5 + Math.random() * 10,
+                y: -5 + Math.random() * 10
+            };
+            this.size = 4;
+            this.opacity = 1
+            this.life = 30 + Math.random() * 10;
+            this.remainingLife = this.life;
+
+            this.draw = ctx => {
+                let p = this;
+
+                if (this.remainingLife > 0
+                    && this.size > 0) {
+                    ctx.beginPath();
+                    ctx.fillRect(p.startX, p.startY, p.size, p.size);
+                    ctx.fillStyle = "rgba(" + this.rgbArray[0] + ',' + this.rgbArray[1] + ',' + this.rgbArray[2] + ", " + this.opacity + ")";
+                    ctx.fill();
+
+                    p.remainingLife--;
+                    p.size -= 0.2;
+                    this.opacity -= 0.05;
+                    p.startX += p.speed.x;
+                    p.startY += p.speed.y;
+                }
+            }
+        }
+
+        function objectParticles(player) {
+            let width = player.width,
+                height = player.height,
+                colorData = players_ctx.getImageData(player.x, player.y, width, height).data
+
+            for (let localX = 0; localX < width; localX++) {
+                for (let localY = 0; localY < height; localY++) {
+                    let index = (localY * width + localX) * 4;
+                    let rgbaColorArr = colorData.slice(index, index + 4);
+                    if (rgbaColorArr[0] == 0 && rgbaColorArr[1] == 0 && rgbaColorArr[2] == 0) {
+                        continue
+                    }
+
+                    let globalX = player.x + localX;
+                    let globalY = player.y + localY;
+
+                    createParticleAtPoint(globalX, globalY, rgbaColorArr);
+                }
+            }
+        }
     },
     methods: {
         init: function () {
