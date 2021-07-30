@@ -87,7 +87,9 @@ var app = new Vue({
         })
 
         this_.socket.on('player_connected', player => {
-            objectParticles(player)
+            setTimeout(function () {
+                objectParticles(player)
+            }, 10)
         })
 
         this_.socket.on('player_disconnected', player => {
