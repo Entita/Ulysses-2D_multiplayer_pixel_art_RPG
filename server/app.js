@@ -33,40 +33,30 @@ io.on('connection', socket => {
         socket.on('move', data => {
             var player = players[data.id]
             if (data.w) {
-                if (data.s) {
-                    player.moving = false
-                } else {
-                    player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
-                    player.moving = true
-                    player.sprite = 'up'
-                }
+                player.y = (player.y - player.speed) >= 0 ? player.y - player.speed : player.y
+                player.moving = true
+                player.sprite = 'up'
             }
             if (data.s) {
-                if (data.w) {
-                    player.moving = false
-                } else {
-                    player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
-                    player.moving = true
-                    player.sprite = 'down'
-                }
+                player.y = (player.y + player.speed) > (data.height - player.height) ? player.y : player.y + player.speed
+                player.moving = true
+                player.sprite = 'down'
             }
             if (data.a) {
-                if (data.d) {
-                    player.moving = false
-                } else {
-                    player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
-                    player.moving = true
-                    player.sprite = 'left'
-                }
+                player.x = (player.x - player.speed) >= 0 ? player.x - player.speed : player.x
+                player.moving = true
+                player.sprite = 'left'
             }
             if (data.d) {
-                if (data.a) {
-                    player.moving = false
-                } else {
-                    player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
-                    player.moving = true
-                    player.sprite = 'right'
-                }
+                player.x = (player.x + player.speed) > (data.width - player.width) ? player.x : player.x + player.speed
+                player.moving = true
+                player.sprite = 'right'
+            }
+            if (data.w && data.s) {
+                player.moving = false
+            }
+            if (data.a && data.d) {
+                player.moving = false
             }
             io.emit('update', players)
         })
