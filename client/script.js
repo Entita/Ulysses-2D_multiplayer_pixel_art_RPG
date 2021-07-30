@@ -117,7 +117,6 @@ var app = new Vue({
             pseudoCanvas.width = canvas_width
             pseudoCanvas.height = canvas_height
             pseudoCtx = pseudoCanvas.getContext('2d')
-            var t0 = performance.now()
             for (var id in players) {
                 // skip loop if the property is from prototype
                 if (!players.hasOwnProperty(id)) continue;
@@ -131,10 +130,8 @@ var app = new Vue({
                 pseudoCtx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
             }
 
-            ctx.clearRect(0, 0, canvas_width, canvas_height)
+            // ctx.clearRect(0, 0, canvas_width, canvas_height)
             ctx.drawImage(pseudoCanvas, 0, 0)
-            var t1 = performance.now()
-            console.log('took', t1 - t0, 'ms')
             delete pseudoCanvas
             delete pseudoCtx
 
