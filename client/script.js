@@ -72,8 +72,9 @@ var app = new Vue({
             fps = 30,
             sprintX = 0
 
-        // Canvas
-        let canvas, ctx, canvas_width, canvas_height
+        // players_canvas
+        let players_canvas, players_ctx, particles_canvas, particles_ctx,
+            canvas_width, canvas_height
 
         startAnimating(fps)
 
@@ -93,10 +94,12 @@ var app = new Vue({
                 if (this_.isReady) {
                     if (firstLoop) {
                         // Execute only first loop
-                        canvas = document.getElementById('game')
-                        ctx = canvas.getContext('2d')
-                        canvas_width = canvas.width = 900
-                        canvas_height = canvas.height = 900
+                        players_canvas = document.getElementById('players')
+                        players_ctx = players_canvas.getContext('2d')
+                        particles_canvas = document.getElementById('particles')
+                        particles_ctx = players_canvas.getContext('2d')
+                        canvas_width = players_canvas.width = 900
+                        canvas_height = players_canvas.height = 900
 
                         eventListeners()
                     }
@@ -126,6 +129,13 @@ var app = new Vue({
                 delete keys[key]
                 this_.socket.emit('stopped', socketID)
             })
+
+            window.addEventListener('click', e => {
+                let x = e.offsetX,
+                    y = e.offsetY,
+                    rgbaColor = players_ctx.getImageData(x, y, 1, 1).data
+                console.log(rgbaColor)
+            })
         }
 
         function animateSprint() {
@@ -147,8 +157,8 @@ var app = new Vue({
                 pseudoCtx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
             }
 
-            ctx.clearRect(0, 0, canvas_width, canvas_height)
-            ctx.drawImage(pseudoCanvas, 0, 0)
+            players_ctx.clearRect(0, 0, canvas_width, canvas_height)
+            players_ctx.drawImage(pseudoCanvas, 0, 0)
             delete pseudoCanvas
             delete pseudoCtx
 

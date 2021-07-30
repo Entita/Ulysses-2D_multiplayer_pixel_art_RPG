@@ -12,6 +12,15 @@ canvas {
     transform: translate(-50%, -50%);
 }
 
+#players {
+    z-index: 1;
+}
+
+#particles {
+    z-index       : 2;
+    pointer-events: none;
+}
+
 .controls {
     position : absolute;
     z-index  : 1;
