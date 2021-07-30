@@ -112,7 +112,7 @@ var app = new Vue({
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) size++;
             }
-            console.log('length is', size)
+            console.log('length is', size, obj)
             return size;
         }
 
