@@ -113,13 +113,13 @@ var app = new Vue({
         function animateSprint() {
             ctx.clearRect(0, 0, canvas_width, canvas_height)
 
-            for (var player in players) {
+            for (var id in players) {
                 // skip loop if the property is from prototype
-                if (!players.hasOwnProperty(player)) continue;
-
+                if (!players.hasOwnProperty(id)) continue;
+                
+                player = players[id]
                 var image = new Image()
                 image.src = player.sprite_img
-                console.log(players[player])
                 let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
                     frameX = player.sprite_width * position,
                     frameY = spriteAnimations[player.sprite].location[position].y
