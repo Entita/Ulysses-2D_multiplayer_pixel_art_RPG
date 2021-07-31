@@ -171,14 +171,69 @@ var app = new Vue({
                 messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
 
                 messages_ctx.font = '12px pixel'
+                messages_ctx.fillStyle = 'black';
                 messages_ctx.textAlign = 'center'
-                var message = 'Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World'
-                // message_width = messages_ctx.measureText(message).width,
-                // center_message = ((thisPlayer.width - message_width) / 2) + thisPlayer.x
+                var message = 'Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World',
+                    messages_width = 200
 
-                messages_ctx.fillText(message, thisPlayer.x, thisPlayer.y, 150)
+                // messages_ctx.fillText(message, thisPlayer.x, thisPlayer.y)
+
+                var lines = fragmentText(message, messages_width - parseInt(12, 0));
+                lines.forEach(function (line, i) {
+                    messages_ctx.fillText(line, messages_width / 2, (i + 1) * parseInt(12, 0));
+                });
             }
         }
+
+
+
+
+
+
+
+
+
+        function fragmentText(text, maxWidth) {
+            var words = text.split(' '),
+                lines = [],
+                line = "";
+            if (ctx.measureText(text).width < maxWidth) {
+                return [text];
+            }
+            while (words.length > 0) {
+                while (ctx.measureText(words[0]).width >= maxWidth) {
+                    var tmp = words[0];
+                    words[0] = tmp.slice(0, -1);
+                    if (words.length > 1) {
+                        words[1] = tmp.slice(-1) + words[1];
+                    } else {
+                        words.push(tmp.slice(-1));
+                    }
+                }
+                if (ctx.measureText(line + words[0]).width < maxWidth) {
+                    line += words.shift() + " ";
+                } else {
+                    lines.push(line);
+                    line = "";
+                }
+                if (words.length === 0) {
+                    lines.push(line);
+                }
+            }
+            return lines;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         function drawParticles() {
             particles_ctx.clearRect(0, 0, canvas_width, canvas_height)
