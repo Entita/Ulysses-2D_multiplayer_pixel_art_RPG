@@ -196,7 +196,6 @@ var app = new Vue({
             messages_ctx.fillStyle = 'black';
             messages_ctx.textAlign = 'center'
 
-            console.log(messages)
             for (var id in messages) {
                 if (!messages.hasOwnProperty(id)) continue;
 
@@ -204,17 +203,16 @@ var app = new Vue({
                 let message_time = (Date.now() - message.time) / 4000
 
                 if (message_time > 1) {
-                    console.log('deleting', messages[id])
                     delete messages[id]
+                } else {
+                    var lines = wrapText(message.text, messages_width - messages_font),
+                        messages_height = messages_font * lines.length
+                    lines.forEach(function (line, i) {
+                        var line_x = (players[id].width / 2) + players[id].x,
+                            line_y = ((i + 1) * messages_font) + players[id].y - messages_height
+                        messages_ctx.fillText(line, line_x, line_y)
+                    });
                 }
-
-                var lines = wrapText(message.text, messages_width - messages_font),
-                    messages_height = messages_font * lines.length
-                lines.forEach(function (line, i) {
-                    var line_x = (players[id].width / 2) + players[id].x,
-                        line_y = ((i + 1) * messages_font) + players[id].y - messages_height
-                    messages_ctx.fillText(line, line_x, line_y)
-                });
             }
         }
 
