@@ -134,7 +134,8 @@ var app = new Vue({
         }
 
         function eventListeners() {
-            const dropdown = document.getElementById('animations')
+            const dropdown = document.getElementById('animations'),
+                messageInput = document.querySelector('.messageInput')
             dropdown.addEventListener('change', e => {
                 var data = {
                     id: socketID,
@@ -144,17 +145,18 @@ var app = new Vue({
             })
 
             window.addEventListener('keydown', e => {
-                var messageInput = document.querySelector('.messageInput')
-                console.log(document.activeElement === messageInput)
-                console.log(messageInput.hasFocus())
-                key = e.key.toLowerCase()
-                keys[key] = true
+                if (document.activeElement != messageInput) {
+                    key = e.key.toLowerCase()
+                    keys[key] = true
+                }
             })
 
             window.addEventListener('keyup', e => {
-                key = e.key.toLowerCase()
-                delete keys[key]
-                this_.socket.emit('stopped', socketID)
+                if (document.activeElement != messageInput) {
+                    key = e.key.toLowerCase()
+                    delete keys[key]
+                    this_.socket.emit('stopped', socketID)
+                }
             })
         }
 
