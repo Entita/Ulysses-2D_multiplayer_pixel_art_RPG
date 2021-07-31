@@ -1,7 +1,15 @@
+@font-face {
+    font-family: 'pixel_art';
+    src        : url('font/yoster.ttf') format('ttf');
+    font-weight: normal;
+    font-style : normal;
+}
+
 * {
-    margin    : 0;
-    padding   : 0;
-    box-sizing: border-box;
+    margin     : 0;
+    padding    : 0;
+    box-sizing : border-box;
+    font-family: 'pixel_art';
 }
 
 canvas {
@@ -18,6 +26,11 @@ canvas {
 
 #particles {
     z-index       : 2;
+    pointer-events: none;
+}
+
+#messages {
+    z-index       : 3;
     pointer-events: none;
 }
 
