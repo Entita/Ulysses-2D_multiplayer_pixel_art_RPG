@@ -177,24 +177,14 @@ var app = new Vue({
                 messages_ctx.fillStyle = 'black';
                 messages_ctx.textAlign = 'center'
 
-                // messages_ctx.fillText(message, thisPlayer.x, thisPlayer.y)
-
-                var lines = fragmentText(message, messages_width - messages_font);
+                var lines = wrapText(message, messages_width - messages_font);
                 lines.forEach(function (line, i) {
-                    messages_ctx.fillText(line, messages_width / 2, (i + 1) * messages_font);
+                    messages_ctx.fillText(line, (messages_width / 2) + thisPlayer.x, ((i + 1) * messages_font) + thisPlayer.y);
                 });
             }
         }
 
-
-
-
-
-
-
-
-
-        function fragmentText(text, maxWidth) {
+        function wrapText(text, maxWidth) {
             var words = text.split(' '),
                 lines = [],
                 line = "";
@@ -223,18 +213,6 @@ var app = new Vue({
             }
             return lines;
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
         function drawParticles() {
             particles_ctx.clearRect(0, 0, canvas_width, canvas_height)
