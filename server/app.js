@@ -20,10 +20,10 @@ const players = new Object(),
 con.connect(function (err) {
     if (err) throw err
     console.log("connected")
-    var sql = "CREATE TABLE messages (date VARCHAR(30), text TEXT)";
+    var sql = "SELECT * FROM messages";
     con.query(sql, (err, results) => {
         if (err) throw err
-        console.log('table created')
+        console.log(results)
     })
 })
 
