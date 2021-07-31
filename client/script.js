@@ -144,7 +144,7 @@ var app = new Vue({
             })
 
             window.addEventListener('keydown', e => {
-                console.log(document.querySelector('.messageInput').focus())
+                console.log(document.activeElement)
                 key = e.key.toLowerCase()
                 keys[key] = true
             })
