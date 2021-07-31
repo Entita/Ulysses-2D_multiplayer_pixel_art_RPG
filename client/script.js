@@ -135,7 +135,8 @@ var app = new Vue({
 
         function eventListeners() {
             const dropdown = document.getElementById('animations'),
-                messageInput = document.querySelector('.messageInput')
+                messageInput = document.querySelector('.messageInput'),
+                messageBtn = document.querySelector('.messageBtn')
             dropdown.addEventListener('change', e => {
                 var data = {
                     id: socketID,
@@ -157,6 +158,11 @@ var app = new Vue({
                     delete keys[key]
                     this_.socket.emit('stopped', socketID)
                 }
+            })
+
+            messageBtn.addEventListener('click', e => {
+                console.log(messageInput.value)
+                messageInput.value = null
             })
         }
 
