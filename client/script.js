@@ -164,8 +164,6 @@ var app = new Vue({
             delete pseudoCanvas
             delete pseudoCtx
             sprintX++
-
-            console.log('AAA')
         }
 
         function drawMessages() {
@@ -179,12 +177,12 @@ var app = new Vue({
                 messages_ctx.fillStyle = 'black';
                 messages_ctx.textAlign = 'center'
 
-                var lines = wrapText(message, messages_width - messages_font);
+                var lines = wrapText(message, messages_width - messages_font),
+                    messages_height = messages_font * line.length
                 lines.forEach(function (line, i) {
-                    var player_mid = thisPlayer.width / 2,
-                        line_x = thisPlayer.x + player_mid,
-                        line_y = ((i + 1) * messages_font) + thisPlayer.y
-                    messages_ctx.fillText(line, line_x, line_y);
+                    var line_x = (thisPlayer.width / 2) + thisPlayer.x,
+                        line_y = ((i + 1) * messages_font) + thisPlayer.y - messages_height
+                    messages_ctx.fillText(line, line_x, line_y)
                 });
             }
         }
