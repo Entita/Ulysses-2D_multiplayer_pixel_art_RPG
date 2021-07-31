@@ -167,7 +167,7 @@ var app = new Vue({
         function drawMessages() {
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
 
-            var message = 
+            var message = 'Hello World'
             player = players[socketID]
 
             messages_ctx.fillText(message, player.x, player.y)
