@@ -178,7 +178,7 @@ var app = new Vue({
                 messages_ctx.textAlign = 'center'
 
                 var lines = wrapText(message, messages_width - messages_font),
-                    messages_height = messages_font * line.length
+                    messages_height = messages_font * lines.length
                 lines.forEach(function (line, i) {
                     var line_x = (thisPlayer.width / 2) + thisPlayer.x,
                         line_y = ((i + 1) * messages_font) + thisPlayer.y - messages_height
