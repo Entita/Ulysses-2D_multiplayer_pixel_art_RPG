@@ -239,7 +239,7 @@ var app = new Vue({
         function drawSpeechBubble(x, y, height, text, index) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width
             pseudoCtx.fillStyle = 'red'
-            pseudoCtx.fillRect(x + (width / 4), y - height, width, height)
+            pseudoCtx.fillRect(x + ((players[id].width - width) / 2), y - height, width, height)
         }
 
         function wrapText(text, maxWidth) {
