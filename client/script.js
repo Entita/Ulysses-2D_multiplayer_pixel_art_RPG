@@ -143,12 +143,12 @@ var app = new Vue({
                 this_.socket.emit('skin', data)
             })
 
-            window.addEventListener('keydown', e => {
+            players_canvas.addEventListener('keydown', e => {
                 key = e.key.toLowerCase()
                 keys[key] = true
             })
 
-            window.addEventListener('keyup', e => {
+            players_canvas.addEventListener('keyup', e => {
                 key = e.key.toLowerCase()
                 delete keys[key]
                 this_.socket.emit('stopped', socketID)
