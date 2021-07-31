@@ -13,14 +13,19 @@ const con = mysql.createConnection({
     database: 'heroku_8ecd47b8b69c15c'
 })
 
-con.connect(function (err) {
-    if (err) throw err
-    console.log("connected")
-})
-
 // Data config
 const players = new Object(),
     messages = new Object()
+
+con.connect(function (err) {
+    if (err) throw err
+    console.log("connected")
+    var sql = "CREATE TABLE messages (date VARCHAR(30), text TEXT)";
+    con.query(sql, (err, results) => {
+        if (err) throw err
+        console.log('table created')
+    })
+})
 
 io.on('connection', socket => {
     socket.on('ready', () => {

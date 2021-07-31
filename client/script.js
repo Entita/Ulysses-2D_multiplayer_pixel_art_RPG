@@ -24,7 +24,6 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
-        this.fetchDatabaseData()
     },
     mounted() {
         var this_ = this
