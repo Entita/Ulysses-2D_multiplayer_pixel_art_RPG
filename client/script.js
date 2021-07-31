@@ -239,7 +239,7 @@ var app = new Vue({
         function drawSpeechBubble(x, y, height, text, index) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width
             pseudoCtx.fillStyle = 'red'
-            pseudoCtx.fillRect(x, y, x + width, y - height)
+            pseudoCtx.fillRect(x, y - height, width, y)
             console.log(x, y, width, height)
         }
 
