@@ -49,11 +49,36 @@ option {
     display       : block;
 }
 
-button {
+.startBtn {
     width    : 8rem;
     height   : 2.5rem;
     position : absolute;
     top      : 50%;
     left     : 50%;
     transform: translate(-50%, -50%);
+}
+
+.chatWindow {
+    width        : 400px;
+    height       : 800px;
+    margin       : 16px;
+    border       : 2px solid black;
+    border-radius: 4px;
+    position     : relative;
+}
+
+.chat {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    right   : 0;
+    bottom  : 10%;
+}
+
+.chat-controls {
+    position: absolute;
+    left    : 0;
+    right   : 0;
+    bottom  : 0;
+    top     : 90%;
 }
