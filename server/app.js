@@ -17,17 +17,17 @@ const con = mysql.createConnection({
 const players = new Object(),
     messages = new Object()
 
-con.connect(function (err) {
-    if (err) throw err
-    console.log("connected")
-    // con.query("INSERT INTO messages VALUES(" + + ")", (err, results) => {
-    //     if (err) throw err
-    //     console.log(results)
-    // })
-    con.query("SELECT * FROM messages", (err, results) => {
-        if (err) throw err
-        console.log(results)
-    })
+// con.connect(function (err) {
+//     if (err) throw err
+//     console.log("connected")
+//     con.query("INSERT INTO messages VALUES(" + + ")", (err, results) => {
+//         if (err) throw err
+//         console.log(results)
+//     })
+//     con.query("SELECT * FROM messages", (err, results) => {
+//         if (err) throw err
+//         console.log(results)
+//     })
 
     io.on('connection', socket => {
         socket.on('ready', () => {
@@ -110,7 +110,7 @@ con.connect(function (err) {
             })
         })
     })
-})
+// })
 
 server.listen(process.env.PORT || 3000, () => {
     console.log('Server is listening ...');
