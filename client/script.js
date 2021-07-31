@@ -245,14 +245,17 @@ var app = new Vue({
             // pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + (padding * 2), height + (padding * 2))
 
             // Top part
-            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) + (border * 2), y - height - padding, width + (padding * 2) - (border * 4), border)
+            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) + (border * 2), y - height, width + (padding * 2) - (border * 4), border)
             // Top Left part
-            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) + border, y - height - padding + border, border, border)
+            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) + border, y - height + border, border, border)
             // Top Right part
-            pseudoCtx.fillRect(x + width + (padding * 2) + border, y - height - padding + border, border, border)
+            pseudoCtx.fillRect(x + width + (padding * 2) + border, y - height + border, border, border)
             // Left part
-            pseudoCtx.fillStyle = 'red'
             pseudoCtx.fillRect(x + ((playerWidth - width) / 2), y - height + border, border, height - (border * 4))
+            // Right part
+            pseudoCtx.fillStyle = 'red'
+            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) + width - (padding * 2) - (border * 4), y - height + border, border, height - (border * 4))
+
         }
 
         function wrapText(text, maxWidth) {
