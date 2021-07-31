@@ -200,26 +200,20 @@ var app = new Vue({
                 if (!messages.hasOwnProperty(id)) continue;
 
                 var message = messages[id]
-                console.log(message)
-
-
                 let message_time = (Date.now() - message.time) / 1000
 
                 if (message_time > 1) {
                     delete messages[id]
                 }
+
+                var lines = wrapText(message, messages_width - messages_font),
+                    messages_height = messages_font * lines.length
+                lines.forEach(function (line, i) {
+                    var line_x = (thisPlayer.width / 2) + thisPlayer.x,
+                        line_y = ((i + 1) * messages_font) + thisPlayer.y - messages_height
+                    messages_ctx.fillText(line, line_x, line_y)
+                });
             }
-
-
-
-
-            // var lines = wrapText(message, messages_width - messages_font),
-            //     messages_height = messages_font * lines.length
-            // lines.forEach(function (line, i) {
-            //     var line_x = (thisPlayer.width / 2) + thisPlayer.x,
-            //         line_y = ((i + 1) * messages_font) + thisPlayer.y - messages_height
-            //     messages_ctx.fillText(line, line_x, line_y)
-            // });
         }
 
         function wrapText(text, maxWidth) {
