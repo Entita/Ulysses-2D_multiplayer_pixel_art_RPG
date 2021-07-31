@@ -80,8 +80,11 @@ io.on('connection', socket => {
         })
 
         socket.on('message', data => {
-            messages[data.id].message = data.message
-            messages[data.id].time = data.time
+            var message = {
+                message: data.message,
+                time: data.time
+            }
+            messages[data.id] = message
             io.emit('update_messages', messages)
         })
     })
