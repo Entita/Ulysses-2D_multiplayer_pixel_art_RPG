@@ -206,7 +206,7 @@ var app = new Vue({
                     delete messages[id]
                 }
 
-                var lines = wrapText(message, messages_width - messages_font),
+                var lines = wrapText(message.text, messages_width - messages_font),
                     messages_height = messages_font * lines.length
                 lines.forEach(function (line, i) {
                     var line_x = (players[id].width / 2) + players[id].x,
