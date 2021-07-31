@@ -222,15 +222,20 @@ var app = new Vue({
                             line_y = ((i + 1) * messages_font) + players[id].y - messages_height
                         pseudoCtx.fillText(line, line_x, line_y)
                     });
+                    drawSpeechBubble(players[id].x, players[id].y, messages_width, messages_height)
                 }
             }
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
             messages_ctx.drawImage(pseudoCanvas, 0, 0)
-            messages_ctx.fillStyle = 'red'
-            messages_ctx.fillRect(players[socketID].x, players[socketID].y, 20, messages_height)
+
 
             delete pseudoCanvas
             delete pseudoCtx
+        }
+
+        function drawSpeechBubble(x, y, width, height) {
+            messages_ctx.fillStyle = 'red'
+            messages_ctx.fillRect(x, y, x + width, y + height)
         }
 
         function wrapText(text, maxWidth) {
