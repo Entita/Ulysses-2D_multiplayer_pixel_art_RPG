@@ -241,7 +241,7 @@ var app = new Vue({
             var padding = 3
             pseudoCtx.strokeStyle = 'black'
             pseudoCtx.lineWidth = 1
-            pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + padding, height + padding)
+            pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + (padding * 2), height + (padding * 2))
         }
 
         function wrapText(text, maxWidth) {
