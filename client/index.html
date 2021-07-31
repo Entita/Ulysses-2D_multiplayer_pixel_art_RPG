@@ -13,9 +13,11 @@
 <body>
     <div id="app">
         <div v-if="isReady">
-            <canvas id="players"></canvas>
-            <canvas id="particles"></canvas>
-            <canvas id="messages"></canvas>
+            <div id="canvases">
+                <canvas id="players"></canvas>
+                <canvas id="particles"></canvas>
+                <canvas id="messages"></canvas>
+            </div>
             <div class="chatWindow">
                 <div class="chat"></div>
                 <div class="chat-controls">

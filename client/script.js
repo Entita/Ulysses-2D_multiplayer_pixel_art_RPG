@@ -134,7 +134,8 @@ var app = new Vue({
         }
 
         function eventListeners() {
-            const dropdown = document.getElementById('animations')
+            const dropdown = document.getElementById('animations'),
+                canvases = document.getElementById('canvases')
             dropdown.addEventListener('change', e => {
                 var data = {
                     id: socketID,
@@ -143,12 +144,12 @@ var app = new Vue({
                 this_.socket.emit('skin', data)
             })
 
-            players_canvas.addEventListener('keydown', e => {
+            canvases.addEventListener('keydown', e => {
                 key = e.key.toLowerCase()
                 keys[key] = true
             })
 
-            players_canvas.addEventListener('keyup', e => {
+            canvases.addEventListener('keyup', e => {
                 key = e.key.toLowerCase()
                 delete keys[key]
                 this_.socket.emit('stopped', socketID)
