@@ -18,7 +18,7 @@ var app = new Vue({
                 'deadpool',
                 'captainamerica'
             ],
-            messages: {},
+            messages: '',
             isReady: false
         }
     },
@@ -382,17 +382,7 @@ var app = new Vue({
             axios.post('database.php', {
                 action: 'fetchall'
             }).then(function (response) {
-                // this.messages = response.data
-                this.messages = {
-                    'first': {
-                        text: 'agfsdggafdsg',
-                        date: '20.07 18:18'
-                    },
-                    'second': {
-                        text: 'agfsdggafdsg',
-                        date: '20.07 18:18'
-                    },
-                }
+                this.messages = response.data
             })
         },
         submitData: function () {
