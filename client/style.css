@@ -74,6 +74,27 @@ option {
     right     : 0;
     bottom    : 7%;
     overflow-y: scroll;
+    padding   : 6px 9px;
+}
+
+.message {
+    width         : 100%;
+    display       : flex;
+    flex-direction: column;
+}
+
+.message:not(:first-child) {
+    margin-top: 12px;
+}
+
+.message_date {
+    font-weight: bold;
+    opacity    : .9;
+}
+
+.message_text {
+    opacity     : .7;
+    padding-left: 12px;
 }
 
 .chat-controls {

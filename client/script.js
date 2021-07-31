@@ -26,10 +26,9 @@ var app = new Vue({
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
     },
     mounted() {
-        var this_ = this
-        var socketID,
-            thisPlayer
-        let firstLoop = true
+        var this_ = this,
+            firstLoop = true,
+            socketID
 
         // Pre-rendering all sprites images
         const sprite_sheet = {
@@ -88,7 +87,6 @@ var app = new Vue({
         this_.socket.on('update_players', data => {
             socketID = this.socket.id
             players = data
-            thisPlayer = players[socketID]
         })
 
         this_.socket.on('update_messages', data => {
