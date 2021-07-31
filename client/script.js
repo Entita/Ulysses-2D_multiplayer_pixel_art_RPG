@@ -164,25 +164,25 @@ var app = new Vue({
                     this_.socket.emit('stopped', socketID)
                 } else {
                     if (e.key === 'Enter') {
-                        sendMessage(messageInput.value)
+                        sendMessage(messageInput)
                     }
                 }
             })
 
             messageBtn.addEventListener('click', () => {
-                sendMessage(messageInput.value)
+                sendMessage(messageInput)
             })
         }
 
-        function sendMessage(text) {
-            if (text.length > 0) {
+        function sendMessage(messageInput) {
+            if (messageInput.value.length > 0) {
                 var data = {
                     id: socketID,
-                    message: text,
+                    message: messageInput.value,
                     time: Date.now()
                 }
                 this_.socket.emit('message', data)
-                text = null
+                messageInput.value = null
             }
         }
 
