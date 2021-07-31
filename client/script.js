@@ -77,8 +77,7 @@ var app = new Vue({
         // All canvases
         let players_canvas, particles_canvas, messages_canvas,
             players_ctx, particles_ctx, messages_ctx,
-            canvas_width, canvas_height,
-            messages_width, messages_font
+            canvas_width, canvas_height
 
         // Particles
         var particles = [];
@@ -127,12 +126,6 @@ var app = new Vue({
                         particles_ctx = particles_canvas.getContext('2d')
                         messages_canvas = document.getElementById('messages')
                         messages_ctx = messages_canvas.getContext('2d')
-
-                        messages_width = 200
-                        messages_font = 12
-                        messages_ctx.font = messages_font + 'px pixel'
-                        messages_ctx.fillStyle = 'black'
-                        messages_ctx.textAlign = 'center'
 
                         canvas_width = players_canvas.width = particles_canvas.width = messages_canvas.width = 900
                         canvas_height = players_canvas.height = particles_canvas.height = messages_canvas.height = 900
@@ -198,6 +191,12 @@ var app = new Vue({
 
         function drawMessages() {
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
+
+            var messages_width = 200,
+                messages_font = 12
+            messages_ctx.font = messages_font + 'px pixel'
+            messages_ctx.fillStyle = 'black'
+            messages_ctx.textAlign = 'center'
 
             for (var id in messages) {
                 if (!messages.hasOwnProperty(id)) continue;
