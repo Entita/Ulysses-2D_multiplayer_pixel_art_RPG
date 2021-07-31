@@ -81,7 +81,7 @@ io.on('connection', socket => {
 
         socket.on('message', data => {
             var message = {
-                message: data.message,
+                text: data.message,
                 time: data.time
             }
             messages[data.id] = message

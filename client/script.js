@@ -203,11 +203,11 @@ var app = new Vue({
                 console.log(message)
 
 
-                // let message_time = (Date.now() - message_startTime) / 1000
+                let message_time = (Date.now() - message.time) / 1000
 
-                // if (message_time > 1) {
-                //     messages = []
-                // }
+                if (message_time > 1) {
+                    delete messages[id]
+                }
             }
 
 
