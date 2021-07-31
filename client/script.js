@@ -170,9 +170,12 @@ var app = new Vue({
             if (thisPlayer) {
                 messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
 
-                var message = 'Hello World'
+                messages_ctx.font = '12px pixel'
+                var message = 'Hello World',
+                    message_width = messages_ctx.measureText(message).width,
+                    center_message = (thisPlayer.width - message_width) / 2
 
-                messages_ctx.fillText(message, thisPlayer.x, thisPlayer.y)
+                messages_ctx.fillText(message, center_message, thisPlayer.y)
             }
         }
 
