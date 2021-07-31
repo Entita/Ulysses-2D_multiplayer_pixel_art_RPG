@@ -53,7 +53,8 @@ var app = new Vue({
             keys = []
 
         // Multiplayer
-        var players = new Object()
+        var players = new Object(),
+            messages = new Object()
 
         // Load Sprites
         this_.animationStates.forEach((state, i) => {
@@ -83,10 +84,15 @@ var app = new Vue({
 
         startAnimating(fps)
 
-        this_.socket.on('update', data => {
+        this_.socket.on('update_players', data => {
             socketID = this.socket.id
             players = data
             thisPlayer = players[socketID]
+        })
+
+        this_.socket.on('update_messages', data => {
+            messages = data
+            console.log('update messages', messages)
         })
 
         this_.socket.on('player_connected', player => {
@@ -161,7 +167,11 @@ var app = new Vue({
             })
 
             messageBtn.addEventListener('click', e => {
-                console.log(messageInput.value)
+                var data = {
+                    message: messageInput.value,
+                    time: Date.now()
+                }
+                this_.socket.emit('message', data)
                 messageInput.value = null
             })
         }
@@ -187,6 +197,17 @@ var app = new Vue({
                 messages_ctx.font = messages_font + 'px pixel'
                 messages_ctx.fillStyle = 'black';
                 messages_ctx.textAlign = 'center'
+
+
+
+                // let message_time = (Date.now() - message_startTime) / 1000
+
+                // if (message_time > 1) {
+                //     messages = []
+                // }
+
+
+
 
                 var lines = wrapText(message, messages_width - messages_font),
                     messages_height = messages_font * lines.length

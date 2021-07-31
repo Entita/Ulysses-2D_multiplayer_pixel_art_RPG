@@ -5,15 +5,15 @@ const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
 // Data config
-const players = new Object()
+const players = new Object(),
+    messages = new Object()
 
 io.on('connection', socket => {
     socket.on('ready', () => {
         var player = {
-            socket_id: socket.id,
             sprite: 'down',
-            x: 0,
-            y: 0,
+            x: 450,
+            y: 450,
             sprite_img: 'starlord',
             sprite_width: 32,
             sprite_height: 48,
@@ -23,13 +23,13 @@ io.on('connection', socket => {
             moving: false
         }
         players[socket.id] = player
-        io.emit('update', players)
+        io.emit('update_players', players)
         io.emit('player_connected', player)
 
         socket.on('disconnect', () => {
             io.emit('player_disconnected', players[socket.id])
             delete players[socket.id]
-            io.emit('update', players)
+            io.emit('update_players', players)
         })
 
         socket.on('move', data => {
@@ -66,17 +66,23 @@ io.on('connection', socket => {
                 player.moving = false
             }
 
-            io.emit('update', players)
+            io.emit('update_players', players)
         })
 
         socket.on('stopped', id => {
             players[id].moving = false
-            io.emit('update', players)
+            io.emit('update_players', players)
         })
 
         socket.on('skin', data => {
             players[data.id].sprite_img = data.img
-            io.emit('update', players)
+            io.emit('update_players', players)
+        })
+
+        socket.on('message', data => {
+            messages[data.id].message = data.message
+            messages[data.id].time = data.time
+            io.emit('update_messages', messages)
         })
     })
 })
