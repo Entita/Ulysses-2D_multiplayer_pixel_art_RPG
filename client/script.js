@@ -169,7 +169,7 @@ var app = new Vue({
 
             var message = 'Hello World'
             player = players[socketID]
-            console.log(plyer, socketID)
+            console.log(player, socketID)
 
             messages_ctx.fillText(message, player.x, player.y)
         }
