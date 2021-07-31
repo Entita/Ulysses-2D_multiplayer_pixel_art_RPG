@@ -170,17 +170,18 @@ var app = new Vue({
             if (thisPlayer) {
                 messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
 
-                messages_ctx.font = '12px pixel'
+                var message = 'Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World',
+                    messages_width = 200,
+                    messages_font = 12
+                messages_ctx.font = messages_font + 'px pixel'
                 messages_ctx.fillStyle = 'black';
                 messages_ctx.textAlign = 'center'
-                var message = 'Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World',
-                    messages_width = 200
 
                 // messages_ctx.fillText(message, thisPlayer.x, thisPlayer.y)
 
-                var lines = fragmentText(message, messages_width - parseInt(12, 0));
+                var lines = fragmentText(message, messages_width - messages_font);
                 lines.forEach(function (line, i) {
-                    messages_ctx.fillText(line, messages_width / 2, (i + 1) * parseInt(12, 0));
+                    messages_ctx.fillText(line, messages_width / 2, (i + 1) * messages_font);
                 });
             }
         }
@@ -197,11 +198,11 @@ var app = new Vue({
             var words = text.split(' '),
                 lines = [],
                 line = "";
-            if (ctx.measureText(text).width < maxWidth) {
+            if (messages_ctx.measureText(text).width < maxWidth) {
                 return [text];
             }
             while (words.length > 0) {
-                while (ctx.measureText(words[0]).width >= maxWidth) {
+                while (messages_ctx.measureText(words[0]).width >= maxWidth) {
                     var tmp = words[0];
                     words[0] = tmp.slice(0, -1);
                     if (words.length > 1) {
@@ -210,7 +211,7 @@ var app = new Vue({
                         words.push(tmp.slice(-1));
                     }
                 }
-                if (ctx.measureText(line + words[0]).width < maxWidth) {
+                if (messages_ctx.measureText(line + words[0]).width < maxWidth) {
                     line += words.shift() + " ";
                 } else {
                     lines.push(line);
