@@ -162,6 +162,18 @@ var app = new Vue({
                     key = e.key.toLowerCase()
                     delete keys[key]
                     this_.socket.emit('stopped', socketID)
+                } else {
+                    if (e.key === 'enter') {
+                        if (messageInput.value.length > 0) {
+                            var data = {
+                                id: socketID,
+                                message: messageInput.value,
+                                time: Date.now()
+                            }
+                            this_.socket.emit('message', data)
+                            messageInput.value = null
+                        }
+                    }
                 }
             })
 
