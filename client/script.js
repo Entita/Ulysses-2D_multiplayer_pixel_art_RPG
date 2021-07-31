@@ -225,7 +225,6 @@ var app = new Vue({
                         tempText = line
                         tempIndex = i
                     });
-                    console.log('gas')
                     drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width)
                 }
             }
@@ -240,11 +239,9 @@ var app = new Vue({
         function drawSpeechBubble(x, y, height, text, index, playerWidth) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width
             var padding = 3
-            console.log('gasnmgfasidnagsfdifsikaodn')
             pseudoCtx.strokeStyle = 'black'
             pseudoCtx.lineWidth = 1
-            pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + (padding * 2), height + (padding * 2))
-            console.log(width, width + (padding * 2))
+            // pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + (padding * 2), height + (padding * 2))
         }
 
         function wrapText(text, maxWidth) {
