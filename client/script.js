@@ -234,8 +234,9 @@ var app = new Vue({
         }
 
         function drawSpeechBubble(x, y, width, height) {
-            messages_ctx.fillStyle = 'red'
-            messages_ctx.fillRect(x, y, x + width, y + height)
+            pseudoCtx.fillStyle = 'red'
+            pseudoCtx.fillRect(x, y, x + width, y + height)
+            console.log(x, y, width, height)
         }
 
         function wrapText(text, maxWidth) {
