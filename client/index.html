@@ -19,7 +19,9 @@
                 <canvas id="messages"></canvas>
             </div>
             <div class="chatWindow">
-                <div class="chat"></div>
+                <div class="chat">
+                    <div class="message" v-for="row in messages">{{ row }}</div>
+                </div>
                 <div class="chat-controls">
                     <input class="messageInput" type="text" placeholder="Type your message here">
                     <button class="messageBtn">Send</button>

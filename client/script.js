@@ -18,11 +18,13 @@ var app = new Vue({
                 'deadpool',
                 'captainamerica'
             ],
+            messages: [],
             isReady: false
         }
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        this.fetchDatabaseData()
     },
     mounted() {
         var this_ = this
@@ -375,6 +377,17 @@ var app = new Vue({
                 this_.isReady = !this_.isReady
                 this_.socket.emit('ready')
             }, 10)
+        },
+        fetchDatabaseData: function() {
+            axios.post('database.php', {
+                action: 'fetchall'
+            }).then(function(response) {
+                // this.messages = response.data
+                this.messages = ['first_message', 'second_message', 'afsaifhsadf']
+            })
+        },
+        submitData: function() {
+            return
         }
     }
 });
