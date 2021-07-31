@@ -251,7 +251,8 @@ var app = new Vue({
             // Top Right part
             pseudoCtx.fillRect(x + width + (padding * 2) + border, y - height - padding + border, border, border)
             // Left part
-            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) - padding, y - height + (border * 4), border, height - (border * 4))
+            pseudoCtx.fillStyle = 'red'
+            pseudoCtx.fillRect(x + ((playerWidth - width) / 2), y - height + (border * 2), border, height - (border * 4))
         }
 
         function wrapText(text, maxWidth) {
