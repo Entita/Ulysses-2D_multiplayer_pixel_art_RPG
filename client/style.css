@@ -68,17 +68,38 @@ option {
 }
 
 .chat {
-    position: absolute;
-    top     : 0;
-    left    : 0;
-    right   : 0;
-    bottom  : 10%;
+    position  : absolute;
+    top       : 0;
+    left      : 0;
+    right     : 0;
+    bottom    : 7%;
+    overflow-y: scroll;
 }
 
 .chat-controls {
-    position: absolute;
-    left    : 0;
-    right   : 0;
-    bottom  : 0;
-    top     : 90%;
+    position       : absolute;
+    left           : 0;
+    right          : 0;
+    bottom         : 0;
+    top            : 93%;
+    display        : flex;
+    justify-content: space-evenly;
+    border-top     : 1px solid gray;
+}
+
+.messageInput {
+    width  : 80%;
+    border : none;
+    padding: 4px 6px;
+}
+
+.messageBtn {
+    width      : 20%;
+    border     : none;
+    border-left: 2px solid rgb(133, 133, 133);
+}
+
+.messageBtn:hover {
+    cursor: pointer;
+    filter: brightness(.9);
 }
