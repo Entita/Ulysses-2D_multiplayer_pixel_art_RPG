@@ -140,6 +140,7 @@ var app = new Vue({
 
         function eventListeners() {
             const dropdown = document.getElementById('animations'),
+                messageInput = document.querySelector('.messageInput'),
                 messageBtn = document.querySelector('.messageBtn')
             dropdown.addEventListener('change', e => {
                 var data = {
@@ -163,26 +164,25 @@ var app = new Vue({
                     this_.socket.emit('stopped', socketID)
                 } else {
                     if (e.key === 'Enter') {
-                        sendMessage()
+                        sendMessage(messageInput.value)
                     }
                 }
             })
 
             messageBtn.addEventListener('click', () => {
-                sendMessage()
+                sendMessage(messageInput.value)
             })
         }
 
-        function sendMessage() {
-            const messageInput = document.querySelector('.messageInput')
-            if (messageInput.value.length > 0) {
+        function sendMessage(text) {
+            if (text.length > 0) {
                 var data = {
                     id: socketID,
-                    message: messageInput.value,
+                    message: text,
                     time: Date.now()
                 }
                 this_.socket.emit('message', data)
-                messageInput.value = null
+                text = null
             }
         }
 
