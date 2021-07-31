@@ -26,7 +26,8 @@ var app = new Vue({
     },
     mounted() {
         var this_ = this
-        var socketID
+        var socketID,
+            thisPlayer
         let firstLoop = true
 
         // Pre-rendering all sprites images
@@ -85,6 +86,7 @@ var app = new Vue({
         this_.socket.on('update', data => {
             socketID = this.socket.id
             players = data
+            thisPlayer = players[socketID]
         })
 
         this_.socket.on('player_connected', player => {
@@ -165,13 +167,15 @@ var app = new Vue({
         }
 
         function drawMessages() {
-            messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
+            console.log(thisPlayer)
+            if (thisPlayer) {
+                console.log('test')
+                messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
 
-            var message = 'Hello World'
-            player = players[socketID]
-            console.log(player, socketID)
+                var message = 'Hello World'
 
-            messages_ctx.fillText(message, player.x, player.y)
+                messages_ctx.fillText(message, thisPlayer.x, thisPlayer.y)
+            }
         }
 
         function drawParticles() {
