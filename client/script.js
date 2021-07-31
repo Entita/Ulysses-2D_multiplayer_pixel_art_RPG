@@ -163,6 +163,7 @@ var app = new Vue({
                     delete keys[key]
                     this_.socket.emit('stopped', socketID)
                 } else {
+                    console.log(e.key)
                     if (e.key === 'enter') {
                         if (messageInput.value.length > 0) {
                             var data = {
