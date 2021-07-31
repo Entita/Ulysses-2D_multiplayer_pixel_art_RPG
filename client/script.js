@@ -18,7 +18,7 @@ var app = new Vue({
                 'deadpool',
                 'captainamerica'
             ],
-            messages: [],
+            messages: {},
             isReady: false
         }
     },
@@ -378,15 +378,24 @@ var app = new Vue({
                 this_.socket.emit('ready')
             }, 10)
         },
-        fetchDatabaseData: function() {
+        fetchDatabaseData: function () {
             axios.post('database.php', {
                 action: 'fetchall'
-            }).then(function(response) {
+            }).then(function (response) {
                 // this.messages = response.data
-                this.messages = ['first_message', 'second_message', 'afsaifhsadf']
+                this.messages = {
+                    'first': {
+                        text: 'agfsdggafdsg',
+                        date: '20.07 18:18'
+                    },
+                    'second': {
+                        text: 'agfsdggafdsg',
+                        date: '20.07 18:18'
+                    },
+                }
             })
         },
-        submitData: function() {
+        submitData: function () {
             return
         }
     }

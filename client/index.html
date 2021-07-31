@@ -8,6 +8,7 @@
     <link id="favicon" rel="icon" href="img/favicon.ico" type="image/gif">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,10 @@
             </div>
             <div class="chatWindow">
                 <div class="chat">
-                    <div class="message" v-for="row in messages">{{ row }}</div>
+                    <div class="message" v-for="row in messages">
+                        <span>{{ row.date }}</span>
+                        <span>{{ row.text }}</span>
+                    </div>
                 </div>
                 <div class="chat-controls">
                     <input class="messageInput" type="text" placeholder="Type your message here">
