@@ -222,7 +222,7 @@ var app = new Vue({
                             line_y = ((i + 1) * messages_font) + players[id].y - messages_height
                         pseudoCtx.fillText(line, line_x, line_y)
                     });
-                    drawSpeechBubble(players[id].x, players[id].y, messages_width, messages_height)
+                    drawSpeechBubble(players[id].x, players[id].y, messages_width, messages_height, line, i)
                 }
             }
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
@@ -233,10 +233,11 @@ var app = new Vue({
             delete pseudoCtx
         }
 
-        function drawSpeechBubble(x, y, width, height) {
+        function drawSpeechBubble(x, y, width, height, text, index) {
             pseudoCtx.fillStyle = 'red'
             pseudoCtx.fillRect(x, y, x + width, y + height)
-            console.log(x, y, width, height)
+            var width = index > 0 ? 200 : pseudoCtx.measureText(text).width
+            console.log(width)
         }
 
         function wrapText(text, maxWidth) {
