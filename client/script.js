@@ -163,32 +163,27 @@ var app = new Vue({
                     delete keys[key]
                     this_.socket.emit('stopped', socketID)
                 } else {
-                    console.log(e.key)
-                    if (e.key === 'enter') {
-                        if (messageInput.value.length > 0) {
-                            var data = {
-                                id: socketID,
-                                message: messageInput.value,
-                                time: Date.now()
-                            }
-                            this_.socket.emit('message', data)
-                            messageInput.value = null
-                        }
+                    if (e.key === 'Enter') {
+                        sendMessage()
                     }
                 }
             })
 
-            messageBtn.addEventListener('click', e => {
-                if (messageInput.value.length > 0) {
-                    var data = {
-                        id: socketID,
-                        message: messageInput.value,
-                        time: Date.now()
-                    }
-                    this_.socket.emit('message', data)
-                    messageInput.value = null
-                }
+            messageBtn.addEventListener('click', () => {
+                sendMessage()
             })
+        }
+
+        function sendMessage() {
+            if (messageInput.value.length > 0) {
+                var data = {
+                    id: socketID,
+                    message: messageInput.value,
+                    time: Date.now()
+                }
+                this_.socket.emit('message', data)
+                messageInput.value = null
+            }
         }
 
         function animateSprint() {
