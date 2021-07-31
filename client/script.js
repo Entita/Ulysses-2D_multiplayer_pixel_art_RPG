@@ -176,9 +176,10 @@ var app = new Vue({
 
         function sendMessage(messageInput) {
             if (messageInput.value.length > 0) {
+                var text = messageInput.value.normalize("NFD").replace(/\p{Diacritic}/gu, "")
                 var data = {
                     id: socketID,
-                    message: messageInput.value,
+                    message: text,
                     time: Date.now()
                 }
                 this_.socket.emit('message', data)
