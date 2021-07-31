@@ -240,6 +240,7 @@ var app = new Vue({
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width
             pseudoCtx.fillStyle = 'red'
             pseudoCtx.fillRect(x, y, x + width, y - height)
+            console.log(x, y, width, height)
         }
 
         function wrapText(text, maxWidth) {
