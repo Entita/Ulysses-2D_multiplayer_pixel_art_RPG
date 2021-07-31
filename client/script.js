@@ -238,9 +238,10 @@ var app = new Vue({
 
         function drawSpeechBubble(x, y, height, text, index, playerWidth) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width
+            var padding = 3
             pseudoCtx.strokeStyle = 'black'
             pseudoCtx.lineWidth = 1
-            pseudoCtx.strokeRect(x + ((playerWidth - width) / 2), y - height, width, height)
+            pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + padding, height + padding)
         }
 
         function wrapText(text, maxWidth) {
