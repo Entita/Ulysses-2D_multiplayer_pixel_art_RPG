@@ -5,6 +5,7 @@ const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
 // Database config
+const mysql = require('mysql')
 const con = mysql.createConnection({
     host: 'us-cdbr-east-04.cleardb.com',
     user: 'b2897456ec879f',
