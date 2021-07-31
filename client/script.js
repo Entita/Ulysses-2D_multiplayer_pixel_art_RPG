@@ -195,16 +195,16 @@ var app = new Vue({
         }
 
         function drawMessages() {
-            var messages_width = 200,
-                messages_font = 12
-            messages_ctx.font = messages_font + 'px pixel'
-            messages_ctx.fillStyle = 'black'
-            messages_ctx.textAlign = 'center'
-
             const pseudoCanvas = document.createElement('canvas')
             pseudoCanvas.width = canvas_width
             pseudoCanvas.height = canvas_height
             pseudoCtx = pseudoCanvas.getContext('2d')
+
+            var messages_width = 200,
+                messages_font = 12
+            pseudoCtx.font = messages_font + 'px pixel'
+            pseudoCtx.fillStyle = 'black'
+            pseudoCtx.textAlign = 'center'
 
             for (var id in messages) {
                 if (!messages.hasOwnProperty(id)) continue;
