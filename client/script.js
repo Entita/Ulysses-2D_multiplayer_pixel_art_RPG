@@ -377,13 +377,6 @@ var app = new Vue({
                 this_.isReady = !this_.isReady
                 this_.socket.emit('ready')
             }, 10)
-        },
-        fetchDatabaseData: function () {
-            // axios.post('/database.php', {
-            //     action: 'fetchall'
-            // }).then(function (response) {
-            //     this.messages = response.data
-            // })
         }
     }
 });
