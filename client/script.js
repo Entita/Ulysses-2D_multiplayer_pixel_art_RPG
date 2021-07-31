@@ -163,6 +163,7 @@ var app = new Vue({
                     delete keys[key]
                     this_.socket.emit('stopped', socketID)
                 } else {
+                    messageInput = messageInput.normalize("NFD").replace(/\p{Diacritic}/gu, "")
                     if (e.key === 'Enter') {
                         sendMessage(messageInput)
                     }
@@ -176,10 +177,9 @@ var app = new Vue({
 
         function sendMessage(messageInput) {
             if (messageInput.value.length > 0) {
-                var text = messageInput.value.normalize("NFD").replace(/\p{Diacritic}/gu, "")
                 var data = {
                     id: socketID,
-                    message: text,
+                    message: messageInput.value,
                     time: Date.now()
                 }
                 this_.socket.emit('message', data)
