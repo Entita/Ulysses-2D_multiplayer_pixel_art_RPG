@@ -92,7 +92,6 @@ var app = new Vue({
 
         this_.socket.on('update_messages', data => {
             messages = data
-            console.log('update messages', messages)
         })
 
         this_.socket.on('player_connected', player => {
@@ -189,16 +188,19 @@ var app = new Vue({
         }
 
         function drawMessages() {
-            if (thisPlayer) {
-                messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
+            messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
 
-                var message = 'Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World',
-                    messages_width = 200,
-                    messages_font = 12
-                messages_ctx.font = messages_font + 'px pixel'
-                messages_ctx.fillStyle = 'black';
-                messages_ctx.textAlign = 'center'
+            var messages_width = 200,
+                messages_font = 12
+            messages_ctx.font = messages_font + 'px pixel'
+            messages_ctx.fillStyle = 'black';
+            messages_ctx.textAlign = 'center'
 
+            for (var id in messages) {
+                if (!messages.hasOwnProperty(id)) continue;
+
+                var message = messages[id]
+                console.log(message)
 
 
                 // let message_time = (Date.now() - message_startTime) / 1000
@@ -206,18 +208,18 @@ var app = new Vue({
                 // if (message_time > 1) {
                 //     messages = []
                 // }
-
-
-
-
-                var lines = wrapText(message, messages_width - messages_font),
-                    messages_height = messages_font * lines.length
-                lines.forEach(function (line, i) {
-                    var line_x = (thisPlayer.width / 2) + thisPlayer.x,
-                        line_y = ((i + 1) * messages_font) + thisPlayer.y - messages_height
-                    messages_ctx.fillText(line, line_x, line_y)
-                });
             }
+
+
+
+
+            var lines = wrapText(message, messages_width - messages_font),
+                messages_height = messages_font * lines.length
+            lines.forEach(function (line, i) {
+                var line_x = (thisPlayer.width / 2) + thisPlayer.x,
+                    line_y = ((i + 1) * messages_font) + thisPlayer.y - messages_height
+                messages_ctx.fillText(line, line_x, line_y)
+            });
         }
 
         function wrapText(text, maxWidth) {
