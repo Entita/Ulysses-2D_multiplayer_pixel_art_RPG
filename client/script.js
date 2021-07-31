@@ -167,9 +167,7 @@ var app = new Vue({
         }
 
         function drawMessages() {
-            console.log(thisPlayer)
             if (thisPlayer) {
-                console.log('test')
                 messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
 
                 var message = 'Hello World'
