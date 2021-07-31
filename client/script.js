@@ -237,11 +237,19 @@ var app = new Vue({
         }
 
         function drawSpeechBubble(x, y, height, text, index, playerWidth) {
-            var width = index > 0 ? 200 : pseudoCtx.measureText(text).width
-            var padding = 3
-            pseudoCtx.strokeStyle = 'black'
-            pseudoCtx.lineWidth = 1
-            pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + (padding * 2), height + (padding * 2))
+            var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
+                padding = 3,
+                border = 1
+            // pseudoCtx.strokeStyle = 'black'
+            // pseudoCtx.lineWidth = 1
+            // pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + (padding * 2), height + (padding * 2))
+
+            // Top part
+            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) - padding + (border * 2), y - height - padding, width + (padding * 2) - (border * 4), border)
+            // Top Left part
+            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) - padding + border, y - height - padding + border, border, border)
+            // Top Right part
+            pseudoCtx.fillRect(x + width - (border * 2), y - height - padding + border, border, border)
         }
 
         function wrapText(text, maxWidth) {
