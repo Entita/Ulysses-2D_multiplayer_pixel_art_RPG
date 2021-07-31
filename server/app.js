@@ -12,8 +12,8 @@ io.on('connection', socket => {
     socket.on('ready', () => {
         var player = {
             sprite: 'down',
-            x: 450,
-            y: 450,
+            x: 383,
+            y: 350,
             sprite_img: 'starlord',
             sprite_width: 32,
             sprite_height: 48,
