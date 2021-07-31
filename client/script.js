@@ -190,14 +190,15 @@ var app = new Vue({
             drawPlayers()
             drawParticles()
             drawMessages()
+
+            delete pseudoCanvas
+            delete pseudoCtx
             sprintX++
         }
 
         function drawMessages() {
-            const pseudoCanvas = document.createElement('canvas')
-            pseudoCanvas.width = canvas_width
-            pseudoCanvas.height = canvas_height
-            pseudoCtx = pseudoCanvas.getContext('2d')
+            messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
+
             for (var id in messages) {
                 if (!messages.hasOwnProperty(id)) continue;
 
@@ -212,26 +213,21 @@ var app = new Vue({
                     lines.forEach(function (line, i) {
                         var line_x = (players[id].width / 2) + players[id].x,
                             line_y = ((i + 1) * messages_font) + players[id].y - messages_height
-                        pseudoCtx.fillText(line, line_x, line_y)
+                        messages_ctx.fillText(line, line_x, line_y)
                     });
                 }
             }
-            messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
-            messages_ctx.fillText(pseudoCanvas, 0, 0)
-
-            delete pseudoCanvas
-            delete pseudoCtx
         }
 
         function wrapText(text, maxWidth) {
             var words = text.split(' '),
                 lines = [],
                 line = "";
-            if (pseudoCtx.measureText(text).width < maxWidth) {
+            if (messages_ctx.measureText(text).width < maxWidth) {
                 return [text];
             }
             while (words.length > 0) {
-                while (pseudoCtx.measureText(words[0]).width >= maxWidth) {
+                while (messages_ctx.measureText(words[0]).width >= maxWidth) {
                     var tmp = words[0];
                     words[0] = tmp.slice(0, -1);
                     if (words.length > 1) {
@@ -240,7 +236,7 @@ var app = new Vue({
                         words.push(tmp.slice(-1));
                     }
                 }
-                if (pseudoCtx.measureText(line + words[0]).width < maxWidth) {
+                if (messages_ctx.measureText(line + words[0]).width < maxWidth) {
                     line += words.shift() + " ";
                 } else {
                     lines.push(line);
@@ -286,9 +282,6 @@ var app = new Vue({
 
             players_ctx.clearRect(0, 0, canvas_width, canvas_height)
             players_ctx.drawImage(pseudoCanvas, 0, 0)
-
-            delete pseudoCanvas
-            delete pseudoCtx
         }
 
         function moveSprite() {
