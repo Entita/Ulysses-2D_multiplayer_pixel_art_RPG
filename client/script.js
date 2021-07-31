@@ -196,13 +196,15 @@ var app = new Vue({
             messages_ctx.fillStyle = 'black';
             messages_ctx.textAlign = 'center'
 
+            console.log(messages)
             for (var id in messages) {
                 if (!messages.hasOwnProperty(id)) continue;
 
                 var message = messages[id]
-                let message_time = (Date.now() - message.time) / 1000
+                let message_time = (Date.now() - message.time) / 4000
 
                 if (message_time > 1) {
+                    console.log('deleting', messages[id])
                     delete messages[id]
                 }
 
