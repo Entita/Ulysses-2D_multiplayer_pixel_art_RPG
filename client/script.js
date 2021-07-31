@@ -168,6 +168,7 @@ var app = new Vue({
 
             messageBtn.addEventListener('click', e => {
                 var data = {
+                    id: socketID,
                     message: messageInput.value,
                     time: Date.now()
                 }
