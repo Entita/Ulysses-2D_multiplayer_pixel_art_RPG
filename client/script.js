@@ -180,12 +180,11 @@ var app = new Vue({
                 messages_ctx.textAlign = 'center'
 
                 var lines = wrapText(message, messages_width - messages_font);
-                console.log('bla')
                 lines.forEach(function (line, i) {
                     var line_x = thisPlayer.x + ((thisPlayer.x - messages_width) / 2),
                         line_y = ((i + 1) * messages_font) + thisPlayer.y
                     console.log('AAA', messages_width, line_x, thisPlayer.x)
-                    // messages_ctx.fillText(line, line_x, line_y);
+                    messages_ctx.fillText(line, line_x, line_y);
                 });
             }
         }
