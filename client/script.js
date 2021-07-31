@@ -119,7 +119,7 @@ var app = new Vue({
                         players_ctx = players_canvas.getContext('2d')
                         particles_canvas = document.getElementById('particles')
                         particles_ctx = particles_canvas.getContext('2d')
-                        messages_canvas = document.getElementById('particles')
+                        messages_canvas = document.getElementById('messages')
                         messages_ctx = messages_canvas.getContext('2d')
 
                         canvas_width = players_canvas.width = particles_canvas.width = messages_canvas.width = 900
