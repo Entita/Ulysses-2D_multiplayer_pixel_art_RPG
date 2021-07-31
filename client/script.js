@@ -179,8 +179,11 @@ var app = new Vue({
 
                 var lines = wrapText(message, messages_width - messages_font);
                 lines.forEach(function (line, i) {
-                    var line_width = messages_ctx.measureText(line).width
-                    messages_ctx.fillText(line, thisPlayer.x + ((thisPlayer.x - line_width) / 2), ((i + 1) * messages_font) + thisPlayer.y);
+                    var line_width = messages_ctx.measureText(line).width,
+                        line_x = thisPlayer.x + ((thisPlayer.x - line_width) / 2),
+                        line_y = ((i + 1) * messages_font) + thisPlayer.y
+                    console.log(line_width, line_x, thisPlayer.x)
+                    messages_ctx.fillText(line, line_x, line_y);
                 });
             }
         }
