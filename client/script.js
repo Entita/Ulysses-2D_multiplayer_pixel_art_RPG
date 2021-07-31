@@ -379,14 +379,11 @@ var app = new Vue({
             }, 10)
         },
         fetchDatabaseData: function () {
-            axios.post('/database.php', {
-                action: 'fetchall'
-            }).then(function (response) {
-                this.messages = response.data
-            })
-        },
-        submitData: function () {
-            return
+            // axios.post('/database.php', {
+            //     action: 'fetchall'
+            // }).then(function (response) {
+            //     this.messages = response.data
+            // })
         }
     }
 });

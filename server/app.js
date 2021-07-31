@@ -4,6 +4,19 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
+// Database config
+const con = mysql.createConnection({
+    host: 'us-cdbr-east-04.cleardb.com',
+    user: 'b2897456ec879f',
+    password: '0eac8e17',
+    database: 'heroku_8ecd47b8b69c15c'
+})
+
+con.connect(function (err) {
+    if (err) throw err
+    console.log("connected")
+})
+
 // Data config
 const players = new Object(),
     messages = new Object()
