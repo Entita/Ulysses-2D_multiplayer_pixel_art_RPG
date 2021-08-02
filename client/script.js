@@ -202,9 +202,6 @@ var app = new Vue({
 
             var messages_width = 200,
                 messages_font = 12
-            pseudoCtx.font = messages_font + 'px pixel'
-            pseudoCtx.fillStyle = 'black'
-            pseudoCtx.textAlign = 'center'
 
             for (var id in messages) {
                 if (!messages.hasOwnProperty(id)) continue;
@@ -224,10 +221,15 @@ var app = new Vue({
                     tempConvas.width = canvas_width
                     tempConvas.height = canvas_height
                     tempCtx = tempConvas.getContext('2d')
+
+                    tempCtx.font = messages_font + 'px pixel'
+                    tempCtx.fillStyle = 'black'
+                    tempCtx.textAlign = 'center'
+
                     lines.forEach(function (line, i) {
                         var line_x = (players[id].width / 2) + players[id].x,
                             line_y = ((i + 1) * messages_font) + players[id].y - messages_height
-                        tempCtx.fillText(line, line_x, line_y - border * 7)
+                        tempCtx.fillText(line, line_x, line_y - border * 7 + messages_height / 2)
                         tempText = line
                         tempIndex = i
                     });
