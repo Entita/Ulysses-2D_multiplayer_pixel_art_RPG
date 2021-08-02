@@ -219,14 +219,20 @@ var app = new Vue({
                         messages_height = messages_font * lines.length
                     var tempText, tempIndex,
                         border = 4
+
+                    const tempConvas = document.createElement('canvas')
+                    tempConvas.width = canvas_width
+                    tempConvas.height = canvas_height
+                    tempCtx = tempConvas.getContext('2d')
                     lines.forEach(function (line, i) {
                         var line_x = (players[id].width / 2) + players[id].x,
                             line_y = ((i + 1) * messages_font) + players[id].y - messages_height
-                        pseudoCtx.fillText(line, line_x, line_y - border * 7)
+                        tempCtx.fillText(line, line_x, line_y - border * 7)
                         tempText = line
                         tempIndex = i
                     });
                     drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, border, players[id].sprite)
+                    pseudoCtx.drawImage(tempConvas, 0, 0)
                 }
             }
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
