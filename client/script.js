@@ -210,22 +210,23 @@ var app = new Vue({
                 if (!messages.hasOwnProperty(id)) continue;
 
                 var message = messages[id]
-                let message_time = (Date.now() - message.time) / 3000
+                let message_time = (Date.now() - message.time) / 8000
 
                 if (message_time > 1) {
                     delete messages[id]
                 } else {
                     var lines = wrapText(message.text, messages_width - messages_font),
                         messages_height = messages_font * lines.length
-                    var tempText, tempIndex
+                    var tempText, tempIndex,
+                        border = 4
                     lines.forEach(function (line, i) {
                         var line_x = (players[id].width / 2) + players[id].x,
                             line_y = ((i + 1) * messages_font) + players[id].y - messages_height
-                        pseudoCtx.fillText(line, line_x, line_y)
+                        pseudoCtx.fillText(line, line_x, line_y - border * 7)
                         tempText = line
                         tempIndex = i
                     });
-                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, players[id].sprite)
+                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, border, players[id].sprite)
                 }
             }
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
@@ -236,10 +237,9 @@ var app = new Vue({
             delete pseudoCtx
         }
 
-        function drawSpeechBubble(x, y, height, text, index, player_width, dir) {
+        function drawSpeechBubble(x, y, height, text, index, player_width, border, dir) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
-                padding = 3,
-                border = 4
+                padding = 3
 
             // Adding minimal width & height
             width = width <= 80 ? 80 : width
