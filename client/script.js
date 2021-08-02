@@ -208,7 +208,7 @@ var app = new Vue({
                 if (!messages.hasOwnProperty(id)) continue;
 
                 var message = messages[id]
-                let message_time = (Date.now() - message.time) / 8000
+                let message_time = (Date.now() - message.time) / 6000
 
                 if (message_time > 1 || players[id] === undefined) {
                     delete messages[id]
