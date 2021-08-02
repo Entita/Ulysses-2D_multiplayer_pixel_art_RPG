@@ -210,6 +210,8 @@ var app = new Vue({
                 var message = messages[id]
                 let message_time = (Date.now() - message.time) / 8000
 
+                console.log(players[id])
+
                 if (message_time > 1) {
                     delete messages[id]
                 } else {
