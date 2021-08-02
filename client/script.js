@@ -251,7 +251,7 @@ var app = new Vue({
                 offset = dir === 'left' ? -40 : 40
 
             // Adding minimal width & height
-            width = width <= 200 ? 200 : width
+            width = width <= 80 ? 80 : width
             height = height <= 20 ? 20 : height
 
             // Bubble border
