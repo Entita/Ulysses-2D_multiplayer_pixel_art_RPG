@@ -246,12 +246,7 @@ var app = new Vue({
             height = height <= 20 ? 20 : height
 
             // Adding offset to rotate bubble left/right
-            var offset
-            if (dir === 'left') {
-                offset = 40
-            } else {
-                offset = -40
-            }
+            var offset = dir === 'left' ? -40 : 40
 
             // Bubble border
             pseudoCtx.fillStyle = 'black'
