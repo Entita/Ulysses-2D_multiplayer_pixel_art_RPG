@@ -200,7 +200,7 @@ var app = new Vue({
             pseudoCanvas.height = canvas_height
             pseudoCtx = pseudoCanvas.getContext('2d')
 
-            var messages_width = 50,
+            var messages_width = 80,
                 messages_font = 12
 
             for (var id in messages) {
@@ -246,7 +246,7 @@ var app = new Vue({
         }
 
         function drawSpeechBubble(x, y, height, text, index, player_width, border, dir) {
-            var width = index > 0 ? 50 : pseudoCtx.measureText(text).width,
+            var width = index > 0 ? 80 : pseudoCtx.measureText(text).width,
                 padding = 3
 
             // Adding minimal width & height
