@@ -246,8 +246,9 @@ var app = new Vue({
         }
 
         function drawSpeechBubble(x, y, height, text, index, player_width, border, dir) {
-            var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
-                offset = dir === 'left' ? -40 : 40
+            var width = index > 0 ? 200 : pseudoCtx.measureText(text).width + border * 10,
+                width = width > 200 ? 200 : width
+            offset = dir === 'left' ? -40 : 40
 
             // Adding minimal width & height
             width = width <= 80 ? 80 : width
