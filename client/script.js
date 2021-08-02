@@ -202,7 +202,7 @@ var app = new Vue({
 
             var border = 4,
                 padding = 3,
-                messages_width = 200 - border * 3 - padding * 2,
+                messages_width = 200,
                 messages_font = 12
 
             for (var id in messages) {
@@ -214,7 +214,7 @@ var app = new Vue({
                 if (message_time > 1) {
                     delete messages[id]
                 } else {
-                    var lines = wrapText(message.text, messages_width - messages_font),
+                    var lines = wrapText(message.text, messages_width - border * 3 - padding * 2 - messages_font),
                         messages_height = messages_font * lines.length
                     var tempText, tempIndex
 
