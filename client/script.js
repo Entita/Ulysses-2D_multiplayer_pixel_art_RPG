@@ -236,25 +236,94 @@ var app = new Vue({
             delete pseudoCtx
         }
 
-        function drawSpeechBubble(x, y, height, text, index, playerWidth) {
+        function drawSpeechBubble(x, y, height, text, index, player_width) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
                 padding = 3,
-                border = 4
-            // pseudoCtx.strokeStyle = 'black'
-            // pseudoCtx.lineWidth = 1
-            // pseudoCtx.strokeRect(x + ((playerWidth - width) / 2) - padding, y - height - padding, width + (padding * 2), height + (padding * 2))
+                border = 10
 
-            // Top part
-            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) + (border * 2), y - height, width + (padding * 2) - (border * 4), border)
-            // Top Left part
-            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) + border, y - height + border, border, border)
-            // Top Right part
-            pseudoCtx.fillRect(x + width + (padding * 2) + border, y - height + border, border, border)
-            // Left part
-            pseudoCtx.fillRect(x + ((playerWidth - width) / 2), y - height + border, border, height - (border * 4))
-            // Right part
-            pseudoCtx.fillStyle = 'red'
-            pseudoCtx.fillRect(x + ((playerWidth - width) / 2) + width - (padding * 2) - (border * 4), y - height + border, border, height - (border * 4))
+            // Adding minimal width & height
+            width = width <= 100 ? 100 : width
+            height = height <= 50 ? 50 : height
+
+            // Adding offset to rotate bubble left/right
+            var offset = 50
+
+            // Bubble border
+            pseudoCtx.fillStyle = 'black'
+            pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2, y - height - border * 10, width, border)
+            pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 - border / 2, y - height - border * 9, border, border)
+            pseudoCtx.fillRect(x + offset + player_width / 2 + width / 2 + border / 2, y - height - border * 9, border, border)
+            pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 - border - border / 2, y - height - border * 8, border, height)
+            pseudoCtx.fillRect(x + offset + player_width / 2 + width / 2 + border + border / 2, y - height - border * 8, border, height)
+            pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 - border / 2, y - border * 8, border, border)
+            pseudoCtx.fillRect(x + offset + player_width / 2 + width / 2 + border / 2, y - border * 8, border, border)
+            pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2, y - border * 7, width, border)
+
+            // Tail + tail white fill + shadow
+            pseudoCtx.fillStyle = 'black'
+            if (offset < 0) {
+                // Tail border
+                pseudoCtx.fillRect(x + player_width / 2 - border * 6, y - border * 6, border, border * 2)
+                pseudoCtx.fillRect(x + player_width / 2 - border * 2, y - border * 6, border, border * 2)
+                pseudoCtx.fillRect(x + player_width / 2 - border, y - border * 4, border, border * 3)
+                pseudoCtx.fillRect(x + player_width / 2 - border * 5, y - border * 4, border, border)
+                pseudoCtx.fillRect(x + player_width / 2 - border * 4, y - border * 3, border, border)
+                pseudoCtx.fillRect(x + player_width / 2 - border * 3, y - border * 2, border * 2, border)
+                pseudoCtx.fillRect(x + player_width / 2, y - border, border, border)
+
+                // Shadow
+                pseudoCtx.fillStyle = 'rgba(0,0,0,.25)'
+                pseudoCtx.fillRect(x + offset + player_width / 2 + width / 2 + border / 2 + border * 2, y - border * 7 - height, border, height)
+                pseudoCtx.fillRect(x + offset + player_width / 2 + width / 2 + border / 2 + border, y - border * 8, border, border * 2)
+                pseudoCtx.fillRect(x + offset + player_width / 2 + width / 2 + border / 2, y - border * 7, border, border * 2)
+                pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2 + border, y - border * 6, width - border, border)
+
+                pseudoCtx.fillRect(x + player_width / 2 - border, y - border * 5, border, border)
+                pseudoCtx.fillRect(x + player_width / 2, y - border * 4, border, border * 3)
+                pseudoCtx.fillRect(x + player_width / 2 - border * 2, y - border * 1, border * 2, border)
+
+                // Tail white fill
+                pseudoCtx.fillStyle = 'white'
+                pseudoCtx.fillRect(x + player_width / 2 - border * 5, y - border * 7, border * 3, border * 3)
+                pseudoCtx.fillRect(x + player_width / 2 - border * 4, y - border * 4, border * 3, border)
+                pseudoCtx.fillRect(x + player_width / 2 - border * 3, y - border * 3, border * 2, border)
+            } else {
+                // Tail border
+                pseudoCtx.fillRect(x + player_width / 2 + border * 6, y - border * 6, border, border * 2)
+                pseudoCtx.fillRect(x + player_width / 2 + border * 2, y - border * 6, border, border * 2)
+                pseudoCtx.fillRect(x + player_width / 2 + border, y - border * 4, border, border * 3)
+                pseudoCtx.fillRect(x + player_width / 2 + border * 5, y - border * 4, border, border)
+                pseudoCtx.fillRect(x + player_width / 2 + border * 4, y - border * 3, border, border)
+                pseudoCtx.fillRect(x + player_width / 2 + border * 2, y - border * 2, border * 2, border)
+                pseudoCtx.fillRect(x + player_width / 2, y - border, border, border)
+
+                // Shadow
+                pseudoCtx.fillStyle = 'rgba(0,0,0,.25)'
+                pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2 - border * 3, y - border * 7 - height, border, height)
+                pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2 - border * 2, y - border * 8, border, border * 2)
+                pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2 - border, y - border * 7, border, border * 2)
+                pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2 - border + border, y - border * 6, width - border, border)
+
+                pseudoCtx.fillRect(x + player_width / 2 + border, y - border * 5, border, border)
+                pseudoCtx.fillRect(x + player_width / 2, y - border * 4, border, border * 3)
+                pseudoCtx.fillRect(x + player_width / 2 + border, y - border * 1, border * 2, border)
+
+                // Tail white fill
+                pseudoCtx.fillStyle = 'white'
+                pseudoCtx.fillRect(x + player_width / 2 + border * 3, y - border * 7, border * 3, border * 3)
+                pseudoCtx.fillRect(x + player_width / 2 + border * 2, y - border * 4, border * 3, border)
+                pseudoCtx.fillRect(x + player_width / 2 + border * 2, y - border * 3, border * 2, border)
+            }
+            // Bubble white fill
+            pseudoCtx.fillStyle = 'white'
+            pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2, y - border * 8, width, border)
+            pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2, y - border * 9 - height, width, border)
+            pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2 - border, y - border * 8 - height, width + border * 2, height)
+
+            // Player
+            pseudoCtx.strokeStyle = 'red'
+            pseudoCtx.lineWidth = '3'
+            pseudoCtx.strokeRect(x, y, player_width + border, 200)
 
         }
 
