@@ -242,8 +242,8 @@ var app = new Vue({
                 border = 4
 
             // Adding minimal width & height
-            width = width <= 80 ? 100 : width
-            height = height <= 20 ? 50 : height
+            width = width <= 80 ? 80 : width
+            height = height <= 20 ? 20 : height
 
             // Adding offset to rotate bubble left/right
             var offset = 50
