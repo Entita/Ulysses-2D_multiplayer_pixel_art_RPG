@@ -202,7 +202,7 @@ var app = new Vue({
 
             var border = 4,
                 padding = 3,
-                messages_width = 80 - border * 3 - padding * 2,
+                messages_width = 200 - border * 3 - padding * 2,
                 messages_font = 12
 
             for (var id in messages) {
@@ -247,11 +247,11 @@ var app = new Vue({
         }
 
         function drawSpeechBubble(x, y, height, text, index, player_width, border, dir) {
-            var width = index > 0 ? 80 : pseudoCtx.measureText(text).width,
+            var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
                 padding = 3
 
             // Adding minimal width & height
-            width = width <= 80 ? 80 : width
+            width = width <= 200 ? 200 : width
             height = height <= 20 ? 20 : height
 
             // Adding offset to rotate bubble left/right
