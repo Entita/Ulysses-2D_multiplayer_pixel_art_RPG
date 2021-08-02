@@ -225,7 +225,7 @@ var app = new Vue({
                         tempText = line
                         tempIndex = i
                     });
-                    // drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width)
+                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width)
                 }
             }
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
