@@ -234,7 +234,7 @@ var app = new Vue({
                         tempText = line
                         tempIndex = i
                     });
-                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, border, players[id].sprite)
+                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, border, padding, players[id].sprite)
                     pseudoCtx.drawImage(tempConvas, border * 10, - border * 9)
                 }
             }
@@ -246,7 +246,7 @@ var app = new Vue({
             delete pseudoCtx
         }
 
-        function drawSpeechBubble(x, y, height, text, index, player_width, border, dir) {
+        function drawSpeechBubble(x, y, height, text, index, player_width, border, padding, dir) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
                 temp = - border * 3 - padding * 2
 
