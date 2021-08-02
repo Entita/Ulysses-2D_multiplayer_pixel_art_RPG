@@ -201,8 +201,7 @@ var app = new Vue({
             pseudoCtx = pseudoCanvas.getContext('2d')
 
             var border = 4,
-                padding = 3,
-                messages_width = 200 - border * 3 - padding * 2,
+                messages_width = 200 - border * 10,
                 messages_font = 12
 
             for (var id in messages) {
