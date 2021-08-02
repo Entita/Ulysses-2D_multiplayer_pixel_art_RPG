@@ -248,10 +248,10 @@ var app = new Vue({
 
         function drawSpeechBubble(x, y, height, text, index, player_width, border, dir) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
-                padding = 3
+                temp = - border * 3 - padding * 2
 
             // Adding minimal width & height
-            width = width <= 200 ? 200 : width
+            width = width <= temp ? temp : width
             height = height <= 20 ? 20 : height
 
             // Adding offset to rotate bubble left/right
