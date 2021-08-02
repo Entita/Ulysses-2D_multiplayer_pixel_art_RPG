@@ -1,3 +1,5 @@
+const { off } = require("process");
+
 var app = new Vue({
     el: '#app',
     data() {
@@ -225,7 +227,7 @@ var app = new Vue({
                         tempText = line
                         tempIndex = i
                     });
-                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width)
+                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, players[id].sprite)
                 }
             }
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
@@ -236,7 +238,7 @@ var app = new Vue({
             delete pseudoCtx
         }
 
-        function drawSpeechBubble(x, y, height, text, index, player_width) {
+        function drawSpeechBubble(x, y, height, text, index, player_width, dir) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
                 padding = 3,
                 border = 4
@@ -246,7 +248,7 @@ var app = new Vue({
             height = height <= 20 ? 20 : height
 
             // Adding offset to rotate bubble left/right
-            var offset = 40
+            var offset = dir === 'left' ? -40 : 40
 
             // Bubble border
             pseudoCtx.fillStyle = 'black'
