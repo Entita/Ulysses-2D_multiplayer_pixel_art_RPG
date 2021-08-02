@@ -230,7 +230,7 @@ var app = new Vue({
                     lines.forEach(function (line, i) {
                         var line_x = (players[id].width / 2) + players[id].x,
                             line_y = ((i + 1) * messages_font) + players[id].y - messages_height
-                        tempCtx.fillText(line, line_x + border * 11, line_y - border * 10 + messages_height / 2)
+                        tempCtx.fillText(line, line_x, line_y)
                         tempText = line
                         tempIndex = i
                     });
