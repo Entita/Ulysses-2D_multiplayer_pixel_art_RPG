@@ -242,8 +242,8 @@ var app = new Vue({
                 border = 4
 
             // Adding minimal width & height
-            width = width <= 100 ? 100 : width
-            height = height <= 50 ? 50 : height
+            width = width <= 80 ? 100 : width
+            height = height <= 20 ? 50 : height
 
             // Adding offset to rotate bubble left/right
             var offset = 50
@@ -319,12 +319,6 @@ var app = new Vue({
             pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2, y - border * 8, width, border)
             pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2, y - border * 9 - height, width, border)
             pseudoCtx.fillRect(x + offset + player_width / 2 - width / 2 + border / 2 - border, y - border * 8 - height, width + border * 2, height)
-
-            // Player
-            pseudoCtx.strokeStyle = 'red'
-            pseudoCtx.lineWidth = '3'
-            pseudoCtx.strokeRect(x, y, player_width + border, 200)
-
         }
 
         function wrapText(text, maxWidth) {
