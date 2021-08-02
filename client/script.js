@@ -1,5 +1,3 @@
-const { off } = require("process");
-
 var app = new Vue({
     el: '#app',
     data() {
@@ -244,12 +242,11 @@ var app = new Vue({
                 border = 4
 
             // Adding minimal width & height
-            width = width <= 80 ? 80 : width
-            height = height <= 20 ? 20 : height
+            width = width <= 100 ? 100 : width
+            height = height <= 50 ? 50 : height
 
             // Adding offset to rotate bubble left/right
-            // var offset = dir === 'left' ? -40 : 40
-            var offset = -40
+            var offset = 50
 
             // Bubble border
             pseudoCtx.fillStyle = 'black'
