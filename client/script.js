@@ -210,7 +210,7 @@ var app = new Vue({
                 var message = messages[id]
                 let message_time = (Date.now() - message.time) / 8000
 
-                if (message_time > 1 || !players[id]) {
+                if (message_time > 1 || players[id] === undefined) {
                     delete messages[id]
                 } else {
                     var lines = wrapText(message.text, messages_width - messages_font),
