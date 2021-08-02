@@ -200,7 +200,8 @@ var app = new Vue({
             pseudoCanvas.height = canvas_height
             pseudoCtx = pseudoCanvas.getContext('2d')
 
-            var messages_width = 80,
+            var border = 4,
+                messages_width = 80 - border * 3,
                 messages_font = 12
 
             for (var id in messages) {
@@ -214,8 +215,7 @@ var app = new Vue({
                 } else {
                     var lines = wrapText(message.text, messages_width - messages_font),
                         messages_height = messages_font * lines.length
-                    var tempText, tempIndex,
-                        border = 4
+                    var tempText, tempIndex
 
                     const tempConvas = document.createElement('canvas')
                     tempConvas.width = canvas_width
