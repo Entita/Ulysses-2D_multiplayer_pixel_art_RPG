@@ -212,7 +212,7 @@ var app = new Vue({
                 if (!messages.hasOwnProperty(id)) continue;
 
                 var message = messages[id]
-                let message_time = (Date.now() - message.time) / 8000
+                let message_time = (Date.now() - message.time) / 3000
 
                 if (message_time > 1) {
                     delete messages[id]
@@ -227,7 +227,7 @@ var app = new Vue({
                         tempText = line
                         tempIndex = i
                     });
-                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, players[id].sprite)
+                    drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width)
                 }
             }
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
@@ -238,7 +238,7 @@ var app = new Vue({
             delete pseudoCtx
         }
 
-        function drawSpeechBubble(x, y, height, text, index, player_width, dir) {
+        function drawSpeechBubble(x, y, height, text, index, player_width) {
             var width = index > 0 ? 200 : pseudoCtx.measureText(text).width,
                 padding = 3,
                 border = 4
@@ -248,7 +248,8 @@ var app = new Vue({
             height = height <= 20 ? 20 : height
 
             // Adding offset to rotate bubble left/right
-            var offset = dir === 'left' ? -40 : 40
+            // var offset = dir === 'left' ? -40 : 40
+            var offset = -40
 
             // Bubble border
             pseudoCtx.fillStyle = 'black'
