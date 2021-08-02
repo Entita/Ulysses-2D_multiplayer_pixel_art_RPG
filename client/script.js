@@ -234,7 +234,11 @@ var app = new Vue({
                         tempIndex = i
                     });
                     drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, border, players[id].sprite)
-                    pseudoCtx.drawImage(tempConvas, border * 10, - border * 9)
+                    if (players[id].sprite === 'left') {
+                        pseudoCtx.drawImage(tempConvas, -border * 10, - border * 9)
+                    } else {
+                        pseudoCtx.drawImage(tempConvas, border * 10, - border * 9)
+                    }
                 }
             }
             messages_ctx.clearRect(0, 0, canvas_width, canvas_height)
