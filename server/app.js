@@ -7,13 +7,13 @@ const io = require("socket.io")(server);
 // Data config
 const players = new Object(),
     messages = new Object(),
-    map_width = 600,
-    map_height = 600,
+    map_width = 80,
+    map_height = 80,
     pixel_size = 4
-map = await createWorld(map_width, map_height, pixel_size)
-console.log(map)
+map = createWorld(map_width, map_height, pixel_size)
+console.log('test')
 
-async function createWorld(width, height, pixel) {
+function createWorld(width, height, pixel) {
     var map = new Array()
     width = parseInt(width / pixel)
     height = parseInt(height / pixel)
@@ -23,6 +23,7 @@ async function createWorld(width, height, pixel) {
             map[x][y] = 0
         }
     }
+    console.log(map)
     return map
 }
 
