@@ -7,8 +7,8 @@ const io = require("socket.io")(server);
 // Data config
 const players = new Object(),
     messages = new Object(),
-    map_width = 80,
-    map_height = 80,
+    map_width = 100,
+    map_height = 100,
     pixel_size = 4,
     map = createWorld(map_width, map_height, pixel_size)
 
@@ -26,7 +26,6 @@ function createWorld(width, height, pixel) {
             }
         }
     }
-    console.table(map)
     return map
 }
 
@@ -45,6 +44,7 @@ io.on('connection', socket => {
             moving: false
         }
         players[socket.id] = player
+        io.emit('world', map)
         io.emit('update_players', players)
         io.emit('player_connected', player)
 

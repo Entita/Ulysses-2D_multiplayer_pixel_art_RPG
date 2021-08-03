@@ -19,6 +19,9 @@ canvas {
     right    : 0;
     transform: translate(-10%, -50%);
 }
+#world {
+    z-index: 0;
+}
 
 #players {
     z-index: 1;

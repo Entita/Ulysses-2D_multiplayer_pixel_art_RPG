@@ -18,35 +18,35 @@ var app = new Vue({
                 'deadpool',
                 'captainamerica'
             ],
+            sprite_sheet = {
+                'starlord': new Image(),
+                'tonystark': new Image(),
+                'thor': new Image(),
+                'rocket': new Image(),
+                'loki': new Image(),
+                'deadpool': new Image(),
+                'captainamerica': new Image()
+            },
             messages: '',
             isReady: false
         }
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        
+        // Pre-rendering all sprites images
+        this.sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
+        this.sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
+        this.sprite_sheet['thor'].src = 'img/sprite_thor.png'
+        this.sprite_sheet['rocket'].src = 'img/sprite_rocket.png'
+        this.sprite_sheet['loki'].src = 'img/sprite_loki.png'
+        this.sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
+        this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
     },
     mounted() {
         var this_ = this,
             firstLoop = true,
             socketID
-
-        // Pre-rendering all sprites images
-        const sprite_sheet = {
-            'starlord': new Image(),
-            'tonystark': new Image(),
-            'thor': new Image(),
-            'rocket': new Image(),
-            'loki': new Image(),
-            'deadpool': new Image(),
-            'captainamerica': new Image()
-        }
-        sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
-        sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
-        sprite_sheet['thor'].src = 'img/sprite_thor.png'
-        sprite_sheet['rocket'].src = 'img/sprite_rocket.png'
-        sprite_sheet['loki'].src = 'img/sprite_loki.png'
-        sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
-        sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
 
         // Sprite movement
         const spriteAnimations = [],
@@ -55,6 +55,7 @@ var app = new Vue({
         // Multiplayer
         var players = new Object(),
             messages = new Object()
+        const map = new Object()
 
         // Load Sprites
         this_.animationStates.forEach((state, i) => {
@@ -75,14 +76,18 @@ var app = new Vue({
             sprintX = 0
 
         // All canvases
-        let players_canvas, particles_canvas, messages_canvas,
-            players_ctx, particles_ctx, messages_ctx,
+        let players_canvas, particles_canvas, messages_canvas, world_canvas,
+            players_ctx, particles_ctx, messages_ctx, world_ctx,
             canvas_width, canvas_height
 
         // Particles
         var particles = [];
 
         startAnimating(fps)
+
+        this_.socket.on('world', server_map => {
+            map = server_map
+        })
 
         this_.socket.on('update_players', data => {
             socketID = this.socket.id
@@ -125,9 +130,11 @@ var app = new Vue({
                         particles_ctx = particles_canvas.getContext('2d')
                         messages_canvas = document.getElementById('messages')
                         messages_ctx = messages_canvas.getContext('2d')
+                        world_canvas = document.getElementById('world')
+                        world_ctx = world_canvas.getContext('2d')
 
-                        canvas_width = players_canvas.width = particles_canvas.width = messages_canvas.width = 900
-                        canvas_height = players_canvas.height = particles_canvas.height = messages_canvas.height = 900
+                        canvas_width = players_canvas.width = particles_canvas.width = messages_canvas.width = world_canvas.width = 900
+                        canvas_height = players_canvas.height = particles_canvas.height = messages_canvas.height = world_canvas.height = 900
 
                         eventListeners()
                     }
@@ -187,11 +194,16 @@ var app = new Vue({
         }
 
         function animateSprint() {
+            drawMap()
             moveSprite()
             drawPlayers()
             drawParticles()
             drawMessages()
             sprintX++
+        }
+
+        function drawMap() {
+            console.table(map)
         }
 
         function drawMessages() {
@@ -382,7 +394,7 @@ var app = new Vue({
                 if (!players.hasOwnProperty(id)) continue;
 
                 player = players[id]
-                var image = sprite_sheet[player.sprite_img]
+                var image = this_.sprite_sheet[player.sprite_img]
                 let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
                     frameX = player.sprite_width * position,
                     frameY = spriteAnimations[player.sprite].location[position].y
