@@ -229,15 +229,16 @@ var app = new Vue({
                     lines.forEach(function (line, i) {
                         var line_x = (players[id].width / 2) + players[id].x,
                             line_y = ((i + 1) * messages_font) + players[id].y - messages_height
+                        line_x = players[id].sprite === 'left' ? line_x - border * 10 : line_x + border * 10
                         tempCtx.fillText(line, line_x, line_y)
                         tempText = line
                         tempIndex = i
                     });
                     drawSpeechBubble(players[id].x, players[id].y, messages_height, tempText, tempIndex, players[id].width, border, players[id].sprite)
                     if (players[id].sprite === 'left') {
-                        pseudoCtx.drawImage(tempConvas, -border * 10, - border * 9)
+                        pseudoCtx.drawImage(tempConvas, 0, - border * 9)
                     } else {
-                        pseudoCtx.drawImage(tempConvas, border * 10, - border * 9)
+                        pseudoCtx.drawImage(tempConvas, 0, - border * 9)
                     }
                 }
             }
