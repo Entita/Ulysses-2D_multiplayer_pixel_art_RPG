@@ -216,7 +216,7 @@ var app = new Vue({
             pseudoCtx = pseudoCanvas.getContext('2d')
             for (let x = 0; x < width; x++) {
                 for (let y = 0; x < height; y++) {
-                    console.log(map, map[x], map[x][y])
+                    console.log(width, height, map, map[x], map[x][y], map[x][0])
                     if (map[x][y] === 1) {
                         pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x * 32, y * 32, 32, 32)
                     } else {
