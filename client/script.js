@@ -217,9 +217,9 @@ var app = new Vue({
             for (let x = 0; x < width; x++) {
                 for (let y = 0; y < height; y++) {
                     if (map[x][y] === 1) {
-                        pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x * 32, y * 32, 32, 32)
+                        pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x * 32, y * 32, 50, 50)
                     } else {
-                        pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x * 32, y * 32, 32, 32)
+                        pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x * 32, y * 32, 50, 50)
                     }
                 }
             }
