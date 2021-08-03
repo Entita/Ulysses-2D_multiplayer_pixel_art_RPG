@@ -199,6 +199,7 @@ var app = new Vue({
 
         function animateSprint() {
             if (map) {
+                console.log(map[0])
                 drawMap()
             }
             moveSprite()
