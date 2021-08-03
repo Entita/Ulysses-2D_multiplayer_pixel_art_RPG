@@ -91,6 +91,7 @@ var app = new Vue({
 
         this_.socket.on('world', server_map => {
             map = server_map
+            drawMap()
         })
 
         this_.socket.on('update_players', data => {
@@ -198,9 +199,6 @@ var app = new Vue({
         }
 
         function animateSprint() {
-            // if (map.length) {
-            //     drawMap()
-            // }
             moveSprite()
             drawPlayers()
             drawParticles()
