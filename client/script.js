@@ -18,35 +18,35 @@ var app = new Vue({
                 'deadpool',
                 'captainamerica'
             ],
-            sprite_sheet = {
-                'starlord': new Image(),
-                'tonystark': new Image(),
-                'thor': new Image(),
-                'rocket': new Image(),
-                'loki': new Image(),
-                'deadpool': new Image(),
-                'captainamerica': new Image()
-            },
             messages: '',
             isReady: false
         }
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
-        
-        // Pre-rendering all sprites images
-        this.sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
-        this.sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
-        this.sprite_sheet['thor'].src = 'img/sprite_thor.png'
-        this.sprite_sheet['rocket'].src = 'img/sprite_rocket.png'
-        this.sprite_sheet['loki'].src = 'img/sprite_loki.png'
-        this.sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
-        this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
     },
     mounted() {
         var this_ = this,
             firstLoop = true,
             socketID
+
+        // Pre-rendering all sprites images
+        const sprite_sheet = {
+            'starlord': new Image(),
+            'tonystark': new Image(),
+            'thor': new Image(),
+            'rocket': new Image(),
+            'loki': new Image(),
+            'deadpool': new Image(),
+            'captainamerica': new Image()
+        }
+        sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
+        sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
+        sprite_sheet['thor'].src = 'img/sprite_thor.png'
+        sprite_sheet['rocket'].src = 'img/sprite_rocket.png'
+        sprite_sheet['loki'].src = 'img/sprite_loki.png'
+        sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
+        sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
 
         // Sprite movement
         const spriteAnimations = [],
@@ -394,7 +394,7 @@ var app = new Vue({
                 if (!players.hasOwnProperty(id)) continue;
 
                 player = players[id]
-                var image = this_.sprite_sheet[player.sprite_img]
+                var image = sprite_sheet[player.sprite_img]
                 let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
                     frameX = player.sprite_width * position,
                     frameY = spriteAnimations[player.sprite].location[position].y
