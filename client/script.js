@@ -39,7 +39,9 @@ var app = new Vue({
             'loki': new Image(),
             'deadpool': new Image(),
             'captainamerica': new Image()
-        }
+        },
+            world_sheet = new Image()
+
         sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
         sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
         sprite_sheet['thor'].src = 'img/sprite_thor.png'
@@ -47,6 +49,8 @@ var app = new Vue({
         sprite_sheet['loki'].src = 'img/sprite_loki.png'
         sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
         sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
+
+        world_sheet.src = 'img/world_sheet.png'
 
         // Sprite movement
         const spriteAnimations = [],
@@ -203,7 +207,27 @@ var app = new Vue({
         }
 
         function drawMap() {
-            console.table(map)
+            var width = map.length,
+                height = map[0].length
+
+            const pseudoCanvas = document.createElement('canvas')
+            pseudoCanvas.width = canvas_width
+            pseudoCanvas.height = canvas_height
+            pseudoCtx = pseudoCanvas.getContext('2d')
+            for (let x = 0; x < width; x++) {
+                for (let y = 0; x < height; y++) {
+                    if (map[x][y] === 1) {
+                        pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x, y, 4, 4)
+                    } else {
+                        pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x, y, 4, 4)
+                    }
+                }
+            }
+            world_ctx.clearRect(0, 0, canvas_width, canvas_height)
+            world_ctx.drawImage(pseudoCanvas, 0, 0)
+
+            delete world_canvas
+            delete world_ctx
         }
 
         function drawMessages() {
