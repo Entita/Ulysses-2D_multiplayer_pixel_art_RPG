@@ -463,12 +463,16 @@ var app = new Vue({
             if (keys['w']) {
                 var color = collision_ctx.getImageData(x, y - 1, 1, 1)
                 console.log(color, color.slice(','), color.slice(',')[0])
+                return true
             } else if (keys['s']) {
                 var color = collision_ctx.getImageData(x, y + 1, 1, 1)
+                return true
             } else if (keys['a']) {
                 var color = collision_ctx.getImageData(x - 1, y1, 1, 1)
+                return true
             } else if (keys['d']) {
                 var color = collision_ctx.getImageData(x + 1, y - 1, 1, 1)
+                return true
             } else {
                 return false
             }
