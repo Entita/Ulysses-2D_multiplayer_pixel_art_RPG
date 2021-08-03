@@ -231,8 +231,8 @@ var app = new Vue({
             world_ctx.clearRect(0, 0, canvas_width, canvas_height)
             world_ctx.drawImage(pseudoCanvas, 0, 0)
 
-            delete world_canvas
-            delete world_ctx
+            delete pseudoCanvas
+            delete pseudoCtx
         }
 
         function drawMessages() {
