@@ -7,15 +7,12 @@ const io = require("socket.io")(server);
 // Data config
 const players = new Object(),
     messages = new Object(),
-    map_width = 100,
-    map_height = 100,
-    pixel_size = 4,
-    map = createWorld(map_width, map_height, pixel_size)
+    map_width = 400,
+    map_height = 400,
+    map = createWorld(map_width, map_height)
 
-function createWorld(width, height, pixel) {
+function createWorld(width, height) {
     var map = new Array()
-    width = parseInt(width / pixel)
-    height = parseInt(height / pixel)
     for (let x = 0; x < width; x++) {
         map[x] = []
         for (let y = 0; y < height; y++) {
