@@ -216,12 +216,12 @@ var app = new Vue({
             pseudoCanvas.width = canvas_width
             pseudoCanvas.height = canvas_height
             pseudoCtx = pseudoCanvas.getContext('2d')
-            for (let x = 0; x < width; x += 4) {
+            for (let x = 0; x < width; x += 32) {
                 //     for (let y = 0; x < height; y++) {
                 if (map[x][0] === 1) {
-                    pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x, 0, 4, 4)
+                    pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x, 0, 32, 32)
                 } else {
-                    pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x, 0, 4, 4)
+                    pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x, 0, 32, 32)
                 }
                 //     }
             }
