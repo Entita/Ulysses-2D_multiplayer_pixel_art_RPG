@@ -81,8 +81,8 @@ var app = new Vue({
 
         // All canvases
         let players_canvas, particles_canvas, messages_canvas, world_canvas, collision_canvas,
-            players_ctx, particles_ctx, messages_ctx, world_ctx, collision_ctx
-        canvas_width, canvas_height
+            players_ctx, particles_ctx, messages_ctx, world_ctx, collision_ctx,
+            canvas_width, canvas_height
 
         // Particles
         var particles = [];
