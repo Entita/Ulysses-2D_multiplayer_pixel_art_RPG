@@ -19,6 +19,11 @@ canvas {
     right    : 0;
     transform: translate(-10%, -50%);
 }
+
+#collisions {
+    z-index: 999;
+}
+
 #world {
     z-index: 0;
 }

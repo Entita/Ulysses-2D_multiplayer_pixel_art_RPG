@@ -7,8 +7,8 @@ const io = require("socket.io")(server);
 // Data config
 const players = new Object(),
     messages = new Object(),
-    map_width = 400,
-    map_height = 400,
+    map_width = 18,
+    map_height = 18,
     map = createWorld(map_width, map_height)
 
 function createWorld(width, height) {

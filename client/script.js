@@ -80,9 +80,9 @@ var app = new Vue({
             sprintX = 0
 
         // All canvases
-        let players_canvas, particles_canvas, messages_canvas, world_canvas,
-            players_ctx, particles_ctx, messages_ctx, world_ctx,
-            canvas_width, canvas_height
+        let players_canvas, particles_canvas, messages_canvas, world_canvas, collision_canvas,
+            players_ctx, particles_ctx, messages_ctx, world_ctx, collision_ctx
+        canvas_width, canvas_height
 
         // Particles
         var particles = [];
@@ -137,9 +137,11 @@ var app = new Vue({
                         messages_ctx = messages_canvas.getContext('2d')
                         world_canvas = document.getElementById('world')
                         world_ctx = world_canvas.getContext('2d')
+                        collision_canvas = document.getElementById('collisions')
+                        collision_ctx = collision_canvas.getContext('2d')
 
-                        canvas_width = players_canvas.width = particles_canvas.width = messages_canvas.width = world_canvas.width = 900
-                        canvas_height = players_canvas.height = particles_canvas.height = messages_canvas.height = world_canvas.height = 900
+                        canvas_width = players_canvas.width = particles_canvas.width = messages_canvas.width = world_canvas.width = collision_canvas.width = 900
+                        canvas_height = players_canvas.height = particles_canvas.height = messages_canvas.height = world_canvas.height = collision_canvas.height = 900
 
                         eventListeners()
                     }
@@ -217,10 +219,16 @@ var app = new Vue({
             pseudoCtx = pseudoCanvas.getContext('2d')
             for (let x = 0; x < width; x++) {
                 for (let y = 0; y < height; y++) {
+                    var coord_x = x * squareSize,
+                        coord_y = y * squareSize
                     if (map[x][y] === 1) {
-                        pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x * squareSize, y * squareSize, squareSize, squareSize)
+                        pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, coord_x, coord_y, squareSize, squareSize)
+                        var o = Math.round, r = Math.random, s = 255,
+                            random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
+                        collision_ctx.fillStyle = random_rgb
+                        collision_ctx.fillRect(coord_x, coord_y, squareSize, squareSize)
                     } else {
-                        pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x * squareSize, y * squareSize, squareSize, squareSize)
+                        pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, coord_x, coord_y, squareSize, squareSize)
                     }
                 }
             }
