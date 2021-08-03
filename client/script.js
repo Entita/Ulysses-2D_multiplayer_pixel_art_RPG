@@ -227,8 +227,8 @@ var app = new Vue({
                         pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, coord_x, coord_y, squareSize, squareSize)
                         var o = Math.round, r = Math.random, s = 255,
                             random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
-                        collision_ctx.strokeStyle = random_rgb
-                        collision_ctx.strokeRect(coord_x, coord_y, squareSize, squareSize)
+                        collision_ctx.fillStyle = random_rgb
+                        collision_ctx.fillRect(coord_x, coord_y, squareSize, squareSize)
                     } else {
                         pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, coord_x, coord_y, squareSize, squareSize)
                     }
@@ -462,6 +462,7 @@ var app = new Vue({
         function validMove(x, y, keys) {
             if (keys['w']) {
                 var color = collision_ctx.getImageData(x, y - 1, 1, 1)
+                console.log(color.data[0], color.data[1], color.data[2])
                 if (color.data[0] === 0 && color.data[1] === 0 && color.data[2] === 0) {
                     return true
                 } else {
