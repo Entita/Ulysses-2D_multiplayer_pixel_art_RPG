@@ -228,28 +228,19 @@ var app = new Vue({
                         pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, coord_x, coord_y, squareSize, squareSize)
                         var o = Math.round, r = Math.random, s = 255,
                             random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
-                        if (collapsibles[random_rgb]) {
-                            console.log('in object')
-                        } else {
-                            console.log('not in object')
+                        while (random_rgb === 'rgb(0,0,0)' && !collapsibles[random_rgb]) {
+                            random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
                         }
+                        collision_ctx.strokeStyle = random_rgb
+                        collision_ctx.strokeRect(coord_x, coord_y, squareSize, squareSize)
                         collapsibles[random_rgb] = {
                             id: random_rgb,
+                            name: 'rock',
                             x: coord_x,
                             y: coord_y,
                             width: squareSize,
                             height: squareSize
                         }
-                        if (collapsibles[random_rgb]) {
-                            console.log('in object')
-                        } else {
-                            console.log('not in object')
-                        }
-                        while (random_rgb === 'rgb(0,0,0)') {
-                            random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
-                        }
-                        collision_ctx.fillStyle = random_rgb
-                        collision_ctx.fillRect(coord_x, coord_y, squareSize, squareSize)
                     } else {
                         pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, coord_x, coord_y, squareSize, squareSize)
                     }
