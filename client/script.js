@@ -469,13 +469,28 @@ var app = new Vue({
                 }
                 return true
             } else if (keys['s']) {
-                var color = collision_ctx.getImageData(x, y + 1, 1, 1)
+                for (let i = 0; i < players[socketID].width; i++) {
+                    var color = collision_ctx.getImageData(x + i, y + 1, 1, 1)
+                    if (color.data[0] != 0 && color.data[1] != 0 && color.data[2] != 0) {
+                        return false
+                    }
+                }
                 return true
             } else if (keys['a']) {
-                var color = collision_ctx.getImageData(x - 1, y, 1, 1)
+                for (let i = 0; i < players[socketID].width; i++) {
+                    var color = collision_ctx.getImageData(x + i - 1, y, 1, 1)
+                    if (color.data[0] != 0 && color.data[1] != 0 && color.data[2] != 0) {
+                        return false
+                    }
+                }
                 return true
             } else if (keys['d']) {
-                var color = collision_ctx.getImageData(x + 1, y - 1, 1, 1)
+                for (let i = 0; i < players[socketID].width; i++) {
+                    var color = collision_ctx.getImageData(x + i + 1, y, 1, 1)
+                    if (color.data[0] != 0 && color.data[1] != 0 && color.data[2] != 0) {
+                        return false
+                    }
+                }
                 return true
             } else {
                 return false
