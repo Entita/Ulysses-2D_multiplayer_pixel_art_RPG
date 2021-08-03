@@ -6,7 +6,25 @@ const io = require("socket.io")(server);
 
 // Data config
 const players = new Object(),
-    messages = new Object()
+    messages = new Object(),
+    map_width = 600,
+    map_height = 600,
+    pixel_size = 4
+map = await createWorld(map_width, map_height, pixel_size)
+console.log(map)
+
+async function createWorld(width, height, pixel) {
+    var map = new Array()
+    width = parseInt(width / pixel)
+    height = parseInt(height / pixel)
+    for (let x = 0; x < width; x++) {
+        map[x] = []
+        for (let y = 0; y < height; y++) {
+            map[x][y] = 0
+        }
+    }
+    return map
+}
 
 io.on('connection', socket => {
     socket.on('ready', () => {
