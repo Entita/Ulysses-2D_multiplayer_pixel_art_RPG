@@ -54,8 +54,8 @@ var app = new Vue({
 
         // Multiplayer
         var players = new Object(),
-            messages = new Object()
-        const map = new Object()
+            messages = new Object(),
+            map = new Object()
 
         // Load Sprites
         this_.animationStates.forEach((state, i) => {
