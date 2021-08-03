@@ -445,7 +445,7 @@ var app = new Vue({
         }
 
         function moveSprite() {
-            if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
+            if ((keys['w'] || keys['s'] || keys['a'] || keys['d']) && validMove(players[socketID].x, players[socketID].y, keys)) {
                 var data = {
                     id: socketID,
                     w: keys['w'],
@@ -456,6 +456,21 @@ var app = new Vue({
                     width: canvas_width
                 }
                 this_.socket.emit('move', data)
+            }
+        }
+
+        function validMove(x, y, keys) {
+            if (keys['w']) {
+                var color = collision_ctx.getImageData(x, y - 1, 1, 1)
+                console.log(color, color.slice(','), color.slice(',')[0])
+            } else if (keys['s']) {
+                var color = collision_ctx.getImageData(x, y + 1, 1, 1)
+            } else if (keys['a']) {
+                var color = collision_ctx.getImageData(x - 1, y1, 1, 1)
+            } else if (keys['d']) {
+                var color = collision_ctx.getImageData(x + 1, y - 1, 1, 1)
+            } else {
+                return false
             }
         }
 
