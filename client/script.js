@@ -462,8 +462,11 @@ var app = new Vue({
         function validMove(x, y, keys) {
             if (keys['w']) {
                 var color = collision_ctx.getImageData(x, y - 1, 1, 1)
-                console.log(color.data)
-                return true
+                if (color.data[0] === 0 && color.data[1] === 0 && color.data[2] === 0) {
+                    return true
+                } else {
+                    return false
+                }
             } else if (keys['s']) {
                 var color = collision_ctx.getImageData(x, y + 1, 1, 1)
                 return true
