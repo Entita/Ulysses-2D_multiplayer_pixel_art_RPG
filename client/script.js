@@ -492,7 +492,6 @@ var app = new Vue({
             // } else {
             //     return false
             // }
-            console.log(collapsibles)
             return true
         }
 
