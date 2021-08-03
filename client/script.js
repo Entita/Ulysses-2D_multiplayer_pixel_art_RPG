@@ -449,8 +449,8 @@ var app = new Vue({
                 pseudoCtx.drawImage(image, frameX, frameY, player.sprite_width, player.sprite_height, player.x, player.y, player.width, player.height)
 
                 // Player hitbox
-                collision_ctx.strokeStyle = 'red'
-                collision_ctx.strokeRect(player.x, player.y, player.width, player.height)
+                pseudoCtx.strokeStyle = 'red'
+                pseudoCtx.strokeRect(player.x, player.y, player.width, player.height)
             }
 
             players_ctx.clearRect(0, 0, canvas_width, canvas_height)
