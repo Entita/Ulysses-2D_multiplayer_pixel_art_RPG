@@ -208,7 +208,8 @@ var app = new Vue({
 
         function drawMap() {
             var width = map.length,
-                height = map[0].length
+                height = map[0].length,
+                squareSize = 50
 
             const pseudoCanvas = document.createElement('canvas')
             pseudoCanvas.width = canvas_width
@@ -217,9 +218,9 @@ var app = new Vue({
             for (let x = 0; x < width; x++) {
                 for (let y = 0; y < height; y++) {
                     if (map[x][y] === 1) {
-                        pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x * 32, y * 32, 50, 50)
+                        pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x * squareSize, y * squareSize, squareSize, squareSize)
                     } else {
-                        pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x * 32, y * 32, 50, 50)
+                        pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x * squareSize, y * squareSize, squareSize, squareSize)
                     }
                 }
             }
