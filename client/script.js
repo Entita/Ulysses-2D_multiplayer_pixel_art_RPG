@@ -198,9 +198,9 @@ var app = new Vue({
         }
 
         function animateSprint() {
-            if (map.length) {
-                drawMap()
-            }
+            // if (map.length) {
+            //     drawMap()
+            // }
             moveSprite()
             drawPlayers()
             drawParticles()
