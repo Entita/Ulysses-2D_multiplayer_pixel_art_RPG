@@ -233,6 +233,18 @@ var app = new Vue({
                         } else {
                             console.log('not in object')
                         }
+                        collapsibles[random_rgb] = {
+                            id: random_rgb,
+                            x: coord_x,
+                            y: coord_y,
+                            width: squareSize,
+                            height: squareSize
+                        }
+                        if (collapsibles[random_rgb]) {
+                            console.log('in object')
+                        } else {
+                            console.log('not in object')
+                        }
                         while (random_rgb === 'rgb(0,0,0)') {
                             random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
                         }
