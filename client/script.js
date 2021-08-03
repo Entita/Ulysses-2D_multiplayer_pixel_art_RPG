@@ -217,6 +217,8 @@ var app = new Vue({
             pseudoCanvas.width = canvas_width
             pseudoCanvas.height = canvas_height
             pseudoCtx = pseudoCanvas.getContext('2d')
+
+            collision_ctx.clearRect(0, 0, canvas_width, canvas_height)
             for (let x = 0; x < width; x++) {
                 for (let y = 0; y < height; y++) {
                     var coord_x = x * squareSize,
