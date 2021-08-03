@@ -9,9 +9,8 @@ const players = new Object(),
     messages = new Object(),
     map_width = 80,
     map_height = 80,
-    pixel_size = 4
-map = createWorld(map_width, map_height, pixel_size)
-console.log('test')
+    pixel_size = 4,
+    map = createWorld(map_width, map_height, pixel_size)
 
 function createWorld(width, height, pixel) {
     var map = new Array()
@@ -20,10 +19,14 @@ function createWorld(width, height, pixel) {
     for (let x = 0; x < width; x++) {
         map[x] = []
         for (let y = 0; y < height; y++) {
-            map[x][y] = 0
+            if (Math.random > .75) {
+                map[x][y] = 1
+            } else {
+                map[x][y] = 0
+            }
         }
     }
-    console.log(map)
+    console.table(map)
     return map
 }
 
