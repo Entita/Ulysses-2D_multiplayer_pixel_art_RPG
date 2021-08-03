@@ -461,13 +461,13 @@ var app = new Vue({
 
         function validMove(x, y, keys) {
             if (keys['w']) {
-                var color = collision_ctx.getImageData(x, y - 1, 1, 1)
-                console.log(color.data[0], color.data[1], color.data[2])
-                if (color.data[0] === 0 && color.data[1] === 0 && color.data[2] === 0) {
-                    return true
-                } else {
-                    return false
+                for (let i = 0; i < players[socketID].width; i++) {
+                    var color = collision_ctx.getImageData(x + i, y - 1, 1, 1)
+                    if (color.data[0] === 0 && color.data[1] === 0 && color.data[2] === 0) {
+                        return false
+                    }
                 }
+                return true
             } else if (keys['s']) {
                 var color = collision_ctx.getImageData(x, y + 1, 1, 1)
                 return true
