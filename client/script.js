@@ -59,7 +59,8 @@ var app = new Vue({
         // Multiplayer
         var players = new Object(),
             messages = new Object(),
-            map = new Object()
+            map = new Object(),
+            collapsibles = new Object()
 
         // Load Sprites
         this_.animationStates.forEach((state, i) => {
@@ -227,6 +228,14 @@ var app = new Vue({
                         pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, coord_x, coord_y, squareSize, squareSize)
                         var o = Math.round, r = Math.random, s = 255,
                             random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
+                        if (collapsibles[random_rgb]) {
+                            console.log('in object')
+                        } else {
+                            console.log('not in object')
+                        }
+                        while (random_rgb === 'rgb(0,0,0)') {
+                            random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
+                        }
                         collision_ctx.fillStyle = random_rgb
                         collision_ctx.fillRect(coord_x, coord_y, squareSize, squareSize)
                     } else {
@@ -480,6 +489,7 @@ var app = new Vue({
             // } else {
             //     return false
             // }
+            console.log(collapsibles)
             return true
         }
 
