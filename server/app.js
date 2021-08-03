@@ -16,7 +16,7 @@ function createWorld(width, height) {
     for (let x = 0; x < width; x++) {
         map[x] = []
         for (let y = 0; y < height; y++) {
-            if (Math.random() > .75) {
+            if (Math.random() > .85) {
                 map[x][y] = 1
             } else {
                 map[x][y] = 0
