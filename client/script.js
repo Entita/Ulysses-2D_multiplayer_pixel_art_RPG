@@ -463,8 +463,7 @@ var app = new Vue({
             if (keys['w']) {
                 for (let i = 0; i < players[socketID].width; i++) {
                     var color = collision_ctx.getImageData(x + i, y - 1, 1, 1)
-                    if (color.data[0] === 0 && color.data[1] === 0 && color.data[2] === 0) {
-                        console.log(i)
+                    if (color.data[0] != 0 && color.data[1] != 0 && color.data[2] != 0) {
                         return false
                     }
                 }
