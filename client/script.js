@@ -198,9 +198,9 @@ var app = new Vue({
         }
 
         function animateSprint() {
-            // if (map.length) {
-            //     drawMap()
-            // }
+            if (map.length) {
+                drawMap()
+            }
             moveSprite()
             drawPlayers()
             drawParticles()
@@ -216,15 +216,18 @@ var app = new Vue({
             pseudoCanvas.width = canvas_width
             pseudoCanvas.height = canvas_height
             pseudoCtx = pseudoCanvas.getContext('2d')
-            for (let x = 0; x < width; x++) {
-                for (let y = 0; x < height; y++) {
-                    if (map[x][y] === 1) {
-                        pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x, y, 4, 4)
-                    } else {
-                        pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x, y, 4, 4)
-                    }
-                }
-            }
+            // for (let x = 0; x < width; x++) {
+            //     for (let y = 0; x < height; y++) {
+            //         if (map[x][y] === 1) {
+            //             pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, x, y, 4, 4)
+            //         } else {
+            //             pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, x, y, 4, 4)
+            //         }
+            //     }
+            // }
+            pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, 0, 0)
+            pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, 32, 0)
+
             world_ctx.clearRect(0, 0, canvas_width, canvas_height)
             world_ctx.drawImage(pseudoCanvas, 0, 0)
 
