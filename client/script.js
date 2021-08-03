@@ -198,7 +198,8 @@ var app = new Vue({
         }
 
         function animateSprint() {
-            drawMap()
+            // drawMap()
+            console.log(map.lenght, map[0].length)
             moveSprite()
             drawPlayers()
             drawParticles()
