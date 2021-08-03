@@ -225,8 +225,8 @@ var app = new Vue({
             //         }
             //     }
             // }
-            pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, 0, 0)
-            pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, 32, 0)
+            pseudoCtx.drawImage(world_sheet, 32, 0, 32, 32, 0, 0, 32, 32)
+            pseudoCtx.drawImage(world_sheet, 0, 0, 32, 32, 32, 0, 32, 32)
 
             world_ctx.clearRect(0, 0, canvas_width, canvas_height)
             world_ctx.drawImage(pseudoCanvas, 0, 0)
