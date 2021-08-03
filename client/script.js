@@ -198,7 +198,7 @@ var app = new Vue({
         }
 
         function animateSprint() {
-            if (map) {
+            if (map.length) {
                 console.log(map[0])
                 drawMap()
             }
