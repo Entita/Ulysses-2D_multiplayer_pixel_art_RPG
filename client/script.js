@@ -477,9 +477,9 @@ var app = new Vue({
 
         function validMove(x, y, keys) {
             function collapse(left, mid, right) {
-                if (left[0] === 0 && left[1] === 1 && left[2] === 0 &&
-                    mid[0] === 0 && mid[1] === 1 && mid[2] === 0 &&
-                    right[0] === 0 && right[1] === 1 && right[2] === 0) {
+                if ((left[0] === 0 && left[1] === 1 && left[2] === 0) ||
+                    (mid[0] === 0 && mid[1] === 1 && mid[2] === 0) ||
+                    (right[0] === 0 && right[1] === 1 && right[2] === 0)) {
                     return false
                 }
                 return true
