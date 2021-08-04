@@ -502,6 +502,7 @@ var app = new Vue({
             // } else {
             //     return false
             // }
+            return true
         }
 
         function createParticleAtPoint(x, y, colorData) {
