@@ -461,21 +461,7 @@ var app = new Vue({
         }
 
         async function moveSprite() {
-            if ((keys['w'] || keys['s'] || keys['a'] || keys['d'])) {
-                var speed = players[socketID].speed,
-                    half_w = players[socketID].width / 2,
-                    width = players[socketID].width,
-                    half_h = players[socketID].height / 2,
-                    height = players[socketID].height,
-                    leftColor = collision_ctx.getImageData(players[socketID].x, players[socketID].y - speed, 1, 1).data,
-                    midColor = collision_ctx.getImageData(players[socketID].x + half_w, players[socketID].y - speed, 1, 1).data,
-                    rightColor = collision_ctx.getImageData(players[socketID].x + width, players[socketID].y - speed, 1, 1).data
-                if ((leftColor[0] != 0 && leftColor[1] != 0 && leftColor[2] != 0) ||
-                    (midColor[0] != 0 && midColor[1] != 0 && midColor[2] != 0) ||
-                    (rightColor[0] != 0 && rightColor[1] != 0 && rightColor[2] != 0)) {
-                    console.log(false)
-                }
-                console.log(true)
+            if ((keys['w'] || keys['s'] || keys['a'] || keys['d']) && await validMove(players[socketID].x, players[socketID].y, keys)) {
                 var data = {
                     id: socketID,
                     w: keys['w'],
