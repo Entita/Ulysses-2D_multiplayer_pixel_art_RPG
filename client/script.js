@@ -476,14 +476,20 @@ var app = new Vue({
         }
 
         function validMove(x, y, keys) {
-            // if (keys['w']) {
-            //     for (let i = 0; i < players[socketID].width; i++) {
-            //         var color = collision_ctx.getImageData(x + i, y - 1, 1, 1)
-            //         if (color.data[0] != 0 && color.data[1] != 0 && color.data[2] != 0) {
-            //             return false
-            //         }
-            //     }
-            //     return true
+            function collapse(left, mid, right) {
+                if (left[0] === 0 && left[1] === 1 && left[2] === 0 &&
+                    mid[0] === 0 && mid[1] === 1 && mid[2] === 0 &&
+                    right[0] === 0 && right[1] === 1 && right[2] === 0) {
+                    return false
+                }
+                return true
+            }
+            if (keys['w']) {
+                var leftColor = collision_ctx.getImageData(x, y - 1, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x + players[socketID].width / 2, y - 1, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x + players[socketID].width, y - 1, 1, 1).data
+                return collapse(leftColor, midColor, rightColor)
+            }
             // } else if (keys['s']) {
             //     var color = collision_ctx.getImageData(x, y + 1, 1, 1)
             //     return true
@@ -496,7 +502,6 @@ var app = new Vue({
             // } else {
             //     return false
             // }
-            return true
         }
 
         function createParticleAtPoint(x, y, colorData) {
