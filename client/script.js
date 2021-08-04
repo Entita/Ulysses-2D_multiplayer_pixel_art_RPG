@@ -484,27 +484,32 @@ var app = new Vue({
                 }
                 return true
             }
+            var speed = players[socketID].speed,
+                half_w = players[socketID].width / 2,
+                width = players[socketID].width,
+                half_h = players[socketID].height / 2,
+                height = players[socketID].height
             if (keys['w']) {
-                var leftColor = collision_ctx.getImageData(x, y - 1, 1, 1).data,
-                    midColor = collision_ctx.getImageData(x + players[socketID].width / 2, y - 1, 1, 1).data,
-                    rightColor = collision_ctx.getImageData(x + players[socketID].width, y - 1, 1, 1).data
+                var leftColor = collision_ctx.getImageData(x, y - speed, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x + half_w, y - speed, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x + width, y - speed, 1, 1).data
                 test = collapse(leftColor, midColor, rightColor)
                 console.log(test)
                 return test
             } else if (keys['s']) {
-                var leftColor = collision_ctx.getImageData(x, y + players[socketID].height + 1, 1, 1).data,
-                    midColor = collision_ctx.getImageData(x + players[socketID].width / 2, y + players[socketID].height + 1, 1, 1).data,
-                    rightColor = collision_ctx.getImageData(x + players[socketID].width, y + players[socketID].height + 1, 1, 1).data
+                var leftColor = collision_ctx.getImageData(x, y + height + speed, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x + half_w, y + height + speed, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x + width, y + height + speed, 1, 1).data
                 return collapse(leftColor, midColor, rightColor)
             } else if (keys['a']) {
-                var leftColor = collision_ctx.getImageData(x - 1, y, 1, 1).data,
-                    midColor = collision_ctx.getImageData(x - 1, y + players[socketID].height / 2, 1, 1).data,
-                    rightColor = collision_ctx.getImageData(x - 1, y + players[socketID].height, 1, 1).data
+                var leftColor = collision_ctx.getImageData(x - speed, y, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x - speed, y + half_h, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x - speed, y + height, 1, 1).data
                 return collapse(leftColor, midColor, rightColor)
             } else if (keys['d']) {
-                var leftColor = collision_ctx.getImageData(x + players[socketID].width + 1, y, 1, 1).data,
-                    midColor = collision_ctx.getImageData(x + players[socketID].width + 1, y + players[socketID].height / 2, 1, 1).data,
-                    rightColor = collision_ctx.getImageData(x + players[socketID].width + 1, y + players[socketID].height, 1, 1).data
+                var leftColor = collision_ctx.getImageData(x + width + speed, y, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x + width + speed, y + half_h, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x + width + speed, y + height, 1, 1).data
                 return collapse(leftColor, midColor, rightColor)
             } else {
                 return false
