@@ -460,7 +460,7 @@ var app = new Vue({
             delete pseudoCtx
         }
 
-        function moveSprite() {
+        async function moveSprite() {
             if ((keys['w'] || keys['s'] || keys['a'] || keys['d']) && await validMove(players[socketID].x, players[socketID].y, keys)) {
                 var data = {
                     id: socketID,
