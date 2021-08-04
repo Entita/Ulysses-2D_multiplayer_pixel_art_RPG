@@ -493,9 +493,7 @@ var app = new Vue({
                 var leftColor = collision_ctx.getImageData(x, y - speed, 1, 1).data,
                     midColor = collision_ctx.getImageData(x + half_w, y - speed, 1, 1).data,
                     rightColor = collision_ctx.getImageData(x + width, y - speed, 1, 1).data
-                test = collapse(leftColor, midColor, rightColor)
-                console.log(test)
-                return test
+                return collapse(leftColor, midColor, rightColor)
             } else if (keys['s']) {
                 var leftColor = collision_ctx.getImageData(x, y + height + speed, 1, 1).data,
                     midColor = collision_ctx.getImageData(x + half_w, y + height + speed, 1, 1).data,
