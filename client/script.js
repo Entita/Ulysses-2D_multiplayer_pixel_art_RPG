@@ -461,7 +461,7 @@ var app = new Vue({
         }
 
         function moveSprite() {
-            if ((keys['w'] || keys['s'] || keys['a'] || keys['d']) && validMove(players[socketID].x, players[socketID].y, keys)) {
+            if ((keys['w'] || keys['s'] || keys['a'] || keys['d']) && await validMove(players[socketID].x, players[socketID].y, keys)) {
                 var data = {
                     id: socketID,
                     w: keys['w'],
@@ -475,8 +475,8 @@ var app = new Vue({
             }
         }
 
-        function validMove(x, y, keys) {
-            function collapse(left, mid, right) {
+        async function validMove(x, y, keys) {
+            async function collapse(left, mid, right) {
                 if ((left[0] != 0 && left[1] != 0 && left[2] != 0) ||
                     (mid[0] != 0 && mid[1] != 0 && mid[2] != 0) ||
                     (right[0] != 0 && right[1] != 0 && right[2] != 0)) {
@@ -493,22 +493,22 @@ var app = new Vue({
                 var leftColor = collision_ctx.getImageData(x, y - speed, 1, 1).data,
                     midColor = collision_ctx.getImageData(x + half_w, y - speed, 1, 1).data,
                     rightColor = collision_ctx.getImageData(x + width, y - speed, 1, 1).data
-                return collapse(leftColor, midColor, rightColor)
+                return await collapse(leftColor, midColor, rightColor)
             } else if (keys['s']) {
                 var leftColor = collision_ctx.getImageData(x, y + height + speed, 1, 1).data,
                     midColor = collision_ctx.getImageData(x + half_w, y + height + speed, 1, 1).data,
                     rightColor = collision_ctx.getImageData(x + width, y + height + speed, 1, 1).data
-                return collapse(leftColor, midColor, rightColor)
+                return await collapse(leftColor, midColor, rightColor)
             } else if (keys['a']) {
                 var leftColor = collision_ctx.getImageData(x - speed, y, 1, 1).data,
                     midColor = collision_ctx.getImageData(x - speed, y + half_h, 1, 1).data,
                     rightColor = collision_ctx.getImageData(x - speed, y + height, 1, 1).data
-                return collapse(leftColor, midColor, rightColor)
+                return await collapse(leftColor, midColor, rightColor)
             } else if (keys['d']) {
                 var leftColor = collision_ctx.getImageData(x + width + speed, y, 1, 1).data,
                     midColor = collision_ctx.getImageData(x + width + speed, y + half_h, 1, 1).data,
                     rightColor = collision_ctx.getImageData(x + width + speed, y + height, 1, 1).data
-                return collapse(leftColor, midColor, rightColor)
+                return await collapse(leftColor, midColor, rightColor)
             } else {
                 return false
             }
