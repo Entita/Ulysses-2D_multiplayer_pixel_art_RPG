@@ -231,8 +231,8 @@ var app = new Vue({
                         while (random_rgb === 'rgb(0,0,0)' && !collapsibles[random_rgb]) {
                             random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
                         }
-                        collision_ctx.strokeStyle = random_rgb
-                        collision_ctx.strokeRect(coord_x, coord_y, squareSize, squareSize)
+                        collision_ctx.fillStyle = random_rgb
+                        collision_ctx.fillRect(coord_x, coord_y, squareSize, squareSize)
                         collapsibles[random_rgb] = {
                             id: random_rgb,
                             name: 'rock',
