@@ -231,8 +231,8 @@ var app = new Vue({
                         while (random_rgb === 'rgb(0,0,0)' && !collapsibles[random_rgb]) {
                             random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
                         }
-                        collision_ctx.strokeStyle = random_rgb
-                        collision_ctx.strokeRect(coord_x, coord_y, squareSize, squareSize)
+                        collision_ctx.fillStyle = random_rgb
+                        collision_ctx.fillRect(coord_x, coord_y, squareSize, squareSize)
                         collapsibles[random_rgb] = {
                             id: random_rgb,
                             name: 'rock',
@@ -489,20 +489,24 @@ var app = new Vue({
                     midColor = collision_ctx.getImageData(x + players[socketID].width / 2, y - 1, 1, 1).data,
                     rightColor = collision_ctx.getImageData(x + players[socketID].width, y - 1, 1, 1).data
                 return collapse(leftColor, midColor, rightColor)
+            } else if (keys['s']) {
+                var leftColor = collision_ctx.getImageData(x, y + 1, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x + players[socketID].width / 2, y + 1, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x + players[socketID].width, y + 1, 1, 1).data
+                return collapse(leftColor, midColor, rightColor)
+            } else if (keys['a']) {
+                var leftColor = collision_ctx.getImageData(x - 1, y, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x - 1, y + players[socketID].height / 2, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x - 1, y + players[socketID].height, 1, 1).data
+                return collapse(leftColor, midColor, rightColor)
+            } else if (keys['d']) {
+                var leftColor = collision_ctx.getImageData(x + 1, y, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x + 1, y + players[socketID].height / 2, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x + 1, y + players[socketID].height, 1, 1).data
+                return collapse(leftColor, midColor, rightColor)
+            } else {
+                return false
             }
-            // } else if (keys['s']) {
-            //     var color = collision_ctx.getImageData(x, y + 1, 1, 1)
-            //     return true
-            // } else if (keys['a']) {
-            //     var color = collision_ctx.getImageData(x - 1, y, 1, 1)
-            //     return true
-            // } else if (keys['d']) {
-            //     var color = collision_ctx.getImageData(x + 1, y - 1, 1, 1)
-            //     return true
-            // } else {
-            //     return false
-            // }
-            return true
         }
 
         function createParticleAtPoint(x, y, colorData) {
