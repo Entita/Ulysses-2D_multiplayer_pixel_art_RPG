@@ -492,9 +492,9 @@ var app = new Vue({
                 console.log(test)
                 return test
             } else if (keys['s']) {
-                var leftColor = collision_ctx.getImageData(x, y + 1, 1, 1).data,
-                    midColor = collision_ctx.getImageData(x + players[socketID].width / 2, y + 1, 1, 1).data,
-                    rightColor = collision_ctx.getImageData(x + players[socketID].width, y + 1, 1, 1).data
+                var leftColor = collision_ctx.getImageData(x, y + players[socketID].height + 1, 1, 1).data,
+                    midColor = collision_ctx.getImageData(x + players[socketID].width / 2, y + players[socketID].height + 1, 1, 1).data,
+                    rightColor = collision_ctx.getImageData(x + players[socketID].width, y + players[socketID].height + 1, 1, 1).data
                 return collapse(leftColor, midColor, rightColor)
             } else if (keys['a']) {
                 var leftColor = collision_ctx.getImageData(x - 1, y, 1, 1).data,
