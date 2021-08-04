@@ -461,7 +461,7 @@ var app = new Vue({
         }
 
         async function moveSprite() {
-            if ((keys['w'] || keys['s'] || keys['a'] || keys['d']) && await validMove(players[socketID].x, players[socketID].y, keys)) {
+            if ((keys['w'] || keys['s'] || keys['a'] || keys['d'])) {
                 var speed = players[socketID].speed,
                     half_w = players[socketID].width / 2,
                     width = players[socketID].width,
