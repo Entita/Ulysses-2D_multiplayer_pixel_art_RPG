@@ -156,7 +156,7 @@ var app = new Vue({
             const dropdown = document.getElementById('animations'),
                 messageInput = document.querySelector('.messageInput'),
                 messageBtn = document.querySelector('.messageBtn')
-                
+
             dropdown.addEventListener('change', e => {
                 var data = {
                     id: socketID,
@@ -232,8 +232,8 @@ var app = new Vue({
                         while (random_rgb === 'rgb(0,0,0)' && !collapsibles[random_rgb]) {
                             random_rgb = 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')'
                         }
-                        collision_ctx.fillStyle = random_rgb
-                        collision_ctx.fillRect(coord_x, coord_y, squareSize, squareSize)
+                        collision_ctx.strokeStyle = random_rgb
+                        collision_ctx.strokeRect(coord_x, coord_y, squareSize, squareSize)
                         collapsibles[random_rgb] = {
                             id: random_rgb,
                             name: 'rock',
@@ -462,7 +462,8 @@ var app = new Vue({
         }
 
         async function moveSprite() {
-            if ((keys['w'] || keys['s'] || keys['a'] || keys['d']) && await validMove(players[socketID].x, players[socketID].y, keys)) {
+            // if ((keys['w'] || keys['s'] || keys['a'] || keys['d']) && await validMove(players[socketID].x, players[socketID].y, keys)) {
+            if (keys['w'] || keys['s'] || keys['a'] || keys['d']) {
                 var data = {
                     id: socketID,
                     w: keys['w'],
