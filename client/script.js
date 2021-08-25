@@ -156,6 +156,7 @@ var app = new Vue({
             const dropdown = document.getElementById('animations'),
                 messageInput = document.querySelector('.messageInput'),
                 messageBtn = document.querySelector('.messageBtn')
+                
             dropdown.addEventListener('change', e => {
                 var data = {
                     id: socketID,
