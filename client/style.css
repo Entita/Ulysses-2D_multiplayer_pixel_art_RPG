@@ -20,6 +20,10 @@ canvas {
     transform: translate(-10%, -50%);
 }
 
+[v-cloak] {
+    display: none;
+}
+
 #collisions {
     z-index: 999;
 }

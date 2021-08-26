@@ -18,7 +18,6 @@ var app = new Vue({
                 'deadpool',
                 'captainamerica'
             ],
-            messages: '',
             isReady: false
         }
     },
@@ -90,6 +89,8 @@ var app = new Vue({
 
         startAnimating(fps)
 
+        // Socket.io listeners
+
         this_.socket.on('world', server_map => {
             map = server_map
             drawMap()
@@ -113,6 +114,8 @@ var app = new Vue({
         this_.socket.on('player_disconnected', player => {
             playerParticles(player)
         })
+
+        // Functions
 
         function startAnimating(fps) {
             fpsInterval = 1000 / fps
@@ -190,18 +193,6 @@ var app = new Vue({
             })
         }
 
-        function sendMessage(messageInput) {
-            if (messageInput.value.length > 0) {
-                var data = {
-                    id: socketID,
-                    message: messageInput.value,
-                    time: Date.now()
-                }
-                this_.socket.emit('message', data)
-                messageInput.value = null
-            }
-        }
-
         function animateSprint() {
             moveSprite()
             drawPlayers()
@@ -255,6 +246,18 @@ var app = new Vue({
             delete pseudoCtx
         }
 
+        function sendMessage(messageInput) {
+            if (messageInput.value.length > 0) {
+                var data = {
+                    id: socketID,
+                    message: messageInput.value,
+                    time: Date.now()
+                }
+                this_.socket.emit('message', data)
+                messageInput.value = null
+            }
+        }
+
         function drawMessages() {
             const pseudoCanvas = document.createElement('canvas')
             pseudoCanvas.width = canvas_width
@@ -275,8 +278,8 @@ var app = new Vue({
                     delete messages[id]
                 } else {
                     var lines = wrapText(message.text, messages_width - messages_font),
-                        messages_height = messages_font * lines.length
-                    var tempText, tempIndex
+                        messages_height = messages_font * lines.length,
+                        tempText, tempIndex
 
                     const tempConvas = document.createElement('canvas')
                     tempConvas.width = canvas_width
@@ -434,6 +437,66 @@ var app = new Vue({
             }
         }
 
+        function playerParticles(player) {
+            let width = player.width,
+                height = player.height,
+                colorData = players_ctx.getImageData(player.x, player.y, width, height).data
+
+            for (let localX = 0; localX < width; localX++) {
+                for (let localY = 0; localY < height; localY++) {
+                    let index = (localY * width + localX) * 4
+                    let rgbaColorArr = colorData.slice(index, index + 4)
+                    if (rgbaColorArr[0] == 0 && rgbaColorArr[1] == 0 && rgbaColorArr[2] == 0) {
+                        continue
+                    }
+
+                    let globalX = player.x + localX
+                    let globalY = player.y + localY
+
+                    createParticleAtPoint(globalX, globalY, rgbaColorArr)
+                }
+            }
+        }
+
+        function createParticleAtPoint(x, y, colorData) {
+            let particle = new ExplodingParticle()
+            particle.rgbArray = colorData
+            particle.startX = x
+            particle.startY = y
+            particle.startTime = Date.now()
+
+            particles.push(particle)
+        }
+
+        function ExplodingParticle() {
+            this.animationDuration = 1000
+            this.speed = {
+                x: -5 + Math.random() * 10,
+                y: -5 + Math.random() * 10
+            };
+            this.size = 4
+            this.opacity = 1
+            this.life = 30 + Math.random() * 10
+            this.remainingLife = this.life
+
+            this.draw = ctx => {
+                let p = this
+
+                if (this.remainingLife > 0 && this.size > 0) {
+                    ctx.beginPath()
+                    ctx.fillRect(p.startX, p.startY, p.size, p.size)
+                    ctx.fillStyle = "rgba(" + this.rgbArray[0] + ',' + this.rgbArray[1] + ',' + this.rgbArray[2] + ", " + this.opacity + ")"
+                    ctx.fill()
+
+                    p.remainingLife--
+                    p.size -= 0.2
+                    this.opacity -= 0.05
+                    p.startX += p.speed.x
+                    p.startY += p.speed.y
+                }
+            }
+        }
+
         function drawPlayers() {
             const pseudoCanvas = document.createElement('canvas')
             pseudoCanvas.width = canvas_width
@@ -513,66 +576,6 @@ var app = new Vue({
                 return await collapse(leftColor, midColor, rightColor)
             } else {
                 return false
-            }
-        }
-
-        function createParticleAtPoint(x, y, colorData) {
-            let particle = new ExplodingParticle()
-            particle.rgbArray = colorData
-            particle.startX = x
-            particle.startY = y
-            particle.startTime = Date.now()
-
-            particles.push(particle)
-        }
-
-        function ExplodingParticle() {
-            this.animationDuration = 1000
-            this.speed = {
-                x: -5 + Math.random() * 10,
-                y: -5 + Math.random() * 10
-            };
-            this.size = 4
-            this.opacity = 1
-            this.life = 30 + Math.random() * 10
-            this.remainingLife = this.life
-
-            this.draw = ctx => {
-                let p = this
-
-                if (this.remainingLife > 0 && this.size > 0) {
-                    ctx.beginPath()
-                    ctx.fillRect(p.startX, p.startY, p.size, p.size)
-                    ctx.fillStyle = "rgba(" + this.rgbArray[0] + ',' + this.rgbArray[1] + ',' + this.rgbArray[2] + ", " + this.opacity + ")"
-                    ctx.fill()
-
-                    p.remainingLife--
-                    p.size -= 0.2
-                    this.opacity -= 0.05
-                    p.startX += p.speed.x
-                    p.startY += p.speed.y
-                }
-            }
-        }
-
-        function playerParticles(player) {
-            let width = player.width,
-                height = player.height,
-                colorData = players_ctx.getImageData(player.x, player.y, width, height).data
-
-            for (let localX = 0; localX < width; localX++) {
-                for (let localY = 0; localY < height; localY++) {
-                    let index = (localY * width + localX) * 4
-                    let rgbaColorArr = colorData.slice(index, index + 4)
-                    if (rgbaColorArr[0] == 0 && rgbaColorArr[1] == 0 && rgbaColorArr[2] == 0) {
-                        continue
-                    }
-
-                    let globalX = player.x + localX
-                    let globalY = player.y + localY
-
-                    createParticleAtPoint(globalX, globalY, rgbaColorArr)
-                }
             }
         }
     },
