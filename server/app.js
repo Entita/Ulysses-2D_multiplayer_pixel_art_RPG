@@ -29,9 +29,6 @@ mongoose.connection.on('connected', () => console.log('db connected'))
 //     else console.log('data saved')
 // })
 
-// Model
-const BlogPost = mongoose.model('BlogPost', BlogPostSchema);
-
 // Data config
 const players = new Object(),
     messages = new Object(),
