@@ -51,7 +51,7 @@
             </div>
             <div>
                 <div v-if="startingMenu.loginShow" class="login_account">
-                    <button @click="startingMenu.loginShow=false">Back</button>
+                    <button class="goBackBtn" @click="startingMenu.loginShow=false">Back</button>
                     <label for="login_nickname">Your nickname/email</label>
                     <input id="login_nickname" type="text" name="login_nickname">
                     <label for="login_password">Repeat your password</label>
@@ -59,14 +59,14 @@
                     <button id="loginBtn">Log In</button>
                 </div>
                 <div v-if="startingMenu.signinShow" class="create_account">
-                    <button @click="startingMenu.signinShow=false">Back</button>
+                    <button class="goBackBtn" @click="startingMenu.signinShow=false">Back</button>
                     <label for="player_nickname">Your nickname</label>
-                    <input id="player_nickname" type="text" name="player_nickname">s
                     <label for="player_email">Your email</label>
-                    <input id="player_email" type="text" name="player_email">
                     <label for="player_password">Your password</label>
-                    <input id="player_password" type="text" name="player_password">
                     <label for="player_repeat_password">Repeat your password</label>
+                    <input id="player_nickname" type="text" name="player_nickname">
+                    <input id="player_email" type="text" name="player_email">
+                    <input id="player_password" type="text" name="player_password">
                     <input id="player_repeat_password" type="text" name="player_repeat_password">
                     <button id="signUpBtn">Sign Up</button>
                 </div>

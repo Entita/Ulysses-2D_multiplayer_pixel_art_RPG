@@ -3,7 +3,7 @@ var app = new Vue({
     data() {
         return {
             socket: {},
-            loginSocket: JSON.parse(localStorage.getItem('loginToken')),
+            loginSocket: null,
             animationStates: [
                 { name: 'down', frames: 4 },
                 { name: 'left', frames: 4 },
@@ -31,6 +31,7 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        this.loginSocket = JSON.parse(localStorage.getItem('loginToken'))
     },
     mounted() {
         var this_ = this,
