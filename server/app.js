@@ -8,7 +8,7 @@ const io = require("socket.io")(server);
 const database_url = process.env.MONGODB_URL
 const mongoose = require('mongoose')
 
-const Blog = require('./models/blog')
+const Message = require('./models/message')
 
 mongoose.connect(database_url, {
     useNewUrlParser: true,
@@ -16,13 +16,17 @@ mongoose.connect(database_url, {
 })
 
 mongoose.connection.on('connected', () => console.log('db connected', database_url))
-const blog = Blog({
-    title: 'test',
-    snippet: 'about new blog'
+const message = Message({
+    player: 'Entita',
+    message: 'Testing new message system'
 })
 
-blog.save().then(data => {
+message.save().then(data => {
     console.log(data)
+}).catch(err => console.error(err))
+
+Message.find().then(message => {
+    console.table(message)
 }).catch(err => console.error(err))
 
 
