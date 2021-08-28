@@ -174,7 +174,7 @@ var app = new Vue({
                 chatElement = document.querySelector('.chat')
 
             chatElement.addEventListener('scroll', e => {
-                console.log(chatElement, chatElement.scrollY, e.target.scrollY < chatElement.scrollHeight - chatElement.offsetHeight)
+                console.log(chatElement, chatElement.scrollY, chatElement.scrollY < chatElement.scrollHeight - chatElement.offsetHeight)
             })
 
             dropdown.addEventListener('change', e => {
