@@ -18,7 +18,8 @@ var app = new Vue({
                 'deadpool',
                 'captainamerica'
             ],
-            isReady: false
+            isReady: false,
+            chat: {}
         }
     },
     created() {
@@ -90,6 +91,10 @@ var app = new Vue({
         startAnimating(fps)
 
         // Socket.io listeners
+
+        this_.socket.on('chat', chat => {
+            this.chat = chat
+        })
 
         this_.socket.on('world', server_map => {
             map = server_map

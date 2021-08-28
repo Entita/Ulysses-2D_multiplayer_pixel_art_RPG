@@ -5,29 +5,40 @@ const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
 // MongoDN
-const database_url = process.env.MONGODB_URL
 const mongoose = require('mongoose')
-
+const db_url = process.env.MONGODB_URL
 const Message = require('./models/message')
 
-mongoose.connect(database_url, {
+// Get database data
+mongoose.connect(db_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 
-mongoose.connection.on('connected', () => console.log('db connected', database_url))
-const message = Message({
-    player: 'Entita',
-    message: 'Testing new message system'
-})
+mongoose.connection.on('connected', () => console.log('Connected to MongoDB'))
 
-message.save().then(data => {
-    console.log(data)
-}).catch(err => console.error(err))
+// Get database chat data
+const chat = new Object()
 
 Message.find().then(message => {
-    console.table(message)
+    chat[message.id] = {
+        player: message.player,
+        message: message.message,
+        date: messages.createdAt
+    }
 }).catch(err => console.error(err))
+
+// Update database data
+
+// const message = Message({
+//     player: 'Entita',
+//     message: 'Testing new message system'
+// })
+
+// message.save().then(data => {
+//     console.log(data)
+// }).catch(err => console.error(err))
+
 
 
 // Data config
@@ -67,6 +78,9 @@ io.on('connection', socket => {
             moving: false
         }
         players[socket.id] = player
+
+        console.log(chat)
+        io.emit('chat', chat)
         io.emit('world', map)
         io.emit('update_players', players)
         io.emit('player_connected', player)
