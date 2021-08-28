@@ -614,14 +614,24 @@ var app = new Vue({
     },
     methods: {
         init() {
-            const name = document.getElementById('player_name')
-            if (name.length > 0) {
+            const name = document.getElementById('player_name').value
+            if (name.length > 4 && name.length < 12) {
                 var this_ = this
                 setTimeout(function () {
                     /* Wait a bit for the html elements to render */
                     this_.isReady = !this_.isReady
                     this_.socket.emit('ready', name)
                 }, 10)
+            } else {
+                if (name.length === 0) {
+                    alert('Name is empty')
+                } else if (name.length < 5) {
+                    alert('Name is too short')
+                } else if (name.length > 11) {
+                    alert('Name is too long')
+                } else {
+                    alert('Unknown error')
+                }
             }
         },
         scrollToBottom() {
