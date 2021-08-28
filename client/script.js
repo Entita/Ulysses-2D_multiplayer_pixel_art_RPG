@@ -101,9 +101,9 @@ var app = new Vue({
             this.chat = chat
 
             const chatElement = document.querySelector('.chat')
-            console.log(chatElement.pageYOffset, chatElement.verticalTop)
-            chatElement.pageYOffset  = chatElement.verticalTop
-            console.log(chatElement.pageYOffset)
+            console.log(chatElement.scrollTop, chatElement.scrollHeight)
+            chatElement.scrollingElement.scrollTop = chatElement.scrollHeight
+            console.log(chatElement.scrollTop)
         })
 
         this_.socket.on('world', server_map => {
