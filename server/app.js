@@ -7,7 +7,9 @@ const io = require("socket.io")(server);
 // MongoDN
 const mongoose = require('mongoose')
 const Message = require('./models/message')
+const User = require('./models/user')
 const chat = new Object()
+const users = new Object()
 
 // Get database data
 mongoose.connect(process.env.MONGODB_URL, {
@@ -17,12 +19,25 @@ mongoose.connect(process.env.MONGODB_URL, {
 
 mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB')
+    // Chat import
     Message.find().then(messages => {
         messages.map(message => {
             chat[message._id] = {
                 player: message.player,
                 message: message.message,
                 createdAt: message.createdAt
+            }
+        })
+    }).catch(err => console.error(err))
+
+    // Users import
+    User.find().then(people => {
+        people.map(user => {
+            users[user._id] = {
+                nickname: user.nickname,
+                email: user.email,
+                password: user.password,
+                createdAt: user.createdAt
             }
         })
     }).catch(err => console.error(err))
@@ -51,6 +66,10 @@ function createWorld(width, height) {
 }
 
 io.on('connection', socket => {
+    socket.on('account', data => {
+        
+    })
+
     socket.on('ready', name => {
         var player = {
             name: name,
