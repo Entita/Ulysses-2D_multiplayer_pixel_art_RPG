@@ -184,3 +184,7 @@ option {
 .login_account:nth-child(odd) {
     margin-top: 1.2rem;
 }
+
+#starting .switches {
+    display: flex;
+}
