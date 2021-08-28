@@ -77,7 +77,6 @@ io.on('connection', socket => {
         }
         players[socket.id] = player
 
-        console.log(chat)
         io.emit('chat', chat)
         io.emit('world', map)
         io.emit('update_players', players)

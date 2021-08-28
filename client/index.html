@@ -22,21 +22,9 @@
             </div>
             <div class="chatWindow">
                 <div class="chat">
-                    <div class="message">
-                        <span class="message_date">31.7 18:18</span>
-                        <span class="message_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-                            accusantium quia, eum voluptatibus, corrupti velit tenetur iste eaque repudiandae beatae
-                            atque repellendus nihil quas nemo reprehenderit praesentium. Impedit, voluptate
-                            corporis.</span>
-                    </div>
-                    <div class="message">
-                        <span class="message_date">31.7 19:24</span>
-                        <span class="message_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-                            accusantium quia, eum voluptatibus, corrupti velit</span>
-                    </div>
-                    <div class="message">
-                        <span class="message_date">{{ chat.date }}</span>
-                        <span class="message_text">{{ chat.message }}</span>
+                    <div class="message" v-for="message in chat">
+                        <span class="message_date">{{ message.date }}</span>
+                        <span class="message_text">{{ message.message }}</span>
                     </div>
                 </div>
                 <div class="chat-controls">
