@@ -80,7 +80,7 @@ option {
 }
 
 .chat {
-    height: 740px;
+    height    : 740px;
     overflow-y: scroll;
     padding   : 6px 9px;
 }
@@ -114,6 +114,19 @@ option {
 .message_name {
     font-weight: bold;
     opacity    : .9;
+}
+
+.scroll_to_top {
+    position        : absolute;
+    z-index         : 999;
+    cursor          : pointer;
+    left            : 50%;
+    transform       : translate(-50%, -21px);
+    font-size       : 14px;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius   : 8px;
+    padding         : 3px;
+    text-shadow     : 1px 2px lightgrey;
 }
 
 .chat-controls {

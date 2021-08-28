@@ -599,6 +599,7 @@ var app = new Vue({
             }, 10)
         },
         scrollToTop() {
+            console.log('AAA')
             const chatElement = document.querySelector('.chat')
             console.log(chatElement.scrollTop, chatElement.scrollHeight)
             chatElement.scrollTop = chatElement.scrollHeight
