@@ -2,8 +2,6 @@ const mongoose = require('mongoose')
 const moment = require('moment')
 const Schema = mongoose.Schema
 
-const createdTime = moment(new Date()).format('h:mm a, MMMM Do YYYY')
-
 const userSchema = new Schema({
     nickname: {
         type: String,
@@ -19,7 +17,7 @@ const userSchema = new Schema({
     },
     createdAt: {
         type: Date,
-        default: createdTime
+        default: moment().format('h:mm a, MMMM Do YYYY')
     }
 })
 
