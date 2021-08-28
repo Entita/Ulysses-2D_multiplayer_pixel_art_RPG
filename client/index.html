@@ -49,7 +49,7 @@
                 <button @click="startingMenu.loginShow=true">Log In</button>
                 <button @click="startingMenu.signinShow=true"> Sign Up</button>
             </div>
-            <div v-if="loginSocket">
+            <div v-if="loginSocket != null">
                 <div v-if="startingMenu.loginShow" class="login_account">
                     <button @click="startingMenu.loginShow=false">Back</button>
                     <label for="login_nickname">Your nickname/email</label>
