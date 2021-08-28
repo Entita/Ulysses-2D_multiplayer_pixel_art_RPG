@@ -4,6 +4,13 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
+// MongoDN
+const { MongoClient } = require('mongodb')
+const database_url = process.env.MONGODB_URL
+console.log(database_url)
+const client = new MongoClient(database_url, { useUnifiedTopology: true })
+client.connect(() => console.log('connected'))
+
 // Data config
 const players = new Object(),
     messages = new Object(),
