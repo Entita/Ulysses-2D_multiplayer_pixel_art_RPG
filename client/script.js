@@ -687,7 +687,7 @@ var app = new Vue({
                 this.socket.emit('logIn', user)
                 this.socket.on('loggedIn', user => {
                     console.log(user)
-                    this.socket.destroy()
+                    this.socket.off('loggedIn')
                 })
             }
         }
