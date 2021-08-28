@@ -19,17 +19,6 @@ mongoose.connection.on('connected', () => console.log('Connected to MongoDB'))
 // Get database chat data
 const chat = new Object()
 
-// Update database data
-
-const message = Message({
-    player: 'Entita',
-    message: 'Testing new message system'
-})
-
-message.save().then(data => {
-    console.log(data)
-}).catch(err => console.error(err))
-
 // Message.find().then(message => {
 //     console.log(message)
 //     // chat[message._id] = {
@@ -39,12 +28,26 @@ message.save().then(data => {
 //     // }
 //     // console.log(chat)
 // }).catch(err => console.error(err))
+Message.find().then(message => {
+    console.log(message)
+}).catch(err => console.error(err))
 
 app.get('/all', (req, res) => {
     Message.find().then(message => {
         res.send(message)
     }).catch(err => console.error(err))
 })
+
+// Update database data
+
+// const message = Message({
+//     player: 'Entita',
+//     message: 'Testing new message system'
+// })
+
+// message.save().then(data => {
+//     console.log(data)
+// }).catch(err => console.error(err))
 
 // Data config
 const players = new Object(),
