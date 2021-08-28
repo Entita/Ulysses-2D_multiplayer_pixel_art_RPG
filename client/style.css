@@ -68,9 +68,18 @@ option {
     transform: translate(-50%, -50%);
 }
 
+#starting input {
+    border          : solid gray 2px;
+    border-top-width: 4px;
+    border-top-color: black;
+    padding         : .1rem;
+    border-radius   : 3px;
+}
+
 #starting button {
-    width : 8rem;
-    height: 2.5rem;
+    width     : 8rem;
+    height    : 2.5rem;
+    margin-top: 28px;
 }
 
 .chatWindow {
