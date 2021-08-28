@@ -45,7 +45,7 @@
             </div>
         </div>
         <div id="starting" v-else>
-            <div v-if="!startingMenu.loginShow && !startingMenu.signinShow" class="switches">
+            <div v-if="!startingMenu.loginShow && !startingMenu.signinShow && !loginSocket" class="switches">
                 <button @click="startingMenu.loginShow=true">Log In</button>
                 <button @click="startingMenu.signinShow=true"> Sign Up</button>
             </div>
