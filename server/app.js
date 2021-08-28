@@ -5,11 +5,32 @@ const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 
 // MongoDN
-const { MongoClient } = require('mongodb')
 const database_url = process.env.MONGODB_URL
-console.log(database_url)
-const client = new MongoClient(database_url, { useUnifiedTopology: true })
-client.connect(() => console.log('connected'))
+const mongoose = require('mongoose')
+mongoose.connect(database_url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
+mongoose.connection.on('connected', () => console.log('db connected'))
+
+const Schema = mongoose.Schema;
+const BlogPostSchema = new Schema({
+    title: String,
+    body: String,
+    date: {
+        type: String,
+        default: Date.now()
+    }
+});
+
+BlogPostSchema.save(err => {
+    if (err) console.log('error', err)
+    else console.log('data saved')
+})
+
+// Model
+const BlogPost = mongoose.model('BlogPost', BlogPostSchema);
 
 // Data config
 const players = new Object(),
