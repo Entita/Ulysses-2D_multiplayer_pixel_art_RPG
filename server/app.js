@@ -132,13 +132,13 @@ io.on('connection', socket => {
             messages[data.id] = message
             io.emit('update_messages', messages)
 
-            // Update database data
-            const message = Message({
+            // Insert message to database
+            const messageSchema = Message({
                 player: 'Tester',
                 message: data.message
             })
 
-            message.save().then(message => {
+            messageSchema.save().then(message => {
                 chat[message._id] = {
                     player: message.player,
                     message: message.message,
