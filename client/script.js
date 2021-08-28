@@ -546,7 +546,7 @@ var app = new Vue({
                 pseudoCtx.font = '12px pixel'
                 pseudoCtx.fillStyle = 'black'
                 pseudoCtx.textAlign = 'center'
-                pseudoCtx.fillText(player.name, player.x, player.y)
+                pseudoCtx.fillText(player.name, player.width / 2 + player.x, player.y)
             }
 
             players_ctx.clearRect(0, 0, canvas_width, canvas_height)
