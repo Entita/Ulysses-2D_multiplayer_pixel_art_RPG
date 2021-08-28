@@ -81,6 +81,10 @@ io.on('connection', socket => {
         }).catch(err => console.error(err))
     })
 
+    socket.on('logIn', data => {
+        io.emit('loggedIn', false)
+    })
+
     socket.on('ready', name => {
         var player = {
             name: name,

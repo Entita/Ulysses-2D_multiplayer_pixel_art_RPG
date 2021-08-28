@@ -638,15 +638,15 @@ var app = new Vue({
             return re.test(String(email).toLowerCase());
         },
         validateForm(email, username, password, password2) {
-            if (((password !== password2) || !this.validateEmail(email)) || username.length < 5 || username.length > 12 || password.length < 8) {
+            if (((password !== password2) || !this.validateEmail(email)) || username.length < 5 || username.length > 12 || password.length < 7) {
                 if (username.length < 5) {
                     alert('Username is too short, atleast 5 characters')
                 } else if (username.length > 12) {
                     alert('Username is too long, max 12 characters')
                 } else if (!this.validateEmail(email)) {
                     alert('Email adress doesn\'t exist')
-                } else if (username.length < 8) {
-                    alert('Password is too short, atleast 8 characters')
+                } else if (password.length < 7) {
+                    alert('Password is too short, atleast 6 characters')
                 } else {
                     alert('Passwords doesn\'t match')
                 }
@@ -668,8 +668,24 @@ var app = new Vue({
                     password: password
                 }
                 this.socket.emit('signIn', user)
-
                 this.socket.on('signedIn', user => {
+                    const user_str = JSON.stringify(user)
+                    localStorage.setItem('loginSocket', user_str)
+                    this.loginSocket = user_str
+                })
+            }
+        },
+        logIn() {
+            const name = document.getElementById('login_nickname').value
+            const password = document.getElementById('login_password').value
+
+            if (name.length > 0 && password.length > 0) {
+                const user = {
+                    name: name,
+                    password: password
+                }
+                this.socket.emit('logIn', user)
+                this.socket.on('loggedIn', user => {
                     console.log(user)
                 })
             }
