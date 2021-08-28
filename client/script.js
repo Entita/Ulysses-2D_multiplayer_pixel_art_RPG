@@ -30,6 +30,11 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        for (var id in this.loginSocket) {
+            if (!this.loginSocket.hasOwnProperty(id)) continue;
+            user = this.loginSocket[id]
+            user.createdAt = moment(user.createdAt).format('h:mm a, MMMM Do YYYY')
+        }
     },
     mounted() {
         var this_ = this,
