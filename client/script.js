@@ -664,9 +664,15 @@ var app = new Vue({
             if (this.validateForm(email, nickname, password, password_repeat)) {
                 console.log('logged in')
                 const user = {
-
+                    nickname: nickname,
+                    email: email,
+                    password: password
                 }
                 this_.socket.emit('signIn', user)
+
+                this_.socket.on('signedIn', user => {
+                    console.log(user)
+                })
             }
         }
     }

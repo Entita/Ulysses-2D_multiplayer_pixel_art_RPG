@@ -66,9 +66,20 @@ function createWorld(width, height) {
 }
 
 io.on('connection', socket => {
-    // socket.on('account', data => {
+    socket.on('signIn', data => {
+        // Insert user to database
+        const userSchema = User(data)
 
-    // })
+        userSchema.save().then(user => {
+            users[user._id] = {
+                nickname: user.nickname,
+                email: user.email,
+                password: user.password,
+                createdAt: user.createdAt
+            }
+            io.emit('signedIn', users[user._id])
+        }).catch(err => console.error(err))
+    })
 
     socket.on('ready', name => {
         var player = {
