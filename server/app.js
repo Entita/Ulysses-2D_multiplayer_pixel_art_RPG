@@ -14,7 +14,12 @@ mongoose.connect(process.env.MONGODB_URL, {
     useUnifiedTopology: true
 })
 
-mongoose.connection.on('connected', () => console.log('Connected to MongoDB'))
+mongoose.connection.on('connected', () => {
+    console.log('Connected to MongoDB')
+    Message.find().then(message => {
+        console.log(message)
+    }).catch(err => console.error(err))
+})
 
 // Get database chat data
 const chat = new Object()
@@ -28,9 +33,6 @@ const chat = new Object()
 //     // }
 //     // console.log(chat)
 // }).catch(err => console.error(err))
-Message.find().then(message => {
-    console.log(message)
-}).catch(err => console.error(err))
 
 app.get('/all', (req, res) => {
     Message.find().then(message => {
