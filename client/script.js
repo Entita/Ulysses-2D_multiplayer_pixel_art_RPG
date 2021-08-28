@@ -94,7 +94,7 @@ var app = new Vue({
 
         this_.socket.on('chat', chat => {
             this.chat = chat
-            this.chat.map(message => {
+            chat.map(message => {
                 console.log(message)
                 message.createdAt = moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a')
                 console.log(message)
