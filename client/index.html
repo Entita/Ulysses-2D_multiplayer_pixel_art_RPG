@@ -30,6 +30,7 @@
                         <span class="message_text">{{ message.message }}</span>
                         <span class="message_date">{{ message.createdAt }}</span>
                     </div>
+                    <div class="scroll_to_top" @onclick="scrollToTop"></div>
                 </div>
                 <div class="chat-controls">
                     <input class="messageInput" type="text" placeholder="Type your message here">
