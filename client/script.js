@@ -102,7 +102,7 @@ var app = new Vue({
             let temp = this
             setTimeout(function () {
                 temp.scrollToBottom()
-            }, 50)
+            }, 5)
         })
 
         this_.socket.on('world', server_map => {
@@ -173,14 +173,15 @@ var app = new Vue({
             const dropdown = document.getElementById('animations'),
                 messageInput = document.querySelector('.messageInput'),
                 messageBtn = document.querySelector('.messageBtn'),
-                chatElement = document.querySelector('.chat')
+                chatElement = document.querySelector('.chat'),
+                temp = this
 
             chatElement.addEventListener('scroll', e => {
                 if (e.target.scrollTop === chatElement.scrollHeight - chatElement.offsetHeight) {
-                    this.autoScroll = false
+                    temp.autoScroll = false
                 } else {
                     console.log('autoscroll visible')
-                    this.autoScroll = true
+                    temp.autoScroll = true
                 }
             })
 
