@@ -45,7 +45,7 @@
             </div>
         </div>
         <div id="starting" v-else>
-            <div v-if="loginSocket" class="create_account">
+            <div v-if="loginSocket != undefined" class="create_account">
                 <label for="player_nickname">Your nickname</label>
                 <input id="player_nickname" type="text" name="player_nickname">s
                 <label for="player_email">Your email</label>
