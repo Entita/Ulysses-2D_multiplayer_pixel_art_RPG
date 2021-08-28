@@ -91,9 +91,13 @@ var app = new Vue({
         startAnimating(fps)
 
         // Socket.io listeners
-        
+
         this_.socket.on('chat', chat => {
             this.chat = chat
+            console.log(this.chat)
+            this.chat.map(message => {
+                message.createdAt = moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a')
+            })
             console.log(this.chat)
         })
 
