@@ -621,7 +621,7 @@ var app = new Vue({
     methods: {
         init() {
             // const name = document.getElementById('player_name').value
-            const name = 'temp'
+            const name = 'tempor'
             if (name.length > 4 && name.length < 12) {
                 var this_ = this
                 setTimeout(function () {
