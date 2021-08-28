@@ -656,13 +656,17 @@ var app = new Vue({
             }
         },
         signIn() {
-            const nickname = document.querySelector('.player_nickname')
-            const email = document.querySelector('.player_email')
-            const password = document.querySelector('.player_password')
-            const password_repeat = document.querySelector('.player_repeat_password')
+            const nickname = document.getElementById('player_nickname')
+            const email = document.getElementById('player_email')
+            const password = document.getElementById('player_password')
+            const password_repeat = document.getElementById('player_repeat_password')
 
             if (this.validateForm(email, nickname, password, password_repeat)) {
                 console.log('logged in')
+                const user = {
+
+                }
+                this_.socket.emit('signIn', user)
             }
         }
     }
