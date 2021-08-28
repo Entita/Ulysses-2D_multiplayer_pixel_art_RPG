@@ -99,8 +99,8 @@ var app = new Vue({
                 message.createdAt = moment(message.createdAt).format('h:mm a, MMMM Do YYYY')
             }
             this.chat = chat
-            const chat = document.querySelector('.chat')
-            chat.scrollTop = chat.scrollHeight
+            const chatElement = document.querySelector('.chat')
+            chatElement.scrollTop = chatElement.scrollHeight
         })
 
         this_.socket.on('world', server_map => {
