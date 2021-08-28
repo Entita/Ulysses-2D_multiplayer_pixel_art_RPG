@@ -94,6 +94,7 @@ var app = new Vue({
 
         this_.socket.on('chat', chat => {
             this.chat = chat
+            console.log(this.chat)
         })
 
         this_.socket.on('world', server_map => {
