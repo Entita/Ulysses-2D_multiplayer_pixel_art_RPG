@@ -17,12 +17,14 @@ mongoose.connect(process.env.MONGODB_URL, {
 
 mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB')
-    Message.find().then(message => {
-        chat[message._id] = {
-            player: message.player,
-            message: message.message,
-            date: messages.createdAt
-        }
+    Message.find().then(messages => {
+        messages.map(message => {
+            chat[message._id] = {
+                player: message.player,
+                message: message.message,
+                date: messages.createdAt
+            }
+        })
     }).catch(err => console.error(err))
 })
 
