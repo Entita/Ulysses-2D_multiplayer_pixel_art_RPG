@@ -28,16 +28,6 @@ mongoose.connection.on('connected', () => {
     }).catch(err => console.error(err))
 })
 
-// Update database data
-// const message = Message({
-//     player: 'Entita',
-//     message: 'Testing new message systemfdsgg dgfs gdsg  df gsdfg'
-// })
-
-// message.save().then(data => {
-//     console.log(data)
-// }).catch(err => console.error(err))
-
 // Data config
 const players = new Object(),
     messages = new Object(),
@@ -141,6 +131,21 @@ io.on('connection', socket => {
             }
             messages[data.id] = message
             io.emit('update_messages', messages)
+
+            // Update database data
+            const message = Message({
+                player: 'Tester',
+                message: data.message
+            })
+
+            message.save().then(message => {
+                chat[message._id] = {
+                    player: message.player,
+                    message: message.message,
+                    createdAt: message.createdAt
+                }
+                io.emit('chat', chat)
+            }).catch(err => console.error(err))
         })
     })
 })
