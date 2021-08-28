@@ -71,8 +71,14 @@
                     <button id="signUpBtn" @click="signIn">Sign Up</button>
                 </div>
             </div>
-            <div v-else>
+            <div id="logged_in" v-else>
                 <button @click="loginSocket=null">Log Out</button>
+                <div id="account">
+                    <span>{{ loginSocket.nickname }}</span>
+                    <span>{{ loginSocket.email }}</span>
+                    <span>{{ loginSocket.password }}</span>
+                    <span>{{ loginSocket.createdAt }}</span>
+                </div>
                 <button class="startBtn" @click="init">Start</button>
             </div>
         </div>

@@ -214,3 +214,9 @@ option {
 #signUpBtn {
     margin-bottom: 0;
 }
+
+#logged_in {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+}

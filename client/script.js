@@ -23,7 +23,6 @@ var app = new Vue({
             chat: {},
             autoScroll: false,
             startingMenu: {
-                switch: true,
                 loginShow: false,
                 signinShow: false
             }
@@ -32,7 +31,6 @@ var app = new Vue({
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
         this.loginSocket = JSON.parse(localStorage.getItem('loginToken'))
-        console.log(this.loginSocket)
     },
     mounted() {
         var this_ = this,
@@ -673,6 +671,7 @@ var app = new Vue({
                     const user_str = JSON.stringify(user)
                     localStorage.setItem('loginSocket', user_str)
                     this.loginSocket = user_str
+                    this.startingMenu.signIn = false
                 })
             }
         },
@@ -687,7 +686,12 @@ var app = new Vue({
                 }
                 this.socket.emit('logIn', user)
                 this.socket.on('loggedIn', user => {
-                    console.log(user)
+                    if (user) {
+                        const user_str = JSON.stringify(user)
+                        localStorage.setItem('loginSocket', user_str)
+                        this.loginSocket = user_str
+                        this.startingMenu.logIn = false
+                    }
                     this.socket.off('loggedIn')
                 })
             }
