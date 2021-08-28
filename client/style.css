@@ -176,9 +176,9 @@ option {
 }
 
 .login_account {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    align-items: center;
+    align-items   : center;
 }
 
 .login_account:nth-child(odd) {
@@ -187,4 +187,10 @@ option {
 
 #starting .switches {
     display: flex;
+    gap    : .6rem;
+}
+
+#starting .switches button {
+    width : 5rem;
+    height: 5rem;
 }
