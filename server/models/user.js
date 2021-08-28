@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const moment = require('moment')
 const Schema = mongoose.Schema
 
-const date = moment(Date.now()).format('h:mm a, MMMM Do YYYY')
+const createdTime = moment(Date.now()).format('h:mm a, MMMM Do YYYY')
 
 const userSchema = new Schema({
     nickname: {
@@ -16,8 +16,12 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    createdAt: {
+        type: Date,
+        default: createdTime
     }
-}, { timestamps: date })
+})
 
 const User = mongoose.model('user', userSchema)
 module.exports = User
