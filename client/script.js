@@ -91,7 +91,7 @@ var app = new Vue({
         startAnimating(fps)
 
         // Socket.io listeners
-
+        
         this_.socket.on('chat', chat => {
             this.chat = chat
             console.log(this.chat)

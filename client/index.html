@@ -8,6 +8,9 @@
     <link id="favicon" rel="icon" href="img/favicon.ico" type="image/gif">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -25,7 +28,7 @@
                     <div class="message" v-for="message in chat">
                         <span class="message_name">{{ message.player }}</span>
                         <span class="message_text">{{ message.message }}</span>
-                        <span class="message_date">{{ message.createdAt }}</span>
+                        <span class="message_date">{{ moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a') }}</span>
                     </div>
                 </div>
                 <div class="chat-controls">

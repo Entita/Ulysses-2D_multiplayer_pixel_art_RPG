@@ -93,6 +93,8 @@ option {
     width         : 100%;
     display       : flex;
     flex-direction: column;
+    padding-bottom: 14px;
+    position      : relative;
 }
 
 .message:not(:first-child) {
@@ -100,7 +102,11 @@ option {
 }
 
 .message_date {
-    opacity    : .9;
+    opacity  : .9;
+    font-size: 13px;
+    bottom   : 0;
+    right    : 0;
+    position : absolute;
 }
 
 .message_text {
