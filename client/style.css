@@ -110,8 +110,9 @@ option {
 }
 
 .message_text {
-    opacity     : .7;
-    padding-left: 12px;
+    opacity      : .7;
+    padding-left : 12px;
+    overflow-wrap: break-word;
 }
 
 .message_name {
