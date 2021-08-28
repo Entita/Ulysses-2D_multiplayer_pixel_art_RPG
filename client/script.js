@@ -176,10 +176,11 @@ var app = new Vue({
                 chatElement = document.querySelector('.chat')
 
             chatElement.addEventListener('scroll', e => {
-                if (e.target.scrollTop < chatElement.scrollHeight - chatElement.offsetHeight) {
-                    this.autoScroll = true
-                } else {
+                if (e.target.scrollTop === chatElement.scrollHeight - chatElement.offsetHeight) {
                     this.autoScroll = false
+                } else {
+                    console.log('autoscroll visible')
+                    this.autoScroll = true
                 }
             })
 
