@@ -49,7 +49,7 @@
                 <button @click="startingMenu.loginShow=true">Log In</button>
                 <button @click="startingMenu.signinShow=true"> Sign Up</button>
             </div>
-            <div>
+            <div v-if="!loginSocket">
                 <div v-if="startingMenu.loginShow" class="login_account">
                     <button class="goBackBtn" @click="startingMenu.loginShow=false">Back</button>
                     <label for="login_nickname">Your nickname/email</label>
@@ -71,7 +71,7 @@
                     <button id="signUpBtn">Sign Up</button>
                 </div>
             </div>
-            <button class="startBtn" @click="init">Start</button>
+            <button v-else class="startBtn" @click="init">Start</button>
         </div>
     </div>
 

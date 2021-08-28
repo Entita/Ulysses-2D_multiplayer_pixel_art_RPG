@@ -200,6 +200,8 @@ option {
     flex-direction       : column;
     align-items          : center;
     grid-template-columns: 50% 50%;
+    row-gap              : .3rem;
+    column-gap           : .5rem;
 }
 
 .goBackBtn,
