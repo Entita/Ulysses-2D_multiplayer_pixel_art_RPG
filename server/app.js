@@ -31,16 +31,16 @@ mongoose.connection.on('connected', () => {
     }).catch(err => console.error(err))
 
     // Users import
-    User.find().then(people => {
-        people.map(user => {
-            users[user._id] = {
-                nickname: user.nickname,
-                email: user.email,
-                password: user.password,
-                createdAt: user.createdAt
-            }
-        })
-    }).catch(err => console.error(err))
+    // User.find().then(people => {
+    //     people.map(user => {
+    //         users[user._id] = {
+    //             nickname: user.nickname,
+    //             email: user.email,
+    //             password: user.password,
+    //             createdAt: user.createdAt
+    //         }
+    //     })
+    // }).catch(err => console.error(err))
 })
 
 // Data config
