@@ -23,8 +23,9 @@
             <div class="chatWindow">
                 <div class="chat">
                     <div class="message" v-for="message in chat">
-                        <span class="message_date">{{ message.date }}</span>
+                        <span class="message_name">{{ message.player }}</span>
                         <span class="message_text">{{ message.message }}</span>
+                        <span class="message_date">{{ message.createdAt }}</span>
                     </div>
                 </div>
                 <div class="chat-controls">

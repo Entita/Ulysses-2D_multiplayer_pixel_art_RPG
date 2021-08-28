@@ -100,13 +100,17 @@ option {
 }
 
 .message_date {
-    font-weight: bold;
     opacity    : .9;
 }
 
 .message_text {
     opacity     : .7;
     padding-left: 12px;
+}
+
+.message_name {
+    font-weight: bold;
+    opacity    : .9;
 }
 
 .chat-controls {
