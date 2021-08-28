@@ -93,12 +93,16 @@ var app = new Vue({
         // Socket.io listeners
 
         this_.socket.on('chat', chat => {
-            this.chat = chat
-            chat.map(message => {
-                console.log(message)
+            console.log(chat)
+            for (var id in chat) {
+                if (!chat.hasOwnProperty(id)) continue;
+
+                message = chat[id]
                 message.createdAt = moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a')
-                console.log(message)
-            })
+            }
+            console.log(chat)
+
+            this.chat = chat
         })
 
         this_.socket.on('world', server_map => {
