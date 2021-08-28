@@ -613,13 +613,16 @@ var app = new Vue({
         }
     },
     methods: {
-        init: function () {
-            var this_ = this
-            setTimeout(function () {
-                /* Wait a bit for the html elements to render */
-                this_.isReady = !this_.isReady
-                this_.socket.emit('ready')
-            }, 10)
+        init() {
+            const name = document.getElementById('player_name')
+            if (name.length > 0) {
+                var this_ = this
+                setTimeout(function () {
+                    /* Wait a bit for the html elements to render */
+                    this_.isReady = !this_.isReady
+                    this_.socket.emit('ready', name)
+                }, 10)
+            }
         },
         scrollToBottom() {
             const chatElement = document.querySelector('.chat')
