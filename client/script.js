@@ -99,7 +99,7 @@ var app = new Vue({
                 message.createdAt = moment(message.createdAt).format('h:mm a, MMMM Do YYYY')
             }
             this.chat = chat
-            if (this_.autoScroll) {
+            if (!this_.autoScroll) {
                 setTimeout(function () {
                     this_.scrollToBottom()
                 }, 5)
