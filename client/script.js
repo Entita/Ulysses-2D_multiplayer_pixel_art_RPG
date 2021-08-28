@@ -174,7 +174,7 @@ var app = new Vue({
                 chatElement = document.querySelector('.chat')
 
             chatElement.addEventListener('scroll', e => {
-                console.log(e, e.scrollY, chatElement.scrollHeight - chatElement.offsetHeight, e.scrollY < chatElement.scrollHeight - chatElement.offsetHeight)
+                console.log(chatElement.scrollHeight - chatElement.offsetHeight, e.target.scrollY < chatElement.scrollHeight - chatElement.offsetHeight)
             })
 
             dropdown.addEventListener('change', e => {
@@ -607,7 +607,7 @@ var app = new Vue({
         },
         scrollToBottom() {
             const chatElement = document.querySelector('.chat')
-            chatElement.scrollTop = chatElement.scrollHeight - chatElement.offsetHeight - 10
+            chatElement.scrollTop = chatElement.scrollHeight - chatElement.offsetHeight
             this.autoScroll = true
         }
     }
