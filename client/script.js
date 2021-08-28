@@ -179,6 +179,8 @@ var app = new Vue({
                 console.log(e.target.scrollTop < chatElement.scrollHeight - chatElement.offsetHeight)
                 if (e.target.scrollTop < chatElement.scrollHeight - chatElement.offsetHeight) {
                     this.autoScroll = false
+                } else {
+                    this.autoScroll = true
                 }
             })
 
