@@ -20,12 +20,12 @@ mongoose.connection.on('connected', () => console.log('Connected to MongoDB'))
 const chat = new Object()
 
 Message.find().then(message => {
+    console.log(message)
     chat[message._id] = {
         player: message.player,
         message: message.message,
         date: messages.createdAt
     }
-    console.log(message)
     console.log(chat)
 }).catch(err => console.error(err))
 
