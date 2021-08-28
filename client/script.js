@@ -21,7 +21,12 @@ var app = new Vue({
             ],
             isReady: false,
             chat: {},
-            autoScroll: false
+            autoScroll: false,
+            startingMenu: {
+                switch: true,
+                loginShow: false,
+                signinShow: false
+            }
         }
     },
     created() {

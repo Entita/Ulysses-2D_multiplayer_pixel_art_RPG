@@ -45,25 +45,31 @@
             </div>
         </div>
         <div id="starting" v-else>
-            <div v-if="loginSocket != undefined" class="create_account">
-                <label for="player_nickname">Your nickname</label>
-                <input id="player_nickname" type="text" name="player_nickname">s
-                <label for="player_email">Your email</label>
-                <input id="player_email" type="text" name="player_email">
-                <label for="player_password">Your password</label>
-                <input id="player_password" type="text" name="player_password">
-                <label for="player_repeat_password">Repeat your password</label>
-                <input id="player_repeat_password" type="text" name="player_repeat_password">
-                <button id="signUpBtn"></button>
+            <div v-if="loginSocket">
+                <button @click="startingMenu.loginShow=true">Log In</button>
+                <button @click="startingMenu.signinShow=true"> Sign Up</button>
+                <div v-if="startingMenu.loginShow" class="login_account">
+                    <button @click="startingMenu.loginShow=false">Back</button>
+                    <label for="login_nickname">Your nickname/email</label>
+                    <input id="login_nickname" type="text" name="login_nickname">
+                    <label for="login_password">Repeat your password</label>
+                    <input id="login_password" type="text" name="login_password">
+                    <button id="loginBtn">Log In</button>
+                </div>
+                <div v-if="startingMenu.signinShow" class="create_account">
+                    <button @click="startingMenu.signinShow=false">Back</button>
+                    <label for="player_nickname">Your nickname</label>
+                    <input id="player_nickname" type="text" name="player_nickname">s
+                    <label for="player_email">Your email</label>
+                    <input id="player_email" type="text" name="player_email">
+                    <label for="player_password">Your password</label>
+                    <input id="player_password" type="text" name="player_password">
+                    <label for="player_repeat_password">Repeat your password</label>
+                    <input id="player_repeat_password" type="text" name="player_repeat_password">
+                    <button id="signUpBtn">Sign Up</button>
+                </div>
             </div>
-            <div v-else class="login_account">
-                <label for="login_nickname">Your nickname/email</label>
-                <input id="login_nickname" type="text" name="login_nickname">
-                <label for="login_password">Repeat your password</label>
-                <input id="login_password" type="text" name="login_password">
-                <button id="loginBtn"></button>
-            </div>
-            <button v-if="loginSocket != null" class="startBtn" @click="init">Start</button>
+            <button v-else class="startBtn" @click="init">Start</button>
         </div>
     </div>
 
