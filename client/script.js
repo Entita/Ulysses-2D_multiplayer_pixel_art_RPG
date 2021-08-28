@@ -31,6 +31,7 @@ var app = new Vue({
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
         this.loginSocket = JSON.parse(localStorage.getItem('loginToken'))
+        console.log(localStorage.getItem('loginSocket'))
     },
     mounted() {
         var this_ = this,
@@ -689,6 +690,7 @@ var app = new Vue({
                     if (user) {
                         const user_str = JSON.stringify(user)
                         localStorage.setItem('loginSocket', user_str)
+                        console.log(localStorage.getItem('loginSocket'))
                         this.loginSocket = user
                         this.startingMenu.logIn = false
                     } else {
