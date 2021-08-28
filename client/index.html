@@ -71,7 +71,7 @@
                     <button id="signUpBtn">Sign Up</button>
                 </div>
             </div>
-            <button v-else class="startBtn" @click="init">Start</button>
+            <button v-if="loginSocket === null" class="startBtn" @click="init">Start</button>
         </div>
     </div>
 
