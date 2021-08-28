@@ -94,11 +94,11 @@ var app = new Vue({
 
         this_.socket.on('chat', chat => {
             this.chat = chat
-            console.log(this.chat)
             this.chat.map(message => {
+                console.log(message)
                 message.createdAt = moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a')
+                console.log(message)
             })
-            console.log(this.chat)
         })
 
         this_.socket.on('world', server_map => {
