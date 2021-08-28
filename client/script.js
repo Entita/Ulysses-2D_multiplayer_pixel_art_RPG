@@ -686,15 +686,16 @@ var app = new Vue({
                     password: password
                 }
                 this.socket.emit('logIn', user)
-                const this_ = this
                 this.socket.on('loggedIn', user => {
                     if (user) {
                         const user_str = JSON.stringify(user)
                         localStorage.setItem('loginSocket', user_str)
-                        this_.loginSocket = user_str
-                        this_.startingMenu.logIn = false
+                        this.loginSocket = user_str
+                        this.startingMenu.logIn = false
+                        console.log(this.loginSocket, typeof(this.loginSocket))
+                    } else {
+                        alert('invalid information')
                     }
-                    alert('invalid information')
                     this.socket.off('loggedIn')
                 })
             }
