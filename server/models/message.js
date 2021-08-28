@@ -10,7 +10,7 @@ const messageSchema = new Schema({
         type: String,
         required: true
     }
-}, { timestamps: true })
+}, { timestamps: { createdAt: 'created_at' } })
 
 const Message = mongoose.model('chat', messageSchema)
 module.exports = Message
