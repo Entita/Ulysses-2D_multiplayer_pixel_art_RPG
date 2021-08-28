@@ -99,8 +99,9 @@ var app = new Vue({
                 message.createdAt = moment(message.createdAt).format('h:mm a, MMMM Do YYYY')
             }
             this.chat = chat
+            let temp = this
             setTimeout(function () {
-                this.scrollToBottom()
+                temp.scrollToBottom()
             }, 50)
         })
 
@@ -175,8 +176,8 @@ var app = new Vue({
                 chatElement = document.querySelector('.chat')
 
             chatElement.addEventListener('scroll', e => {
-                console.log(e, e.scrollY, e.target.scrollY < chatElement.scrollHeight - chatElement.offsetHeight)
-                if (false) {
+                console.log(e.target.scrollTop < chatElement.scrollHeight - chatElement.offsetHeight)
+                if (e.target.scrollTop < chatElement.scrollHeight - chatElement.offsetHeight) {
                     this.autoScroll = false
                 }
             })
