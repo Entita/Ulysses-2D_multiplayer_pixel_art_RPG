@@ -66,9 +66,9 @@ function createWorld(width, height) {
 }
 
 io.on('connection', socket => {
-    socket.on('account', data => {
-        
-    })
+    // socket.on('account', data => {
+
+    // })
 
     socket.on('ready', name => {
         var player = {
