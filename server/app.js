@@ -24,6 +24,8 @@ mongoose.connection.on('connected', () => {
                 message: message.message,
                 createdAt: messages.createdAt
             }
+            console.log(message)
+            console.log(message.createdAt)
         })
     }).catch(err => console.error(err))
 })
