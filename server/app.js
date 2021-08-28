@@ -6,11 +6,10 @@ const io = require("socket.io")(server);
 
 // MongoDN
 const mongoose = require('mongoose')
-const db_url = process.env.MONGODB_URL
 const Message = require('./models/message')
 
 // Get database data
-mongoose.connect(db_url, {
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -26,6 +25,8 @@ Message.find().then(message => {
         message: message.message,
         date: messages.createdAt
     }
+    console.log(message)
+    console.log(chat)
 }).catch(err => console.error(err))
 
 // Update database data
