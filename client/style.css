@@ -80,11 +80,7 @@ option {
 }
 
 .chat {
-    position  : absolute;
-    top       : 0;
-    left      : 0;
-    right     : 0;
-    bottom    : 7%;
+    height: 740px;
     overflow-y: scroll;
     padding   : 6px 9px;
 }
