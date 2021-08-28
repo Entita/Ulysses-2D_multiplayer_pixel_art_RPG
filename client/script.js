@@ -277,7 +277,8 @@ var app = new Vue({
                 var data = {
                     id: socketID,
                     message: messageInput.value,
-                    time: Date.now()
+                    time: Date.now(),
+                    name: players[socketID].name
                 }
                 this_.socket.emit('message', data)
                 messageInput.value = null

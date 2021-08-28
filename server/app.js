@@ -145,7 +145,7 @@ io.on('connection', socket => {
 
             // Insert message to database
             const messageSchema = Message({
-                player: 'Tester',
+                player: data.name,
                 message: data.message
             })
 
