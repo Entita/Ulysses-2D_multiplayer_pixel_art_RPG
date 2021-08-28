@@ -173,15 +173,15 @@ var app = new Vue({
             const dropdown = document.getElementById('animations'),
                 messageInput = document.querySelector('.messageInput'),
                 messageBtn = document.querySelector('.messageBtn'),
-                chatElement = document.querySelector('.chat'),
-                temp = this
+                chatElement = document.querySelector('.chat')
 
             chatElement.addEventListener('scroll', e => {
                 if (e.target.scrollTop === chatElement.scrollHeight - chatElement.offsetHeight) {
-                    temp.autoScroll = false
+                    console.log('autoscroll hidden')
+                    this.autoScroll = false
                 } else {
                     console.log('autoscroll visible')
-                    temp.autoScroll = true
+                    this.autoScroll = true
                 }
             })
 
