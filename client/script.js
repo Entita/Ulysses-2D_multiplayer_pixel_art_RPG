@@ -3,6 +3,7 @@ var app = new Vue({
     data() {
         return {
             socket: {},
+            loginSocket: JSON.parse(localStorage.getItem('loginToken')),
             animationStates: [
                 { name: 'down', frames: 4 },
                 { name: 'left', frames: 4 },

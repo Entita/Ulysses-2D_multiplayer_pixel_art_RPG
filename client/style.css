@@ -174,3 +174,13 @@ option {
     cursor: pointer;
     filter: brightness(.9);
 }
+
+.login_account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login_account:nth-child(odd) {
+    margin-top: 1.2rem;
+}

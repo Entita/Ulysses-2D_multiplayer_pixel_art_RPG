@@ -54,14 +54,16 @@
                 <input id="player_password" type="text" name="player_password">
                 <label for="player_repeat_password">Repeat your password</label>
                 <input id="player_repeat_password" type="text" name="player_repeat_password">
+                <button id="signUpBtn"></button>
             </div>
             <div v-else class="login_account">
                 <label for="login_nickname">Your nickname/email</label>
                 <input id="login_nickname" type="text" name="login_nickname">
                 <label for="login_password">Repeat your password</label>
                 <input id="login_password" type="text" name="login_password">
+                <button id="loginBtn"></button>
             </div>
-            <button class="startBtn" @click="init">Start</button>
+            <button v-if="loginSocket != null" class="startBtn" @click="init">Start</button>
         </div>
     </div>
 
