@@ -30,7 +30,7 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
-        console.log(this.loginSocket, this.loginSocket[0])
+        console.log(this.loginSocket.nickname)
     },
     mounted() {
         var this_ = this,
