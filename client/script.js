@@ -100,9 +100,9 @@ var app = new Vue({
             }
             this.chat = chat
 
-            const chatElement = document.querySelector('.chat')
+            const chatElement = document.querySelector('.chat').scrollingElement
             console.log(chatElement.scrollTop, chatElement.scrollHeight)
-            chatElement.scrollingElement.scrollTop = chatElement.scrollHeight
+            chatElement.scrollTop = chatElement.scrollHeight
             console.log(chatElement.scrollTop)
         })
 
