@@ -7,13 +7,23 @@ const io = require("socket.io")(server);
 // MongoDN
 const database_url = process.env.MONGODB_URL
 const mongoose = require('mongoose')
+
+const Blog = require('./models/blog')
+
 mongoose.connect(database_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 
 mongoose.connection.on('connected', () => console.log('db connected', database_url))
+const blog = Blog({
+    title: 'test',
+    snippet: 'about new blog'
+})
 
+blog.save().then(data => {
+    console.log(data)
+}).catch(err => console.error(err))
 
 
 // Data config
