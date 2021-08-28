@@ -634,7 +634,6 @@ var app = new Vue({
             chatElement.scrollTop = chatElement.scrollHeight - chatElement.offsetHeight
         },
         validateEmail(email) {
-            console.log(email)
             const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(String(email).toLowerCase());
         },
@@ -657,10 +656,10 @@ var app = new Vue({
             }
         },
         signIn() {
-            const nickname = document.getElementById('player_nickname')
-            const email = document.getElementById('player_email')
-            const password = document.getElementById('player_password')
-            const password_repeat = document.getElementById('player_repeat_password')
+            const nickname = document.getElementById('player_nickname').value
+            const email = document.getElementById('player_email').value
+            const password = document.getElementById('player_password').value
+            const password_repeat = document.getElementById('player_repeat_password').value
 
             if (this.validateForm(email, nickname, password, password_repeat)) {
                 console.log('logged in')
