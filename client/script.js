@@ -662,15 +662,14 @@ var app = new Vue({
             const password_repeat = document.getElementById('player_repeat_password').value
 
             if (this.validateForm(email, nickname, password, password_repeat)) {
-                console.log('logged in')
                 const user = {
                     nickname: nickname,
                     email: email,
                     password: password
                 }
-                this_.socket.emit('signIn', user)
+                this.socket.emit('signIn', user)
 
-                this_.socket.on('signedIn', user => {
+                this.socket.on('signedIn', user => {
                     console.log(user)
                 })
             }
