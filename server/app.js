@@ -12,22 +12,9 @@ mongoose.connect(database_url, {
     useUnifiedTopology: true
 })
 
-mongoose.connection.on('connected', () => console.log('db connected'))
+mongoose.connection.on('connected', () => console.log('db connected', database_url))
 
-// const Schema = mongoose.Schema;
-// const BlogPostSchema = new Schema({
-//     title: String,
-//     body: String,
-//     date: {
-//         type: String,
-//         default: Date.now()
-//     }
-// });
 
-// BlogPostSchema.save(err => {
-//     if (err) console.log('error', err)
-//     else console.log('data saved')
-// })
 
 // Data config
 const players = new Object(),
