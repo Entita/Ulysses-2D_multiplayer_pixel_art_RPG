@@ -29,15 +29,14 @@ mongoose.connection.on('connected', () => {
 })
 
 // Update database data
+// const message = Message({
+//     player: 'Entita',
+//     message: 'Testing new message systemfdsgg dgfs gdsg  df gsdfg'
+// })
 
-const message = Message({
-    player: 'Entita',
-    message: 'Testing new message systemfdsgg dgfs gdsg  df gsdfg'
-})
-
-message.save().then(data => {
-    console.log(data)
-}).catch(err => console.error(err))
+// message.save().then(data => {
+//     console.log(data)
+// }).catch(err => console.error(err))
 
 // Data config
 const players = new Object(),
