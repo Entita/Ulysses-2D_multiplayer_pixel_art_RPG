@@ -621,30 +621,49 @@ var app = new Vue({
     },
     methods: {
         init() {
-            // const name = document.getElementById('player_name').value
             const name = 'tempor'
-            if (name.length > 4 && name.length < 12) {
-                var this_ = this
-                setTimeout(function () {
-                    /* Wait a bit for the html elements to render */
-                    this_.isReady = !this_.isReady
-                    this_.socket.emit('ready', name)
-                }, 10)
-            } else {
-                if (name.length === 0) {
-                    alert('Name is empty')
-                } else if (name.length < 5) {
-                    alert('Name is too short')
-                } else if (name.length > 11) {
-                    alert('Name is too long')
-                } else {
-                    alert('Unknown error')
-                }
-            }
+            var this_ = this
+            setTimeout(function () {
+                /* Wait a bit for the html elements to render */
+                this_.isReady = !this_.isReady
+                this_.socket.emit('ready', name)
+            }, 10)
         },
         scrollToBottom() {
             const chatElement = document.querySelector('.chat')
             chatElement.scrollTop = chatElement.scrollHeight - chatElement.offsetHeight
+        },
+        validateEmail(email) {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        },
+        validateForm(email, username, password, password2) {
+            if (((password !== password2) || !this.validateEmail(email)) || username.length < 5 || username.length > 12 || password.length < 8) {
+                if (username.length < 5) {
+                    alert('Username is too short, atleast 5 characters')
+                } else if (username.length > 12) {
+                    alert('Username is too long, max 12 characters')
+                } else if (!this.validateEmail(email)) {
+                    alert('Email adress doesn\'t exist')
+                } else if (username.length < 8) {
+                    alert('Password is too short, atleast 8 characters')
+                } else {
+                    alert('Passwords doesn\'t match')
+                }
+                return false
+            } else {
+                return true
+            }
+        },
+        signIn() {
+            const nickname = document.querySelector('player_nickname')
+            const email = document.querySelector('player_email')
+            const password = document.querySelector('player_password')
+            const password_repeat = document.querySelector('player_repeat_password')
+
+            if (this.validateForm(email, nickname, password, password_repeat)) {
+                console.log('logged in')
+            }
         }
     }
 });
