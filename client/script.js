@@ -101,7 +101,6 @@ var app = new Vue({
             const temp = this.chat
             this.chat = chat
 
-            console.log(temp)
             if (!this.autoScroll || temp === {}) {
                 setTimeout(function () {
                     this_.scrollToBottom()
