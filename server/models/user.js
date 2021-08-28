@@ -1,9 +1,8 @@
 const mongoose = require('mongoose')
+const moment = require('moment')
 const Schema = mongoose.Schema
 
-const opts = {
-    timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
-}
+const date = moment(Date.now()).format('h:mm a, MMMM Do YYYY')
 
 const userSchema = new Schema({
     nickname: {
@@ -18,7 +17,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     }
-}, opts)
+}, { timestamps: date })
 
 const User = mongoose.model('user', userSchema)
 module.exports = User
