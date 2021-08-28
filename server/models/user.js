@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+const opts = {
+    timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
+}
+
 const userSchema = new Schema({
     nickname: {
         type: String,
@@ -14,7 +18,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     }
-}, { timestamps: true })
+}, opts)
 
 const User = mongoose.model('user', userSchema)
 module.exports = User
