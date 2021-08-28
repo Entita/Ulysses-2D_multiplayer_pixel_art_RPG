@@ -99,8 +99,9 @@ var app = new Vue({
                 message.createdAt = moment(message.createdAt).format('h:mm a, MMMM Do YYYY')
             }
             this.chat = chat
-
-            this.scrollToBottom()
+            setTimeout(function () {
+                this.scrollToBottom()
+            }, 50)
         })
 
         this_.socket.on('world', server_map => {
@@ -175,6 +176,9 @@ var app = new Vue({
 
             chatElement.addEventListener('scroll', e => {
                 console.log(e.target, e.target.scrollY, e.target.scrollY < chatElement.scrollHeight - chatElement.offsetHeight)
+                if (false) {
+                    this.autoScroll = false
+                }
             })
 
             dropdown.addEventListener('change', e => {
@@ -608,7 +612,7 @@ var app = new Vue({
         scrollToBottom() {
             const chatElement = document.querySelector('.chat')
             chatElement.scrollTop = chatElement.scrollHeight - chatElement.offsetHeight
-            this.autoScroll = true
+            this.autoScroll = false
         }
     }
 });
