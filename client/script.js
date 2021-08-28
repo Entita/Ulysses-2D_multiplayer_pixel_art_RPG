@@ -19,7 +19,8 @@ var app = new Vue({
                 'captainamerica'
             ],
             isReady: false,
-            chat: {}
+            chat: {},
+            autoScroll: true
         }
     },
     created() {
@@ -91,7 +92,6 @@ var app = new Vue({
         startAnimating(fps)
 
         // Socket.io listeners
-
         this_.socket.on('chat', chat => {
             for (var id in chat) {
                 if (!chat.hasOwnProperty(id)) continue;
@@ -99,6 +99,8 @@ var app = new Vue({
                 message.createdAt = moment(message.createdAt).format('h:mm a, MMMM Do YYYY')
             }
             this.chat = chat
+
+            this.scrollToBottom()
         })
 
         this_.socket.on('world', server_map => {
@@ -168,7 +170,12 @@ var app = new Vue({
         function eventListeners() {
             const dropdown = document.getElementById('animations'),
                 messageInput = document.querySelector('.messageInput'),
-                messageBtn = document.querySelector('.messageBtn')
+                messageBtn = document.querySelector('.messageBtn'),
+                chatElement = document.querySelector('.chat')
+
+            chatElement.addEventListener('scroll', e => {
+                console.log(e, e.scrollY, chatElement.scrollHeight - chatElement.height(), e.scrollY < chatElement.scrollHeight - chatElement.height())
+            })
 
             dropdown.addEventListener('change', e => {
                 var data = {
@@ -598,12 +605,10 @@ var app = new Vue({
                 this_.socket.emit('ready')
             }, 10)
         },
-        scrollToTop() {
-            console.log('AAA')
+        scrollToBottom() {
             const chatElement = document.querySelector('.chat')
-            console.log(chatElement.scrollTop, chatElement.scrollHeight)
-            chatElement.scrollTop = chatElement.scrollHeight
-            console.log(chatElement.scrollTop)
+            chatElement.scrollTop = chatElement.scrollHeight - chatElement.height() - 10
+            this.autoScroll = true
         }
     }
 });
