@@ -541,6 +541,12 @@ var app = new Vue({
                 // Player hitbox
                 pseudoCtx.strokeStyle = 'red'
                 pseudoCtx.strokeRect(player.x, player.y, player.width, player.height)
+
+                // Player name
+                pseudoCtx.font = '12px pixel'
+                pseudoCtx.fillStyle = 'black'
+                pseudoCtx.textAlign = 'center'
+                pseudoCtx.fillText(player.name)
             }
 
             players_ctx.clearRect(0, 0, canvas_width, canvas_height)

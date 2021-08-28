@@ -50,9 +50,20 @@ function createWorld(width, height) {
     return map
 }
 
+function getRandomString(length) {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    for (var i = 0; i < length; i++) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
+}
+
 io.on('connection', socket => {
     socket.on('ready', () => {
+        const randomName = getRandomString(Math.random() * (12 - 5) + 5)
         var player = {
+            name: randomName,
             sprite: 'down',
             x: 383,
             y: 350,
