@@ -175,7 +175,7 @@ var app = new Vue({
                 chatElement = document.querySelector('.chat')
 
             chatElement.addEventListener('scroll', e => {
-                console.log(e.target, e.target.scrollY, e.target.scrollY < chatElement.scrollHeight - chatElement.offsetHeight)
+                console.log(e, e.scrollY, e.target.scrollY < chatElement.scrollHeight - chatElement.offsetHeight)
                 if (false) {
                     this.autoScroll = false
                 }
