@@ -99,10 +99,11 @@ var app = new Vue({
                 message.createdAt = moment(message.createdAt).format('h:mm a, MMMM Do YYYY')
             }
             this.chat = chat
-            let temp = this
-            setTimeout(function () {
-                temp.scrollToBottom()
-            }, 5)
+            if (this_.autoScroll) {
+                setTimeout(function () {
+                    this_.scrollToBottom()
+                }, 5)
+            }
         })
 
         this_.socket.on('world', server_map => {
