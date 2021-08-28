@@ -14,20 +14,20 @@ mongoose.connect(database_url, {
 
 mongoose.connection.on('connected', () => console.log('db connected'))
 
-const Schema = mongoose.Schema;
-const BlogPostSchema = new Schema({
-    title: String,
-    body: String,
-    date: {
-        type: String,
-        default: Date.now()
-    }
-});
+// const Schema = mongoose.Schema;
+// const BlogPostSchema = new Schema({
+//     title: String,
+//     body: String,
+//     date: {
+//         type: String,
+//         default: Date.now()
+//     }
+// });
 
-BlogPostSchema.save(err => {
-    if (err) console.log('error', err)
-    else console.log('data saved')
-})
+// BlogPostSchema.save(err => {
+//     if (err) console.log('error', err)
+//     else console.log('data saved')
+// })
 
 // Model
 const BlogPost = mongoose.model('BlogPost', BlogPostSchema);
