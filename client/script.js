@@ -617,7 +617,6 @@ var app = new Vue({
         scrollToBottom() {
             const chatElement = document.querySelector('.chat')
             chatElement.scrollTop = chatElement.scrollHeight - chatElement.offsetHeight
-            this.autoScroll = false
         }
     }
 });

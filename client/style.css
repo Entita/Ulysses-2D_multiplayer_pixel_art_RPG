@@ -80,9 +80,10 @@ option {
 }
 
 .chat {
-    height    : 740px;
-    overflow-y: scroll;
-    padding   : 6px 9px;
+    height         : 740px;
+    overflow-y     : scroll;
+    padding        : 6px 9px;
+    scroll-behavior: smooth;
 }
 
 .message {
@@ -95,6 +96,7 @@ option {
 
 .message:not(:first-child) {
     margin-top: 12px;
+    border-top: 1px dashed whitesmoke;
 }
 
 .message_date {
