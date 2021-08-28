@@ -99,11 +99,6 @@ var app = new Vue({
                 message.createdAt = moment(message.createdAt).format('h:mm a, MMMM Do YYYY')
             }
             this.chat = chat
-
-            const chatElement = document.querySelector('.chat')
-            console.log(chatElement.scrollTop, chatElement.scrollHeight)
-            chatElement.scrollTo(0, chatElement.scrollHeight)
-            console.log(chatElement.scrollTo())
         })
 
         this_.socket.on('world', server_map => {
@@ -602,6 +597,12 @@ var app = new Vue({
                 this_.isReady = !this_.isReady
                 this_.socket.emit('ready')
             }, 10)
+        },
+        scrollToTop() {
+            const chatElement = document.querySelector('.chat')
+            console.log(chatElement.scrollTop, chatElement.scrollHeight)
+            chatElement.scrollTop = chatElement.scrollHeight
+            console.log(chatElement.scrollTop)
         }
     }
 });
