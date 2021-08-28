@@ -74,10 +74,16 @@
             <div id="logged_in" v-else>
                 <button @click="loginSocket=null">Log Out</button>
                 <div id="account">
-                    <span>{{ loginSocket.nickname }}</span>
-                    <span>{{ loginSocket.email }}</span>
-                    <span>{{ loginSocket.password }}</span>
-                    <span>{{ loginSocket.createdAt }}</span>
+                    <div id="account_details">
+                        <span>Nickname</span>
+                        <span>{{ loginSocket.nickname }}</span>
+                        <span>Email</span>
+                        <span>{{ loginSocket.email }}</span>
+                        <span>Password</span>
+                        <span>{{ loginSocket.password }}</span>
+                        <span>Created</span>
+                        <span>{{ loginSocket.createdAt }}</span>
+                    </div>
                 </div>
                 <button class="startBtn" @click="init">Start</button>
             </div>
