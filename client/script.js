@@ -177,11 +177,9 @@ var app = new Vue({
 
             chatElement.addEventListener('scroll', e => {
                 if (e.target.scrollTop === chatElement.scrollHeight - chatElement.offsetHeight) {
-                    console.log('autoscroll hidden')
-                    this.autoScroll = false
+                    this_.autoScroll = false
                 } else {
-                    console.log('autoscroll visible')
-                    this.autoScroll = true
+                    this_.autoScroll = true
                 }
             })
 
