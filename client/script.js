@@ -683,6 +683,11 @@ var app = new Vue({
                 })
             }
         },
+        logOut() {
+            localStorage.removeItem('loginSocket')
+            this.loginSocket = null
+            this.startingMenu.creatingCharacter = false
+        },
         createCharacterBtn() {
             let this_ = this
             setTimeout(function () {

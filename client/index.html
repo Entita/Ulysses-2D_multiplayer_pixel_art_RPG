@@ -66,8 +66,7 @@
                 </div>
             </div>
             <div id="logged_in" v-else>
-                <button v-if="!startingMenu.creatingCharacter"
-                    @click="loginSocket=null;startingMenu.creatingCharacter=false;localStorage.removeItem('loginSocket')">Log Out</button>
+                <button v-if="!startingMenu.creatingCharacter" @click="logOut">Log Out</button>
                 <div v-if="!startingMenu.creatingCharacter" id="account">
                     <div id="account_characters">
                         <div class="character" v-for="character in loginSocket.characters">
