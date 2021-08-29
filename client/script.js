@@ -684,7 +684,7 @@ var app = new Vue({
             setTimeout(function () {
                 const character_canvas = document.getElementById('skin_change')
                 const character_ctx = character_canvas.getContext('2d')
-                character_ctx.drawImage(this_.sprite_sheet['starlord'], 0, 0, 32, 48, 0, 0, 246, 182)
+                character_ctx.drawImage(this_.sprite_sheet['starlord'], 0, 0, 32, 48, 0, 0, 182, 246)
             }, 10)
             this.startingMenu.creatingCharacter = true
         },
