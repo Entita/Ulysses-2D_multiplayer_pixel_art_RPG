@@ -97,8 +97,11 @@ io.on('connection', socket => {
         User.findOneAndUpdate({ _id: character.account_id }, { $push: { characters: character } }, (data, err) => {
             if (err) console.error(err)
             else {
-                console.log(data)
                 updateUsers()
+                console.log(User.findOne({ _id: character.account_id}, {}, (data, err) => {
+                    if (err) console.error(err)
+                    else console.log('aaha', data)
+                }))
                 io.emit('updated_user', user[character.account_id])
             }
         })
