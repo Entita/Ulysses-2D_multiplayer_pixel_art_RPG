@@ -654,8 +654,7 @@ var app = new Vue({
                     const user_str = JSON.stringify(user)
                     localStorage.setItem('loginSocket', user_str)
                     this.loginSocket = user
-                    this.startingMenu.signIn = false
-                    console.log(this.loginSocket)
+                    this.startingMenu.signinShow = false
                 })
             }
         },
@@ -674,8 +673,7 @@ var app = new Vue({
                         const user_str = JSON.stringify(user)
                         localStorage.setItem('loginSocket', user_str)
                         this.loginSocket = user
-                        this.startingMenu.logIn = false
-                        console.log(this.loginSocket)
+                        this.startingMenu.loginShow = false
                     } else {
                         alert('invalid information')
                     }
