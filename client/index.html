@@ -37,12 +37,6 @@
                     <button class="messageBtn">Send</button>
                 </div>
             </div>
-            <div class="controls">
-                <label for="animations">Choose character</label>
-                <select id="animations" name="animations">
-                    <option v-for="character in characters" :value="character">{{ character }}</option>
-                </select>
-            </div>
         </div>
         <div id="starting" v-else>
             <div v-if="!startingMenu.loginShow && !startingMenu.signinShow && !loginSocket" class="switches">
@@ -96,8 +90,13 @@
                 <div v-else id="character_creating">
                     <button class="goBackBtn" @click="startingMenu.creatingCharacter=false">Back</button>
                     <div>
-
-                    </div>>
+                        <div class="controls">
+                            <label for="animations">Choose character</label>
+                            <select id="animations" name="animations">
+                                <option v-for="character in characters" :value="character">{{ character }}</option>
+                            </select>
+                        </div>
+                    </div>
                     <button id="createCharacter" @click="createCharacter">Create character</button>
                 </div>
                 <button v-if="!startingMenu.creatingCharacter"

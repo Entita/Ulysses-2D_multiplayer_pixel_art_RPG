@@ -179,8 +179,7 @@ var app = new Vue({
         }
 
         function eventListeners() {
-            const dropdown = document.getElementById('animations'),
-                messageInput = document.querySelector('.messageInput'),
+            const messageInput = document.querySelector('.messageInput'),
                 messageBtn = document.querySelector('.messageBtn'),
                 chatElement = document.querySelector('.chat')
 
@@ -699,6 +698,7 @@ var app = new Vue({
             }
         },
         createCharacter() {
+            const dropdown = document.getElementById('animations')
             
             this.startingMenu.creatingCharacter = false
         }
