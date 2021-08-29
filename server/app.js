@@ -79,7 +79,7 @@ io.on('connection', socket => {
                 password: user.password,
                 createdAt: user.createdAt
             }
-            io.emit('signedIn', users[user._id])
+            io.emit('signedIn', users[user.id])
         }).catch(err => console.error(err))
     })
 
