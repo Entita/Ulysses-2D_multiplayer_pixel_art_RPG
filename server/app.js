@@ -45,10 +45,10 @@ mongoose.connection.on('connected', () => {
     }).catch(err => console.error(err))
 
     const character = {
-        name: 'Big boi',
+        name: 'Small boi',
         exp: 4831
     }
-    User.findOneAndUpdate({ nickname: 'entitacze' }, { characters: [...character] }, (err, data) => {
+    User.findOneAndUpdate({ nickname: 'entitacze' }, { characters: character }, (err, data) => {
         if (err) console.error(err)
     })
 })
