@@ -95,8 +95,10 @@
                 </div>
                 <div v-else id="character_creating">
                     <button class="goBackBtn" @click="startingMenu.creatingCharacter=false">Back</button>
-                    Create character
-                    <button id="createCharacter" @click="createCharacter"></button>
+                    <div>
+
+                    </div>>
+                    <button id="createCharacter" @click="createCharacter">Create character</button>
                 </div>
                 <button v-if="!startingMenu.creatingCharacter"
                     :disabled="loginSocket.characters && loginSocket.characters.length > 0" class="startBtn"
