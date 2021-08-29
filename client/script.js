@@ -42,6 +42,7 @@ var app = new Vue({
         this.socket.on('updated_user', user => {
             localStorage.setItem('loginSocket', JSON.stringify(user))
         })
+        console.log(this.loginSocket)
     },
     mounted() {
         var this_ = this,
@@ -657,6 +658,7 @@ var app = new Vue({
                     localStorage.setItem('loginSocket', user_str)
                     this.loginSocket = user
                     this.startingMenu.signIn = false
+                    console.log(this.loginSocket)
                 })
             }
         },
@@ -676,6 +678,7 @@ var app = new Vue({
                         localStorage.setItem('loginSocket', user_str)
                         this.loginSocket = user
                         this.startingMenu.logIn = false
+                        console.log(this.loginSocket)
                     } else {
                         alert('invalid information')
                     }
@@ -715,7 +718,6 @@ var app = new Vue({
                     exp: 0,
                     account_id: this.loginSocket.id
                 }
-                console.log(character, this.loginSocket)
                 this.socket.emit('addCharacter', character)
                 this.startingMenu.creatingCharacter = false
             } else {
