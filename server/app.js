@@ -30,19 +30,7 @@ mongoose.connection.on('connected', () => {
         })
     }).catch(err => console.error(err))
 
-    // Users import
-    User.find().then(people => {
-        people.map(user => {
-            users[user._id] = {
-                id: user._id,
-                nickname: user.nickname,
-                email: user.email,
-                password: user.password,
-                createdAt: user.createdAt,
-                characters: user.characters
-            }
-        })
-    }).catch(err => console.error(err))
+    updateUsers()
 })
 
 // Data config
@@ -67,6 +55,27 @@ function createWorld(width, height) {
     return map
 }
 
+function updateUsers() {
+    // Clear users
+    for (var id in users) {
+        if (!users.hasOwnProperty(id)) continue;
+        delete users[id]
+    }
+    // Import users
+    User.find().then(people => {
+        people.map(user => {
+            users[user._id] = {
+                id: user._id,
+                nickname: user.nickname,
+                email: user.email,
+                password: user.password,
+                createdAt: user.createdAt,
+                characters: user.characters
+            }
+        })
+    }).catch(err => console.error(err))
+}
+
 io.on('connection', socket => {
     socket.on('signIn', data => {
         // Insert user to database
@@ -87,6 +96,10 @@ io.on('connection', socket => {
         // Add character to database
         User.findOneAndUpdate({ _id: character.account_id }, { $push: { characters: character } }, err => {
             if (err) console.error(err)
+            else {
+                updateUsers()
+                io.emit('updated_user', user[character.account_id])
+            }
         })
     })
 
