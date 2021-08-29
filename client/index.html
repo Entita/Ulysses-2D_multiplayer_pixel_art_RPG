@@ -79,7 +79,7 @@
                             <span>{{ character.name }}</span>
                             <span>{{ character.exp }}</span>
                         </div>
-                        <div v-if="loginSocket.characters.length < 3">Add character</div>
+                        <button v-if="loginSocket.characters && loginSocket.characters.length < 3" @click="startingMenu.creatingCharacter=true">Add character</button>
                     </div>
                     <div id="account_details">
                         <span>Nickname</span>

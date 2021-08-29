@@ -24,7 +24,8 @@ var app = new Vue({
             autoScroll: false,
             startingMenu: {
                 loginShow: false,
-                signinShow: false
+                signinShow: false,
+                creatingCharacter: false
             }
         }
     },
