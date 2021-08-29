@@ -87,6 +87,7 @@ io.on('connection', socket => {
             if (!users.hasOwnProperty(id)) continue;
             user = users[id]
             if ((user.nickname === data.name || user.email === data.name) && user.password === data.password) {
+                user.id = id
                 io.emit('loggedIn', user)
                 temp = false
             }

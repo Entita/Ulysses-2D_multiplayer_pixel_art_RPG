@@ -221,7 +221,15 @@ option {
     align-items   : center;
 }
 
+#account {
+    display: flex;
+}
+
 #account_details {
     display              : grid;
     grid-template-columns: 50% 50%;
+}
+
+#account_characters {
+
 }
