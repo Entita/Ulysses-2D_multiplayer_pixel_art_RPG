@@ -72,7 +72,8 @@
                 </div>
             </div>
             <div id="logged_in" v-else>
-                <button v-if="!startingMenu.creatingCharacter" @click="loginSocket=null;startingMenu.creatingCharacter=false">Log Out</button>
+                <button v-if="!startingMenu.creatingCharacter"
+                    @click="loginSocket=null;startingMenu.creatingCharacter=false">Log Out</button>
                 <div v-if="!startingMenu.creatingCharacter" id="account">
                     <div id="account_characters">
                         <div class="character" v-for="character in loginSocket.characters">
@@ -97,7 +98,8 @@
                     <button class="goBackBtn" @click="startingMenu.creatingCharacter=false">Back</button>
                     Create character
                 </div>
-                <button v-if="startingMenu.creatingCharacter=false" :disabled="loginSocket.characters && loginSocket.characters.length > 0" class="startBtn"
+                <button v-if="!startingMenu.creatingCharacter"
+                    :disabled="loginSocket.characters && loginSocket.characters.length > 0" class="startBtn"
                     @click="init">Start</button>
             </div>
         </div>
