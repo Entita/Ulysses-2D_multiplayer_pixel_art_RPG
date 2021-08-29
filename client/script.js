@@ -715,6 +715,7 @@ var app = new Vue({
                     exp: 0,
                     account_id: this.loginSocket.id
                 }
+                console.log(character, this.loginSocket.id)
                 this.socket.emit('addCharacter', character)
                 this.startingMenu.creatingCharacter = false
             } else {
