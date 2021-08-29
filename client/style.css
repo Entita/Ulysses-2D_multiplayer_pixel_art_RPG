@@ -230,6 +230,9 @@ option {
     grid-template-columns: 50% 50%;
 }
 
-#account_characters {
+#account_characters {}
 
+#character_creating {
+    display       : flex;
+    flex-direction: column;
 }
