@@ -73,13 +73,14 @@
             </div>
             <div id="logged_in" v-else>
                 <button @click="loginSocket=null">Log Out</button>
-                <div id="account">
+                <div v-if="startingMenu.creatingCharacter" id="account">
                     <div id="account_characters">
                         <div class="character" v-for="character in loginSocket.characters">
                             <span>{{ character.name }}</span>
                             <span>{{ character.exp }}</span>
                         </div>
-                        <button v-if="!loginSocket.characters || loginSocket.characters.length < 3" @click="startingMenu.creatingCharacter=true">Add character</button>
+                        <button v-if="!loginSocket.characters || loginSocket.characters.length < 3"
+                            @click="startingMenu.creatingCharacter=true">Add character</button>
                     </div>
                     <div id="account_details">
                         <span>Nickname</span>
@@ -92,7 +93,11 @@
                         <span>{{ loginSocket.createdAt }}</span>
                     </div>
                 </div>
-                <button class="startBtn" @click="init">Start</button>
+                <div v-else id="character_creating">
+                    Create character
+                </div>
+                <button :disabled="loginSocket.characters && loginSocket.characters.length > 0" class="startBtn"
+                    @click="init">Start</button>
             </div>
         </div>
     </div>
