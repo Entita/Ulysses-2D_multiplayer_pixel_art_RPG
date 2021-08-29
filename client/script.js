@@ -10,15 +10,6 @@ var app = new Vue({
                 { name: 'right', frames: 4 },
                 { name: 'up', frames: 4 }
             ],
-            characters: [
-                'starlord',
-                'tonystark',
-                'thor',
-                'rocket',
-                'loki',
-                'deadpool',
-                'captainamerica'
-            ],
             isReady: false,
             chat: {},
             autoScroll: false,
@@ -28,18 +19,21 @@ var app = new Vue({
                 creatingCharacter: false
             },
             sprite_sheet = {
-                'starlord': new Image(),
-                'tonystark': new Image(),
-                'thor': new Image(),
-                'rocket': new Image(),
-                'loki': new Image(),
-                'deadpool': new Image(),
-                'captainamerica': new Image()
+                'starlord': null,
+                'tonystark': null,
+                'thor': null,
+                'rocket': null,
+                'loki': null,
+                'deadpool': null,
+                'captainamerica': null
             }
         }
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        this.sprite_sheet.map(skin => {
+            skin = new Image()
+        })
         this.sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
         this.sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
         this.sprite_sheet['thor'].src = 'img/sprite_thor.png'
