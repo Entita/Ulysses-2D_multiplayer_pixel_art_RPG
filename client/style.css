@@ -236,8 +236,7 @@ option {
     transform: translate(0, 0);
 }
 
-#skin_change_left,
-#skin_change_right {
+#character_creating>div button {
     width        : 2rem;
     height       : 2rem;
     border-radius: 6px;
