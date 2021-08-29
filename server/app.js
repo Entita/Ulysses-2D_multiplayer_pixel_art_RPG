@@ -87,8 +87,9 @@ io.on('connection', socket => {
 
     socket.on('addCharacter', character => {
         // Add character to database
+        console.log('Creating new char', character)
         User.findOneAndUpdate({ _id: character.account_id }, { $push: { characters: character } })
-        console.log(character)
+        console.log('a', character, users)
         users[character.account_id].characters.push(character)
         io.emit('updated_user', users[character.account_id])
     })
