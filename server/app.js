@@ -38,10 +38,19 @@ mongoose.connection.on('connected', () => {
                 nickname: user.nickname,
                 email: user.email,
                 password: user.password,
-                createdAt: user.createdAt
+                createdAt: user.createdAt,
+                characters: user.characters
             }
         })
     }).catch(err => console.error(err))
+
+    const character = {
+        name: 'Big boi',
+        exp: 4831
+    }
+    User.findOneAndUpdate({ nickname: 'entitacze' }, { characters: [...characters, character] }, (err, data) => {
+        if (err) console.error(err)
+    })
 })
 
 // Data config
@@ -80,6 +89,11 @@ io.on('connection', socket => {
             }
             io.emit('signedIn', users[user._id])
         }).catch(err => console.error(err))
+    })
+
+    socket.on('addCharacter', data => {
+        // Add character to database
+
     })
 
     socket.on('logIn', data => {
