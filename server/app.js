@@ -74,12 +74,14 @@ io.on('connection', socket => {
 
         userSchema.save().then(user => {
             users[user._id] = {
+                id: user._id,
                 nickname: user.nickname,
                 email: user.email,
                 password: user.password,
-                createdAt: user.createdAt
+                createdAt: user.createdAt,
+                characters: user.characters
             }
-            io.emit('signedIn', users[user.id])
+            io.emit('signedIn', users[user._id])
         }).catch(err => console.error(err))
     })
 
