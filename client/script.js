@@ -694,8 +694,8 @@ var app = new Vue({
                 const character_canvas = document.getElementById('skin_change')
                 const character_ctx = character_canvas.getContext('2d')
                 character_ctx.drawImage('img/sprite_starlord.png', 0, 0, 32, 48, 0, 0, 192, 256)
-                startingMenu.creatingCharacter = true
             }, 10)
+            startingMenu.creatingCharacter = true
         },
         createCharacter() {
             const skin = document.getElementById('character_skin')
