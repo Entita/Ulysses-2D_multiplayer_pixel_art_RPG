@@ -83,13 +83,8 @@ io.on('connection', socket => {
         }).catch(err => console.error(err))
     })
 
-    socket.on('addCharacter', data => {
+    socket.on('addCharacter', character => {
         // Add character to database
-        const character = {
-            name: 'Big boi',
-            exp: 4831
-        }
-
         User.findOneAndUpdate({ nickname: 'entitacze' }, { $push: { characters: character } }, err => {
             if (err) console.error(err)
         })
@@ -176,11 +171,6 @@ io.on('connection', socket => {
 
         socket.on('stopped', id => {
             players[id].moving = false
-            io.emit('update_players', players)
-        })
-
-        socket.on('skin', data => {
-            players[data.id].sprite_img = data.img
             io.emit('update_players', players)
         })
 

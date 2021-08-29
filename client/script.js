@@ -191,14 +191,6 @@ var app = new Vue({
                 }
             })
 
-            dropdown.addEventListener('change', e => {
-                var data = {
-                    id: socketID,
-                    img: e.target.value
-                }
-                this_.socket.emit('skin', data)
-            })
-
             window.addEventListener('keydown', e => {
                 if (document.activeElement != messageInput) {
                     key = e.key.toLowerCase()
@@ -698,8 +690,14 @@ var app = new Vue({
             }
         },
         createCharacter() {
-            const dropdown = document.getElementById('animations')
-            
+            const skin = document.getElementById('character_skin')
+            const name = document.getElementById('character_name')
+            const character = {
+                name: name,
+                skin: skin,
+                exp: 0
+            }
+            this.socket.emit('addCharacter', character)
             this.startingMenu.creatingCharacter = false
         }
     }

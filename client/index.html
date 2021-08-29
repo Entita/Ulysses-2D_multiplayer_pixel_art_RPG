@@ -89,13 +89,12 @@
                 </div>
                 <div v-else id="character_creating">
                     <button class="goBackBtn" @click="startingMenu.creatingCharacter=false">Back</button>
+                    <label for="character_name">Character name</label>
+                    <input id="character_name" type="text" name="character_name">
                     <div>
-                        <div class="controls">
-                            <label for="animations">Choose character</label>
-                            <select id="animations" name="animations">
-                                <option v-for="character in characters" :value="character">{{ character }}</option>
-                            </select>
-                        </div>
+                        <button id="skin_change_left">&#60;</button>
+                        <canvas id="skin_change"></canvas>
+                        <button id="skin_change_right">&#62;</button>
                     </div>
                     <button id="createCharacter" @click="createCharacter">Create character</button>
                 </div>
