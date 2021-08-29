@@ -697,6 +697,10 @@ var app = new Vue({
                     this.socket.off('loggedIn')
                 })
             }
+        },
+        createCharacter() {
+            
+            this.startingMenu.creatingCharacter = false
         }
     }
 });

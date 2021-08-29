@@ -78,7 +78,6 @@
                     <div id="account_characters">
                         <div class="character" v-for="character in loginSocket.characters">
                             <span>{{ character.name }}</span>
-                            <span>{{ character.exp }}</span>
                         </div>
                         <button v-if="!loginSocket.characters || loginSocket.characters.length < 3"
                             @click="startingMenu.creatingCharacter=true">Add character</button>
@@ -97,6 +96,7 @@
                 <div v-else id="character_creating">
                     <button class="goBackBtn" @click="startingMenu.creatingCharacter=false">Back</button>
                     Create character
+                    <button id="createCharacter" @click="createCharacter"></button>
                 </div>
                 <button v-if="!startingMenu.creatingCharacter"
                     :disabled="loginSocket.characters && loginSocket.characters.length > 0" class="startBtn"
