@@ -38,11 +38,6 @@ var app = new Vue({
         this.sprite_sheet['loki'].src = 'img/sprite_loki.png'
         this.sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
         this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
-
-        this.socket.on('updated_user', user => {
-            console.log('BLAA', user)
-            localStorage.setItem('loginSocket', JSON.stringify(user))
-        })
     },
     mounted() {
         var this_ = this,
@@ -720,6 +715,11 @@ var app = new Vue({
                 }
                 this.socket.emit('addCharacter', character)
                 this.startingMenu.creatingCharacter = false
+
+                this.socket.on('updated_user', user => {
+                    localStorage.setItem('loginSocket', JSON.stringify(user))
+                    this.loginSocket = user
+                })
             } else {
                 alert('Name is too short, atleast 5 characters')
             }
