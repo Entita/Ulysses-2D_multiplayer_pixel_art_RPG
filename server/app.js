@@ -44,13 +44,13 @@ mongoose.connection.on('connected', () => {
         })
     }).catch(err => console.error(err))
 
-    // const character = {
-    //     name: 'Big boi',
-    //     exp: 4831
-    // }
-    // User.findOneAndUpdate({ nickname: 'entitacze' }, { characters: [...characters, character] }, (err, data) => {
-    //     if (err) console.error(err)
-    // })
+    const character = {
+        name: 'Big boi',
+        exp: 4831
+    }
+    User.findOneAndUpdate({ nickname: 'entitacze' }, { characters: [...characters, character] }, (err, data) => {
+        if (err) console.error(err)
+    })
 })
 
 // Data config
