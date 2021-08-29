@@ -688,6 +688,12 @@ var app = new Vue({
             }, 10)
             this.startingMenu.creatingCharacter = true
         },
+        changeCharacterCreating(e) {
+            const character_canvas = document.getElementById('skin_change')
+            const character_ctx = character_canvas.getContext('2d')
+            character_ctx.clearRect(0, 0, character_canvas.width, character_canvas.height)
+            character_ctx.drawImage(this.sprite_sheet['tonystark'], 0, 0, 32, 48, 40, 0, 200, 150)
+        },
         createCharacter() {
             const skin = document.getElementById('character_skin')
             const name = document.getElementById('character_name')

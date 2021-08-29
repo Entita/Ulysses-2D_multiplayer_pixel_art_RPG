@@ -92,9 +92,9 @@
                     <label for="character_name">Character name</label>
                     <input id="character_name" type="text" name="character_name">
                     <div>
-                        <button id="skin_change_left">&#60;</button>
+                        <button id="skin_change_left" @click="changeCharacterCreating(1)">&#60;</button>
                         <canvas id="skin_change"></canvas>
-                        <button id="skin_change_right">&#62;</button>
+                        <button id="skin_change_right" @click="changeCharacterCreating(-1)">&#62;</button>
                     </div>
                     <button id="createCharacter" @click="createCharacter">Create character</button>
                 </div>
