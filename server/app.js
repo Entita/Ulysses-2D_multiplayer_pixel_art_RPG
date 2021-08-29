@@ -101,6 +101,7 @@ io.on('connection', socket => {
                 console.log(users, id)
                 console.log(users[id])
                 updateUsers()
+                console.log(users)
                 io.emit('updated_user', users[id])
             }
         })
