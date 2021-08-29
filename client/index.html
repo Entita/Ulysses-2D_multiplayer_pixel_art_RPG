@@ -98,7 +98,7 @@
                     <button id="createCharacter" @click="createCharacter">Create character</button>
                 </div>
                 <button v-if="!startingMenu.creatingCharacter"
-                    :disabled="loginSocket.characters && loginSocket.characters.length > 0" class="startBtn"
+                    :disabled="loginSocket.characters.length === 0" class="startBtn"
                     @click="init">Start</button>
             </div>
         </div>

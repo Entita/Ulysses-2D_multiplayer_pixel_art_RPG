@@ -601,7 +601,7 @@ var app = new Vue({
     },
     methods: {
         init() {
-            if (this.loginSocket.characters && this.loginSocket.characters.length > 0) {
+            if (this.loginSocket.characters.length === 0) {
                 const name = this.loginSocket.nickname
                 var this_ = this
                 setTimeout(function () {
