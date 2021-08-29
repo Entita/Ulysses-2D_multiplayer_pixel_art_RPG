@@ -73,7 +73,7 @@
             </div>
             <div id="logged_in" v-else>
                 <button @click="loginSocket=null">Log Out</button>
-                <div v-if="startingMenu.creatingCharacter" id="account">
+                <div v-if="!startingMenu.creatingCharacter" id="account">
                     <div id="account_characters">
                         <div class="character" v-for="character in loginSocket.characters">
                             <span>{{ character.name }}</span>
