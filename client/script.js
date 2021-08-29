@@ -601,13 +601,15 @@ var app = new Vue({
     },
     methods: {
         init() {
-            const name = this.loginSocket.nickname
-            var this_ = this
-            setTimeout(function () {
-                /* Wait a bit for the html elements to render */
-                this_.isReady = !this_.isReady
-                this_.socket.emit('ready', name)
-            }, 10)
+            if (this.loginSocket.characters && this.loginSocket.characters.length > 0) {
+                const name = this.loginSocket.nickname
+                var this_ = this
+                setTimeout(function () {
+                    /* Wait a bit for the html elements to render */
+                    this_.isReady = !this_.isReady
+                    this_.socket.emit('ready', name)
+                }, 10)
+            }
         },
         scrollToBottom() {
             const chatElement = document.querySelector('.chat')
