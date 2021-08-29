@@ -26,11 +26,27 @@ var app = new Vue({
                 loginShow: false,
                 signinShow: false,
                 creatingCharacter: false
+            },
+            sprite_sheet = {
+                'starlord': new Image(),
+                'tonystark': new Image(),
+                'thor': new Image(),
+                'rocket': new Image(),
+                'loki': new Image(),
+                'deadpool': new Image(),
+                'captainamerica': new Image()
             }
         }
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        this.sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
+        this.sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
+        this.sprite_sheet['thor'].src = 'img/sprite_thor.png'
+        this.sprite_sheet['rocket'].src = 'img/sprite_rocket.png'
+        this.sprite_sheet['loki'].src = 'img/sprite_loki.png'
+        this.sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
+        this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
     },
     mounted() {
         var this_ = this,
@@ -38,24 +54,7 @@ var app = new Vue({
             socketID
 
         // Pre-rendering all sprites images
-        const sprite_sheet = {
-            'starlord': new Image(),
-            'tonystark': new Image(),
-            'thor': new Image(),
-            'rocket': new Image(),
-            'loki': new Image(),
-            'deadpool': new Image(),
-            'captainamerica': new Image()
-        },
-            world_sheet = new Image()
-
-        sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
-        sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
-        sprite_sheet['thor'].src = 'img/sprite_thor.png'
-        sprite_sheet['rocket'].src = 'img/sprite_rocket.png'
-        sprite_sheet['loki'].src = 'img/sprite_loki.png'
-        sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
-        sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
+        const world_sheet = new Image()
 
         world_sheet.src = 'img/world_sheet.png'
 
@@ -693,7 +692,7 @@ var app = new Vue({
             setTimeout(function () {
                 const character_canvas = document.getElementById('skin_change')
                 const character_ctx = character_canvas.getContext('2d')
-                character_ctx.drawImage(sprite_sheet['starlord'], 0, 0, 32, 48, 0, 0, 192, 256)
+                character_ctx.drawImage(this.sprite_sheet['starlord'], 0, 0, 32, 48, 0, 0, 192, 256)
             }, 10)
             this.startingMenu.creatingCharacter = true
         },
