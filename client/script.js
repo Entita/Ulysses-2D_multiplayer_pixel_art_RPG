@@ -697,15 +697,20 @@ var app = new Vue({
             character_canvas.className = 'tonystark'
         },
         createCharacter() {
-            const skin = document.getElementById('character_skin')
-            const name = document.getElementById('character_name')
-            const character = {
-                name: name,
-                skin: skin,
-                exp: 0
+            const skin = document.getElementById('skin_change').className
+            const name = document.getElementById('character_name').value
+            if (name.length > 4) {
+                const character = {
+                    name: name,
+                    skin: skin,
+                    exp: 0,
+                    account_id: this.loginSocket.id
+                }
+                this.socket.emit('addCharacter', character)
+                this.startingMenu.creatingCharacter = false
+            } else {
+                alert('Name is too short, atleast 5 characters')
             }
-            this.socket.emit('addCharacter', character)
-            this.startingMenu.creatingCharacter = false
         }
     }
 });

@@ -85,7 +85,7 @@ io.on('connection', socket => {
 
     socket.on('addCharacter', character => {
         // Add character to database
-        User.findOneAndUpdate({ nickname: 'entitacze' }, { $push: { characters: character } }, err => {
+        User.findOneAndUpdate({ _id: character.account_id }, { $push: { characters: character } }, err => {
             if (err) console.error(err)
         })
     })
