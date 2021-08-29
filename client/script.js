@@ -40,9 +40,9 @@ var app = new Vue({
         this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
 
         this.socket.on('updated_user', user => {
+            console.log('blaaat')
             localStorage.setItem('loginSocket', JSON.stringify(user))
         })
-        console.log(this.loginSocket)
     },
     mounted() {
         var this_ = this,
