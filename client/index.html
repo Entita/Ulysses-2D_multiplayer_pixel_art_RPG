@@ -75,9 +75,11 @@
                 <button @click="loginSocket=null">Log Out</button>
                 <div id="account">
                     <div id="account_characters">
-                        <div class="character">
-                            
+                        <div class="character" v-for="character in loginSocket.characters">
+                            <span>{{ character.name }}</span>
+                            <span>{{ character.exp }}</span>
                         </div>
+                        <div v-if="loginSocket.characters.length < 3">Add character</div>
                     </div>
                     <div id="account_details">
                         <span>Nickname</span>

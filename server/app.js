@@ -43,15 +43,6 @@ mongoose.connection.on('connected', () => {
             }
         })
     }).catch(err => console.error(err))
-
-    const character = {
-        name: 'Big boi',
-        exp: 4831
-    }
-
-    User.findOneAndUpdate({ nickname: 'entitacze' }, { $push: { characters: character } }, (err, data) => {
-        if (err) console.error(err)
-    })
 })
 
 // Data config
@@ -94,7 +85,14 @@ io.on('connection', socket => {
 
     socket.on('addCharacter', data => {
         // Add character to database
+        const character = {
+            name: 'Big boi',
+            exp: 4831
+        }
 
+        User.findOneAndUpdate({ nickname: 'entitacze' }, { $push: { characters: character } }, err => {
+            if (err) console.error(err)
+        })
     })
 
     socket.on('logIn', data => {
