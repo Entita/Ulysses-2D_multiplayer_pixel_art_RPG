@@ -236,9 +236,13 @@ option {
     transform: translate(0, 0);
 }
 
+#character_creating>div {
+    display: flex;
+}
+
 #character_creating>div button {
     width        : 2rem;
-    height       : 2rem;
+    height       : auto;
     border-radius: 6px;
     margin-top   : 0;
 }
