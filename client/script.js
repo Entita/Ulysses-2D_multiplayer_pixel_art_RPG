@@ -520,7 +520,7 @@ var app = new Vue({
                 if (!players.hasOwnProperty(id)) continue;
 
                 player = players[id]
-                var image = sprite_sheet[player.sprite_img]
+                var image = this.sprite_sheet[player.sprite_img]
                 let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
                     frameX = player.sprite_width * position,
                     frameY = spriteAnimations[player.sprite].location[position].y
@@ -680,10 +680,12 @@ var app = new Vue({
             }
         },
         createCharacterBtn() {
+            let this_ = this
             setTimeout(function () {
                 const character_canvas = document.getElementById('skin_change')
                 const character_ctx = character_canvas.getContext('2d')
-                character_ctx.drawImage(this.sprite_sheet['starlord'], 0, 0, 32, 48, 0, 0, 192, 256)
+                console.log(this_.sprite_sheet)
+                character_ctx.drawImage(this_.sprite_sheet['starlord'], 0, 0, 32, 48, 0, 0, 192, 256)
             }, 10)
             this.startingMenu.creatingCharacter = true
         },
