@@ -74,7 +74,7 @@
                             <span>{{ character.name }}</span>
                         </div>
                         <button v-if="!loginSocket.characters || loginSocket.characters.length < 3"
-                            @click="startingMenu.creatingCharacter=true">Add character</button>
+                            @click="createCharacterBtn">Add character</button>
                     </div>
                     <div id="account_details">
                         <span>Nickname</span>

@@ -234,15 +234,17 @@ option {
 #skin_change {
     position : relative;
     transform: translate(0, 0);
+    width    : 12rem;
+    height   : 16rem;
 }
 
 #character_creating>div {
-    display: flex;
+    display   : flex;
+    margin-top: .6rem;
 }
 
 #character_creating>div button {
-    width        : 2rem;
-    height       : auto;
-    border-radius: 6px;
-    margin-top   : 0;
+    width     : 2rem;
+    height    : auto;
+    margin-top: 0;
 }
