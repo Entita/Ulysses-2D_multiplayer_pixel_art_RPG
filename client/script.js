@@ -734,7 +734,7 @@ var app = new Vue({
             // const index = e.target.querySelector('span').getAttribute('index')
             if (!e.target.classList.contains('selected')) {
                 document.querySelector('.character.selected').classList.remove('selected')
-                e.target.classList.add('selected')
+                e.target.classList.parentElement.add('selected')
             }
         }
     }
