@@ -716,10 +716,10 @@ var app = new Vue({
             index = index >= this.helperArray.length ? 0 : index
             index = index < 0 ? this.helperArray.length - 1 : index
             this.changeCharacterIndex = index
-            console.log(e, index, this.helperArray[index], this.sprite_sheet[this.helperArray[index]])
+            const skin = this.helperArray[index]
             character_ctx.clearRect(0, 0, character_canvas.width, character_canvas.height)
-            character_ctx.drawImage(this.sprite_sheet[this.helperArray[index]], 0, 0, 32, 48, 40, 0, 200, 150)
-            character_canvas.className = 'tonystark'
+            character_ctx.drawImage(this.sprite_sheet[skin], 0, 0, 32, 48, 40, 0, 200, 150)
+            character_canvas.className = skin
         },
         createCharacter() {
             const skin = document.getElementById('skin_change').className
