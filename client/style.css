@@ -237,6 +237,9 @@ option {
     display       : flex;
     flex-direction: column;
     gap           : .6rem;
+    padding       : 0.5rem .3rem;
+    border        : 2px solid black;
+    border-radius : 6px;
 }
 
 #character_creating {
@@ -264,9 +267,10 @@ option {
 }
 
 .character {
-    position: relative;
-    padding : 1.4rem 3rem;
-    cursor  : pointer;
+    position     : relative;
+    padding      : 1.4rem 3rem;
+    cursor       : pointer;
+    border-radius: 4px;
 }
 
 .character.selected {
