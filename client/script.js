@@ -41,7 +41,7 @@ var app = new Vue({
         this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
 
         for (var skin in this.sprite_sheet) {
-            if (!this.sprite_sheet.hasOwnProperty(id)) continue;
+            if (!this.sprite_sheet.hasOwnProperty(skin)) continue;
 
             this.helperArray.push(this.sprite_sheet[skin])
         }
