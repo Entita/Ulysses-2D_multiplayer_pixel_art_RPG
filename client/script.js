@@ -730,7 +730,7 @@ var app = new Vue({
             const name = document.getElementById('character_name').value
             if (name.length > 4) {
                 const character = {
-                    id: this.loginSocket.characters.length + 1,
+                    id: this.loginSocket.characters.length,
                     name: name,
                     skin: skin,
                     exp: 0,
