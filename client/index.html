@@ -79,14 +79,18 @@
                     </div>
                     <span>Account details</span>
                     <div id="account_details">
-                        <span>Nickname</span>
-                        <span>{{ loginSocket.nickname }}</span>
-                        <span>Email</span>
-                        <span>{{ loginSocket.email }}</span>
-                        <span>Password</span>
-                        <span>{{ loginSocket.password }}</span>
-                        <span>Created</span>
-                        <span>{{ loginSocket.createdAt }}</span>
+                        <div>
+                            <span>Nickname</span>
+                            <span>Email</span>
+                            <span>Password</span>
+                            <span>Created</span>
+                        </div>
+                        <div>
+                            <span>{{ loginSocket.nickname }}</span>
+                            <span>{{ loginSocket.email }}</span>
+                            <span>{{ loginSocket.password }}</span>
+                            <span>{{ loginSocket.createdAt }}</span>
+                        </div>
                     </div>
                 </div>
                 <div v-else id="character_creating">
