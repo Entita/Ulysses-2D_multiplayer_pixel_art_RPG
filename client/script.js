@@ -765,8 +765,7 @@ var app = new Vue({
 
                 this.socket.on('removed_user', user => {
                     const bla = document.querySelector('.character>span[index="0"]')
-                    console.log(bla,document.querySelector('.character>span'), document.querySelector('.character>span').getAttribute('index'))
-                    if (bla) bla.classList.add('selected')
+                    if (bla) bla.parentNode.classList.add('selected')
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
                 })
