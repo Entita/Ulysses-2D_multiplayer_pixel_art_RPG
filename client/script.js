@@ -773,6 +773,7 @@ var app = new Vue({
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
                     this.socket.off('removed_user')
+                    document.getElementById('characterRemoveBtn').innerText = 'Delete character'
                 })
             }
         }
