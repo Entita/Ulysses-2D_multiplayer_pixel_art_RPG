@@ -28,7 +28,8 @@ var app = new Vue({
                 'captainamerica': new Image()
             },
             helperArray: [],
-            changeCharacterIndex: 0
+            changeCharacterIndex: 0,
+            reRenderChars: 0
         }
     },
     created() {
@@ -768,13 +769,14 @@ var app = new Vue({
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
                     this.socket.off('removed_user')
-                    
-                    document.querySelectorAll('.character.selected').forEach(el => {
-                        el.classList.remove('selected')
-                    })
-                    const newSelect = document.querySelector('.character:first-child')
-                    if (newSelect) newSelect.classList.add('selected')
-                    document.getElementById('characterRemoveBtn').innerText = 'Delete character'
+
+                    this.reRenderChars++
+                    // document.querySelectorAll('.character.selected').forEach(el => {
+                    //     el.classList.remove('selected')
+                    // })
+                    // const newSelect = document.querySelector('.character:first-child')
+                    // if (newSelect) newSelect.classList.add('selected')
+                    // document.getElementById('characterRemoveBtn').innerText = 'Delete character'
                 })
             }
         }

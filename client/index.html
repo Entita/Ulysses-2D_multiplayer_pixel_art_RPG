@@ -69,7 +69,7 @@
                 <button v-if="!startingMenu.creatingCharacter" @click="logOut">Log Out</button>
                 <div v-if="!startingMenu.creatingCharacter" id="account">
                     <span>Characters</span>
-                    <div id="account_characters">
+                    <div id="account_characters" :key="reRenderChars">
                         <div class="character" v-for="(character, index) in loginSocket.characters"
                             :class="{'selected': index === 0}" @click="changeCharacter($event)">
                             <span :index="index">{{ character.name }}</span>
