@@ -755,8 +755,10 @@ var app = new Vue({
             if (e.target.innerText === 'Delete character') {
                 e.target.innerText = 'Are you sure?'
             } else {
-                console.log('delete')
-                // const index = document.querySelector('.character.selected>span').getAttribute('index')
+                const index = document.querySelector('.character.selected>span').getAttribute('index')
+                const character = this.loginSocket.characters[index]
+                console.log(character)
+                e.target.innerText = 'Delete character'
             }
         }
     }
