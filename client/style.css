@@ -313,8 +313,12 @@ option {
     margin-top: 0;
 }
 
+#characterRemoveBtn {
+    border-radius: 4px;
+    cursor       : pointer;
+}
+
 #characterRemoveBtn:hover {
     background-color: whitesmoke;
     color           : gray;
-    cursor          : pointer;
 }
