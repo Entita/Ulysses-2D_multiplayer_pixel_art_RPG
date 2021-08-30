@@ -283,7 +283,8 @@ option {
 }
 
 .character.selected {
-    border: 1px solid black;
+    border : 1px solid black;
+    padding: calc(1.4rem - 1px) calc(3rem - 1px);
 }
 
 .character.selected :before {
