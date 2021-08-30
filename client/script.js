@@ -602,8 +602,10 @@ var app = new Vue({
     methods: {
         init() {
             if (this.loginSocket.characters.length > 0) {
-                const name = document.querySelector('.character.selected>span').value
-                const skin = document.querySelector('.character.selected>span').value
+                const char = document.querySelector('.character.selected>span').getAttribute('index')
+                const name = this.loginSocket.characters[char].name
+                const skin = this.loginSocket.characters[char].skin
+                console.log(name, skin)
                 var this_ = this
                 setTimeout(function () {
                     /* Wait a bit for the html elements to render */
