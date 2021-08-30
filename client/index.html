@@ -74,8 +74,9 @@
                             :class="{'selected': index === 0}" @click="changeCharacter($event)">
                             <span :index="index">{{ character.name }}</span>
                         </div>
-                        <button v-if="!loginSocket.characters || loginSocket.characters.length < 3"
+                        <button v-if="loginSocket.characters.length < 3"
                             @click="createCharacterBtn">Add character</button>
+                        <button v-if="loginSocket.characters.length > 0" @click="removeCharacter($event)" class="test">Delete character</button>
                     </div>
                     <span>Account details</span>
                     <div id="account_details">

@@ -46,7 +46,7 @@ var app = new Vue({
             this.helperArray.push(skin)
         }
 
-        this.loginSocket.createdAt = moment(this.loginSocket.createdAt).format('h:mm a, MMMM Do YYYY')
+        this.loginSocket.createdAt = moment(this.loginSocket.createdAt).format('MMMM Do YYYY')
     },
     mounted() {
         var this_ = this,
@@ -749,6 +749,12 @@ var app = new Vue({
             if (!e.target.classList.contains('selected')) {
                 document.querySelector('.character.selected').classList.remove('selected')
                 e.target.classList.add('selected')
+            }
+        },
+        removeCharacter(e) {
+            console.log(e.target.value)
+            if (e.target.value === 'Delete character') {
+                // const index = document.querySelector('.character.selected>span').getAttribute('index')
             }
         }
     }
