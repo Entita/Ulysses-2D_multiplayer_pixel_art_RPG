@@ -100,7 +100,9 @@ io.on('connection', socket => {
             if (err) console.error('Removing character error: ', err)
         }).then((char) => {
             console.log('bla', char)
-            User.deleteOne({ id: character.id })
+            User.deleteOne({ id: character.id }, err => {
+                if (err) console.error('Removing character error: ', err)
+            })
         })
         users[character.account_id].characters.remove(character.id)
         io.emit('removed_user', users[character.account_id])
