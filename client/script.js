@@ -765,14 +765,15 @@ var app = new Vue({
                 e.target.innerText = 'Delete character'
 
                 this.socket.on('removed_user', user => {
+                    localStorage.setItem('loginSocket', JSON.stringify(user))
+                    this.loginSocket = user
+                    this.socket.off('removed_user')
+                    
                     document.querySelectorAll('.character.selected').forEach(el => {
                         el.classList.remove('selected')
                     })
                     const newSelect = document.querySelector('.character:first-child')
                     if (newSelect) newSelect.classList.add('selected')
-                    localStorage.setItem('loginSocket', JSON.stringify(user))
-                    this.loginSocket = user
-                    this.socket.off('removed_user')
                     document.getElementById('characterRemoveBtn').innerText = 'Delete character'
                 })
             }
