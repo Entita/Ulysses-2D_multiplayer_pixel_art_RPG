@@ -752,7 +752,7 @@ var app = new Vue({
             }
         },
         removeCharacter(e) {
-            console.log(e.target.value)
+            console.log(e.target)
             if (e.target.value === 'Delete character') {
                 e.target.value = 'Are you sure?'
             } else {
