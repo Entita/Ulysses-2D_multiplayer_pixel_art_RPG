@@ -740,8 +740,6 @@ var app = new Vue({
                 this.startingMenu.creatingCharacter = false
 
                 this.socket.on('updated_user', user => {
-                    const bla = document.querySelector('.character>span[index=0]')
-                    if (bla) bla.classList.add('selected')
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
                 })
@@ -766,7 +764,8 @@ var app = new Vue({
                 e.target.innerText = 'Delete character'
 
                 this.socket.on('removed_user', user => {
-                    console.log('bla', user)
+                    const bla = document.querySelector('.character>span[index=0]')
+                    if (bla) bla.classList.add('selected')
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
                 })
