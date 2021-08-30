@@ -729,8 +729,10 @@ var app = new Vue({
             const skin = document.getElementById('skin_change').className
             const name = document.getElementById('character_name').value
             if (name.length > 4) {
+                const id = this.loginSocket.characters.length
+                console.log(id)
                 const character = {
-                    id: this.loginSocket.characters.length,
+                    id: id,
                     name: name,
                     skin: skin,
                     exp: 0,
