@@ -521,7 +521,6 @@ var app = new Vue({
 
                 player = players[id]
                 var image = this_.sprite_sheet[player.sprite_img]
-                console.log(this_.sprite_sheet, player.sprite_img, this_.sprite_sheet[player.sprite_img])
                 let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
                     frameX = player.sprite_width * position,
                     frameY = spriteAnimations[player.sprite].location[position].y
@@ -604,11 +603,16 @@ var app = new Vue({
         init() {
             if (this.loginSocket.characters.length > 0) {
                 const name = document.querySelector('.character.selected>span').value
+                const skin = document.querySelector('.character.selected>span').value
                 var this_ = this
                 setTimeout(function () {
                     /* Wait a bit for the html elements to render */
                     this_.isReady = !this_.isReady
-                    this_.socket.emit('ready', name)
+                    const data = {
+                        name: name,
+                        skin: skin
+                    }
+                    this_.socket.emit('ready', data)
                 }, 10)
             }
         },

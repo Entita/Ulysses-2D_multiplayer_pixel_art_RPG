@@ -109,13 +109,13 @@ io.on('connection', socket => {
         }
     })
 
-    socket.on('ready', name => {
+    socket.on('ready', data => {
         var player = {
-            name: name,
+            name: data.name,
             sprite: 'down',
             x: 383,
             y: 350,
-            sprite_img: 'starlord',
+            sprite_img: data.skin,
             sprite_width: 32,
             sprite_height: 48,
             width: 67,
