@@ -714,6 +714,7 @@ var app = new Vue({
             const character_ctx = character_canvas.getContext('2d')
             let index = this.changeCharacterIndex + e
             index = index >= this.helperArray.length ? 0 : index
+            console.log(e, index, this.helperArray)
             character_ctx.clearRect(0, 0, character_canvas.width, character_canvas.height)
             character_ctx.drawImage(this.helperArray[index], 0, 0, 32, 48, 40, 0, 200, 150)
             character_canvas.className = 'tonystark'
