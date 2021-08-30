@@ -102,7 +102,7 @@ io.on('connection', socket => {
             if (err) console.error('Removing character error: ', err)
             else {
                 console.log(users.characters)
-                users.splice(character.id, 1)
+                users.characters.splice(character.id, 1)
                 console.log(users.characters)
                 io.emit('removed_user', users[character.account_id])
             }
