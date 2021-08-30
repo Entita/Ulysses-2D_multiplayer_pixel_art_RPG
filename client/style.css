@@ -314,6 +314,7 @@ option {
 }
 
 #characterRemoveBtn:hover {
-    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
-    border-color    : -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    background-color: whitesmoke;
+    color           : gray;
+    cursor          : pointer;
 }
