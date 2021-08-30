@@ -219,7 +219,6 @@ option {
     grid-template-rows: 2rem calc(100% - 2rem);
     column-gap        : 3rem;
     grid-auto-flow    : column;
-    align-items       : center;
     text-align        : center;
 }
 
