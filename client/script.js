@@ -27,7 +27,8 @@ var app = new Vue({
                 'deadpool': new Image(),
                 'captainamerica': new Image()
             },
-            helperArray: []
+            helperArray: [],
+            changeCharacterIndex: 0
         }
     },
     created() {
@@ -42,10 +43,8 @@ var app = new Vue({
 
         for (var skin in this.sprite_sheet) {
             if (!this.sprite_sheet.hasOwnProperty(skin)) continue;
-
             this.helperArray.push(skin)
         }
-        console.log(this.helperArray)
     },
     mounted() {
         var this_ = this,
@@ -713,8 +712,10 @@ var app = new Vue({
         changeCharacterCreating(e) {
             const character_canvas = document.getElementById('skin_change')
             const character_ctx = character_canvas.getContext('2d')
+            let index = this.changeCharacterIndex + e
+            index = index >= this.helperArray.length ? 0 : index
             character_ctx.clearRect(0, 0, character_canvas.width, character_canvas.height)
-            character_ctx.drawImage(this.sprite_sheet['tonystark'], 0, 0, 32, 48, 40, 0, 200, 150)
+            character_ctx.drawImage(this.helperArray[index], 0, 0, 32, 48, 40, 0, 200, 150)
             character_canvas.className = 'tonystark'
         },
         createCharacter() {
