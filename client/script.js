@@ -746,13 +746,12 @@ var app = new Vue({
         },
         changeCharacter(e) {
             if (!e.target.classList.contains('selected')) {
-                document.getElementById('characterRemoveBtn').value = 'Delete character'
+                document.getElementById('characterRemoveBtn').innerText = 'Delete character'
                 document.querySelector('.character.selected').classList.remove('selected')
                 e.target.classList.add('selected')
             }
         },
         removeCharacter(e) {
-            console.log(e.target.innerText)
             if (e.target.innerText === 'Delete character') {
                 e.target.innerText = 'Are you sure?'
             } else {
