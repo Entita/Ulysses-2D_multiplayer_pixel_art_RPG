@@ -96,7 +96,7 @@ io.on('connection', socket => {
 
     socket.on('removeCharacter', character => {
         // Remove character from database
-        User.findOneAndDelete({ _id: character.account_id }, (err, data) => {
+        User.updateOne({ _id: character.account_id }, {'$pull': { 'characters': {'id': character.id}}}, (err, data) => {
             if (err) console.error('Removing character error: ', err)
             else console.log('foundChar', data)
         })
