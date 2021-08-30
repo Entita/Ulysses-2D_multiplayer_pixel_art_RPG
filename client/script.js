@@ -602,9 +602,9 @@ var app = new Vue({
     methods: {
         init() {
             if (this.loginSocket.characters.length > 0) {
-                const char = document.querySelector('.character.selected>span').getAttribute('index')
-                const name = this.loginSocket.characters[char].name
-                const skin = this.loginSocket.characters[char].skin
+                const index = document.querySelector('.character.selected>span').getAttribute('index')
+                const name = this.loginSocket.characters[index].name
+                const skin = this.loginSocket.characters[index].skin
                 var this_ = this
                 setTimeout(function () {
                     /* Wait a bit for the html elements to render */
@@ -731,7 +731,11 @@ var app = new Vue({
             }
         },
         changeCharacter(e) {
-            console.log(e, e.target)
+            // const index = e.target.querySelector('span').getAttribute('index')
+            if (!e.target.classList.contains('selected')) {
+                document.querySelector('.character.selected').classList.remove('selected')
+                e.target.classList.add('selected')
+            }
         }
     }
 });
