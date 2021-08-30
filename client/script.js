@@ -713,7 +713,8 @@ var app = new Vue({
             const character_canvas = document.getElementById('skin_change')
             const character_ctx = character_canvas.getContext('2d')
             let index = this.changeCharacterIndex + e
-            index = index >= this.helperArray.length ? 0 : (index < 0 ? index : this.helperArray.length - 1)
+            index = index >= this.helperArray.length ? 0 : index
+            index = index < 0 ? this.helperArray.length - 1 : index
             this.changeCharacterIndex = index
             console.log(e, index, this.helperArray[index], this.sprite_sheet[this.helperArray[index]])
             character_ctx.clearRect(0, 0, character_canvas.width, character_canvas.height)
