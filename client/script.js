@@ -26,7 +26,8 @@ var app = new Vue({
                 'loki': new Image(),
                 'deadpool': new Image(),
                 'captainamerica': new Image()
-            }
+            },
+            helperArray: []
         }
     },
     created() {
@@ -38,6 +39,13 @@ var app = new Vue({
         this.sprite_sheet['loki'].src = 'img/sprite_loki.png'
         this.sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
         this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
+
+        for (var skin in this.sprite_sheet) {
+            if (!this.sprite_sheet.hasOwnProperty(id)) continue;
+
+            this.helperArray.push(this.sprite_sheet[skin])
+        }
+        console.log(this.helperArray)
     },
     mounted() {
         var this_ = this,
