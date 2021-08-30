@@ -742,6 +742,7 @@ var app = new Vue({
                 this.socket.on('updated_user', user => {
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
+                    this.socket.off('updated_user')
                 })
             } else {
                 alert('Name is too short, atleast 5 characters')
@@ -764,10 +765,12 @@ var app = new Vue({
                 e.target.innerText = 'Delete character'
 
                 this.socket.on('removed_user', user => {
-                    const bla = document.querySelector('.character:first-child')
-                    if (bla) bla.classList.add('selected')
+                    const newSelect = document.querySelector('.character:first-child')
+                    console.log(newSelect)
+                    if (newSelect) newSelect.classList.add('selected')
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
+                    this.socket.off('removed_user')
                 })
             }
         }
