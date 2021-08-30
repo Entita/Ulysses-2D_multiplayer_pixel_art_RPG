@@ -71,7 +71,7 @@
                     <span>Characters</span>
                     <div id="account_characters">
                         <div class="character" v-for="(character, index) in loginSocket.characters">
-                            <span :class="{'selected', index === 0}">{{ character.name }}</span>
+                            <span :class="{'selected': index === 0}">{{ character.name }}</span>
                         </div>
                         <button v-if="!loginSocket.characters || loginSocket.characters.length < 3"
                             @click="createCharacterBtn">Add character</button>
