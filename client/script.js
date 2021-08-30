@@ -764,7 +764,7 @@ var app = new Vue({
                 e.target.innerText = 'Delete character'
 
                 this.socket.on('removed_user', user => {
-                    const bla = document.querySelector('.character>span[index=0]')
+                    const bla = document.querySelector('.character>span[index="0"]')
                     if (bla) bla.classList.add('selected')
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
