@@ -46,7 +46,9 @@ var app = new Vue({
             this.helperArray.push(skin)
         }
 
-        this.loginSocket.createdAt = moment(this.loginSocket.createdAt).format('MMMM Do YYYY')
+        if (this.loginSocket) {
+            this.loginSocket.createdAt = moment(this.loginSocket.createdAt).format('MMMM Do YYYY')
+        }
     },
     mounted() {
         var this_ = this,
