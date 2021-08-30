@@ -43,7 +43,7 @@ var app = new Vue({
         for (var skin in this.sprite_sheet) {
             if (!this.sprite_sheet.hasOwnProperty(skin)) continue;
 
-            this.helperArray.push(this.sprite_sheet[skin])
+            this.helperArray.push(skin)
         }
         console.log(this.helperArray)
     },
