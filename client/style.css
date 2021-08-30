@@ -306,3 +306,7 @@ option {
     height    : 3.4rem;
     margin-top: 0;
 }
+
+#account_details>span {
+    width: max-content;
+}
