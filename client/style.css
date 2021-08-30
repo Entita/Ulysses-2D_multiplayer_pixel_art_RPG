@@ -273,6 +273,10 @@ option {
     border-radius: 4px;
 }
 
+.character>span {
+    pointer-events: none;
+}
+
 .character:hover {
     background-color: whitesmoke;
     color           : gray;
