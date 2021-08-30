@@ -605,7 +605,6 @@ var app = new Vue({
                 const char = document.querySelector('.character.selected>span').getAttribute('index')
                 const name = this.loginSocket.characters[char].name
                 const skin = this.loginSocket.characters[char].skin
-                console.log(name, skin)
                 var this_ = this
                 setTimeout(function () {
                     /* Wait a bit for the html elements to render */
@@ -730,6 +729,9 @@ var app = new Vue({
             } else {
                 alert('Name is too short, atleast 5 characters')
             }
+        },
+        changeCharacter(e) {
+            console.log(e, e.target)
         }
     }
 });

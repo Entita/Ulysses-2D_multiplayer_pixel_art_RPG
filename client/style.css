@@ -273,6 +273,11 @@ option {
     border-radius: 4px;
 }
 
+.character:hover {
+    background-color: whitesmoke;
+    color           : gray;
+}
+
 .character.selected {
     border: 1px solid black;
 }
