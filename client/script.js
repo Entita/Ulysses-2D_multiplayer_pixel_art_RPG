@@ -760,8 +760,13 @@ var app = new Vue({
             } else {
                 const index = document.querySelector('.character.selected>span').getAttribute('index')
                 const character = this.loginSocket.characters[index]
-                console.log(character)
+                this.socket.emit('removeCharacter', character)
                 e.target.innerText = 'Delete character'
+
+                this.socket.on('removed_user', user => {
+                    localStorage.setItem('loginSocket', JSON.stringify(user))
+                    this.loginSocket = user
+                })
             }
         }
     }
