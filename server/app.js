@@ -101,11 +101,9 @@ io.on('connection', socket => {
         User.updateOne({ _id: character.account_id }, { $pull: { characters: { id: character.id } } }, (err, data) => {
             if (err) console.error('Removing character error: ', err)
             else {
-                delete users[character.account_id].characters[character.id]
-                console.log(users, users.characters)
-                for(let i; i< users.characters.length;i++){
-                    console.log('char', users.characters[i])
-                }
+                console.log(users.characters)
+                users.splice(character.id, 1)
+                console.log(users.characters)
                 io.emit('removed_user', users[character.account_id])
             }
         })
