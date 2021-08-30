@@ -602,7 +602,7 @@ var app = new Vue({
     methods: {
         init() {
             if (this.loginSocket.characters.length > 0) {
-                const name = document.querySelector('.character.selected').value
+                const name = document.querySelector('.character.selected>span').value
                 var this_ = this
                 setTimeout(function () {
                     /* Wait a bit for the html elements to render */
