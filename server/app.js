@@ -98,10 +98,11 @@ io.on('connection', socket => {
 
     socket.on('removeCharacter', character => {
         // Remove character from database
-        User.updateOne({ _id: character.account_id }, { $pull: { characters: { id: character.id } } }, (err, data) => {
+        const index = users[character.account_id].characters.findIndex(char => char.name === character.name)
+        User.updateOne({ _id: character.account_id }, { $pull: { characters: { id: index } } }, (err, data) => {
             if (err) console.error('Removing character error: ', err)
             else {
-                users[character.account_id].characters.splice(character.id, 1)
+                users[character.account_id].characters.splice(index, 1)
                 io.emit('removed_user', users[character.account_id])
             }
         })
