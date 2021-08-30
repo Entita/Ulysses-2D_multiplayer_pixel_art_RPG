@@ -76,7 +76,7 @@
                         </div>
                         <button v-if="loginSocket.characters.length < 3"
                             @click="createCharacterBtn">Add character</button>
-                        <button v-if="loginSocket.characters.length > 0" @click="removeCharacter($event)" id="characterRemoveBtn"></button>
+                        <button v-if="loginSocket.characters.length > 0" @click="removeCharacter($event)" id="characterRemoveBtn">Delete character</button>
                     </div>
                     <span>Account details</span>
                     <div id="account_details">
