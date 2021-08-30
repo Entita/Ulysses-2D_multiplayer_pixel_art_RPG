@@ -752,9 +752,9 @@ var app = new Vue({
             }
         },
         removeCharacter(e) {
-            console.log(e.target)
-            if (e.target.value === 'Delete character') {
-                e.target.value = 'Are you sure?'
+            console.log(e.target.innerText)
+            if (e.target.innerText === 'Delete character') {
+                e.target.innerText = 'Are you sure?'
             } else {
                 console.log('delete')
                 // const index = document.querySelector('.character.selected>span').getAttribute('index')
