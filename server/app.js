@@ -87,21 +87,24 @@ io.on('connection', socket => {
 
     socket.on('addCharacter', character => {
         // Add character to database
-        User.findOneAndUpdate({ _id: character.account_id }, { $push: { characters: character } }, err => {
+        User.findOneAndUpdate({ _id: character.account_id }, { $push: { characters: character } }, (err, data) => {
             if (err) console.error('Adding character error: ', err)
+            else {
+                users[character.account_id].characters.push(character)
+                io.emit('updated_user', users[character.account_id])
+            }
         })
-        users[character.account_id].characters.push(character)
-        io.emit('updated_user', users[character.account_id])
     })
 
     socket.on('removeCharacter', character => {
         // Remove character from database
-        User.updateOne({ _id: character.account_id }, {'$pull': { 'characters': {'id': character.id}}}, (err, data) => {
+        User.updateOne({ _id: character.account_id }, { $pull: { characters: { id: character.id } } }, (err, data) => {
             if (err) console.error('Removing character error: ', err)
-            else console.log('foundChar', data)
+            else {
+                users[character.account_id].characters.remove(character.id)
+                io.emit('removed_user', users[character.account_id])
+            }
         })
-        users[character.account_id].characters.remove(character.id)
-        io.emit('removed_user', users[character.account_id])
     })
 
     socket.on('logIn', data => {
