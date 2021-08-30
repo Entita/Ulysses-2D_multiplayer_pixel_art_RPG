@@ -745,8 +745,8 @@ var app = new Vue({
             }
         },
         changeCharacter(e) {
-            // const index = e.target.querySelector('span').getAttribute('index')
             if (!e.target.classList.contains('selected')) {
+                document.getElementById('characterRemoveBtn').value = 'Delete character'
                 document.querySelector('.character.selected').classList.remove('selected')
                 e.target.classList.add('selected')
             }
@@ -754,6 +754,9 @@ var app = new Vue({
         removeCharacter(e) {
             console.log(e.target.value)
             if (e.target.value === 'Delete character') {
+                e.target.value = 'Are you sure?'
+            } else {
+                console.log('delete')
                 // const index = document.querySelector('.character.selected>span').getAttribute('index')
             }
         }
