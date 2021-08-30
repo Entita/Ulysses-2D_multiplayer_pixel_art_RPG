@@ -45,6 +45,8 @@ var app = new Vue({
             if (!this.sprite_sheet.hasOwnProperty(skin)) continue;
             this.helperArray.push(skin)
         }
+
+        this.loginSocket.createdAt = moment(this.loginSocket.createdAt).format('h:mm a, MMMM Do YYYY')
     },
     mounted() {
         var this_ = this,
