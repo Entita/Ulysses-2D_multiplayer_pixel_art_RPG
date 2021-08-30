@@ -520,7 +520,8 @@ var app = new Vue({
                 if (!players.hasOwnProperty(id)) continue;
 
                 player = players[id]
-                var image = this.sprite_sheet[player.sprite_img]
+                var image = this_.sprite_sheet[player.sprite_img]
+                console.log(this_.sprite_sheet, player.sprite_img, this_.sprite_sheet[player.sprite_img])
                 let position = player.moving ? sprintX % spriteAnimations[player.sprite].location.length : 0,
                     frameX = player.sprite_width * position,
                     frameY = spriteAnimations[player.sprite].location[position].y
