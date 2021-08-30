@@ -223,9 +223,16 @@ option {
 }
 
 #account_details {
-    display              : flex;
-    text-align           : left;
-    align-items          : center;
+    display    : flex;
+    text-align : left;
+    align-items: center;
+    gap        : 1rem;
+}
+
+#account_details>div {
+    display       : flex;
+    flex-direction: column;
+    gap           : 2rem;
 }
 
 #account>span {
