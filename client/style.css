@@ -227,9 +227,18 @@ option {
     display              : grid;
     grid-template-columns: 50% 50%;
     text-align           : left;
+    align-items          : center;
 }
 
-#account_characters {}
+#account>span {
+    align-self: center;
+}
+
+#account_characters {
+    display       : flex;
+    flex-direction: column;
+    gap           : .6rem;
+}
 
 #character_creating {
     display       : flex;
