@@ -603,7 +603,7 @@ var app = new Vue({
     methods: {
         init() {
             if (this.loginSocket.characters.length > 0) {
-                const index = document.querySelector('.character.selected>span').getAttribute('index')
+                const index = document.querySelector('.character.selected .char_name').getAttribute('index')
                 const name = this.loginSocket.characters[index].name
                 const skin = this.loginSocket.characters[index].skin
                 var this_ = this
@@ -764,7 +764,7 @@ var app = new Vue({
             if (e.target.innerText === 'Delete character') {
                 e.target.innerText = 'Are you sure?'
             } else {
-                const index = document.querySelector('.character.selected>span').getAttribute('index')
+                const index = document.querySelector('.character.selected .char_name').getAttribute('index')
                 const character = this.loginSocket.characters[index]
                 this.socket.emit('removeCharacter', character)
                 e.target.innerText = 'Delete character'
