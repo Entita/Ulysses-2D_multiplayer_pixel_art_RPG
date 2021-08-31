@@ -659,7 +659,6 @@ var app = new Vue({
                 this.socket.emit('signIn', user)
                 this.socket.on('signedIn', user => {
                     const type = typeof (user)
-                    console.log(type, user)
                     if (type === 'object') {
                         const user_str = JSON.stringify(user)
                         localStorage.setItem('loginSocket', user_str)
@@ -670,6 +669,7 @@ var app = new Vue({
                     } else if (user === 'nickname') {
                         alert('Account with this nickname already exists')
                     }
+                    this.socket.off('signedIn')
                 })
             }
         },
