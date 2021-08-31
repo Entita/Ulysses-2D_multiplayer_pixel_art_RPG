@@ -773,6 +773,8 @@ var app = new Vue({
             } else {
                 if (!isNameUnique) {
                     alert('You already have character with this name')
+                } else if (this.loginSocket.characters.length > 2) {
+                    alert('You already have maximum characters')
                 } else {
                     alert('Name is too short, atleast 4 characters')
                 }
