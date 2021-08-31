@@ -12,7 +12,7 @@
     font-family: pixel;
 }
 
-*:not('#account_details>*') {
+*:not(#account_details>*) {
     user-select: none
 }
 
