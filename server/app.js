@@ -6,7 +6,8 @@ const io = require("socket.io")(server);
 const moment = require('moment')
 
 // MongoDN
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { send } = require('process');
 const Message = require('./models/message')
 const User = require('./models/user')
 const chat = new Object()
@@ -77,7 +78,7 @@ io.on('connection', socket => {
         for (var id in users) {
             if (!users.hasOwnProperty(id)) continue;
             user = users[id]
-            
+
             if (user.email === data.email) {
                 isEmailUnique = false
                 break
@@ -238,6 +239,12 @@ io.on('connection', socket => {
             }).catch(err => console.error(err))
         })
     })
+})
+
+app.get('/validation/:id', (req, res) => {
+    const validation_id = req.params.id
+    if (users[validation_id]) res.send('verified')
+    else res.send(validation_id)
 })
 
 server.listen(process.env.PORT || 3000, () => {
