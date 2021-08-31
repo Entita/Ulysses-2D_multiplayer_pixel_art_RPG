@@ -165,7 +165,6 @@ io.on('connection', socket => {
                 if (!user.verified) {
                     socket.emit('loggedIn', 'not verified')
                 } else {
-                    socket.broadcast.emit('logOutUser', user)
                     socket.emit('loggedIn', user)
                     temp = false
                 }
@@ -177,6 +176,8 @@ io.on('connection', socket => {
     })
 
     socket.on('ready', data => {
+        socket.broadcast.emit('logOutUser', user)
+        
         var player = {
             name: data.name,
             sprite: 'down',
