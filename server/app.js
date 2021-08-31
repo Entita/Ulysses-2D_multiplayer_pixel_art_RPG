@@ -92,9 +92,9 @@ io.on('connection', socket => {
         }
 
         if (!isEmailUnique) {
-            io.emit('signedIn', 'mail')
+            socket.emit('signedIn', 'mail')
         } else if (!isNicknameUnique) {
-            io.emit('signedIn', 'nickname')
+            socket.emit('signedIn', 'nickname')
         } else {
             userSchema.save().then(user => {
                 users[user._id] = {
@@ -127,7 +127,7 @@ io.on('connection', socket => {
 
                 transporter.sendMail(mailOptions, err => {
                     if (err) console.log(err)
-                    else io.emit('signedIn', users[user._id])
+                    else socket.emit('signedIn', users[user._id])
                 })
             }).catch(err => console.error(err))
         }
@@ -139,7 +139,7 @@ io.on('connection', socket => {
             if (err) console.error('Adding character error: ', err)
             else {
                 users[character.account_id].characters.push(character)
-                io.emit('updated_user', users[character.account_id])
+                socket.emit('updated_user', users[character.account_id])
             }
         })
     })
@@ -151,7 +151,7 @@ io.on('connection', socket => {
             if (err) console.error('Removing character error: ', err)
             else {
                 users[character.account_id].characters.splice(index, 1)
-                io.emit('updated_user', users[character.account_id])
+                socket.emit('updated_user', users[character.account_id])
             }
         })
     })
@@ -163,15 +163,15 @@ io.on('connection', socket => {
             user = users[id]
             if ((user.nickname === data.name || user.email === data.name) && user.password === data.password) {
                 if (!user.verified) {
-                    io.emit('loggedIn', 'not verified')
+                    socket.emit('loggedIn', 'not verified')
                 } else {
-                    io.emit('loggedIn', user)
+                    socket.emit('loggedIn', user)
                     temp = false
                 }
             }
         }
         if (temp) {
-            io.emit('loggedIn', false)
+            socket.emit('loggedIn', false)
         }
     })
 
@@ -277,7 +277,7 @@ app.get('/validation/:id', (req, res) => {
             if (err) console.error('Verifying character error: ', err)
             else {
                 users[validation_id].verified = true
-                io.emit('updated_user', users[validation_id])
+                socket.emit('updated_user', users[validation_id])
                 res.sendFile('verify.html' , { root : __dirname});
             }
         })
