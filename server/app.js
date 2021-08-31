@@ -77,6 +77,7 @@ io.on('connection', socket => {
         for (var id in users) {
             if (!users.hasOwnProperty(id)) continue;
             user = users[id]
+            
             if (user.email === data.email) {
                 isEmailUnique = false
                 break
