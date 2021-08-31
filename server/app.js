@@ -1,6 +1,4 @@
 // Server config
-require('dotenv').config()
-
 const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
@@ -108,8 +106,8 @@ io.on('connection', socket => {
                     characters: user.characters,
                     verified: user.verified
                 }
+                
                 // Send verify email
-                console.log(process.env.GMAIL_PASSWORD)
                 var transporter = nodeMailer.createTransport({
                     service: 'gmail',
                     auth: {
