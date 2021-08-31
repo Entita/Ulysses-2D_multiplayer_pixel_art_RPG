@@ -717,10 +717,17 @@ var app = new Vue({
             character_ctx.drawImage(this.sprite_sheet[skin], 0, 0, 32, 48, 40, 0, 200, 150)
             character_canvas.className = skin
         },
+        isCharNameUnique(name) {
+            this.loginSocket.characters.map(existName => {
+                if (existName === name) return false
+            })
+            return true
+        },
         createCharacter() {
             const skin = document.getElementById('skin_change').className
             const name = document.getElementById('character_name').value
-            if (name.length > 4) {
+            const isNameUnique = isCharNameUnique(name)
+            if (name.length > 4 && isNameUnique) {
                 const character = {
                     name: name,
                     skin: skin,
@@ -737,7 +744,11 @@ var app = new Vue({
                     this.socket.off('updated_user')
                 })
             } else {
-                alert('Name is too short, atleast 5 characters')
+                if (isNameUnique) {
+                    alert('You already have character with this name')
+                } else {
+                    alert('Name is too short, atleast 5 characters')
+                }
             }
         },
         changeCharacter(e) {
