@@ -121,7 +121,7 @@ io.on('connection', socket => {
                 var mailOptions = {
                     from: 'entitak@gmail.com',
                     to: user.email,
-                    subject: 'Verification link to 2D Game',
+                    subject: 'Verification link to Ulysses',
                     html: html
                 }
 
