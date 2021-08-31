@@ -22,7 +22,6 @@ var app = new Vue({
                 'starlord': new Image(),
                 'tonystark': new Image(),
                 'thor': new Image(),
-                'rocket': new Image(),
                 'loki': new Image(),
                 'deadpool': new Image(),
                 'captainamerica': new Image()
@@ -34,13 +33,12 @@ var app = new Vue({
     },
     created() {
         this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
-        this.sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
-        this.sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
-        this.sprite_sheet['thor'].src = 'img/sprite_thor.png'
-        this.sprite_sheet['rocket'].src = 'img/sprite_rocket.png'
-        this.sprite_sheet['loki'].src = 'img/sprite_loki.png'
-        this.sprite_sheet['deadpool'].src = 'img/sprite_deadpool.png'
-        this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.png'
+        this.sprite_sheet['starlord'].src = 'img/sprite_starlord.svg'
+        this.sprite_sheet['tonystark'].src = 'img/sprite_tonystark.svg'
+        this.sprite_sheet['thor'].src = 'img/sprite_thor.svg'
+        this.sprite_sheet['loki'].src = 'img/sprite_loki.svg'
+        this.sprite_sheet['deadpool'].src = 'img/sprite_deadpool.svg'
+        this.sprite_sheet['captainamerica'].src = 'img/sprite_captainamerica.svg'
 
         for (var skin in this.sprite_sheet) {
             if (!this.sprite_sheet.hasOwnProperty(skin)) continue;
