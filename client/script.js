@@ -46,10 +46,6 @@ var app = new Vue({
             if (!this.sprite_sheet.hasOwnProperty(skin)) continue;
             this.helperArray.push(skin)
         }
-
-        if (this.loginSocket) {
-            this.loginSocket.createdAt = moment(this.loginSocket.createdAt).format('MMMM Do YYYY')
-        }
     },
     mounted() {
         var this_ = this,
@@ -769,14 +765,7 @@ var app = new Vue({
                     localStorage.setItem('loginSocket', JSON.stringify(user))
                     this.loginSocket = user
                     this.socket.off('removed_user')
-
                     this.reRenderChars++
-                    // document.querySelectorAll('.character.selected').forEach(el => {
-                    //     el.classList.remove('selected')
-                    // })
-                    // const newSelect = document.querySelector('.character:first-child')
-                    // if (newSelect) newSelect.classList.add('selected')
-                    // document.getElementById('characterRemoveBtn').innerText = 'Delete character'
                 })
             }
         }
