@@ -51,20 +51,12 @@ var app = new Vue({
 
         this.socket.on('logOutUser', accont_id => {
             if (this.loginSocket && this.loginSocket.id === accont_id) {
-                removeEventListeners()
                 localStorage.removeItem('loginSocket')
                 this.loginSocket = null
                 this.startingMenu.creatingCharacter = false
                 this.isReady = false
                 this.socket.emit('disconnectedManually')
                 alert('Logged out, someone logged in')
-
-                function removeEventListeners() {
-                    document.querySelector('.chat').addEventListener('scroll', autoScrolling)
-                    window.addEventListener('keydown', movement)
-                    window.addEventListener('keyup', autoCorrecting)
-                    document.querySelector('.messageBtn').addEventListener('click', sendingMessage)
-                }
             }
         })
     },
@@ -193,21 +185,26 @@ var app = new Vue({
         }
 
         function eventListeners() {
-            document.querySelector('.chat').addEventListener('scroll', autoScrolling)
-            window.addEventListener('keydown', movement)
-            window.addEventListener('keyup', autoCorrecting)
-            document.querySelector('.messageBtn').addEventListener('click', sendingMessage)
+            const messageInput = document.querySelector('.messageInput'),
+                messageBtn = document.querySelector('.messageBtn'),
+                chatElement = document.querySelector('.chat')
 
-            function autoScrolling(e) {
-                const chatElement = document.querySelector('.chat')
+            chatElement.addEventListener('scroll', e => {
                 if (e.target.scrollTop === chatElement.scrollHeight - chatElement.offsetHeight) {
                     this_.autoScroll = false
                 } else {
                     this_.autoScroll = true
                 }
-            }
+            })
 
-            function autoCorrecting(e) {
+            window.addEventListener('keydown', e => {
+                if (document.activeElement != messageInput) {
+                    key = e.key.toLowerCase()
+                    keys[key] = true
+                }
+            })
+
+            window.addEventListener('keyup', e => {
                 if (document.activeElement != messageInput) {
                     key = e.key.toLowerCase()
                     delete keys[key]
@@ -218,18 +215,11 @@ var app = new Vue({
                         sendMessage(messageInput)
                     }
                 }
-            }
+            })
 
-            function movement(e) {
-                if (document.activeElement != messageInput) {
-                    key = e.key.toLowerCase()
-                    keys[key] = true
-                }
-            }
-
-            function sendingMessage() {
-                sendMessage(document.querySelector('.messageInput'))
-            }
+            messageBtn.addEventListener('click', () => {
+                sendMessage(messageInput)
+            })
         }
 
         function animateSprint() {
