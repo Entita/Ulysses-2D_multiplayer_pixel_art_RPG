@@ -284,11 +284,6 @@ option {
     align-items  : center;
 }
 
-.character>div>span {
-    pointer-events: none;
-    margin-left   : 8px;
-}
-
 .character:hover {
     background-color: whitesmoke;
     color           : gray;
@@ -330,6 +325,8 @@ option {
 .character>div {
     display       : flex;
     flex-direction: column;
+    pointer-events: none;
+    margin-left   : 8px;
 }
 
 .char_lvl {
