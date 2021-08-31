@@ -78,8 +78,14 @@ io.on('connection', socket => {
             if (!users.hasOwnProperty(id)) continue;
             user = users[id]
 
-            if (user.email === data.email) isEmailUnique = false
-            if (user.nickname === data.nickname) isNicknameUnique = false
+            if (user.email === data.email) {
+                isEmailUnique = false
+                break
+            }
+            if (user.nickname === data.nickname) {
+                isNicknameUnique = false
+                break
+            }
         }
 
         if (!isEmailUnique) {
