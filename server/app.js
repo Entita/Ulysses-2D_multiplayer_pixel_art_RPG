@@ -111,7 +111,7 @@ io.on('connection', socket => {
                 const transporter = nodeMailer.createTransport({
                     service: 'gmail',
                     auth: {
-                        user: 'entitak@gmail.com',
+                        user: 'ulyssess.game@gmail.com',
                         pass: process.env.GMAIL_PASSWORD
                     }
                 }), html = '<h1>Thank <i>YOU</i> for registration.</h1>\
@@ -119,7 +119,7 @@ io.on('connection', socket => {
                             <a href="https://gentle-island-28675.herokuapp.com/validation/' + user._id + '">Verification link</a>'
 
                 var mailOptions = {
-                    from: 'entitak@gmail.com',
+                    from: 'ulyssess.game@gmail.com',
                     to: user.email,
                     subject: 'Verification link to Ulysses',
                     html: html
