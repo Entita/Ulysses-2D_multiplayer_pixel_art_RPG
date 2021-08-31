@@ -20,7 +20,7 @@ const userSchema = new Schema({
         default: new Array(),
         required: true
     }
-}, { timestamps: { currentTime: moment(Date.now()).format('MMMM Do YYYY') } })
+}, { timestamps: { currentTime: () => moment(Date.now()).format('MMMM Do YYYY') } })
 
 const User = mongoose.model('user', userSchema)
 module.exports = User
