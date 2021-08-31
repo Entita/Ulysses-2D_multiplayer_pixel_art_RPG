@@ -12,6 +12,10 @@
     font-family: pixel;
 }
 
+*:not('#account_details>*') {
+    user-select: none
+}
+
 canvas {
     border   : 5px solid black;
     position : absolute;
@@ -137,7 +141,6 @@ option {
     border-radius   : 8px;
     padding         : 3px;
     text-shadow     : 1px 2px lightgrey;
-    user-select     : none;
 }
 
 .chat-controls {
