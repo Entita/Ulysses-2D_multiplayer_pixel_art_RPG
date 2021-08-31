@@ -44,6 +44,10 @@ var app = new Vue({
             this.helperArray.push(skin)
         }
 
+        if (this.loginSocket) {
+            console.log(this.loginSocket)
+        }
+
         this.socket.on('updated_user', user => {
             localStorage.setItem('loginSocket', JSON.stringify(user))
             this.loginSocket = user
