@@ -664,10 +664,8 @@ var app = new Vue({
                 this.socket.on('signedIn', user => {
                     const type = typeof (user)
                     if (type === 'object') {
-                        const user_str = JSON.stringify(user)
-                        localStorage.setItem('loginSocket', user_str)
-                        this.loginSocket = user
                         this.startingMenu.signinShow = false
+                        alert('Account is created, verify it using your email adress.')
                     } else if (user === 'mail') {
                         alert('Account with this e-mail already exists')
                     } else if (user === 'nickname') {
@@ -688,13 +686,15 @@ var app = new Vue({
                 }
                 this.socket.emit('logIn', user)
                 this.socket.on('loggedIn', user => {
-                    if (user) {
+                    if (typeof(user) === 'object') {
                         const user_str = JSON.stringify(user)
                         localStorage.setItem('loginSocket', user_str)
                         this.loginSocket = user
                         this.startingMenu.loginShow = false
+                    } else if (user) {
+                        alert('Account is not verified')
                     } else {
-                        alert('invalid information')
+                        alert('Invalid information')
                     }
                     this.socket.off('loggedIn')
                 })

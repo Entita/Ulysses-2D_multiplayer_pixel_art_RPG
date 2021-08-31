@@ -105,6 +105,9 @@ io.on('connection', socket => {
                     characters: user.characters,
                     verified: user.verified
                 }
+                // Send verify email
+                
+
                 io.emit('signedIn', users[user._id])
             }).catch(err => console.error(err))
         }
@@ -139,8 +142,12 @@ io.on('connection', socket => {
             if (!users.hasOwnProperty(id)) continue;
             user = users[id]
             if ((user.nickname === data.name || user.email === data.name) && user.password === data.password) {
-                io.emit('loggedIn', user)
-                temp = false
+                if (!user.verified) {
+                    io.emit('loggedIn', 'not verified')
+                } else {
+                    io.emit('loggedIn', user)
+                    temp = false
+                }
             }
         }
         if (temp) {
