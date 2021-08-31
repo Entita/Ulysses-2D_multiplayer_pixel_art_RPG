@@ -45,8 +45,7 @@ var app = new Vue({
         }
 
         this.socket.on('update_user', data => {
-            console.log(this.loginSocket, data, this.loginSocket.id === data.account_id, data.type === 'update')
-            if (this.loginSocket && this.loginSocket.id === data.account_id) {
+            if (this.loginSocket && this.loginSocket.id === data.user.account_id) {
                 // Update all people on same account
                 if (data.type === 'logout') {
                     localStorage.removeItem('loginSocket')
