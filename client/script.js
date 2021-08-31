@@ -627,9 +627,9 @@ var app = new Vue({
             return re.test(String(email).toLowerCase());
         },
         validateForm(email, username, password, password2) {
-            if (((password !== password2) || !this.validateEmail(email)) || username.length < 4 || username.length > 12 || password.length < 6) {
-                if (username.length < 4) {
-                    alert('Username is too short, atleast 4 characters')
+            if (((password !== password2) || !this.validateEmail(email)) || username.length < 5 || username.length > 12 || password.length < 6) {
+                if (username.length < 5) {
+                    alert('Username is too short, atleast 5 characters')
                 } else if (username.length > 12) {
                     alert('Username is too long, max 12 characters')
                 } else if (!this.validateEmail(email)) {
@@ -737,7 +737,7 @@ var app = new Vue({
             const skin = document.getElementById('skin_change').className
             const name = document.getElementById('character_name').value
             const isNameUnique = this.isCharNameUnique(name)
-            if (name.length > 4 && isNameUnique) {
+            if (name.length > 3 && isNameUnique) {
                 const character = {
                     name: name,
                     skin: skin,
@@ -757,7 +757,7 @@ var app = new Vue({
                 if (!isNameUnique) {
                     alert('You already have character with this name')
                 } else {
-                    alert('Name is too short, atleast 5 characters')
+                    alert('Name is too short, atleast 4 characters')
                 }
             }
         },
