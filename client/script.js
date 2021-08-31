@@ -719,7 +719,7 @@ var app = new Vue({
         },
         isCharNameUnique(name) {
             this.loginSocket.characters.map(existName => {
-                if (existName === name) return false
+                if (existName.name === name) return false
             })
             return true
         },
