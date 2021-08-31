@@ -51,11 +51,12 @@ var app = new Vue({
 
         this.socket.on('logOutUser', accont_id => {
             if (this.loginSocket && this.loginSocket.id === accont_id) {
-                alert('Logged out, someone logged in')
+                // alert('Logged out, someone logged in')
                 localStorage.removeItem('loginSocket')
                 this.loginSocket = null
                 this.startingMenu.creatingCharacter = false
                 this.isReady = false
+                this.socket.emit('disconnect')
             }
         })
     },
