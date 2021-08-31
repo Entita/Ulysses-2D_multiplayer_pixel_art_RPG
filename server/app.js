@@ -5,6 +5,7 @@ const server = require('http').createServer(app)
 const io = require("socket.io")(server)
 const moment = require('moment')
 const nodeMailer = require('nodemailer')
+const path = require('path')
 
 // MongoDN
 const mongoose = require('mongoose')
@@ -278,7 +279,7 @@ app.get('/validation/:id', (req, res) => {
             else {
                 users[validation_id].verified = true
                 io.emit('updated_user', users[validation_id])
-                res.sendFile('verify.html')
+                res.sendFile('verify.html' , { root : __dirname});
             }
         })
     }
