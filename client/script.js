@@ -627,9 +627,9 @@ var app = new Vue({
             return re.test(String(email).toLowerCase());
         },
         validateForm(email, username, password, password2) {
-            if (((password !== password2) || !this.validateEmail(email)) || username.length < 5 || username.length > 12 || password.length < 6) {
-                if (username.length < 5) {
-                    alert('Username is too short, atleast 5 characters')
+            if (((password !== password2) || !this.validateEmail(email)) || username.length < 4 || username.length > 12 || password.length < 6) {
+                if (username.length < 4) {
+                    alert('Username is too short, atleast 4 characters')
                 } else if (username.length > 12) {
                     alert('Username is too long, max 12 characters')
                 } else if (!this.validateEmail(email)) {
