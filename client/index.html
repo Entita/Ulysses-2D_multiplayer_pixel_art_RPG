@@ -28,7 +28,7 @@
                         <span class="message_date">{{ message.createdAt }}</span>
                     </div>
                 </div>
-                <div v-if="autoScroll" class="scroll_to_top" @click="scrollToBottom">Autoscroll to bottom</div>
+                <div v-if="autoScroll" class="scroll_to_top unselectable" @click="scrollToBottom">Autoscroll to bottom</div>
                 <div class="chat-controls">
                     <input class="messageInput" type="text" placeholder="Type your message here">
                     <button class="messageBtn">Send</button>
@@ -65,8 +65,8 @@
             <div id="logged_in" v-else>
                 <button v-if="!startingMenu.creatingCharacter" @click="logOut">Log Out</button>
                 <div v-if="!startingMenu.creatingCharacter" id="account">
-                    <span>Characters</span>
-                    <div id="account_characters" :key="reRenderChars">
+                    <span class="unselectable">Characters</span>
+                    <div id="account_characters" :key="reRenderChars" class="unselectable">
                         <div class="character" v-for="(character, index) in loginSocket.characters"
                             :class="{'selected': index === 0}" @click="changeCharacter($event)">
                             <img v-bind:src="'img/' + character.skin + '_head.png'">
@@ -80,7 +80,7 @@
                         <button v-if="loginSocket.characters.length > 0" @click="removeCharacter($event)"
                             id="characterRemoveBtn">Delete character</button>
                     </div>
-                    <span>Account details</span>
+                    <span class="unselectable">Account details</span>
                     <div id="account_details">
                         <div>
                             <span>Nickname:</span>
