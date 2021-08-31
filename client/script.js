@@ -44,19 +44,20 @@ var app = new Vue({
             this.helperArray.push(skin)
         }
 
-        this.socket.on('updated_user', user => {
-            localStorage.setItem('loginSocket', JSON.stringify(user))
-            this.loginSocket = user
-        })
-
-        this.socket.on('logOutUser', accont_id => {
-            if (this.loginSocket && this.loginSocket.id === accont_id) {
-                localStorage.removeItem('loginSocket')
-                this.loginSocket = null
-                this.startingMenu.creatingCharacter = false
-                this.isReady = false
-                this.socket.emit('disconnectedManually')
-                alert('Logged out, someone logged in')
+        this.socket.on('update_user', data => {
+            if (this.loginSocket && this.loginSocket.id === data.accont_id) {
+                // Update all people on same account
+                if (data.type === 'logout') {
+                    localStorage.removeItem('loginSocket')
+                    this.loginSocket = null
+                    this.startingMenu.creatingCharacter = false
+                    this.isReady = false
+                    this.socket.emit('disconnectedManually')
+                    alert('Logged out, someone logged in')
+                } else if (data.type === 'update') {
+                    localStorage.setItem('loginSocket', JSON.stringify(data.user))
+                    this.loginSocket = data.user
+                }
             }
         })
     },

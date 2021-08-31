@@ -139,7 +139,13 @@ io.on('connection', socket => {
             if (err) console.error('Adding character error: ', err)
             else {
                 users[character.account_id].characters.push(character)
-                socket.emit('updated_user', users[character.account_id])
+
+                const update_user = {
+                    account_id: data.account_id,
+                    type: 'update',
+                    user: users[character.account_id]
+                }
+                socket.emit('update_user', update_user)
             }
         })
     })
@@ -151,7 +157,13 @@ io.on('connection', socket => {
             if (err) console.error('Removing character error: ', err)
             else {
                 users[character.account_id].characters.splice(index, 1)
-                socket.emit('updated_user', users[character.account_id])
+
+                const update_user = {
+                    account_id: data.account_id,
+                    type: 'update',
+                    user: users[character.account_id]
+                }
+                socket.emit('update_user', update_user)
             }
         })
     })
@@ -165,7 +177,6 @@ io.on('connection', socket => {
                 if (!user.verified) {
                     socket.emit('loggedIn', 'not verified')
                 } else {
-                    // socket.broadcast.emit('logOutUser', user)
                     socket.emit('loggedIn', user)
                     temp = false
                 }
@@ -177,7 +188,11 @@ io.on('connection', socket => {
     })
 
     socket.on('ready', data => {
-        socket.broadcast.emit('logOutUser', data.account_id)
+        const update_user = {
+            account_id: data.account_id,
+            type: 'logout'
+        }
+        socket.broadcast.emit('update_user', update_user)
 
         var player = {
             name: data.name,
@@ -286,7 +301,14 @@ app.get('/validation/:id', (req, res) => {
             if (err) console.error('Verifying character error: ', err)
             else {
                 users[validation_id].verified = true
-                socket.emit('updated_user', users[validation_id])
+
+                const update_user = {
+                    account_id: data.account_id,
+                    type: 'update',
+                    user: users[validation_id]
+                }
+                socket.emit('update_user', update_user)
+
                 res.sendFile('verify.html', { root: __dirname });
             }
         })
