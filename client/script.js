@@ -720,7 +720,7 @@ var app = new Vue({
         isCharNameUnique(name) {
             var helper = true
             this.loginSocket.characters.map(existName => {
-                if (existName.name === name) {
+                if (existName.name.toLowerCase() === name.toLowerCase()) {
                     helper = !helper
                     return
                 }
@@ -749,7 +749,7 @@ var app = new Vue({
                     this.socket.off('updated_user')
                 })
             } else {
-                if (isNameUnique) {
+                if (!isNameUnique) {
                     alert('You already have character with this name')
                 } else {
                     alert('Name is too short, atleast 5 characters')
