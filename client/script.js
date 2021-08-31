@@ -760,7 +760,7 @@ var app = new Vue({
             const skin = document.getElementById('skin_change').className
             const name = document.getElementById('character_name').value
             const isNameUnique = this.isCharNameUnique(name)
-            if (name.length > 3 && isNameUnique && this.loginSocket.characters.length < 4) {
+            if (name.length > 3 && isNameUnique && this.loginSocket.characters.length < 3) {
                 const character = {
                     name: name,
                     skin: skin,
