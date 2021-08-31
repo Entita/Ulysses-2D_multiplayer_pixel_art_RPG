@@ -16,8 +16,11 @@ const userSchema = new Schema({
     },
     characters: {
         type: Array,
-        default: new Array(),
-        required: true
+        default: new Array()
+    },
+    verified: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true })
 
