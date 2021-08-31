@@ -246,9 +246,14 @@ io.on('connection', socket => {
 app.get('/validation/:id', (req, res) => {
     const validation_id = req.params.id
     if (users[validation_id]) {
-        
-        users[validation_id].verified = true
-        io.emit('updated_user', users[validation_id])
+        User.findOneAndUpdate({ _id: validation_id }, { verified: true }, (err, data) => {
+            if (err) console.error('Verifying character error: ', err)
+            else {
+                users[validation_id].verified = true
+                io.emit('updated_user', users[validation_id])
+                res.send('Account is verified!')
+            }
+        })
     }
 })
 

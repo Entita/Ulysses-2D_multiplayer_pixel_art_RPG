@@ -27,8 +27,7 @@ var app = new Vue({
                 'captainamerica': new Image()
             },
             helperArray: [],
-            changeCharacterIndex: 0,
-            reRenderChars: 0
+            changeCharacterIndex: 0
         }
     },
     created() {
@@ -48,7 +47,6 @@ var app = new Vue({
         this.socket.on('updated_user', user => {
             localStorage.setItem('loginSocket', JSON.stringify(user))
             this.loginSocket = user
-            // this.reRenderChars++
         })
     },
     mounted() {
