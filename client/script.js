@@ -58,7 +58,9 @@ var app = new Vue({
                     localStorage.setItem('loginSocket', JSON.stringify(data.user))
                     this.loginSocket = data.user
                     if (document.querySelector('.character')) {
-                        document.querySelector('.character.selected').classList.remove('selected')
+                        document.querySelectorAll('.character.selected').forEach(elem => {
+                            elem.classList.remove('selected')
+                        })
                         document.querySelector('.character:first-child').classList.add('selected')
                     }
                 }
