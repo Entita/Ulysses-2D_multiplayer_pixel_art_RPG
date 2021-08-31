@@ -278,7 +278,7 @@ app.get('/validation/:id', (req, res) => {
             else {
                 users[validation_id].verified = true
                 io.emit('updated_user', users[validation_id])
-                res.send('Account is verified!')
+                res.sendFile('verify.html', { root: './server' })
             }
         })
     }
