@@ -722,6 +722,7 @@ var app = new Vue({
                 console.log(existName.name, name, existName.name === name)
                 if (existName.name === name) return false
             })
+            console.log('bla')
             return true
         },
         createCharacter() {
