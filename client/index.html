@@ -72,7 +72,7 @@
                             <img v-bind:src="'img/' + character.skin + '_head.png'">
                             <div>
                                 <span :index="index" class="char_name">{{ character.name }}</span>
-                                <span class="char_lvl">{{ Math.floor(character.exp/1000) < 1 ? 1 : Math.floor(character.exp/1000) }} Lvl</span>
+                                <span class="char_lvl">{{ ~~(character.exp/1000) < 1 ? 1 : ~~(character.exp/1000) }} Lvl</span>
                             </div>
                         </div>
                         <button v-if="loginSocket.characters.length < 3" @click="createCharacterBtn">Add
