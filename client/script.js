@@ -56,7 +56,7 @@ var app = new Vue({
                 this.loginSocket = null
                 this.startingMenu.creatingCharacter = false
                 this.isReady = false
-                this.socket.emit('disconnect')
+                this.socket.emit('disconnectedManually')
             }
         })
     },

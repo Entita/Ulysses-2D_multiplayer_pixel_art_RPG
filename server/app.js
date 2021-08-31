@@ -205,6 +205,12 @@ io.on('connection', socket => {
             io.emit('update_players', players)
         })
 
+        socket.on('disconnectedManually', () => {
+            io.emit('player_disconnected', players[socket.id])
+            delete players[socket.id]
+            io.emit('update_players', players)
+        })
+
         socket.on('move', data => {
             var player = players[data.id]
             if (data.w) {
@@ -281,7 +287,7 @@ app.get('/validation/:id', (req, res) => {
             else {
                 users[validation_id].verified = true
                 socket.emit('updated_user', users[validation_id])
-                res.sendFile('verify.html' , { root : __dirname});
+                res.sendFile('verify.html', { root: __dirname });
             }
         })
     }
