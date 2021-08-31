@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
+const moment = require('moment')
 
 // MongoDN
 const mongoose = require('mongoose')
@@ -38,7 +39,7 @@ mongoose.connection.on('connected', () => {
                 nickname: user.nickname,
                 email: user.email,
                 password: user.password,
-                createdAt: user.createdAt,
+                createdAt: moment(user.createdAt).format('MMMM Do YYYY'),
                 characters: user.characters
             }
         })
