@@ -5,7 +5,6 @@ const server = require('http').createServer(app)
 const io = require("socket.io")(server)
 const moment = require('moment')
 const nodeMailer = require('nodemailer')
-const path = require('path')
 
 // MongoDN
 const mongoose = require('mongoose')
