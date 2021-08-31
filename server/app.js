@@ -106,7 +106,7 @@ io.on('connection', socket => {
                     characters: user.characters,
                     verified: user.verified
                 }
-                
+            
                 // Send verify email
                 var transporter = nodeMailer.createTransport({
                     service: 'gmail',
