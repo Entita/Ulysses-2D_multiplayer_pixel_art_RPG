@@ -327,6 +327,7 @@ option {
     flex-direction: column;
     pointer-events: none;
     margin-left   : 8px;
+    text-align    : left;
 }
 
 .char_lvl {
