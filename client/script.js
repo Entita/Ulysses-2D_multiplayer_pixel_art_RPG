@@ -731,7 +731,6 @@ var app = new Vue({
             const skin = document.getElementById('skin_change').className
             const name = document.getElementById('character_name').value
             const isNameUnique = this.isCharNameUnique(name)
-            console.log(isNameUnique)
             if (name.length > 4 && isNameUnique) {
                 const character = {
                     name: name,
