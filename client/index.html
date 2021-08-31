@@ -70,11 +70,15 @@
                         <div class="character" v-for="(character, index) in loginSocket.characters"
                             :class="{'selected': index === 0}" @click="changeCharacter($event)">
                             <img v-bind:src="'img/' + character.skin + '_head.png'">
-                            <span :index="index">{{ character.name }}</span>
+                            <div>
+                                <span :index="index" class="char_name">{{ character.name }}</span>
+                                <span class="char_lvl">{{ character.exp }} Lvl</span>
+                            </div>
                         </div>
-                        <button v-if="loginSocket.characters.length < 3"
-                            @click="createCharacterBtn">Add character</button>
-                        <button v-if="loginSocket.characters.length > 0" @click="removeCharacter($event)" id="characterRemoveBtn">Delete character</button>
+                        <button v-if="loginSocket.characters.length < 3" @click="createCharacterBtn">Add
+                            character</button>
+                        <button v-if="loginSocket.characters.length > 0" @click="removeCharacter($event)"
+                            id="characterRemoveBtn">Delete character</button>
                     </div>
                     <span>Account details</span>
                     <div id="account_details">
