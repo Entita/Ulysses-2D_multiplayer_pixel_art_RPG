@@ -163,6 +163,8 @@ io.on('connection', socket => {
                     type: 'update',
                     user: users[character.account_id]
                 }
+                
+                console.log(update_user.user)
                 socket.emit('update_user', update_user)
             }
         })
