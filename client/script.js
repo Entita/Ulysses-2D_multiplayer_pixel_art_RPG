@@ -57,7 +57,10 @@ var app = new Vue({
                 } else if (data.type === 'update') {
                     localStorage.setItem('loginSocket', JSON.stringify(data.user))
                     this.loginSocket = data.user
-                    document.querySelector('.character:first-child').classList.add('selected')
+                    if (document.querySelector('.character')) {
+                        document.querySelector('.character.selected').classList.remove('selected')
+                        document.querySelector('.character:first-child').classList.add('selected')
+                    }
                 }
             }
         })
