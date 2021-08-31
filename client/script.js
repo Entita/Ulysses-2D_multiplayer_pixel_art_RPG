@@ -56,8 +56,10 @@ var app = new Vue({
                     this.socket.emit('disconnectedManually')
                     alert('Logged out, someone logged in')
                 } else if (data.type === 'update') {
+                    console.log(this.loginSocket)
                     localStorage.setItem('loginSocket', JSON.stringify(data.user))
                     this.loginSocket = data.user
+                    console.log(this.loginSocket)
                 }
             }
         })
