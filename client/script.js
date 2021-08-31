@@ -658,10 +658,18 @@ var app = new Vue({
                 }
                 this.socket.emit('signIn', user)
                 this.socket.on('signedIn', user => {
-                    const user_str = JSON.stringify(user)
-                    localStorage.setItem('loginSocket', user_str)
-                    this.loginSocket = user
-                    this.startingMenu.signinShow = false
+                    const type = typeof (user)
+                    console.log(type, user)
+                    if (type === 'object') {
+                        const user_str = JSON.stringify(user)
+                        localStorage.setItem('loginSocket', user_str)
+                        this.loginSocket = user
+                        this.startingMenu.signinShow = false
+                    } else if (user === 'mail') {
+                        alert('Account with this e-mail already exists')
+                    } else if (user === 'nickname') {
+                        alert('Account with this nickname already exists')
+                    }
                 })
             }
         },

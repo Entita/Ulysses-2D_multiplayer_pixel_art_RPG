@@ -72,18 +72,33 @@ io.on('connection', socket => {
     socket.on('signIn', data => {
         // Insert user to database
         const userSchema = User(data)
+        const isEmailUnique = true
+        const isNicknameUnique = true
+        for (var id in users) {
+            if (!users.hasOwnProperty(id)) continue;
+            user = users[id]
 
-        userSchema.save().then(user => {
-            users[user._id] = {
-                id: user._id,
-                nickname: user.nickname,
-                email: user.email,
-                password: user.password,
-                createdAt: moment(user.createdAt).format('MMMM Do YYYY'),
-                characters: user.characters
-            }
-            io.emit('signedIn', users[user._id])
-        }).catch(err => console.error(err))
+            if (user.email === data.email) isEmailUnique = false
+            if (user.nickname === data.nickname) isNicknameUnique = false
+        }
+
+        if (!isEmailUnique) {
+            io.emit('signedIn', 'mail')
+        } else if (!isNicknameUnique) {
+            io.emit('signedIn', 'nickname')
+        } else {
+            userSchema.save().then(user => {
+                users[user._id] = {
+                    id: user._id,
+                    nickname: user.nickname,
+                    email: user.email,
+                    password: user.password,
+                    createdAt: moment(user.createdAt).format('MMMM Do YYYY'),
+                    characters: user.characters
+                }
+                io.emit('signedIn', users[user._id])
+            }).catch(err => console.error(err))
+        }
     })
 
     socket.on('addCharacter', character => {
