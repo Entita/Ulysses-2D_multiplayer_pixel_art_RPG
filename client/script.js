@@ -627,7 +627,7 @@ var app = new Vue({
                     const data = {
                         name: name,
                         skin: skin,
-                        account_id: this.loginSocket.id
+                        account_id: _this.loginSocket.id
                     }
                     this_.socket.emit('ready', data)
                 }, 10)
