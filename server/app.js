@@ -79,7 +79,7 @@ io.on('connection', socket => {
                 nickname: user.nickname,
                 email: user.email,
                 password: user.password,
-                createdAt: user.createdAt,
+                createdAt: moment(user.createdAt).format('MMMM Do YYYY'),
                 characters: user.characters
             }
             io.emit('signedIn', users[user._id])
@@ -211,7 +211,7 @@ io.on('connection', socket => {
                 chat[message._id] = {
                     player: message.player,
                     message: message.message,
-                    createdAt: message.createdAt
+                    createdAt: moment(message.createdAt).format('MMMM Do YYYY')
                 }
                 io.emit('chat', chat)
             }).catch(err => console.error(err))
