@@ -284,7 +284,7 @@ option {
     align-items  : center;
 }
 
-.character>span {
+.character>div>span {
     pointer-events: none;
     margin-left   : 8px;
 }
