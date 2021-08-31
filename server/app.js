@@ -140,7 +140,7 @@ io.on('connection', socket => {
             else {
                 users[character.account_id].characters.push(character)
 
-                var update_user = {
+                const update_user = {
                     account_id: data.account_id,
                     type: 'update',
                     user: users[character.account_id]
@@ -158,7 +158,7 @@ io.on('connection', socket => {
             else {
                 users[character.account_id].characters.splice(index, 1)
 
-                var update_user = {
+                const update_user = {
                     account_id: data.account_id,
                     type: 'update',
                     user: users[character.account_id]
@@ -190,7 +190,7 @@ io.on('connection', socket => {
     })
 
     socket.on('ready', data => {
-        var update_user = {
+        const update_user = {
             account_id: data.account_id,
             type: 'logout'
         }
