@@ -56,7 +56,18 @@ var app = new Vue({
                 this.startingMenu.creatingCharacter = false
                 this.isReady = false
                 this.socket.emit('disconnectedManually')
+                removeEventListeners()
                 alert('Logged out, someone logged in')
+
+                function removeEventListeners() {
+                    const messageBtn = document.querySelector('.messageBtn'),
+                        chatElement = document.querySelector('.chat')
+
+                    chatElement.removeEventListener('scroll')
+                    window.removeEventListener('keydown')
+                    window.removeEventListener('keyup')
+                    messageBtn.removeEventListener('click')
+                }
             }
         })
     },
