@@ -718,17 +718,20 @@ var app = new Vue({
             character_canvas.className = skin
         },
         isCharNameUnique(name) {
+            var helper = true
             this.loginSocket.characters.map(existName => {
-                console.log(existName.name, name, existName.name === name)
-                if (existName.name === name) return false
+                if (existName.name === name) {
+                    helper = !helper
+                    return
+                }
             })
-            console.log('bla')
-            return true
+            return helper
         },
         createCharacter() {
             const skin = document.getElementById('skin_change').className
             const name = document.getElementById('character_name').value
             const isNameUnique = this.isCharNameUnique(name)
+            console.log(isNameUnique)
             if (name.length > 4 && isNameUnique) {
                 const character = {
                     name: name,
