@@ -50,7 +50,8 @@ var app = new Vue({
         })
 
         this.socket.on('logOutUser', user => {
-            if (this.loginSocket.account_id === user.account_id) {
+            if (this.loginSocket._id === user._id) {
+                alert('Logged out, someone logged in')
                 localStorage.removeItem('loginSocket')
                 this.loginSocket = null
                 this.startingMenu.creatingCharacter = false
