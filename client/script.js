@@ -49,8 +49,8 @@ var app = new Vue({
             this.loginSocket = user
         })
 
-        this.socket.on('logOutUser', user => {
-            if (this.loginSocket && this.loginSocket.id === user.id) {
+        this.socket.on('logOutUser', accont_id => {
+            if (this.loginSocket && this.loginSocket.id === accont_id) {
                 alert('Logged out, someone logged in')
                 localStorage.removeItem('loginSocket')
                 this.loginSocket = null
@@ -626,7 +626,8 @@ var app = new Vue({
                     this_.isReady = !this_.isReady
                     const data = {
                         name: name,
-                        skin: skin
+                        skin: skin,
+                        account_id: this.loginSocket.id
                     }
                     this_.socket.emit('ready', data)
                 }, 10)
