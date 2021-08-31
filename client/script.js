@@ -48,6 +48,15 @@ var app = new Vue({
             localStorage.setItem('loginSocket', JSON.stringify(user))
             this.loginSocket = user
         })
+
+        this.socket.on('logOutUser', user => {
+            if (this.loginSocket.account_id === user.account_id) {
+                localStorage.removeItem('loginSocket')
+                this.loginSocket = null
+                this.startingMenu.creatingCharacter = false
+                this.isReady = false
+            }
+        })
     },
     mounted() {
         var this_ = this,
@@ -686,7 +695,7 @@ var app = new Vue({
                 }
                 this.socket.emit('logIn', user)
                 this.socket.on('loggedIn', user => {
-                    if (typeof(user) === 'object') {
+                    if (typeof (user) === 'object') {
                         const user_str = JSON.stringify(user)
                         localStorage.setItem('loginSocket', user_str)
                         this.loginSocket = user
