@@ -45,6 +45,7 @@ var app = new Vue({
         }
 
         this.socket.on('update_user', data => {
+            console.log(this.loginSocket, data, this.loginSocket.id === data.user.account_id, data.type === 'update')
             if (this.loginSocket && this.loginSocket.id === data.user.account_id) {
                 // Update all people on same account
                 if (data.type === 'logout') {
@@ -55,9 +56,10 @@ var app = new Vue({
                     this.socket.emit('disconnectedManually')
                     alert('Logged out, someone logged in')
                 } else if (data.type === 'update') {
+                    console.log('bla', this.loginSocket)
                     localStorage.setItem('loginSocket', JSON.stringify(data.user))
                     this.loginSocket = data.user
-                    console.log(this.loginSocket)
+                    console.log('bla', this.loginSocket)
                 }
             }
         })
