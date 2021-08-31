@@ -1,13 +1,14 @@
 // Server config
-const express = require('express');
-const app = express();
-const server = require('http').createServer(app);
-const io = require("socket.io")(server);
+const express = require('express')
+const app = express()
+const server = require('http').createServer(app)
+const io = require("socket.io")(server)
 const moment = require('moment')
+const nodeMailer = require('nodemailer')
 
 // MongoDN
-const mongoose = require('mongoose');
-const { send } = require('process');
+const mongoose = require('mongoose')
+const { send } = require('process')
 const Message = require('./models/message')
 const User = require('./models/user')
 const chat = new Object()
@@ -77,7 +78,7 @@ io.on('connection', socket => {
         var isEmailUnique = true
         var isNicknameUnique = true
         for (var id in users) {
-            if (!users.hasOwnProperty(id)) continue;
+            if (!users.hasOwnProperty(id)) continue
             user = users[id]
 
             if (user.email === data.email) {
@@ -106,9 +107,25 @@ io.on('connection', socket => {
                     verified: user.verified
                 }
                 // Send verify email
-                
+                var transporter = nodeMailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'entitak@gmail.com',
+                        pass: '4Storyboy.'
+                    }
+                })
 
-                io.emit('signedIn', users[user._id])
+                var mailOptions = {
+                    from: 'entitak@gmail.com',
+                    to: user.email,
+                    subject: 'Verification link to 2D Game',
+                    html: '<h1>Thank <i>YOU</i> for registration.</h1><br><a href="' + user._id + '">Verification link</a>'
+                }
+
+                transporter.sendMail(mailOptions, err => {
+                    if (err) console.log(err)
+                    else io.emit('signedIn', users[user._id])
+                })
             }).catch(err => console.error(err))
         }
     })
@@ -139,7 +156,7 @@ io.on('connection', socket => {
     socket.on('logIn', data => {
         var temp = true
         for (var id in users) {
-            if (!users.hasOwnProperty(id)) continue;
+            if (!users.hasOwnProperty(id)) continue
             user = users[id]
             if ((user.nickname === data.name || user.email === data.name) && user.password === data.password) {
                 if (!user.verified) {
@@ -265,5 +282,5 @@ app.get('/validation/:id', (req, res) => {
 })
 
 server.listen(process.env.PORT || 3000, () => {
-    console.log('Server is listening ...');
-});
+    console.log('Server is listening ...')
+})
