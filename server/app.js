@@ -141,7 +141,7 @@ io.on('connection', socket => {
                 users[character.account_id].characters.push(character)
 
                 const update_user = {
-                    account_id: data.account_id,
+                    account_id: character.account_id,
                     type: 'update',
                     user: users[character.account_id]
                 }
@@ -159,7 +159,7 @@ io.on('connection', socket => {
                 users[character.account_id].characters.splice(index, 1)
 
                 const update_user = {
-                    account_id: data.account_id,
+                    account_id: character.account_id,
                     type: 'update',
                     user: users[character.account_id]
                 }
