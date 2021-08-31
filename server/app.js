@@ -72,8 +72,8 @@ io.on('connection', socket => {
     socket.on('signIn', data => {
         // Insert user to database
         const userSchema = User(data)
-        const isEmailUnique = true
-        const isNicknameUnique = true
+        var isEmailUnique = true
+        var isNicknameUnique = true
         for (var id in users) {
             if (!users.hasOwnProperty(id)) continue;
             user = users[id]
