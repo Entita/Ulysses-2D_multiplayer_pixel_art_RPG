@@ -26,7 +26,7 @@ mongoose.connection.on('connected', () => {
             chat[message._id] = {
                 player: message.player,
                 message: message.message,
-                createdAt: message.createdAt
+                createdAt: moment(message.createdAt).format('MMMM Do YYYY')
             }
         })
     }).catch(err => console.error(err))

@@ -97,11 +97,6 @@ var app = new Vue({
 
         // Socket.io listeners
         this_.socket.on('chat', chat => {
-            for (var id in chat) {
-                if (!chat.hasOwnProperty(id)) continue;
-                message = chat[id]
-                message.createdAt = moment(message.createdAt).format('h:mm a, MMMM Do YYYY')
-            }
             const temp = this.chat
             this.chat = chat
 
