@@ -106,21 +106,23 @@ io.on('connection', socket => {
                     characters: user.characters,
                     verified: user.verified
                 }
-            
+
                 // Send verify email
-                var transporter = nodeMailer.createTransport({
+                const transporter = nodeMailer.createTransport({
                     service: 'gmail',
                     auth: {
                         user: 'entitak@gmail.com',
                         pass: process.env.GMAIL_PASSWORD
                     }
-                })
+                }), html = '<h1>Thank <i>YOU</i> for registration.</h1>\
+                            <br>\
+                            <a href="https://gentle-island-28675.herokuapp.com/validation/' + user._id + '">Verification link</a>'
 
                 var mailOptions = {
                     from: 'entitak@gmail.com',
                     to: user.email,
                     subject: 'Verification link to 2D Game',
-                    html: '<h1>Thank <i>YOU</i> for registration.</h1><br><a href="' + user._id + '">Verification link</a>'
+                    html: html
                 }
 
                 transporter.sendMail(mailOptions, err => {
