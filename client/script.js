@@ -45,6 +45,7 @@ var app = new Vue({
         }
 
         this.socket.on('update_user', data => {
+            console.log(data)
             if (this.loginSocket && this.loginSocket.id === data.accont_id) {
                 // Update all people on same account
                 if (data.type === 'logout') {
