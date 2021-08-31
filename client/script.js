@@ -44,6 +44,12 @@ var app = new Vue({
             if (!this.sprite_sheet.hasOwnProperty(skin)) continue;
             this.helperArray.push(skin)
         }
+
+        this.socket.on('updated_user', user => {
+            localStorage.setItem('loginSocket', JSON.stringify(user))
+            this.loginSocket = user
+            // this.reRenderChars++
+        })
     },
     mounted() {
         var this_ = this,
@@ -747,12 +753,6 @@ var app = new Vue({
 
                 this.socket.emit('addCharacter', character)
                 this.startingMenu.creatingCharacter = false
-
-                this.socket.on('updated_user', user => {
-                    localStorage.setItem('loginSocket', JSON.stringify(user))
-                    this.loginSocket = user
-                    this.socket.off('updated_user')
-                })
             } else {
                 if (!isNameUnique) {
                     alert('You already have character with this name')
@@ -776,13 +776,6 @@ var app = new Vue({
                 const character = this.loginSocket.characters[index]
                 this.socket.emit('removeCharacter', character)
                 e.target.innerText = 'Delete character'
-
-                this.socket.on('removed_user', user => {
-                    localStorage.setItem('loginSocket', JSON.stringify(user))
-                    this.loginSocket = user
-                    this.socket.off('removed_user')
-                    this.reRenderChars++
-                })
             }
         }
     }

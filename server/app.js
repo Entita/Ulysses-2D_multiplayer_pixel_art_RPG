@@ -41,7 +41,8 @@ mongoose.connection.on('connected', () => {
                 email: user.email,
                 password: user.password,
                 createdAt: moment(user.createdAt).format('MMMM Do YYYY'),
-                characters: user.characters
+                characters: user.characters,
+                verified: user.verified
             }
         })
     }).catch(err => console.error(err))
@@ -101,7 +102,8 @@ io.on('connection', socket => {
                     email: user.email,
                     password: user.password,
                     createdAt: moment(user.createdAt).format('MMMM Do YYYY'),
-                    characters: user.characters
+                    characters: user.characters,
+                    verified: user.verified
                 }
                 io.emit('signedIn', users[user._id])
             }).catch(err => console.error(err))
@@ -126,7 +128,7 @@ io.on('connection', socket => {
             if (err) console.error('Removing character error: ', err)
             else {
                 users[character.account_id].characters.splice(index, 1)
-                io.emit('removed_user', users[character.account_id])
+                io.emit('updated_user', users[character.account_id])
             }
         })
     })
@@ -243,8 +245,11 @@ io.on('connection', socket => {
 
 app.get('/validation/:id', (req, res) => {
     const validation_id = req.params.id
-    if (users[validation_id]) res.send('verified')
-    else res.send(validation_id)
+    if (users[validation_id]) {
+        
+        users[validation_id].verified = true
+        io.emit('updated_user', users[validation_id])
+    }
 })
 
 server.listen(process.env.PORT || 3000, () => {
