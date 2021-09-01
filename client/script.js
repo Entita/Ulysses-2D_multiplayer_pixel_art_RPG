@@ -115,42 +115,6 @@ var app = new Vue({
 
         startAnimating(fps)
 
-        // Socket.io listeners
-        this_.socket.on('chat', chat => {
-            const temp = this.chat
-            this.chat = chat
-
-            if (!this.autoScroll || temp === {}) {
-                setTimeout(function () {
-                    this_.scrollToBottom()
-                }, 5)
-            }
-        })
-
-        this_.socket.on('world', server_map => {
-            map = server_map
-            drawMap()
-        })
-
-        this_.socket.on('update_players', data => {
-            socketID = this.socket.id
-            players = data
-        })
-
-        this_.socket.on('update_messages', data => {
-            messages = data
-        })
-
-        this_.socket.on('player_connected', player => {
-            setTimeout(function () {
-                playerParticles(player)
-            }, 50)
-        })
-
-        this_.socket.on('player_disconnected', player => {
-            playerParticles(player)
-        })
-
         // Functions
 
         function startAnimating(fps) {
@@ -226,6 +190,42 @@ var app = new Vue({
 
             messageBtn.addEventListener('click', () => {
                 sendMessage(messageInput)
+            })
+
+            // Socket.io listeners
+            this_.socket.on('chat', chat => {
+                const temp = this.chat
+                this.chat = chat
+
+                if (!this.autoScroll || temp === {}) {
+                    setTimeout(function () {
+                        this_.scrollToBottom()
+                    }, 5)
+                }
+            })
+
+            this_.socket.on('world', server_map => {
+                map = server_map
+                drawMap()
+            })
+
+            this_.socket.on('update_players', data => {
+                socketID = this.socket.id
+                players = data
+            })
+
+            this_.socket.on('update_messages', data => {
+                messages = data
+            })
+
+            this_.socket.on('player_connected', player => {
+                setTimeout(function () {
+                    playerParticles(player)
+                }, 50)
+            })
+
+            this_.socket.on('player_disconnected', player => {
+                playerParticles(player)
             })
         }
 
