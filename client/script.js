@@ -194,10 +194,10 @@ var app = new Vue({
 
             // Socket.io listeners
             this_.socket.on('chat', chat => {
-                const temp = this.chat
-                this.chat = chat
+                const temp = this_.chat
+                this_.chat = chat
 
-                if (!this.autoScroll || temp === {}) {
+                if (!this_.autoScroll || temp === {}) {
                     setTimeout(function () {
                         this_.scrollToBottom()
                     }, 5)
@@ -210,7 +210,7 @@ var app = new Vue({
             })
 
             this_.socket.on('update_players', data => {
-                socketID = this.socket.id
+                socketID = this_.socket.id
                 players = data
             })
 
