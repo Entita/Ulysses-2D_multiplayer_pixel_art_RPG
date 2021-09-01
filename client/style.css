@@ -10,13 +10,10 @@
     padding    : 0;
     box-sizing : border-box;
     font-family: pixel;
-    cursor     : auto;
-    cursor     : url(img/cursor_default.png), auto;
 }
 
 button {
     cursor     : pointer;
-    cursor     : url(img/cursor_pointer.png) 9 -22, pointer;
     user-select: none;
 }
 
@@ -141,7 +138,7 @@ option {
 .scroll_to_top {
     position        : absolute;
     z-index         : 999;
-    cursor          : url(img/cursor_pointer.png) 17 22, auto;
+    cursor          : pointer;
     left            : 50%;
     transform       : translate(-50%, -21px);
     font-size       : 14px;
@@ -287,7 +284,7 @@ option {
 .character {
     position     : relative;
     padding      : 5px 10px;
-    cursor       : url(img/cursor_pointer.png) 17 22, auto;
+    cursor       : pointer;
     border-radius: 4px;
     width        : 100%;
     display      : flex;
