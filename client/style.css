@@ -10,6 +10,12 @@
     padding    : 0;
     box-sizing : border-box;
     font-family: pixel;
+    cursor     : url(img/cursor_default.png) 12 19, auto;
+}
+
+button {
+    cursor     : url(img/cursor_pointer.png) 17 22, auto;
+    user-select: none;
 }
 
 canvas {
@@ -24,8 +30,7 @@ canvas {
     display: none;
 }
 
-.unselectable,
-button {
+.unselectable {
     user-select: none;
 }
 
@@ -134,7 +139,7 @@ option {
 .scroll_to_top {
     position        : absolute;
     z-index         : 999;
-    cursor          : pointer;
+    cursor          : url(img/cursor_pointer.png) 17 22, auto;
     left            : 50%;
     transform       : translate(-50%, -21px);
     font-size       : 14px;
@@ -168,7 +173,6 @@ option {
 }
 
 .messageBtn:hover {
-    cursor: pointer;
     filter: brightness(.9);
 }
 
@@ -281,7 +285,7 @@ option {
 .character {
     position     : relative;
     padding      : 5px 10px;
-    cursor       : pointer;
+    cursor       : url(img/cursor_pointer.png) 17 22, auto;
     border-radius: 4px;
     width        : 100%;
     display      : flex;
@@ -314,7 +318,6 @@ option {
     height       : 3.4rem;
     margin-top   : 0;
     border-radius: 4px;
-    cursor       : pointer;
 }
 
 #account_characters>button:hover {
