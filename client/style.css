@@ -14,7 +14,7 @@
 }
 
 button {
-    cursor     : url(img/cursor_pointer.png) 11 0, auto;
+    cursor     : url(img/cursor_pointer.png) 11 0, pointer;
     user-select: none;
 }
 
