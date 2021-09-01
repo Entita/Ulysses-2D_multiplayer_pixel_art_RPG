@@ -16,7 +16,7 @@
 
 button {
     cursor     : pointer;
-    cursor     : url(img/cursor_pointer.png) 13 22, pointer;
+    cursor     : url(img/cursor_pointer.png) 9 -22, pointer;
     user-select: none;
 }
 
