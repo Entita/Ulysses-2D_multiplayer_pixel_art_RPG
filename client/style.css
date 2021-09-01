@@ -10,11 +10,11 @@
     padding    : 0;
     box-sizing : border-box;
     font-family: pixel;
-    cursor     : url(img/cursor_default.png) 12 19, auto;
+    cursor     : url(img/cursor_default.png), auto;
 }
 
 button {
-    cursor     : url(img/cursor_pointer.png) 17 22, auto;
+    cursor     : url(img/cursor_pointer.png) 11 0, auto;
     user-select: none;
 }
 
