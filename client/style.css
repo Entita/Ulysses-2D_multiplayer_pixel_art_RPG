@@ -301,7 +301,7 @@ option {
     padding: 4px 9px;
 }
 
-.character.selected:hover {
+.character.selected:hover :before {
     border-color: whitesmoke;
 }
 
