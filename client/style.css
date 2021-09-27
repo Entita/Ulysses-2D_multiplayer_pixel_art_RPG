@@ -301,6 +301,10 @@ option {
     padding: 4px 9px;
 }
 
+.character.selected:hover {
+    border-color: whitesmoke;
+}
+
 .character.selected :before {
     content      : '';
     position     : absolute;
