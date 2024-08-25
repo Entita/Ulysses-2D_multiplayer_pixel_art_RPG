@@ -31,7 +31,7 @@ var app = new Vue({
         }
     },
     created() {
-        this.socket = io('https://gentle-island-28675.herokuapp.com/', { transports: ['websocket'] })
+        this.socket = io('https://ulysses-mu.vercel.app/', { transports: ['websocket'] })
         this.sprite_sheet['starlord'].src = 'img/sprite_starlord.png'
         this.sprite_sheet['tonystark'].src = 'img/sprite_tonystark.png'
         this.sprite_sheet['thor'].src = 'img/sprite_thor.png'
